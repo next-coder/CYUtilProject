@@ -1,0 +1,10 @@
+1、初始化CYPullRefreshHeaderView或CYPullRefreshFooterView实例时，请务必使用initWithScrollView:
+2、使用完CYPullRefreshHeaderView或CYPullRefreshFooterView后，必须调用releaseResources释放资源，否则可能造成应用崩溃
+3、使用CYPullRefreshHeaderView时，可以通过lastUpdateTimeKey来指定当前刷新页面最后刷新时间存储的关键字，以防止有多个下拉刷新页面时，最后刷新时间却使用同一个
+
+
+注意：
+    使用完CYPullRefreshHeaderView或CYPullRefreshFooterView后，必须调用releaseResources释放资源，否则可能造成应用崩溃
+
+依赖三方库：
+Masonry
