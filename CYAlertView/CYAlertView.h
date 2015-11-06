@@ -15,17 +15,27 @@ typedef NS_ENUM(NSInteger, CYAlertViewStyle) {
     CYAlertViewStyleActionSheet                 // not implemented
 };
 
+typedef NS_ENUM(NSInteger, CYAlertViewActionStyle) {
+    
+    CYAlertViewActionStyleDefault,
+    CYAlertViewActionStyleRoundRect
+};
+
 @interface CYAlertView : UIView
 
 @property (nonatomic, strong, readonly) NSString *title;
 @property (nonatomic, strong, readonly) NSString *message;
 @property (nonatomic, strong, readonly) NSString *cancelTitle;
 
+@property (nonatomic, assign) CYAlertViewStyle style;
+@property (nonatomic, assign) CYAlertViewActionStyle actionStyle;
+
+// default NO，点击空白区域，是否dismiss
+@property (nonatomic, assign) BOOL dimissOnBlankAreaTapped;
+
 - (instancetype)initWithTitle:(NSString *)title
                       message:(NSString *)message
-                     delegate:(id)delegate
-                  cancelTitle:(NSString *)cancelTitle
-                        style:(CYAlertViewStyle)style;
+                  cancelTitle:(NSString *)cancelTitle;
 
 - (void)addCustomMessageView:(UIView *)view;
 - (void)addAction:(CYAlertViewAction *)action;

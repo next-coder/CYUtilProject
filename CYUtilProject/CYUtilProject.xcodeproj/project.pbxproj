@@ -70,6 +70,7 @@
 		61F0FCCB1BCF820200E445EA /* CYAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F0FCCA1BCF820200E445EA /* CYAlertView.m */; };
 		61F0FCCE1BCF963B00E445EA /* CYAlertViewAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F0FCCD1BCF963B00E445EA /* CYAlertViewAction.m */; };
 		61F1884F1BEB7008006DE729 /* UIButton+CYWebImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F1884E1BEB7008006DE729 /* UIButton+CYWebImageCache.m */; };
+		61F811581BEC420700F87E3C /* CYChatTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F811571BEC420700F87E3C /* CYChatTextCell.m */; };
 		61FC40A91BE3489000BEDC51 /* CYChatInputMorePadItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FC40A81BE3489000BEDC51 /* CYChatInputMorePadItem.m */; };
 		61FD03021BE99AEA00237EA3 /* CYCycleBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FD03011BE99AEA00237EA3 /* CYCycleBannerView.m */; };
 		61FD03051BE9A58900237EA3 /* CYCycleBannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FD03041BE9A58900237EA3 /* CYCycleBannerViewController.m */; };
@@ -213,6 +214,8 @@
 		61F1884C1BEB6BEA006DE729 /* CYCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYCache.h; sourceTree = "<group>"; };
 		61F1884D1BEB7008006DE729 /* UIButton+CYWebImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+CYWebImageCache.h"; sourceTree = "<group>"; };
 		61F1884E1BEB7008006DE729 /* UIButton+CYWebImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+CYWebImageCache.m"; sourceTree = "<group>"; };
+		61F811561BEC420700F87E3C /* CYChatTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatTextCell.h; sourceTree = "<group>"; };
+		61F811571BEC420700F87E3C /* CYChatTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYChatTextCell.m; sourceTree = "<group>"; };
 		61FC40A71BE3489000BEDC51 /* CYChatInputMorePadItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatInputMorePadItem.h; sourceTree = "<group>"; };
 		61FC40A81BE3489000BEDC51 /* CYChatInputMorePadItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYChatInputMorePadItem.m; sourceTree = "<group>"; };
 		61FD03001BE99AEA00237EA3 /* CYCycleBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYCycleBannerView.h; sourceTree = "<group>"; };
@@ -291,6 +294,8 @@
 				616037D41BD49A1300BF4285 /* CYChatImageLeftArrowCell.m */,
 				616037D61BD49A4100BF4285 /* CYChatImageRightArrowCell.h */,
 				616037D71BD49A4100BF4285 /* CYChatImageRightArrowCell.m */,
+				61F811561BEC420700F87E3C /* CYChatTextCell.h */,
+				61F811571BEC420700F87E3C /* CYChatTextCell.m */,
 				61C55F071BD5D86800B59F99 /* CYChatInputContentView.h */,
 				61C55F081BD5D86800B59F99 /* CYChatInputContentView.m */,
 				61DF52E01BE232370015CDF2 /* CYChatInputMorePadView.h */,
@@ -708,6 +713,7 @@
 				61F0FCBC1BCF770C00E445EA /* MASLayoutConstraint.m in Sources */,
 				616037D81BD49A4100BF4285 /* CYChatImageRightArrowCell.m in Sources */,
 				61F0FCCE1BCF963B00E445EA /* CYAlertViewAction.m in Sources */,
+				61F811581BEC420700F87E3C /* CYChatTextCell.m in Sources */,
 				61FD03051BE9A58900237EA3 /* CYCycleBannerViewController.m in Sources */,
 				61851EE11BCD0A86005340C8 /* CYBaseModel.m in Sources */,
 				61F1884F1BEB7008006DE729 /* UIButton+CYWebImageCache.m in Sources */,

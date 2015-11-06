@@ -22,17 +22,17 @@
     
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
-        _drawContentBackground = YES;
+//        _drawContentBackground = YES;
         [self createContentImageView];
     }
     return self;
 }
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    
-    _drawContentBackground = YES;
-}
+//- (void)awakeFromNib {
+//    [super awakeFromNib];
+//    
+//    _drawContentBackground = YES;
+//}
 
 - (void)setDelegate:(id<CYChatImageCellDelegate>)delegate {
     [super setDelegate:delegate];

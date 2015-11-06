@@ -23,8 +23,6 @@ typedef NS_ENUM(NSInteger, CYAlertViewActionViewsLayout) {
 
 @interface CYAlertView ()
 
-@property (nonatomic, assign) CYAlertViewStyle style;
-
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UITextView *messageTextView;
 
@@ -54,17 +52,13 @@ typedef NS_ENUM(NSInteger, CYAlertViewActionViewsLayout) {
 
 - (instancetype)initWithTitle:(NSString *)title
                       message:(NSString *)message
-                     delegate:(id)delegate
-                  cancelTitle:(NSString *)cancelTitle
-                        style:(CYAlertViewStyle)style {
+                  cancelTitle:(NSString *)cancelTitle {
     
     if (self = [super initWithFrame:CGRectZero]) {
         
         _title = title;
         _message = message;
         _cancelTitle = cancelTitle;
-        
-        _style = style;
         
         [self createSubViews];
         self.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.98];
@@ -205,6 +199,9 @@ typedef NS_ENUM(NSInteger, CYAlertViewActionViewsLayout) {
         _messageTextView.frame = frame;
         
         nextY = CGRectGetMaxY(_messageTextView.frame) + 5;
+    } else {
+        
+        nextY += CY_ALERT_VIEW_CONTENT_BETWEEN_GAP;
     }
     
     if (_customMessageViews
@@ -225,35 +222,60 @@ typedef NS_ENUM(NSInteger, CYAlertViewActionViewsLayout) {
         
         if (self.actionLayout == CYAlertViewActionViewsLayoutVertical) {
             
+            CGFloat buttonOriginX = 0;
+            CGFloat buttonWidth = selfWidth;
+            if (self.actionStyle == CYAlertViewActionStyleRoundRect) {
+                
+                buttonOriginX = CY_ALERT_VIEW_CONTENT_BODER_GAP;
+                buttonWidth = selfWidth - 2 * CY_ALERT_VIEW_CONTENT_BODER_GAP;
+            }
             // 按钮竖着布局
             [_actionButtons enumerateObjectsUsingBlock:^(UIButton *button, NSUInteger idx, BOOL * _Nonnull stop) {
                 
                 CGRect frame;
-                frame.origin.x = 0;
+                frame.origin.x = buttonOriginX;
                 frame.origin.y = nextY + 0.5;
-                frame.size.width = selfWidth;
+                frame.size.width = buttonWidth;
                 frame.size.height = CY_ALERT_VIEW_ACTION_VIEW_HEIGHT - 0.5;
                 button.frame = frame;
                 
                 nextY = CGRectGetMaxY(button.frame);
+                if (self.actionStyle == CYAlertViewActionStyleRoundRect) {
+                    
+                    nextY += CY_ALERT_VIEW_CONTENT_BETWEEN_GAP;
+                }
             }];
             if (_cancelActionView) {
                 
                 CGRect frame;
-                frame.origin.x = 0;
+                frame.origin.x = buttonOriginX;
                 frame.origin.y = nextY + 0.5;
-                frame.size.width = selfWidth;
+                frame.size.width = buttonWidth;
                 frame.size.height = CY_ALERT_VIEW_ACTION_VIEW_HEIGHT - 0.5;
                 _cancelActionView.frame = frame;
                 
                 nextY = CGRectGetMaxY(_cancelActionView.frame);
+                if (self.actionStyle == CYAlertViewActionStyleRoundRect) {
+                    
+                    nextY += CY_ALERT_VIEW_CONTENT_BETWEEN_GAP;
+                }
             }
         } else {
             
             // 按钮水平布局
             __block CGFloat nextX = 0;
-            CGFloat buttonWidth = selfWidth / self.numberOfActions;
+            CGFloat buttonWidth = 0;
+            if (self.actionStyle == CYAlertViewActionStyleRoundRect) {
+                
+                buttonWidth = (selfWidth - CY_ALERT_VIEW_CONTENT_BODER_GAP * (self.numberOfActions + 1)) / self.numberOfActions;
+            } else {
+                
+                buttonWidth = selfWidth / self.numberOfActions;
+            }
             CGSize buttonSize = CGSizeMake(buttonWidth - 0.5, CY_ALERT_VIEW_ACTION_VIEW_HEIGHT);
+            if (self.actionStyle == CYAlertViewActionStyleRoundRect) {
+                nextX = CY_ALERT_VIEW_CONTENT_BODER_GAP;
+            }
             if (_cancelActionView) {
                 
                 CGRect frame;
@@ -269,7 +291,10 @@ typedef NS_ENUM(NSInteger, CYAlertViewActionViewsLayout) {
                 }
                 _cancelActionView.frame = frame;
                 
-                nextX = buttonWidth;
+                nextX = CGRectGetMaxX(_cancelActionView.frame);
+                if (self.actionStyle == CYAlertViewActionStyleRoundRect) {
+                    nextX = CGRectGetMaxX(_cancelActionView.frame) + CY_ALERT_VIEW_CONTENT_BODER_GAP;
+                }
             }
             [_actionButtons enumerateObjectsUsingBlock:^(UIButton *button, NSUInteger idx, BOOL * _Nonnull stop) {
                 
@@ -285,10 +310,21 @@ typedef NS_ENUM(NSInteger, CYAlertViewActionViewsLayout) {
                 }
                 button.frame = frame;
                 
-                nextX = CGRectGetMaxX(button.frame) + 0.5;
+                if (self.actionStyle == CYAlertViewActionStyleRoundRect) {
+                    
+                    nextX = CGRectGetMaxX(button.frame) + CY_ALERT_VIEW_CONTENT_BODER_GAP;
+                } else {
+                    
+                    nextX = CGRectGetMaxX(button.frame) + 0.5;
+                }
             }];
             nextY += 44;
+            if (self.actionStyle == CYAlertViewActionStyleRoundRect) {
+                
+                nextY += CY_ALERT_VIEW_CONTENT_BODER_GAP;
+            }
         }
+        
     } else {
         
         nextY += CY_ALERT_VIEW_CONTENT_BODER_GAP;
@@ -303,6 +339,10 @@ typedef NS_ENUM(NSInteger, CYAlertViewActionViewsLayout) {
 - (void)drawRect:(CGRect)rect {
     [super drawRect:rect];
     
+    if (self.actionStyle == CYAlertViewActionStyleRoundRect) {
+        
+        return;
+    }
     NSInteger numberOfActions = self.numberOfActions;
     if (numberOfActions > 0) {
         
@@ -408,9 +448,18 @@ static UITapGestureRecognizer *alertShowingWindowTap = nil;
 }
 
 #pragma mark - event
-- (void)alertTapped:(id)sender {
+- (void)alertTapped:(UITapGestureRecognizer *)sender {
     
     [self endEditing:YES];
+    if (_dimissOnBlankAreaTapped
+        && alertShowingWindowTap) {
+        
+        CGPoint touchPoint = [sender locationInView:self];
+        if (!CGRectContainsPoint(self.bounds, touchPoint)) {
+            
+            [self dismiss];
+        }
+    }
 }
 
 @end

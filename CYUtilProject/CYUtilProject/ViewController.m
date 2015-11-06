@@ -135,10 +135,10 @@
         
         
         CYAlertView *alert = [[CYAlertView alloc] initWithTitle:@"fdafdaf"
-                                                        message:@"fdasfdsafsafsfdsaf"
-                                                       delegate:nil
-                                                    cancelTitle:nil
-                                                          style:CYAlertViewStyleAlert];
+                                                        message:nil
+                                                    cancelTitle:nil];
+        alert.actionStyle = CYAlertViewActionStyleRoundRect;
+        alert.dimissOnBlankAreaTapped = YES;
         
         CYAlertViewAction *action1 = [[CYAlertViewAction alloc] initWithTitle:@"试一下1" handler:^(CYAlertViewAction *action) {
             
@@ -155,6 +155,14 @@
         action2.titleColor = [UIColor whiteColor];
         action2.backgroundColor = [UIColor redColor];
         [alert addAction:action2];
+        
+//        CYAlertViewAction *action3 = [[CYAlertViewAction alloc] initWithTitle:@"试一下3" handler:^(CYAlertViewAction *action) {
+//            
+//            NSLog(@"tapped : %@", action.title);
+//        }];
+//        action3.titleColor = [UIColor whiteColor];
+//        action3.backgroundColor = [UIColor redColor];
+//        [alert addAction:action3];
         
         UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"share_message"]];
         [alert addCustomMessageView:imageView];

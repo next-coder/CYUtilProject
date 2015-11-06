@@ -21,8 +21,8 @@
 @property (nonatomic, weak) IBOutlet id<CYChatImageCellDelegate> delegate;
 @property (nonatomic, weak) IBOutlet UIImageView *contentImageView;
 
-// Draw background or not, if YES, this will draw the content arrow and round corner, if NO, this will use the contentBackgroundImageView to show the content background, default is YES
-@property (nonatomic, assign) BOOL drawContentBackground;
+//// Draw background or not, if YES, this will draw the content arrow and round corner, if NO, this will use the contentBackgroundImageView to show the content background, default is YES
+//@property (nonatomic, assign) BOOL drawContentBackground;
 
 - (IBAction)contentImageTapped:(id)sender;
 

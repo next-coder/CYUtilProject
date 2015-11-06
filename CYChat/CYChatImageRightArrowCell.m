@@ -54,15 +54,15 @@
                                              self.contentInsets.top,
                                              contentSize.width,
                                              contentSize.height);
-    if (self.drawContentBackground) {
-        
+//    if (self.drawContentBackground) {
+    
         CALayer *maskLayer = [CALayer layer];
         maskLayer.contents = (id)([self scaledMaskImage].CGImage);
         maskLayer.frame = self.contentBackgroundImageView.bounds;
         maskLayer.contentsScale = [UIScreen mainScreen].scale;
         maskLayer.opacity = 1;
         self.contentBackgroundImageView.layer.mask = maskLayer;
-    }
+//    }
 }
 
 - (UIImage *)scaledMaskImage {
