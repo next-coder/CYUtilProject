@@ -8,8 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+#import "CYIAPTransaction.h"
+
 #define CY_IAP_COMMON_ERROR_DOMAIN   @"CYIAPCommonError"
 
+typedef void (^CYIAPTransactionStateChangedBlock)(CYIAPTransaction *transaction);
 @class CYIAPUtils;
 
 @protocol CYIAPUtilsDelegate <NSObject>

@@ -15,6 +15,7 @@ typedef NS_ENUM(NSInteger, CYAlertViewStyle) {
     CYAlertViewStyleActionSheet                 // not implemented
 };
 
+// 按钮样式，在CYAlertViewStyleAlert是有效
 typedef NS_ENUM(NSInteger, CYAlertViewActionStyle) {
     
     CYAlertViewActionStyleDefault,

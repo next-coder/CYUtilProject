@@ -11,38 +11,32 @@
 @interface CYFullScreenImageView : UIView <UIScrollViewDelegate>
 
 @property (nonatomic, weak, readonly) UIScrollView *scrollView;
-@property (nonatomic, copy, readonly) NSArray *images;
 @property (nonatomic, strong, readonly) UIImage *placeholder;
-@property (nonatomic, assign, readonly) NSInteger firstShowingIndex;
+@property (nonatomic, strong, readonly) UIImage *image;
+@property (nonatomic, strong, readonly) NSURL *imageURL;
 
 // default YES
 @property (nonatomic, assign) BOOL dismissOnTap;
 // default YES
 @property (nonatomic, assign) BOOL zoomingEnabled;
 
-- (void)setImages:(NSArray *)images placeholder:(UIImage *)placeholder firstShowingIndex:(NSInteger)index;
+- (void)setImage:(UIImage *)image;
+
+- (void)setImageWithURL:(NSURL *)imageURL placeholder:(UIImage *)placeholder;
 
 #pragma mark - show
-- (void)showInKeyWindowFromRect:(CGRect)rect;
-- (void)showFromRect:(CGRect)rect
-              inView:(UIView *)view;
+- (void)showInView:(UIView *)view
+          animated:(BOOL)animated;
+- (void)showInKeyWindowAnimated:(BOOL)animated;
 
 #pragma mark - dismiss
-// animated dismiss to specific rect
-- (void)dismissToRect:(CGRect)rect;
-// animated dismiss to show rect
-- (void)dismiss;
+- (void)dismissAnimated:(BOOL)animated;
 
 #pragma mark - static show
-+ (instancetype)showImagesInKeyWindow:(NSArray *)images
-                          placeholder:(UIImage *)placeholder
-                    firstShowingIndex:(NSInteger)index
-                             fromRect:(CGRect)rect;
 
-+ (instancetype)showImages:(NSArray *)images
-               placeholder:(UIImage *)placeholder
-         firstShowingIndex:(NSInteger)index
-                  fromRect:(CGRect)rect
-                    inView:(UIView *)view;
++ (instancetype)showImage:(UIImage *)image
+                   inView:(UIView *)view
+                 animated:(BOOL)animated
+         dismissAutomatic:(BOOL)dismiss;
 
 @end

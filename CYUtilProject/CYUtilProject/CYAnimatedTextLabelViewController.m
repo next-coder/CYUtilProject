@@ -8,6 +8,7 @@
 
 #import "CYAnimatedTextLabelViewController.h"
 #import "CYAnimatedTextLabel.h"
+#import "UIView+CYAnimationUtil.h"
 
 @interface CYAnimatedTextLabelViewController () <CYAnimatedTextLabelDelegate>
 
@@ -54,7 +55,14 @@
 
 - (void)reset:(id)sender {
     
-    [_label startAnimatingTextWithDuration:0.5f];
+//    [_label startAnimatingTextWithDuration:0.5f];
+    [_label cy_animateWithDuration:0.5 animationProgress:^(CGFloat progress) {
+        
+        _label.text = [NSString stringWithFormat:@"%.2f", progress];
+    } animationCompletion:^(BOOL completed) {
+        
+//        _label.text = @"haha";
+    }];
 }
 
 #pragma mark - CYAnimatedTextLabelDelegate

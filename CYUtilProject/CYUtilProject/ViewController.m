@@ -11,6 +11,7 @@
 #import "CYAnimatedTextLabelViewController.h"
 #import "CYCycleBannerViewController.h"
 #import "CYFullScreenImageView.h"
+#import "CYBannerImageBrowserView.h"
 #import "CYAlertView.h"
 
 #import "CYChat.h"
@@ -68,7 +69,7 @@
         cell.textLabel.text = @"CYCycleBannerView";
     } else if (indexPath.row == 4) {
         
-        cell.textLabel.text = @"CYFullScreenImageView";
+        cell.textLabel.text = @"CYBannerImageBrowserView";
     } else if (indexPath.row == 5) {
         
         cell.textLabel.text = @"CYAlertView";
@@ -112,16 +113,16 @@
         [self presentViewController:vc animated:YES completion:nil];
     } else if (indexPath.row == 3) {
         
-//        CYCycleBannerViewController *vc = [[CYCycleBannerViewController alloc] init];
-//        [self presentViewController:vc animated:YES completion:nil];
+        CYCycleBannerViewController *vc = [[CYCycleBannerViewController alloc] init];
+        [self presentViewController:vc animated:YES completion:nil];
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"fdsaf" message:@"fadsfasdf" delegate:nil cancelButtonTitle:@"ffff" otherButtonTitles:@"bbbb", @"ccc", nil];
-        [alert show];
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"fdsaf" message:@"fadsfasdf" delegate:nil cancelButtonTitle:@"ffff" otherButtonTitles:@"bbbb", @"ccc", nil];
+//        [alert show];
     } else if (indexPath.row == 4) {
         
 //        CYFullScreenImageViewController *vc = [[CYFullScreenImageViewController alloc] init];
 //        [self presentViewController:vc animated:YES completion:nil];
-        [CYFullScreenImageView showImagesInKeyWindow:@[ @"http://m2.xiaoniuapp.com/backend/images/ad/5.jpg",
+        [CYBannerImageBrowserView showImagesInKeyWindow:@[ @"http://m2.xiaoniuapp.com/backend/images/ad/5.jpg",
                                                        @"http://m2.xiaoniuapp.com/backend/images/ad/1.jpg",
                                                        @"http://m2.xiaoniuapp.com/backend/images/ad/2.jpg",
                                                        [UIImage imageNamed:@"introduction_3_5_1.png"],

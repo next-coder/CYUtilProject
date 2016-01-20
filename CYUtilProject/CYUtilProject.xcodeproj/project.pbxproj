@@ -7,7 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		610199501C4E380B00E04080 /* CYIAPTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 6101994F1C4E380B00E04080 /* CYIAPTransaction.m */; };
 		610EB0BD1BDF47970086D048 /* CYSendSMSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 610EB0BC1BDF47970086D048 /* CYSendSMSUtils.m */; };
+		611780B91C07F172009EADD5 /* CYCustomUILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 611780B81C07F172009EADD5 /* CYCustomUILabel.m */; };
+		611CC9891C33BAF700273718 /* UIView+CYAnimationUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 611CC9881C33BAF700273718 /* UIView+CYAnimationUtil.m */; };
+		613373291C0EE66900813925 /* CYDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 613373281C0EE66900813925 /* CYDatabase.m */; };
+		6133732D1C0EF4FB00813925 /* CYResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6133732C1C0EF4FB00813925 /* CYResultSet.m */; };
+		613373301C0EF72100813925 /* CYPrepareStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6133732F1C0EF72100813925 /* CYPrepareStatement.m */; };
 		613536AE1BDF5F900099E426 /* CYAddressBookUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 613536AD1BDF5F900099E426 /* CYAddressBookUtils.m */; };
 		614F22641BE0F58A00E3CF9D /* UIScrollView+CYUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 614F22631BE0F58A00E3CF9D /* UIScrollView+CYUtils.m */; };
 		616037CF1BD493B900BF4285 /* CYChatBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 616037CE1BD493B900BF4285 /* CYChatBaseCell.m */; };
@@ -70,6 +76,17 @@
 		61F0FCCB1BCF820200E445EA /* CYAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F0FCCA1BCF820200E445EA /* CYAlertView.m */; };
 		61F0FCCE1BCF963B00E445EA /* CYAlertViewAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F0FCCD1BCF963B00E445EA /* CYAlertViewAction.m */; };
 		61F1884F1BEB7008006DE729 /* UIButton+CYWebImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F1884E1BEB7008006DE729 /* UIButton+CYWebImageCache.m */; };
+		61F711701BF195B300881E3B /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 61F7116E1BF195B300881E3B /* TencentOpenApi_IOS_Bundle.bundle */; };
+		61F711741BF195E700881E3B /* CYQQUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F711731BF195E700881E3B /* CYQQUtils.m */; };
+		61F711AC1BF1C3CE00881E3B /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F711AB1BF1C3CE00881E3B /* TencentOpenAPI.framework */; };
+		61F711AD1BF1C4B500881E3B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F711751BF1983F00881E3B /* Security.framework */; };
+		61F711AE1BF1C4BE00881E3B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F711931BF1BD5400881E3B /* SystemConfiguration.framework */; };
+		61F711AF1BF1C4D600881E3B /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F7119D1BF1BDCF00881E3B /* libz.tbd */; };
+		61F711B01BF1C4DF00881E3B /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F7119B1BF1BDC700881E3B /* libstdc++.tbd */; };
+		61F711B11BF1C4E700881E3B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F711991BF1BDBD00881E3B /* CoreTelephony.framework */; };
+		61F711B21BF1C4F400881E3B /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F711971BF1BDB400881E3B /* libsqlite3.tbd */; };
+		61F711B31BF1C4FE00881E3B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F711951BF1BDA900881E3B /* CoreGraphics.framework */; };
+		61F711B41BF1C50900881E3B /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F711911BF1BD4800881E3B /* libiconv.tbd */; };
 		61F811581BEC420700F87E3C /* CYChatTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F811571BEC420700F87E3C /* CYChatTextCell.m */; };
 		61FC40A91BE3489000BEDC51 /* CYChatInputMorePadItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FC40A81BE3489000BEDC51 /* CYChatInputMorePadItem.m */; };
 		61FD03021BE99AEA00237EA3 /* CYCycleBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FD03011BE99AEA00237EA3 /* CYCycleBannerView.m */; };
@@ -87,8 +104,21 @@
 
 /* Begin PBXFileReference section */
 		560DD24FE4038A3D8BB79B6C /* Pods-CYUtilProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CYUtilProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CYUtilProject/Pods-CYUtilProject.debug.xcconfig"; sourceTree = "<group>"; };
+		6101994E1C4E380B00E04080 /* CYIAPTransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYIAPTransaction.h; sourceTree = "<group>"; };
+		6101994F1C4E380B00E04080 /* CYIAPTransaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYIAPTransaction.m; sourceTree = "<group>"; };
 		610EB0BB1BDF47970086D048 /* CYSendSMSUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYSendSMSUtils.h; sourceTree = "<group>"; };
 		610EB0BC1BDF47970086D048 /* CYSendSMSUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYSendSMSUtils.m; sourceTree = "<group>"; };
+		611780B71C07F172009EADD5 /* CYCustomUILabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYCustomUILabel.h; sourceTree = "<group>"; };
+		611780B81C07F172009EADD5 /* CYCustomUILabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYCustomUILabel.m; sourceTree = "<group>"; };
+		611CC9871C33BAF700273718 /* UIView+CYAnimationUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CYAnimationUtil.h"; sourceTree = "<group>"; };
+		611CC9881C33BAF700273718 /* UIView+CYAnimationUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CYAnimationUtil.m"; sourceTree = "<group>"; };
+		613373271C0EE66900813925 /* CYDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYDatabase.h; sourceTree = "<group>"; };
+		613373281C0EE66900813925 /* CYDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYDatabase.m; sourceTree = "<group>"; };
+		6133732A1C0EE69600813925 /* CYSQLite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYSQLite.h; sourceTree = "<group>"; };
+		6133732B1C0EF4FB00813925 /* CYResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYResultSet.h; sourceTree = "<group>"; };
+		6133732C1C0EF4FB00813925 /* CYResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYResultSet.m; sourceTree = "<group>"; };
+		6133732E1C0EF72100813925 /* CYPrepareStatement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYPrepareStatement.h; sourceTree = "<group>"; };
+		6133732F1C0EF72100813925 /* CYPrepareStatement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYPrepareStatement.m; sourceTree = "<group>"; };
 		613536AC1BDF5F900099E426 /* CYAddressBookUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYAddressBookUtils.h; sourceTree = "<group>"; };
 		613536AD1BDF5F900099E426 /* CYAddressBookUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYAddressBookUtils.m; sourceTree = "<group>"; };
 		614F22621BE0F58A00E3CF9D /* UIScrollView+CYUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+CYUtils.h"; sourceTree = "<group>"; };
@@ -214,6 +244,19 @@
 		61F1884C1BEB6BEA006DE729 /* CYCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYCache.h; sourceTree = "<group>"; };
 		61F1884D1BEB7008006DE729 /* UIButton+CYWebImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+CYWebImageCache.h"; sourceTree = "<group>"; };
 		61F1884E1BEB7008006DE729 /* UIButton+CYWebImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+CYWebImageCache.m"; sourceTree = "<group>"; };
+		61F7116E1BF195B300881E3B /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
+		61F711721BF195E700881E3B /* CYQQUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYQQUtils.h; sourceTree = "<group>"; };
+		61F711731BF195E700881E3B /* CYQQUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYQQUtils.m; sourceTree = "<group>"; };
+		61F711751BF1983F00881E3B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		61F711911BF1BD4800881E3B /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		61F711931BF1BD5400881E3B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		61F711951BF1BDA900881E3B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		61F711971BF1BDB400881E3B /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		61F711991BF1BDBD00881E3B /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		61F7119B1BF1BDC700881E3B /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		61F7119D1BF1BDCF00881E3B /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		61F711A11BF1BE6400881E3B /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
+		61F711AB1BF1C3CE00881E3B /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		61F811561BEC420700F87E3C /* CYChatTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatTextCell.h; sourceTree = "<group>"; };
 		61F811571BEC420700F87E3C /* CYChatTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYChatTextCell.m; sourceTree = "<group>"; };
 		61FC40A71BE3489000BEDC51 /* CYChatInputMorePadItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatInputMorePadItem.h; sourceTree = "<group>"; };
@@ -245,6 +288,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61F711B41BF1C50900881E3B /* libiconv.tbd in Frameworks */,
+				61F711B31BF1C4FE00881E3B /* CoreGraphics.framework in Frameworks */,
+				61F711B21BF1C4F400881E3B /* libsqlite3.tbd in Frameworks */,
+				61F711B11BF1C4E700881E3B /* CoreTelephony.framework in Frameworks */,
+				61F711B01BF1C4DF00881E3B /* libstdc++.tbd in Frameworks */,
+				61F711AF1BF1C4D600881E3B /* libz.tbd in Frameworks */,
+				61F711AE1BF1C4BE00881E3B /* SystemConfiguration.framework in Frameworks */,
+				61F711AD1BF1C4B500881E3B /* Security.framework in Frameworks */,
+				61F711AC1BF1C3CE00881E3B /* TencentOpenAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +311,29 @@
 			);
 			name = CYSMS;
 			path = ../../CYSMS;
+			sourceTree = "<group>";
+		};
+		611CC9831C33B20E00273718 /* CYAnimationUtil */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = CYAnimationUtil;
+			path = ../../CYAnimationUtil;
+			sourceTree = "<group>";
+		};
+		613373261C0EE5FD00813925 /* CYSQLite */ = {
+			isa = PBXGroup;
+			children = (
+				613373271C0EE66900813925 /* CYDatabase.h */,
+				613373281C0EE66900813925 /* CYDatabase.m */,
+				6133732E1C0EF72100813925 /* CYPrepareStatement.h */,
+				6133732F1C0EF72100813925 /* CYPrepareStatement.m */,
+				6133732B1C0EF4FB00813925 /* CYResultSet.h */,
+				6133732C1C0EF4FB00813925 /* CYResultSet.m */,
+				6133732A1C0EE69600813925 /* CYSQLite.h */,
+			);
+			name = CYSQLite;
+			path = ../../CYSQLite;
 			sourceTree = "<group>";
 		};
 		613536AB1BDF5F590099E426 /* CYAddressBook */ = {
@@ -278,6 +353,10 @@
 				614F22631BE0F58A00E3CF9D /* UIScrollView+CYUtils.m */,
 				61DF52C41BE2049E0015CDF2 /* CYAnimatedTextLabel.h */,
 				61DF52C51BE2049E0015CDF2 /* CYAnimatedTextLabel.m */,
+				611780B71C07F172009EADD5 /* CYCustomUILabel.h */,
+				611780B81C07F172009EADD5 /* CYCustomUILabel.m */,
+				611CC9871C33BAF700273718 /* UIView+CYAnimationUtil.h */,
+				611CC9881C33BAF700273718 /* UIView+CYAnimationUtil.m */,
 			);
 			name = CYUIKitUtils;
 			path = ../../CYUIKitUtils;
@@ -352,6 +431,9 @@
 		61851EBD1BCD0964005340C8 /* CYUtilProject */ = {
 			isa = PBXGroup;
 			children = (
+				611CC9831C33B20E00273718 /* CYAnimationUtil */,
+				613373261C0EE5FD00813925 /* CYSQLite */,
+				61F7116A1BF1956D00881E3B /* CYQQUtils */,
 				61FD031B1BEA0A4D00237EA3 /* CYBannerImageBrowser */,
 				61FD03101BE9D25100237EA3 /* CYFullScreenImage */,
 				61FD02FF1BE99ACF00237EA3 /* CYCycleBanner */,
@@ -484,6 +566,8 @@
 				61E4DFBE1BE75F000097E9AA /* CYIAPUtils.m */,
 				61E4DFC01BE760730097E9AA /* CYIAPKeychainUtils.h */,
 				61E4DFC11BE760730097E9AA /* CYIAPKeychainUtils.m */,
+				6101994E1C4E380B00E04080 /* CYIAPTransaction.h */,
+				6101994F1C4E380B00E04080 /* CYIAPTransaction.m */,
 			);
 			name = CYIAP;
 			path = ../../CYIAP;
@@ -543,6 +627,26 @@
 			path = ../../Masonry;
 			sourceTree = "<group>";
 		};
+		61F7116A1BF1956D00881E3B /* CYQQUtils */ = {
+			isa = PBXGroup;
+			children = (
+				61F7116B1BF1958700881E3B /* QQSDK */,
+				61F711721BF195E700881E3B /* CYQQUtils.h */,
+				61F711731BF195E700881E3B /* CYQQUtils.m */,
+			);
+			name = CYQQUtils;
+			path = ../../CYQQUtils;
+			sourceTree = "<group>";
+		};
+		61F7116B1BF1958700881E3B /* QQSDK */ = {
+			isa = PBXGroup;
+			children = (
+				61F711A11BF1BE6400881E3B /* TencentOpenAPI.framework */,
+				61F7116E1BF195B300881E3B /* TencentOpenApi_IOS_Bundle.bundle */,
+			);
+			path = QQSDK;
+			sourceTree = "<group>";
+		};
 		61FD02FF1BE99ACF00237EA3 /* CYCycleBanner */ = {
 			isa = PBXGroup;
 			children = (
@@ -587,6 +691,15 @@
 		E299DF45F885184B4A142853 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				61F711AB1BF1C3CE00881E3B /* TencentOpenAPI.framework */,
+				61F7119D1BF1BDCF00881E3B /* libz.tbd */,
+				61F7119B1BF1BDC700881E3B /* libstdc++.tbd */,
+				61F711991BF1BDBD00881E3B /* CoreTelephony.framework */,
+				61F711971BF1BDB400881E3B /* libsqlite3.tbd */,
+				61F711951BF1BDA900881E3B /* CoreGraphics.framework */,
+				61F711931BF1BD5400881E3B /* SystemConfiguration.framework */,
+				61F711911BF1BD4800881E3B /* libiconv.tbd */,
+				61F711751BF1983F00881E3B /* Security.framework */,
 				E4AD9CD239B0877B14E89AFA /* libPods-CYUtilProject.a */,
 			);
 			name = Frameworks;
@@ -623,6 +736,7 @@
 				TargetAttributes = {
 					61851EBA1BCD0964005340C8 = {
 						CreatedOnToolsVersion = 7.0.1;
+						DevelopmentTeam = 85ZM2RJ86X;
 					};
 				};
 			};
@@ -653,6 +767,7 @@
 				61FD03181BE9F73F00237EA3 /* README in Resources */,
 				61FD03081BE9AC9600237EA3 /* introduction_3_5_2.png in Resources */,
 				61C55F0D1BD5EAE200B59F99 /* CYChat.bundle in Resources */,
+				61F711701BF195B300881E3B /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				61F0FCC81BCF7D1000E445EA /* README in Resources */,
 				61FD03091BE9AC9600237EA3 /* introduction_3_5_3.png in Resources */,
 				61851F071BCD124F005340C8 /* README in Resources */,
@@ -676,6 +791,7 @@
 				61F0FCBD1BCF770C00E445EA /* MASViewAttribute.m in Sources */,
 				61E4DFB71BE732880097E9AA /* CYChatDataSource.m in Sources */,
 				61FD031E1BEA0A6700237EA3 /* CYBannerImageBrowserView.m in Sources */,
+				611780B91C07F172009EADD5 /* CYCustomUILabel.m in Sources */,
 				61F0FCBB1BCF770C00E445EA /* MASConstraintMaker.m in Sources */,
 				61851EE31BCD0A86005340C8 /* CYBaseTableViewController.m in Sources */,
 				61851EE51BCD0A86005340C8 /* CYBaseViewController.m in Sources */,
@@ -688,11 +804,14 @@
 				61F0FCC51BCF7B8B00E445EA /* CYBaseTableWithPullRefreshViewController.m in Sources */,
 				616037CF1BD493B900BF4285 /* CYChatBaseCell.m in Sources */,
 				61F0FCBE1BCF770C00E445EA /* MASViewConstraint.m in Sources */,
+				613373291C0EE66900813925 /* CYDatabase.m in Sources */,
 				61EEF9021BE88DE400E1C9EB /* CYPersistenceCache.m in Sources */,
 				61DF52E21BE232370015CDF2 /* CYChatInputMorePadView.m in Sources */,
 				61FD03021BE99AEA00237EA3 /* CYCycleBannerView.m in Sources */,
+				610199501C4E380B00E04080 /* CYIAPTransaction.m in Sources */,
 				616037E21BD4D05A00BF4285 /* CYChatViewController.m in Sources */,
 				61F0FCC11BCF770C00E445EA /* View+MASAdditions.m in Sources */,
+				6133732D1C0EF4FB00813925 /* CYResultSet.m in Sources */,
 				616037D21BD4943E00BF4285 /* CYChatImageCell.m in Sources */,
 				61F0FCB91BCF770C00E445EA /* MASCompositeConstraint.m in Sources */,
 				61C55F101BD621DB00B59F99 /* CYChatView.m in Sources */,
@@ -700,6 +819,7 @@
 				61E4DFBF1BE75F000097E9AA /* CYIAPUtils.m in Sources */,
 				61DF52C61BE2049E0015CDF2 /* CYAnimatedTextLabel.m in Sources */,
 				61EEF9081BE8A75500E1C9EB /* CYWebImageCache.m in Sources */,
+				613373301C0EF72100813925 /* CYPrepareStatement.m in Sources */,
 				61FD03161BE9D76F00237EA3 /* CYFullScreenImageViewController.m in Sources */,
 				61851EC61BCD0964005340C8 /* ViewController.m in Sources */,
 				61E4DFAE1BE7087D0097E9AA /* CYChatInputEmotionPadView.m in Sources */,
@@ -725,6 +845,7 @@
 				61851EC01BCD0964005340C8 /* main.m in Sources */,
 				61F0FCC01BCF770C00E445EA /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				61851F011BCD10B5005340C8 /* NSDate+CYPullRefresh.m in Sources */,
+				61F711741BF195E700881E3B /* CYQQUtils.m in Sources */,
 				610EB0BD1BDF47970086D048 /* CYSendSMSUtils.m in Sources */,
 				61C55F091BD5D86800B59F99 /* CYChatInputContentView.m in Sources */,
 				61DF52CA1BE209C30015CDF2 /* CYAnimatedTextLabelViewController.m in Sources */,
@@ -733,6 +854,7 @@
 				61F0FCC21BCF770C00E445EA /* ViewController+MASAdditions.m in Sources */,
 				61851EF11BCD0B1D005340C8 /* NSArray+CYJson.m in Sources */,
 				613536AE1BDF5F900099E426 /* CYAddressBookUtils.m in Sources */,
+				611CC9891C33BAF700273718 /* UIView+CYAnimationUtil.m in Sources */,
 				61851EF51BCD0B1D005340C8 /* NSString+CYUtils.m in Sources */,
 				61851F041BCD10B5005340C8 /* CYPullRefreshFooterView.m in Sources */,
 			);
@@ -845,14 +967,23 @@
 			baseConfigurationReference = 560DD24FE4038A3D8BB79B6C /* Pods-CYUtilProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/QQSDK",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PREFIX_HEADER = CYUtilProject/Prefix.pch;
 				INFOPLIST_FILE = CYUtilProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xiaoniuapp.CYUtilProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -861,14 +992,23 @@
 			baseConfigurationReference = E44A7E629213891F907F2C63 /* Pods-CYUtilProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/QQSDK",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PREFIX_HEADER = CYUtilProject/Prefix.pch;
 				INFOPLIST_FILE = CYUtilProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xiaoniuapp.CYUtilProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

@@ -106,11 +106,14 @@ static NSString *imageRightArrowCellIdentifier = @"CYChatImageRightArrowCell";
             
             NSInteger section = indexPath.section;
             NSInteger row = indexPath.row;
+//#warning here
             [[CYWebImageCache defaultCache] imageWithURLString:message.imageIconUrl
                                                     completion:^(UIImage *image, NSError *error) {
-                                                        
-                                                        [_chatView.tableView reloadRowsAtIndexPaths:@[ [NSIndexPath indexPathForRow:section inSection:row] ]
-                                                                                   withRowAnimation:UITableViewRowAnimationAutomatic];
+                                                        if (image) {
+                                                            
+                                                            [_chatView.tableView reloadRowsAtIndexPaths:@[ [NSIndexPath indexPathForRow:row    inSection:section] ]
+                                                                                       withRowAnimation:UITableViewRowAnimationAutomatic];
+                                                        }
                                                     }];
         }
         

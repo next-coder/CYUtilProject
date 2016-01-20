@@ -61,13 +61,15 @@
          persistence:(BOOL)persistence {
     
     UIImage *cachedImage = [_persistenceCache imageForKey:url.absoluteString];
-    if (cachedImage
-        && completion) {
+    if (cachedImage) {
         
-        dispatch_async(dispatch_get_main_queue(), ^{
+        if (completion){
             
-            completion(cachedImage, nil);
-        });
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                completion(cachedImage, nil);
+            });
+        }
         return;
     }
     CYImageDownloadProgressBlock downloadProgress = nil;

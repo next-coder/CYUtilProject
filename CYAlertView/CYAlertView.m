@@ -15,6 +15,8 @@
 #define CY_ALERT_VIEW_ACTION_SEPARATOR_COLOR ([UIColor colorWithRed:200/255.f green:200/255.f blue:200/255.f alpha:1.f].CGColor)
 //#define CY_ALERT_VIEW_ACTION_SEPARATOR_COLOR ([UIColor greenColor].CGColor)
 
+#define CY_ALERT_VIEW_BORDER_GAP            20
+
 typedef NS_ENUM(NSInteger, CYAlertViewActionViewsLayout) {
     
     CYAlertViewActionViewsLayoutVertical,
@@ -29,14 +31,10 @@ typedef NS_ENUM(NSInteger, CYAlertViewActionViewsLayout) {
 @property (nonatomic, strong) UIView *cancelActionView;
 @property (nonatomic, strong) CYAlertViewAction *cancelAction;
 
-//@property (nonatomic, strong) UIView *customContentView;
 @property (nonatomic, strong) NSMutableArray *customMessageViews;
 
 @property (nonatomic, strong) NSMutableArray *actionButtons;
 @property (nonatomic, strong) NSMutableArray *actions;
-
-@property (nonatomic, strong) UIWindow *showingWindow;
-@property (nonatomic, weak) UIWindow *originKeyWindow;
 
 @property (nonatomic, assign, readonly) CYAlertViewActionViewsLayout actionLayout;
 @property (nonatomic, assign, readonly) NSInteger numberOfActions;
@@ -168,6 +166,9 @@ typedef NS_ENUM(NSInteger, CYAlertViewActionViewsLayout) {
     if (_style == CYAlertViewStyleAlert) {
         
         [self layoutAlert];
+    } else {
+        
+        [self layoutActionSheet];
     }
 }
 
@@ -335,6 +336,67 @@ typedef NS_ENUM(NSInteger, CYAlertViewActionViewsLayout) {
     self.center = center;
 }
 
+- (void)layoutActionSheet {
+    
+    CGFloat selfWidth = [UIScreen mainScreen].bounds.size.width - 2 * CY_ALERT_VIEW_BORDER_GAP;
+    __block CGFloat nextBottomY = [UIScreen mainScreen].bounds.size.height - CY_ALERT_VIEW_BORDER_GAP;
+    if (_cancelActionView) {
+        
+        _cancelActionView.frame = CGRectMake(CY_ALERT_VIEW_BORDER_GAP,
+                                             nextBottomY - CY_ALERT_VIEW_ACTION_VIEW_HEIGHT,
+                                             selfWidth,
+                                             CY_ALERT_VIEW_ACTION_VIEW_HEIGHT);
+        nextBottomY = CGRectGetMinY(_cancelActionView.frame) - CY_ALERT_VIEW_ACTION_VIEW_HEIGHT;
+    }
+    
+    if (_actionButtons
+        && [_actionButtons count] > 0) {
+        
+        [_actionButtons enumerateObjectsUsingBlock:^(UIView *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            obj.frame = CGRectMake(CY_ALERT_VIEW_BORDER_GAP,
+                                   nextBottomY - CY_ALERT_VIEW_ACTION_VIEW_HEIGHT,
+                                   selfWidth,
+                                   CY_ALERT_VIEW_ACTION_VIEW_HEIGHT);
+            nextBottomY = CGRectGetMinY(obj.frame);
+        }];
+    }
+    
+    if (_customMessageViews) {
+        
+        nextBottomY -= CY_ALERT_VIEW_CONTENT_BETWEEN_GAP;
+        [_customMessageViews enumerateObjectsUsingBlock:^(UIView *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            obj.center = CGPointMake(selfWidth / 2.f, nextBottomY - obj.frame.size.height / 2.f);
+            nextBottomY = CGRectGetMinY(obj.frame) - CY_ALERT_VIEW_CONTENT_BETWEEN_GAP;
+        }];
+    }
+    
+    if (_message
+        && ![_message isEqualToString:@""]) {
+        
+        CGSize size = [_messageTextView sizeThatFits:CGSizeMake(selfWidth - 2 * CY_ALERT_VIEW_BORDER_GAP,
+                                                                CY_ALERT_VIEW_MESSAGE_MAX_HEIGHT)];
+        _messageTextView.frame = CGRectMake(CY_ALERT_VIEW_BORDER_GAP,
+                                            nextBottomY - size.height,
+                                            size.width,
+                                            size.height);
+        nextBottomY = CGRectGetMinY(_messageTextView.frame) - 3;
+    }
+    
+    if (_title
+        && ![_title isEqualToString:@""]) {
+        
+        CGSize size = [_titleLabel sizeThatFits:CGSizeMake(selfWidth - 2 * CY_ALERT_VIEW_BORDER_GAP,
+                                                           100)];
+        _titleLabel.frame = CGRectMake(CY_ALERT_VIEW_BORDER_GAP,
+                                       nextBottomY - size.height,
+                                       size.width,
+                                       size.height);
+        nextBottomY = CGRectGetMinY(_titleLabel.frame) - CY_ALERT_VIEW_BORDER_GAP;
+    }
+}
+
 #pragma mark - draw separator
 - (void)drawRect:(CGRect)rect {
     [super drawRect:rect];
@@ -424,10 +486,11 @@ static UITapGestureRecognizer *alertShowingWindowTap = nil;
     keyframeAnimation.values = @[ [NSValue valueWithCATransform3D:CATransform3DMakeScale(1.2, 1.2, 1)],
                                   [NSValue valueWithCATransform3D:CATransform3DMakeScale(1.05, 1.05, 1)],
                                   [NSValue valueWithCATransform3D:CATransform3DMakeScale(1, 1, 1)] ];
+    keyframeAnimation.keyTimes = @[ @0, @0.5, @1 ];
     keyframeAnimation.duration = 0.3f;
     keyframeAnimation.removedOnCompletion = YES;
     keyframeAnimation.fillMode = kCAFillModeForwards;
-    [self.layer addAnimation:keyframeAnimation forKey:@"transform"];
+    [self.layer addAnimation:keyframeAnimation forKey:@"showAlert"];
     
     alertShowingWindow.hidden = NO;
 }
