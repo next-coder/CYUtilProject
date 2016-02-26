@@ -17,7 +17,7 @@
         _contentBackgroundCornerRadius = 5.f;
         _contentBackgroundArrowWidth = 6;
         _contentBackgroundArrowHeight = 10;
-        _contentInsets = UIEdgeInsetsZero;
+//        _contentInsets = UIEdgeInsetsZero;
         [self createHeadAndName];
         
         self.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -56,7 +56,12 @@
     contentBackground.backgroundColor = [UIColor clearColor];
     [self addSubview:contentBackground];
     _contentBackgroundImageView = contentBackground;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(contentTapped:)];
+    [contentBackground addGestureRecognizer:tap];
 }
+
+#pragma mark - event
 
 - (IBAction)headImageTapped:(id)sender {
     
@@ -64,6 +69,15 @@
         && [_delegate respondsToSelector:@selector(cellDidSelectHeadImage:)]) {
         
         [_delegate cellDidSelectHeadImage:self];
+    }
+}
+
+- (IBAction)contentTapped:(id)sender {
+    
+    if (_delegate
+        && [_delegate respondsToSelector:@selector(cellDidSelectContent:)]) {
+        
+        [_delegate cellDidSelectContent:self];
     }
 }
 

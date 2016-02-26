@@ -8,15 +8,7 @@
 
 #import "CYChatImageCell.h"
 
-@interface CYChatImageCell ()
-
-@property (nonatomic, weak) id<CYChatImageCellDelegate> chatImageDelegate;
-
-@end
-
 @implementation CYChatImageCell
-
-@dynamic delegate;
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     
@@ -28,23 +20,6 @@
     return self;
 }
 
-//- (void)awakeFromNib {
-//    [super awakeFromNib];
-//    
-//    _drawContentBackground = YES;
-//}
-
-- (void)setDelegate:(id<CYChatImageCellDelegate>)delegate {
-    [super setDelegate:delegate];
-    
-    _chatImageDelegate = delegate;
-}
-
-- (id<CYChatImageCellDelegate>)delegate {
-    
-    return _chatImageDelegate;
-}
-
 - (void)createContentImageView {
     
     UIImageView *content = [[UIImageView alloc] init];
@@ -52,24 +27,12 @@
     content.backgroundColor = [UIColor clearColor];
     content.contentMode = UIViewContentModeScaleAspectFit;
     [self.contentBackgroundImageView addSubview:content];
-    _contentImageView = content;
-    
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(contentImageTapped:)];
-    [content addGestureRecognizer:tap];
-}
-
-- (IBAction)contentImageTapped:(id)sender {
-    
-    if (_chatImageDelegate
-        && [_chatImageDelegate respondsToSelector:@selector(cellDidSelectHeadImage:)]) {
-        
-        [_chatImageDelegate cellDidSelectHeadImage:self];
-    }
+    self.contentImageView = content;
 }
 
 - (CGSize)contentImageViewSize {
     
-    return [CYChatImageCell imageShowingSize:_contentImageView.image];
+    return [CYChatImageCell imageShowingSize:self.contentImageView.image];
 }
 
 + (CGSize)defaultContentImageViewSize {

@@ -11,6 +11,8 @@
 #import "CYChatView.h"
 #import "CYChatImageLeftArrowCell.h"
 #import "CYChatImageRightArrowCell.h"
+#import "CYChatTextLeftArrowCell.h"
+#import "CYChatTextRightArrowCell.h"
 
 #import "UIScrollView+CYUtils.h"
 #import "CYCache.h"
@@ -26,6 +28,8 @@
 
 static NSString *imageLeftArrowCellIdentifier = @"CYChatImageLeftArrowCell";
 static NSString *imageRightArrowCellIdentifier = @"CYChatImageRightArrowCell";
+static NSString *textLeftArrowCellIdentifier = @"CYChatTextLeftArrowCell";
+static NSString *textRightArrowCellIdentifier = @"CYChatTextRightArrowCell";
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     
@@ -63,6 +67,10 @@ static NSString *imageRightArrowCellIdentifier = @"CYChatImageRightArrowCell";
                 forCellReuseIdentifier:imageLeftArrowCellIdentifier];
     [_chatView.tableView registerClass:[CYChatImageRightArrowCell class]
                 forCellReuseIdentifier:imageRightArrowCellIdentifier];
+    [_chatView.tableView registerClass:[CYChatTextLeftArrowCell class]
+                forCellReuseIdentifier:textLeftArrowCellIdentifier];
+    [_chatView.tableView registerClass:[CYChatTextRightArrowCell class]
+                forCellReuseIdentifier:textRightArrowCellIdentifier];
     
     _chatDataSource.delegate = self;
     [_chatDataSource loadHistoryMessagesAsynWithPageIndex:0];
@@ -82,46 +90,124 @@ static NSString *imageRightArrowCellIdentifier = @"CYChatImageRightArrowCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     CYChatMessageViewModel *message = [_messages objectAtIndex:indexPath.row];
-    if (message.type == CYChatMessageTypeImage) {
+    
+    // 根据消息创建cell
+    CYChatBaseCell *cell = [self chatMessageCellWithMessage:message tableView:tableView];
+    
+    // 设置头像
+    cell.hideHeadImage = !(_chatDataSource.showUserHeadImage);
+    if (_chatDataSource.showUserHeadImage) {
         
-        CYChatImageRightArrowCell *cell = nil;
-        if ([message.from isEqualToString:_chatDataSource.currentLoginUser.userId]) {
-            
-            cell = [tableView dequeueReusableCellWithIdentifier:imageRightArrowCellIdentifier];
-            [cell.headImageButton cy_setImageWithURLString:[_chatDataSource headImageUrlWithUserId:_chatDataSource.currentLoginUser.headImageUrl]
-                                               placeholder:[UIImage imageNamed:@"CYChat.bundle/chat_default_head.png"]];
-            cell.nameLabel.text = _chatDataSource.currentLoginUser.nickname;
-        } else {
-            
-            
-            cell = [tableView dequeueReusableCellWithIdentifier:imageLeftArrowCellIdentifier];
-            [cell.headImageButton cy_setImageWithURLString:[_chatDataSource headImageUrlWithUserId:message.from]
-                                               placeholder:[UIImage imageNamed:@"CYChat.bundle/chat_default_head.png"]];
-            cell.nameLabel.text = [_chatDataSource nicknameWithUserId:message.from];
-        }
-        
-        UIImage *image = [[CYWebImageCache defaultCache] imageCacheWithUrlString:message.imageIconUrl];
-        cell.contentImageView.image = image;
-        if (!image) {
-            
-            NSInteger section = indexPath.section;
-            NSInteger row = indexPath.row;
-//#warning here
-            [[CYWebImageCache defaultCache] imageWithURLString:message.imageIconUrl
-                                                    completion:^(UIImage *image, NSError *error) {
-                                                        if (image) {
-                                                            
-                                                            [_chatView.tableView reloadRowsAtIndexPaths:@[ [NSIndexPath indexPathForRow:row    inSection:section] ]
-                                                                                       withRowAnimation:UITableViewRowAnimationAutomatic];
-                                                        }
-                                                    }];
-        }
-        
-        cell.hideHeadImage = !(_chatDataSource.showUserHeadImage);
-        cell.hideName = !(_chatDataSource.showUserNickname);
-        return cell;
+        [cell.headImageButton cy_setImageWithURLString:[_chatDataSource headImageUrlWithUserId:message.from]
+                                           placeholder:[UIImage imageNamed:@"CYChat.bundle/chat_default_head.png"]];
     }
-    return nil;
+    
+    // 设置昵称
+    cell.hideName = !(_chatDataSource.showUserNickname);
+    if (_chatDataSource.showUserNickname) {
+        
+        cell.nameLabel.text = [_chatDataSource nicknameWithUserId:message.from];
+    }
+    
+    // 设置内容
+    switch (message.type) {
+        case CYChatMessageTypeText: {
+            
+            cell.contentLabel.text = message.messageContent;
+            break;
+        }
+            
+        case CYChatMessageTypeImage: {
+            
+            [self setImage:message.imageIconUrl
+                   forCell:cell
+               atIndexPath:indexPath];
+            break;
+        }
+            
+        case CYChatMessageTypeVoice: {
+            
+            break;
+        }
+            
+        default:
+            break;
+    }
+    return cell;
+}
+
+- (CYChatBaseCell *)chatMessageCellWithMessage:(CYChatMessageViewModel *)message
+                                     tableView:(UITableView *)tableView {
+    
+    // 创建cell
+    CYChatBaseCell *cell = nil;
+    switch (message.type) {
+        case CYChatMessageTypeText: {
+            
+            if ([self isMySendMessage:message]) {
+                
+                cell = [tableView dequeueReusableCellWithIdentifier:textRightArrowCellIdentifier];
+            } else {
+                
+                cell = [tableView dequeueReusableCellWithIdentifier:textLeftArrowCellIdentifier];
+            }
+            break;
+        }
+            
+        case CYChatMessageTypeImage: {
+            
+            if ([self isMySendMessage:message]) {
+                
+                cell = [tableView dequeueReusableCellWithIdentifier:imageRightArrowCellIdentifier];
+            } else {
+                
+                cell = [tableView dequeueReusableCellWithIdentifier:imageLeftArrowCellIdentifier];
+            }
+            break;
+        }
+            
+        case CYChatMessageTypeVoice: {
+            
+            break;
+        }
+            
+        default:
+            break;
+    }
+    return cell;
+}
+
+// 图片消息，设置图片显示。缓存图片
+- (void)setImage:(NSString *)imageUrl
+         forCell:(CYChatBaseCell *)cell
+     atIndexPath:(NSIndexPath *)indexPath {
+    
+    if (!imageUrl
+        || [imageUrl isEqualToString:@""]) {
+        
+        return;
+    }
+    UIImage *image = [[CYWebImageCache defaultCache] imageCacheWithUrlString:imageUrl];
+    cell.contentImageView.image = image;
+    if (!image) {
+        
+        NSInteger section = indexPath.section;
+        NSInteger row = indexPath.row;
+        
+        [[CYWebImageCache defaultCache] imageWithURLString:imageUrl
+                                                completion:^(UIImage *image, NSError *error) {
+                                                    if (image) {
+                                                        
+                                                        [_chatView.tableView reloadRowsAtIndexPaths:@[ [NSIndexPath indexPathForRow:row    inSection:section] ]
+                                                                                   withRowAnimation:UITableViewRowAnimationAutomatic];
+                                                    }
+                                                }];
+    }
+}
+
+- (BOOL)isMySendMessage:(CYChatMessageViewModel *)message {
+    
+    return [message.from isEqualToString:_chatDataSource.currentLoginUser.userId];
 }
 
 #pragma mark - UITableViewDelegate

@@ -10,6 +10,7 @@
 #import "CYSendSMSUtils.h"
 #import "CYAnimatedTextLabelViewController.h"
 #import "CYCycleBannerViewController.h"
+#import "CYIAPTestViewController.h"
 #import "CYFullScreenImageView.h"
 #import "CYBannerImageBrowserView.h"
 #import "CYAlertView.h"
@@ -44,7 +45,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 6;
+    return 7;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -73,6 +74,9 @@
     } else if (indexPath.row == 5) {
         
         cell.textLabel.text = @"CYAlertView";
+    } else if (indexPath.row == 6) {
+        
+        cell.textLabel.text = @"CYIAPUtils";
     }
     return cell;
 }
@@ -97,7 +101,7 @@
                                                                      currentLoginUser:user2];
         
         CYChatViewController *chat = [[CYChatViewController alloc] initWithDataSource:dataSource];
-        [self presentViewController:chat animated:YES completion:nil];
+        [self.navigationController pushViewController:chat animated:YES];
     } else if (indexPath.row ==1) {
         
         [[CYSendSMSUtils defaultInstance] sendTextSMS:@"fafsadfasdf"
@@ -110,14 +114,11 @@
     } else if (indexPath.row == 2) {
         
         CYAnimatedTextLabelViewController *vc = [[CYAnimatedTextLabelViewController alloc] init];
-        [self presentViewController:vc animated:YES completion:nil];
+        [self.navigationController pushViewController:vc animated:YES];
     } else if (indexPath.row == 3) {
         
         CYCycleBannerViewController *vc = [[CYCycleBannerViewController alloc] init];
-        [self presentViewController:vc animated:YES completion:nil];
-        
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"fdsaf" message:@"fadsfasdf" delegate:nil cancelButtonTitle:@"ffff" otherButtonTitles:@"bbbb", @"ccc", nil];
-//        [alert show];
+        [self.navigationController pushViewController:vc animated:YES];
     } else if (indexPath.row == 4) {
         
 //        CYFullScreenImageViewController *vc = [[CYFullScreenImageViewController alloc] init];
@@ -177,6 +178,10 @@
         [alert addCustomMessageView:textField2];
         
         [alert show];
+    } else if (indexPath.row == 6) {
+        
+        CYIAPTestViewController *vc = [[CYIAPTestViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 

@@ -8,22 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-#define CY_IAP_KEY_CHAIN_ERROR_DOMAIN   @"CYIAPKeychainError"
+@class CYIAPTransaction;
 
 @interface CYIAPKeychainUtils : NSObject
 
-// 保存票据
-+ (void)saveReceipt:(NSString *)receipt
-     additionalInfo:(NSString *)additionalInfo;
-+ (void)saveReceipt:(NSString *)receipt;
-+ (void)saveReceiptAdditionalInfo:(NSString *)additionalInfo;
-
-// 获取
-+ (NSString *)receiptFromKeychain;
-+ (NSString *)receiptAddtionalInfoFromKeychain;
-
-// 删除
-+ (void)removeReceiptFromKeychainWithAdditionalInfo:(BOOL)removeAdditionalInfo;
-+ (void)removeReceiptAdditionalInfo;
+// 保存未完成的transaction
++ (void)saveIAPTransaction:(CYIAPTransaction *)transaction;
++ (CYIAPTransaction *)transactionFromKeychain;
++ (void)removeIAPTransaction;
 
 @end

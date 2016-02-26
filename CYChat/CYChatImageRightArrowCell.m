@@ -44,14 +44,12 @@
     nextX += 5;
     
     CGSize contentSize = [self contentImageViewSize];
-    
-    CGFloat contentBGWidth = contentSize.width + self.contentInsets.left + self.contentInsets.right;
-    self.contentBackgroundImageView.frame = CGRectMake(nextX - contentBGWidth,
+    self.contentBackgroundImageView.frame = CGRectMake(nextX - contentSize.width,
                                                        nextY,
-                                                       contentBGWidth,
-                                                       contentSize.height + self.contentInsets.top + self.contentInsets.bottom);
-    self.contentImageView.frame = CGRectMake(self.contentInsets.left,
-                                             self.contentInsets.top,
+                                                       contentSize.width,
+                                                       contentSize.height);
+    self.contentImageView.frame = CGRectMake(0,
+                                             0,
                                              contentSize.width,
                                              contentSize.height);
 //    if (self.drawContentBackground) {

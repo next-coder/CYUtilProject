@@ -134,12 +134,12 @@
 #warning test message
 - (NSArray *)testHistories {
     
-    NSString *fileUrl = @"http://m2.xiaoniuapp.com/backend/images/ad/5.jpg";
+    NSString *fileUrl = @"https://m.xiaoniuapp.com/AD/banner/picc/picc.png";
     
     CYChatMessageViewModel *message1 = [CYChatMessageViewModel instance];
     message1.from = @"11";
     message1.to = @"22";
-    message1.type = CYChatMessageTypeImage;
+    message1.type = CYChatMessageTypeText;
     message1.messageContent = @"就是一个消息测试啦哈佛舒服撒发生的烦恼萨克拉飞机和撒地方就卡死了；反抗拉伸的；放假快乐；爱神的箭；阿萨德能否考虑；爱的世界；受打击罚款了；阿萨德积分卡那里；啊短时间内付款了；多撒谎交罚款了；撒旦就恢复快乐；爱上反抗拉伸的合法开讲啦撒旦就快疯了；啊圣诞节快乐飞；啊";
     message1.imageIconUrl = fileUrl;
     

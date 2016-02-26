@@ -11,11 +11,14 @@
 		610EB0BD1BDF47970086D048 /* CYSendSMSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 610EB0BC1BDF47970086D048 /* CYSendSMSUtils.m */; };
 		611780B91C07F172009EADD5 /* CYCustomUILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 611780B81C07F172009EADD5 /* CYCustomUILabel.m */; };
 		611CC9891C33BAF700273718 /* UIView+CYAnimationUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 611CC9881C33BAF700273718 /* UIView+CYAnimationUtil.m */; };
+		6120958D1C51FC210035FD2D /* CYIAPTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6120958C1C51FC210035FD2D /* CYIAPTestViewController.m */; };
 		613373291C0EE66900813925 /* CYDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 613373281C0EE66900813925 /* CYDatabase.m */; };
 		6133732D1C0EF4FB00813925 /* CYResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6133732C1C0EF4FB00813925 /* CYResultSet.m */; };
 		613373301C0EF72100813925 /* CYPrepareStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6133732F1C0EF72100813925 /* CYPrepareStatement.m */; };
 		613536AE1BDF5F900099E426 /* CYAddressBookUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 613536AD1BDF5F900099E426 /* CYAddressBookUtils.m */; };
 		614F22641BE0F58A00E3CF9D /* UIScrollView+CYUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 614F22631BE0F58A00E3CF9D /* UIScrollView+CYUtils.m */; };
+		61541D561C8046CE00AA7A6A /* CYChatTextLeftArrowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 61541D551C8046CE00AA7A6A /* CYChatTextLeftArrowCell.m */; };
+		61541D591C804A7F00AA7A6A /* CYChatTextRightArrowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 61541D581C804A7F00AA7A6A /* CYChatTextRightArrowCell.m */; };
 		616037CF1BD493B900BF4285 /* CYChatBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 616037CE1BD493B900BF4285 /* CYChatBaseCell.m */; };
 		616037D21BD4943E00BF4285 /* CYChatImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 616037D11BD4943E00BF4285 /* CYChatImageCell.m */; };
 		616037D51BD49A1300BF4285 /* CYChatImageLeftArrowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 616037D41BD49A1300BF4285 /* CYChatImageLeftArrowCell.m */; };
@@ -23,7 +26,6 @@
 		616037DF1BD49FFB00BF4285 /* CYDeviceUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 616037DE1BD49FFB00BF4285 /* CYDeviceUtils.m */; };
 		616037E21BD4D05A00BF4285 /* CYChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 616037E11BD4D05A00BF4285 /* CYChatViewController.m */; };
 		616037E51BD4D1FE00BF4285 /* introduction_3_5_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 616037E31BD4D1FE00BF4285 /* introduction_3_5_1.png */; };
-		616037E61BD4D1FE00BF4285 /* introduction_4_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 616037E41BD4D1FE00BF4285 /* introduction_4_1.png */; };
 		616037E81BD4D23B00BF4285 /* share_message.png in Resources */ = {isa = PBXBuildFile; fileRef = 616037E71BD4D23B00BF4285 /* share_message.png */; };
 		61851EC01BCD0964005340C8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 61851EBF1BCD0964005340C8 /* main.m */; };
 		61851EC31BCD0964005340C8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 61851EC21BCD0964005340C8 /* AppDelegate.m */; };
@@ -91,8 +93,6 @@
 		61FC40A91BE3489000BEDC51 /* CYChatInputMorePadItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FC40A81BE3489000BEDC51 /* CYChatInputMorePadItem.m */; };
 		61FD03021BE99AEA00237EA3 /* CYCycleBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FD03011BE99AEA00237EA3 /* CYCycleBannerView.m */; };
 		61FD03051BE9A58900237EA3 /* CYCycleBannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FD03041BE9A58900237EA3 /* CYCycleBannerViewController.m */; };
-		61FD03081BE9AC9600237EA3 /* introduction_3_5_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 61FD03061BE9AC9600237EA3 /* introduction_3_5_2.png */; };
-		61FD03091BE9AC9600237EA3 /* introduction_3_5_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 61FD03071BE9AC9600237EA3 /* introduction_3_5_3.png */; };
 		61FD030C1BE9AFCA00237EA3 /* UIImageView+CYWebImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FD030B1BE9AFCA00237EA3 /* UIImageView+CYWebImageCache.m */; };
 		61FD030F1BE9B95E00237EA3 /* NSURLRequest+CYImageDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FD030E1BE9B95E00237EA3 /* NSURLRequest+CYImageDownload.m */; };
 		61FD03131BE9D26B00237EA3 /* CYFullScreenImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FD03121BE9D26B00237EA3 /* CYFullScreenImageView.m */; };
@@ -112,6 +112,8 @@
 		611780B81C07F172009EADD5 /* CYCustomUILabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYCustomUILabel.m; sourceTree = "<group>"; };
 		611CC9871C33BAF700273718 /* UIView+CYAnimationUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CYAnimationUtil.h"; sourceTree = "<group>"; };
 		611CC9881C33BAF700273718 /* UIView+CYAnimationUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CYAnimationUtil.m"; sourceTree = "<group>"; };
+		6120958B1C51FC210035FD2D /* CYIAPTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYIAPTestViewController.h; sourceTree = "<group>"; };
+		6120958C1C51FC210035FD2D /* CYIAPTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYIAPTestViewController.m; sourceTree = "<group>"; };
 		613373271C0EE66900813925 /* CYDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYDatabase.h; sourceTree = "<group>"; };
 		613373281C0EE66900813925 /* CYDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYDatabase.m; sourceTree = "<group>"; };
 		6133732A1C0EE69600813925 /* CYSQLite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYSQLite.h; sourceTree = "<group>"; };
@@ -123,6 +125,10 @@
 		613536AD1BDF5F900099E426 /* CYAddressBookUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYAddressBookUtils.m; sourceTree = "<group>"; };
 		614F22621BE0F58A00E3CF9D /* UIScrollView+CYUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+CYUtils.h"; sourceTree = "<group>"; };
 		614F22631BE0F58A00E3CF9D /* UIScrollView+CYUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+CYUtils.m"; sourceTree = "<group>"; };
+		61541D541C8046CE00AA7A6A /* CYChatTextLeftArrowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatTextLeftArrowCell.h; sourceTree = "<group>"; };
+		61541D551C8046CE00AA7A6A /* CYChatTextLeftArrowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYChatTextLeftArrowCell.m; sourceTree = "<group>"; };
+		61541D571C804A7F00AA7A6A /* CYChatTextRightArrowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatTextRightArrowCell.h; sourceTree = "<group>"; };
+		61541D581C804A7F00AA7A6A /* CYChatTextRightArrowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYChatTextRightArrowCell.m; sourceTree = "<group>"; };
 		616037CD1BD493B900BF4285 /* CYChatBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatBaseCell.h; sourceTree = "<group>"; };
 		616037CE1BD493B900BF4285 /* CYChatBaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYChatBaseCell.m; sourceTree = "<group>"; };
 		616037D01BD4943E00BF4285 /* CYChatImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatImageCell.h; sourceTree = "<group>"; };
@@ -375,6 +381,10 @@
 				616037D71BD49A4100BF4285 /* CYChatImageRightArrowCell.m */,
 				61F811561BEC420700F87E3C /* CYChatTextCell.h */,
 				61F811571BEC420700F87E3C /* CYChatTextCell.m */,
+				61541D541C8046CE00AA7A6A /* CYChatTextLeftArrowCell.h */,
+				61541D551C8046CE00AA7A6A /* CYChatTextLeftArrowCell.m */,
+				61541D571C804A7F00AA7A6A /* CYChatTextRightArrowCell.h */,
+				61541D581C804A7F00AA7A6A /* CYChatTextRightArrowCell.m */,
 				61C55F071BD5D86800B59F99 /* CYChatInputContentView.h */,
 				61C55F081BD5D86800B59F99 /* CYChatInputContentView.m */,
 				61DF52E01BE232370015CDF2 /* CYChatInputMorePadView.h */,
@@ -555,6 +565,8 @@
 				61FD03041BE9A58900237EA3 /* CYCycleBannerViewController.m */,
 				61FD03141BE9D76F00237EA3 /* CYFullScreenImageViewController.h */,
 				61FD03151BE9D76F00237EA3 /* CYFullScreenImageViewController.m */,
+				6120958B1C51FC210035FD2D /* CYIAPTestViewController.h */,
+				6120958C1C51FC210035FD2D /* CYIAPTestViewController.m */,
 			);
 			name = Test;
 			sourceTree = "<group>";
@@ -765,17 +777,14 @@
 			files = (
 				61FD031A1BE9F76100237EA3 /* README in Resources */,
 				61FD03181BE9F73F00237EA3 /* README in Resources */,
-				61FD03081BE9AC9600237EA3 /* introduction_3_5_2.png in Resources */,
 				61C55F0D1BD5EAE200B59F99 /* CYChat.bundle in Resources */,
 				61F711701BF195B300881E3B /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				61F0FCC81BCF7D1000E445EA /* README in Resources */,
-				61FD03091BE9AC9600237EA3 /* introduction_3_5_3.png in Resources */,
 				61851F071BCD124F005340C8 /* README in Resources */,
 				61851ECE1BCD0964005340C8 /* LaunchScreen.storyboard in Resources */,
 				616037E81BD4D23B00BF4285 /* share_message.png in Resources */,
 				61851ECB1BCD0964005340C8 /* Assets.xcassets in Resources */,
 				61851EC91BCD0964005340C8 /* Main.storyboard in Resources */,
-				616037E61BD4D1FE00BF4285 /* introduction_4_1.png in Resources */,
 				616037E51BD4D1FE00BF4285 /* introduction_3_5_1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -802,6 +811,8 @@
 				61FC40A91BE3489000BEDC51 /* CYChatInputMorePadItem.m in Sources */,
 				61851EE41BCD0A86005340C8 /* CYBaseView.m in Sources */,
 				61F0FCC51BCF7B8B00E445EA /* CYBaseTableWithPullRefreshViewController.m in Sources */,
+				61541D561C8046CE00AA7A6A /* CYChatTextLeftArrowCell.m in Sources */,
+				61541D591C804A7F00AA7A6A /* CYChatTextRightArrowCell.m in Sources */,
 				616037CF1BD493B900BF4285 /* CYChatBaseCell.m in Sources */,
 				61F0FCBE1BCF770C00E445EA /* MASViewConstraint.m in Sources */,
 				613373291C0EE66900813925 /* CYDatabase.m in Sources */,
@@ -846,6 +857,7 @@
 				61F0FCC01BCF770C00E445EA /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				61851F011BCD10B5005340C8 /* NSDate+CYPullRefresh.m in Sources */,
 				61F711741BF195E700881E3B /* CYQQUtils.m in Sources */,
+				6120958D1C51FC210035FD2D /* CYIAPTestViewController.m in Sources */,
 				610EB0BD1BDF47970086D048 /* CYSendSMSUtils.m in Sources */,
 				61C55F091BD5D86800B59F99 /* CYChatInputContentView.m in Sources */,
 				61DF52CA1BE209C30015CDF2 /* CYAnimatedTextLabelViewController.m in Sources */,

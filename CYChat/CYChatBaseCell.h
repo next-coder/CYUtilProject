@@ -26,6 +26,7 @@
 
 @optional
 - (void)cellDidSelectHeadImage:(CYChatBaseCell *)cell;
+- (void)cellDidSelectContent:(CYChatBaseCell *)cell;
 
 @end
 
@@ -38,11 +39,13 @@
 @property (nonatomic, weak) IBOutlet UILabel *nameLabel;
 
 @property (nonatomic, weak) IBOutlet UIImageView *contentBackgroundImageView;
+@property (nonatomic, weak) IBOutlet UIImageView *contentImageView;
+@property (nonatomic, weak) IBOutlet UILabel *contentLabel;
 
 @property (nonatomic, assign, getter=isHideHeadImage) BOOL hideHeadImage;
 @property (nonatomic, assign, getter=isHideName) BOOL hideName;
 
-@property (nonatomic, assign) UIEdgeInsets contentInsets;
+//@property (nonatomic, assign) UIEdgeInsets contentInsets;
 
 @property (nonatomic, assign) CGFloat contentBackgroundCornerRadius;
 @property (nonatomic, assign) CGFloat contentBackgroundArrowWidth;

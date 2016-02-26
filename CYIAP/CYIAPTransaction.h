@@ -19,10 +19,11 @@ typedef NS_ENUM(NSInteger, CYIAPTransactionState) {
 @interface CYIAPTransaction : NSObject
 
 @property (nonatomic, assign, readonly) CYIAPTransactionState state;
+@property (nonatomic, assign, readonly) NSUInteger quantity;
 
+@property (nonatomic, strong, readonly) NSString *transactionIdentifier;
 @property (nonatomic, strong, readonly) NSString *transactionReceipt;
 @property (nonatomic, strong, readonly) NSString *productIdentifier;
-@property (nonatomic, strong, readonly) NSString *quantity;
 
 @property (nonatomic, strong, readonly) NSDictionary *additionalInfo;
 

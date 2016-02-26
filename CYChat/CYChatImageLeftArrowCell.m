@@ -33,10 +33,10 @@
     CGSize contentSize = [self contentImageViewSize];
     self.contentBackgroundImageView.frame = CGRectMake(nextX,
                                                        nextY,
-                                                       contentSize.width + self.contentInsets.left + self.contentInsets.right,
-                                                       contentSize.height + self.contentInsets.top + self.contentInsets.bottom);
-    self.contentImageView.frame = CGRectMake(self.contentInsets.left,
-                                             self.contentInsets.top,
+                                                       contentSize.width,
+                                                       contentSize.height);
+    self.contentImageView.frame = CGRectMake(0,
+                                             0,
                                              contentSize.width,
                                              contentSize.height);
 //    if (self.drawContentBackground) {

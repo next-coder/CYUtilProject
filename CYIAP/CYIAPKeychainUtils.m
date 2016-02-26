@@ -7,61 +7,116 @@
 //
 
 #import "CYIAPKeychainUtils.h"
+#import "CYIAPTransaction.h"
 
-#define CY_IAP_RECEIPT_KEY_CHAIN_SERVICE                    @"CYIAPReceiptKeyChainService"
-#define CY_IAP_RECEIPT_ADDITIONAL_INFO_KEY_CHAIN_SERVICE    @"CYIAPReceiptAdditionalInfoKeyChainService"
+#define CY_IAP_KEY_CHAIN_ERROR_DOMAIN   @"CYIAPKeychainError"
+
+#define CY_IAP_TRANSACTION_KEY_CHAIN_SERVICE                    @"cy_just_a_key_info_nothing_lol_pp"
+#define CY_IAP_TRANSACTION_KEY_CHAIN_KEY                        @"cy_just_a_key2_info2_nothing2_lol2_pp"
+
+@interface CYIAPTransaction ()
+
+// private setting method
+- (void)setTransactionIdentifier:(NSString *)transactionIdentifier;
+- (void)setState:(CYIAPTransactionState)state;
+- (void)setTransactionReceipt:(NSString *)transactionReceipt;
+- (void)setProductIdentifier:(NSString *)productIdentifier;
+- (void)setQuantity:(NSUInteger)quantity;
+- (void)setAdditionalInfo:(NSDictionary *)additionalInfo;
+
+@end
+
+@interface CYIAPTransaction (CYIAPKeychainUtils)
+
+- (NSString *)savedDescription;
+
++ (instancetype)transactionWithSavedDescription:(NSString *)savedDescription;
+
+@end
+
+@implementation CYIAPTransaction (CYIAPKeychainUtils)
+
++ (instancetype)transactionWithSavedDescription:(NSString *)savedDescription {
+    
+    if (savedDescription) {
+        
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:[savedDescription dataUsingEncoding:NSUTF8StringEncoding]
+                                                            options:0
+                                                              error:nil];
+        if (dic) {
+            
+            CYIAPTransaction *transaction = [[CYIAPTransaction alloc] init];
+            
+            [transaction setState:[[dic objectForKey:@"state"] integerValue]];
+            [transaction setTransactionReceipt:[dic objectForKey:@"transactionReceipt"]];
+            [transaction setProductIdentifier:[dic objectForKey:@"productIdentifier"]];
+            [transaction setQuantity:[[dic objectForKey:@"quantity"] integerValue]];
+            [transaction setAdditionalInfo:[dic objectForKey:@"additionalInfo"]];
+            [transaction setTransactionIdentifier:[dic objectForKey:@"transactionIdentifier"]];
+            
+            return transaction;
+        }
+    }
+    return nil;
+}
+
+- (NSString *)savedDescription {
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:5];
+    [dic setObject:[NSNumber numberWithInteger:self.state] forKey:@"state"];
+    [dic setObject:[NSNumber numberWithInteger:self.quantity] forKey:@"quantity"];
+    if (self.transactionReceipt) {
+        
+        [dic setObject:self.transactionReceipt forKey:@"transactionReceipt"];
+    }
+    if (self.productIdentifier) {
+        
+        [dic setObject:self.productIdentifier forKey:@"productIdentifier"];
+    }
+    if (self.additionalInfo) {
+        
+        [dic setObject:self.additionalInfo forKey:@"additionalInfo"];
+    }
+    if (self.transactionIdentifier) {
+        [dic setObject:self.transactionIdentifier forKey:@"transactionIdentifier"];
+    }
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:0 error:nil];
+    
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+}
+
+@end
 
 @implementation CYIAPKeychainUtils
 
-+ (void)saveReceipt:(NSString *)receipt
-     additionalInfo:(NSString *)additionalInfo {
+#pragma mark - save transaction
++ (void)saveIAPTransaction:(CYIAPTransaction *)transaction {
     
-    [self saveReceipt:receipt];
-    [self saveReceiptAdditionalInfo:additionalInfo];
-}
-
-+ (void)saveReceipt:(NSString *)receipt {
-    
-    [self storeObject:receipt
-               forKey:CY_IAP_RECEIPT_KEY_CHAIN_SERVICE
-          serviceName:CY_IAP_RECEIPT_KEY_CHAIN_SERVICE];
-}
-
-+ (void)saveReceiptAdditionalInfo:(NSString *)additionalInfo {
-    
-    [self storeObject:additionalInfo
-               forKey:CY_IAP_RECEIPT_ADDITIONAL_INFO_KEY_CHAIN_SERVICE
-          serviceName:CY_IAP_RECEIPT_ADDITIONAL_INFO_KEY_CHAIN_SERVICE];
-}
-
-+ (NSString *)receiptFromKeychain {
-    
-    return [self objectForKey:CY_IAP_RECEIPT_KEY_CHAIN_SERVICE
-                  serviceName:CY_IAP_RECEIPT_KEY_CHAIN_SERVICE];
-}
-
-+ (NSString *)receiptAddtionalInfoFromKeychain {
-    
-    return [self objectForKey:CY_IAP_RECEIPT_ADDITIONAL_INFO_KEY_CHAIN_SERVICE
-                  serviceName:CY_IAP_RECEIPT_ADDITIONAL_INFO_KEY_CHAIN_SERVICE];
-}
-
-+ (void)removeReceiptFromKeychainWithAdditionalInfo:(BOOL)removeAdditionalInfo {
-    
-    [self deleteItemInKeychainForKey:CY_IAP_RECEIPT_KEY_CHAIN_SERVICE
-                      andServiceName:CY_IAP_RECEIPT_KEY_CHAIN_SERVICE
-                               error:NULL];
-    if (removeAdditionalInfo) {
+    NSString *transactionStr = [transaction savedDescription];
+    if (transactionStr) {
         
-        [self removeReceiptAdditionalInfo];
+        [self storeObject:transactionStr
+                   forKey:CY_IAP_TRANSACTION_KEY_CHAIN_KEY
+              serviceName:CY_IAP_TRANSACTION_KEY_CHAIN_SERVICE];
     }
 }
 
-+ (void)removeReceiptAdditionalInfo {
++ (CYIAPTransaction *)transactionFromKeychain {
     
-    [self deleteItemInKeychainForKey:CY_IAP_RECEIPT_ADDITIONAL_INFO_KEY_CHAIN_SERVICE
-                      andServiceName:CY_IAP_RECEIPT_ADDITIONAL_INFO_KEY_CHAIN_SERVICE
-                               error:NULL];
+    NSString *transactionStr = [self objectForKey:CY_IAP_TRANSACTION_KEY_CHAIN_KEY
+                                      serviceName:CY_IAP_TRANSACTION_KEY_CHAIN_SERVICE];
+    if (transactionStr) {
+        
+        return [CYIAPTransaction transactionWithSavedDescription:transactionStr];
+    }
+    return nil;
+}
+
++ (void)removeIAPTransaction {
+    
+    [self deleteItemInKeychainForKey:CY_IAP_TRANSACTION_KEY_CHAIN_KEY
+                      andServiceName:CY_IAP_TRANSACTION_KEY_CHAIN_SERVICE
+                               error:nil];
 }
 
 #pragma mark - generic method

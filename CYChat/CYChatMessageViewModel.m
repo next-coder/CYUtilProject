@@ -8,6 +8,8 @@
 
 #import "CYChatMessageViewModel.h"
 
+#import "CYChatDataSource.h"
+
 @implementation CYChatMessageViewModel
 
 + (instancetype)instance {
