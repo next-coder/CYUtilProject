@@ -12,9 +12,6 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    
-    self.headImageButton.hidden = self.isHideHeadImage;
-    self.nameLabel.hidden = self.isHideName;
 
     CGFloat nextX = CY_CHAT_CELL_LEFT_MARGIN;
     CGFloat nextY = CY_CHAT_CELL_TOP_MARGIN;

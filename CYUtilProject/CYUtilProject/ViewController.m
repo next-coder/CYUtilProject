@@ -87,18 +87,18 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == 0) {
         
-        CYChatUserViewModel *user1 = [[CYChatUserViewModel alloc] init];
+        CYChatUser *user1 = [[CYChatUser alloc] init];
         user1.userId = @"11";
         user1.nickname = @"天王盖地虎";
         user1.headImageUrl = @"http://mapp.xiaoniuapp.com/static/images/app_vip_icon/app_vip_03_big.png";
         
-        CYChatUserViewModel *user2 = [[CYChatUserViewModel alloc] init];
+        CYChatUser *user2 = [[CYChatUser alloc] init];
         user2.userId = @"22";
         user2.nickname = @"宝塔镇河妖";
         user2.headImageUrl = @"http://mapp.xiaoniuapp.com/static/images/app_vip_icon/app_vip_03_big.png";
         
-        CYChatDataSource *dataSource = [[CYChatDataSource alloc] initWithChattingUser:user1
-                                                                     currentLoginUser:user2];
+        CYChatDataSource *dataSource = [[CYChatDataSource alloc] initWithChattingUser:[[CYChatUserViewModel alloc] initWithUser:user1]
+                                                                     currentLoginUser:[[CYChatUserViewModel alloc] initWithUser:user2]];
         
         CYChatViewController *chat = [[CYChatViewController alloc] initWithDataSource:dataSource];
         [self.navigationController pushViewController:chat animated:YES];

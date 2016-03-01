@@ -13,6 +13,8 @@
 #import "CYChatImageRightArrowCell.h"
 #import "CYChatTextLeftArrowCell.h"
 #import "CYChatTextRightArrowCell.h"
+#import "CYChatVoiceLeftArrowCell.h"
+#import "CYChatVoiceRightArrowCell.h"
 
 #import "UIScrollView+CYUtils.h"
 #import "CYCache.h"
@@ -30,6 +32,8 @@ static NSString *imageLeftArrowCellIdentifier = @"CYChatImageLeftArrowCell";
 static NSString *imageRightArrowCellIdentifier = @"CYChatImageRightArrowCell";
 static NSString *textLeftArrowCellIdentifier = @"CYChatTextLeftArrowCell";
 static NSString *textRightArrowCellIdentifier = @"CYChatTextRightArrowCell";
+static NSString *voiceLeftArrowCellIdentifier = @"CYChatVoiceLeftArrowCell";
+static NSString *voiceRightArrowCellIdentifier = @"CYChatVoiceRightArrowCell";
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     
@@ -71,6 +75,10 @@ static NSString *textRightArrowCellIdentifier = @"CYChatTextRightArrowCell";
                 forCellReuseIdentifier:textLeftArrowCellIdentifier];
     [_chatView.tableView registerClass:[CYChatTextRightArrowCell class]
                 forCellReuseIdentifier:textRightArrowCellIdentifier];
+    [_chatView.tableView registerClass:[CYChatVoiceLeftArrowCell class]
+                forCellReuseIdentifier:voiceLeftArrowCellIdentifier];
+    [_chatView.tableView registerClass:[CYChatVoiceRightArrowCell class]
+                forCellReuseIdentifier:voiceRightArrowCellIdentifier];
     
     _chatDataSource.delegate = self;
     [_chatDataSource loadHistoryMessagesAsynWithPageIndex:0];
@@ -109,6 +117,7 @@ static NSString *textRightArrowCellIdentifier = @"CYChatTextRightArrowCell";
         cell.nameLabel.text = [_chatDataSource nicknameWithUserId:message.from];
     }
     
+    cell.message = message;
     // 设置内容
     switch (message.type) {
         case CYChatMessageTypeText: {
@@ -127,6 +136,8 @@ static NSString *textRightArrowCellIdentifier = @"CYChatTextRightArrowCell";
             
         case CYChatMessageTypeVoice: {
             
+            cell.voiceLengthLabel.text = [NSString stringWithFormat:@"%ld\"", message.voiceLength];
+            cell.unreadImageView.hidden = !(message.unread);
             break;
         }
             
@@ -168,6 +179,13 @@ static NSString *textRightArrowCellIdentifier = @"CYChatTextRightArrowCell";
             
         case CYChatMessageTypeVoice: {
             
+            if ([self isMySendMessage:message]) {
+                
+                cell = [tableView dequeueReusableCellWithIdentifier:voiceRightArrowCellIdentifier];
+            } else {
+                
+                cell = [tableView dequeueReusableCellWithIdentifier:voiceLeftArrowCellIdentifier];
+            }
             break;
         }
             
@@ -211,18 +229,47 @@ static NSString *textRightArrowCellIdentifier = @"CYChatTextRightArrowCell";
 }
 
 #pragma mark - UITableViewDelegate
+//
+//- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    
+//    // default size
+//    return 210;
+//}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     CYChatMessageViewModel *message = [_messages objectAtIndex:indexPath.row];
-    return [CYChatImageCell heightOfCellWithImage:[[CYWebImageCache defaultCache] imageCacheWithUrlString:message.imageIconUrl]
-                                    hideHeadImage:!(_chatDataSource.showUserHeadImage)
-                                         hideName:!(_chatDataSource.showUserNickname)];
+    
+    switch (message.type) {
+        case CYChatMessageTypeText:
+            return [CYChatTextCell heightOfCellWithMessage:message
+                                             hideHeadImage:!(_chatDataSource.showUserHeadImage)
+                                                  hideName:!(_chatDataSource.showUserNickname)];
+            break;
+            
+            
+        case CYChatMessageTypeImage:
+            return [CYChatImageCell heightOfCellWithMessage:message
+                                              hideHeadImage:!(_chatDataSource.showUserHeadImage)
+                                                   hideName:!(_chatDataSource.showUserNickname)];
+            break;
+            
+            
+        case CYChatMessageTypeVoice:
+            return 100;
+            break;
+            
+        default:
+            return 200;
+            break;
+    }
 }
 
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     
-    [_chatView endInput];
+#warning here
+//    [_chatView endInput];
 }
 
 #pragma mark - CYChatDataSourceDelegate
@@ -247,8 +294,17 @@ static NSString *textRightArrowCellIdentifier = @"CYChatTextRightArrowCell";
                       withPageIndex:(NSUInteger)pageIndex
                    allHistoryLoaded:(BOOL)allHistoryLoaded {
     
+    CGFloat contentOffsetY = _chatView.tableView.contentOffset.y;
+    if (contentOffsetY < 0) {
+        
+        contentOffsetY = 0;
+    }
+    
     _messages = [[_chatDataSource messages] mutableCopy];
     [_chatView.tableView reloadData];
+    
+    // reset contentoffset to show messages which show in the front before loading
+    _chatView.tableView.contentOffset = CGPointMake(0, _chatView.tableView.contentSize.height - contentOffsetY - _chatView.tableView.frame.size.height);
 }
 
 @end

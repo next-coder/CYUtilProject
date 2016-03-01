@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+#import "CYChatMessageViewModel.h"
+
 #define CY_CHAT_CELL_NAME_HEIGHT        15
 #define CY_CHAT_CELL_NAME_VERTICAL_GAP  5
 
-#define CY_CHAT_CELL_HEAD_WIDTH         40
+#define CY_CHAT_CELL_HEAD_WIDTH         54
 
 #define CY_CHAT_CELL_DEFAULT_IMAGE_CONTENT_SIZE     CGSizeMake(100, 150)
 
@@ -40,6 +42,8 @@
 
 @property (nonatomic, weak) IBOutlet UIImageView *contentBackgroundImageView;
 @property (nonatomic, weak) IBOutlet UIImageView *contentImageView;
+@property (nonatomic, weak) IBOutlet UIImageView *unreadImageView;
+@property (nonatomic, weak) IBOutlet UILabel *voiceLengthLabel;
 @property (nonatomic, weak) IBOutlet UILabel *contentLabel;
 
 @property (nonatomic, assign, getter=isHideHeadImage) BOOL hideHeadImage;
@@ -50,6 +54,8 @@
 @property (nonatomic, assign) CGFloat contentBackgroundCornerRadius;
 @property (nonatomic, assign) CGFloat contentBackgroundArrowWidth;
 @property (nonatomic, assign) CGFloat contentBackgroundArrowHeight;
+
+@property (nonatomic, weak) CYChatMessageViewModel *message;
 
 - (IBAction)headImageTapped:(id)sender;
 

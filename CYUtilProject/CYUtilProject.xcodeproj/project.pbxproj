@@ -10,6 +10,24 @@
 		610199501C4E380B00E04080 /* CYIAPTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 6101994F1C4E380B00E04080 /* CYIAPTransaction.m */; };
 		610EB0BD1BDF47970086D048 /* CYSendSMSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 610EB0BC1BDF47970086D048 /* CYSendSMSUtils.m */; };
 		611780B91C07F172009EADD5 /* CYCustomUILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 611780B81C07F172009EADD5 /* CYCustomUILabel.m */; };
+		611CB8E11C83F0CC003A0E30 /* CYChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 611CB8E01C83F0CC003A0E30 /* CYChatMessage.m */; };
+		611CB8E41C83F0D7003A0E30 /* CYChatUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 611CB8E31C83F0D7003A0E30 /* CYChatUser.m */; };
+		611CB8E71C83F0E7003A0E30 /* CYChatBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 611CB8E61C83F0E7003A0E30 /* CYChatBaseModel.m */; };
+		611CB8F51C841D6E003A0E30 /* CYChatImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 611CB8EA1C841D6E003A0E30 /* CYChatImageCell.m */; };
+		611CB8F61C841D6E003A0E30 /* CYChatImageLeftArrowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 611CB8EC1C841D6E003A0E30 /* CYChatImageLeftArrowCell.m */; };
+		611CB8F71C841D6E003A0E30 /* CYChatImageRightArrowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 611CB8EE1C841D6E003A0E30 /* CYChatImageRightArrowCell.m */; };
+		611CB8F81C841D6E003A0E30 /* CYChatTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 611CB8F01C841D6E003A0E30 /* CYChatTextCell.m */; };
+		611CB8F91C841D6E003A0E30 /* CYChatTextLeftArrowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 611CB8F21C841D6E003A0E30 /* CYChatTextLeftArrowCell.m */; };
+		611CB8FA1C841D6E003A0E30 /* CYChatTextRightArrowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 611CB8F41C841D6E003A0E30 /* CYChatTextRightArrowCell.m */; };
+		611CB8FD1C841D8D003A0E30 /* CYChatBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 611CB8FC1C841D8D003A0E30 /* CYChatBaseCell.m */; };
+		611CB9091C841DF3003A0E30 /* CYChatInputContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 611CB9001C841DF3003A0E30 /* CYChatInputContentView.m */; };
+		611CB90A1C841DF3003A0E30 /* CYChatInputEmotionPadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 611CB9021C841DF3003A0E30 /* CYChatInputEmotionPadView.m */; };
+		611CB90B1C841DF3003A0E30 /* CYChatInputMorePadItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 611CB9041C841DF3003A0E30 /* CYChatInputMorePadItem.m */; };
+		611CB90C1C841DF3003A0E30 /* CYChatInputMorePadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 611CB9061C841DF3003A0E30 /* CYChatInputMorePadView.m */; };
+		611CB90D1C841DF3003A0E30 /* CYChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 611CB9081C841DF3003A0E30 /* CYChatView.m */; };
+		611CB9101C8421AD003A0E30 /* CYChatVoiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 611CB90F1C8421AD003A0E30 /* CYChatVoiceCell.m */; };
+		611CB9131C842BCA003A0E30 /* CYChatVoiceLeftArrowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 611CB9121C842BCA003A0E30 /* CYChatVoiceLeftArrowCell.m */; };
+		611CB9161C843DD7003A0E30 /* CYChatVoiceRightArrowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 611CB9151C843DD7003A0E30 /* CYChatVoiceRightArrowCell.m */; };
 		611CC9891C33BAF700273718 /* UIView+CYAnimationUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 611CC9881C33BAF700273718 /* UIView+CYAnimationUtil.m */; };
 		6120958D1C51FC210035FD2D /* CYIAPTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6120958C1C51FC210035FD2D /* CYIAPTestViewController.m */; };
 		613373291C0EE66900813925 /* CYDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 613373281C0EE66900813925 /* CYDatabase.m */; };
@@ -17,12 +35,6 @@
 		613373301C0EF72100813925 /* CYPrepareStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6133732F1C0EF72100813925 /* CYPrepareStatement.m */; };
 		613536AE1BDF5F900099E426 /* CYAddressBookUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 613536AD1BDF5F900099E426 /* CYAddressBookUtils.m */; };
 		614F22641BE0F58A00E3CF9D /* UIScrollView+CYUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 614F22631BE0F58A00E3CF9D /* UIScrollView+CYUtils.m */; };
-		61541D561C8046CE00AA7A6A /* CYChatTextLeftArrowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 61541D551C8046CE00AA7A6A /* CYChatTextLeftArrowCell.m */; };
-		61541D591C804A7F00AA7A6A /* CYChatTextRightArrowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 61541D581C804A7F00AA7A6A /* CYChatTextRightArrowCell.m */; };
-		616037CF1BD493B900BF4285 /* CYChatBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 616037CE1BD493B900BF4285 /* CYChatBaseCell.m */; };
-		616037D21BD4943E00BF4285 /* CYChatImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 616037D11BD4943E00BF4285 /* CYChatImageCell.m */; };
-		616037D51BD49A1300BF4285 /* CYChatImageLeftArrowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 616037D41BD49A1300BF4285 /* CYChatImageLeftArrowCell.m */; };
-		616037D81BD49A4100BF4285 /* CYChatImageRightArrowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 616037D71BD49A4100BF4285 /* CYChatImageRightArrowCell.m */; };
 		616037DF1BD49FFB00BF4285 /* CYDeviceUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 616037DE1BD49FFB00BF4285 /* CYDeviceUtils.m */; };
 		616037E21BD4D05A00BF4285 /* CYChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 616037E11BD4D05A00BF4285 /* CYChatViewController.m */; };
 		616037E51BD4D1FE00BF4285 /* introduction_3_5_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 616037E31BD4D1FE00BF4285 /* introduction_3_5_1.png */; };
@@ -48,13 +60,9 @@
 		61851F041BCD10B5005340C8 /* CYPullRefreshFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61851EFE1BCD10B5005340C8 /* CYPullRefreshFooterView.m */; };
 		61851F051BCD10B5005340C8 /* CYPullRefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61851F001BCD10B5005340C8 /* CYPullRefreshHeaderView.m */; };
 		61851F071BCD124F005340C8 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 61851F061BCD124F005340C8 /* README */; };
-		61C55F091BD5D86800B59F99 /* CYChatInputContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C55F081BD5D86800B59F99 /* CYChatInputContentView.m */; };
 		61C55F0D1BD5EAE200B59F99 /* CYChat.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 61C55F0C1BD5EAE200B59F99 /* CYChat.bundle */; };
-		61C55F101BD621DB00B59F99 /* CYChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C55F0F1BD621DB00B59F99 /* CYChatView.m */; };
 		61DF52C61BE2049E0015CDF2 /* CYAnimatedTextLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 61DF52C51BE2049E0015CDF2 /* CYAnimatedTextLabel.m */; };
 		61DF52CA1BE209C30015CDF2 /* CYAnimatedTextLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61DF52C91BE209C30015CDF2 /* CYAnimatedTextLabelViewController.m */; };
-		61DF52E21BE232370015CDF2 /* CYChatInputMorePadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61DF52E11BE232370015CDF2 /* CYChatInputMorePadView.m */; };
-		61E4DFAE1BE7087D0097E9AA /* CYChatInputEmotionPadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DFAD1BE7087D0097E9AA /* CYChatInputEmotionPadView.m */; };
 		61E4DFB11BE7307D0097E9AA /* CYChatMessageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DFB01BE7307D0097E9AA /* CYChatMessageViewModel.m */; };
 		61E4DFB41BE731CF0097E9AA /* CYChatUserViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DFB31BE731CF0097E9AA /* CYChatUserViewModel.m */; };
 		61E4DFB71BE732880097E9AA /* CYChatDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E4DFB61BE732880097E9AA /* CYChatDataSource.m */; };
@@ -89,8 +97,6 @@
 		61F711B21BF1C4F400881E3B /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F711971BF1BDB400881E3B /* libsqlite3.tbd */; };
 		61F711B31BF1C4FE00881E3B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F711951BF1BDA900881E3B /* CoreGraphics.framework */; };
 		61F711B41BF1C50900881E3B /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F711911BF1BD4800881E3B /* libiconv.tbd */; };
-		61F811581BEC420700F87E3C /* CYChatTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F811571BEC420700F87E3C /* CYChatTextCell.m */; };
-		61FC40A91BE3489000BEDC51 /* CYChatInputMorePadItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FC40A81BE3489000BEDC51 /* CYChatInputMorePadItem.m */; };
 		61FD03021BE99AEA00237EA3 /* CYCycleBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FD03011BE99AEA00237EA3 /* CYCycleBannerView.m */; };
 		61FD03051BE9A58900237EA3 /* CYCycleBannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FD03041BE9A58900237EA3 /* CYCycleBannerViewController.m */; };
 		61FD030C1BE9AFCA00237EA3 /* UIImageView+CYWebImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FD030B1BE9AFCA00237EA3 /* UIImageView+CYWebImageCache.m */; };
@@ -110,6 +116,42 @@
 		610EB0BC1BDF47970086D048 /* CYSendSMSUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYSendSMSUtils.m; sourceTree = "<group>"; };
 		611780B71C07F172009EADD5 /* CYCustomUILabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYCustomUILabel.h; sourceTree = "<group>"; };
 		611780B81C07F172009EADD5 /* CYCustomUILabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYCustomUILabel.m; sourceTree = "<group>"; };
+		611CB8DF1C83F0CC003A0E30 /* CYChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatMessage.h; sourceTree = "<group>"; };
+		611CB8E01C83F0CC003A0E30 /* CYChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYChatMessage.m; sourceTree = "<group>"; };
+		611CB8E21C83F0D7003A0E30 /* CYChatUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatUser.h; sourceTree = "<group>"; };
+		611CB8E31C83F0D7003A0E30 /* CYChatUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYChatUser.m; sourceTree = "<group>"; };
+		611CB8E51C83F0E7003A0E30 /* CYChatBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatBaseModel.h; sourceTree = "<group>"; };
+		611CB8E61C83F0E7003A0E30 /* CYChatBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYChatBaseModel.m; sourceTree = "<group>"; };
+		611CB8E91C841D6E003A0E30 /* CYChatImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatImageCell.h; sourceTree = "<group>"; };
+		611CB8EA1C841D6E003A0E30 /* CYChatImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYChatImageCell.m; sourceTree = "<group>"; };
+		611CB8EB1C841D6E003A0E30 /* CYChatImageLeftArrowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatImageLeftArrowCell.h; sourceTree = "<group>"; };
+		611CB8EC1C841D6E003A0E30 /* CYChatImageLeftArrowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYChatImageLeftArrowCell.m; sourceTree = "<group>"; };
+		611CB8ED1C841D6E003A0E30 /* CYChatImageRightArrowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatImageRightArrowCell.h; sourceTree = "<group>"; };
+		611CB8EE1C841D6E003A0E30 /* CYChatImageRightArrowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYChatImageRightArrowCell.m; sourceTree = "<group>"; };
+		611CB8EF1C841D6E003A0E30 /* CYChatTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatTextCell.h; sourceTree = "<group>"; };
+		611CB8F01C841D6E003A0E30 /* CYChatTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYChatTextCell.m; sourceTree = "<group>"; };
+		611CB8F11C841D6E003A0E30 /* CYChatTextLeftArrowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatTextLeftArrowCell.h; sourceTree = "<group>"; };
+		611CB8F21C841D6E003A0E30 /* CYChatTextLeftArrowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYChatTextLeftArrowCell.m; sourceTree = "<group>"; };
+		611CB8F31C841D6E003A0E30 /* CYChatTextRightArrowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatTextRightArrowCell.h; sourceTree = "<group>"; };
+		611CB8F41C841D6E003A0E30 /* CYChatTextRightArrowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYChatTextRightArrowCell.m; sourceTree = "<group>"; };
+		611CB8FB1C841D8D003A0E30 /* CYChatBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatBaseCell.h; sourceTree = "<group>"; };
+		611CB8FC1C841D8D003A0E30 /* CYChatBaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYChatBaseCell.m; sourceTree = "<group>"; };
+		611CB8FF1C841DF3003A0E30 /* CYChatInputContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatInputContentView.h; sourceTree = "<group>"; };
+		611CB9001C841DF3003A0E30 /* CYChatInputContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYChatInputContentView.m; sourceTree = "<group>"; };
+		611CB9011C841DF3003A0E30 /* CYChatInputEmotionPadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatInputEmotionPadView.h; sourceTree = "<group>"; };
+		611CB9021C841DF3003A0E30 /* CYChatInputEmotionPadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYChatInputEmotionPadView.m; sourceTree = "<group>"; };
+		611CB9031C841DF3003A0E30 /* CYChatInputMorePadItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatInputMorePadItem.h; sourceTree = "<group>"; };
+		611CB9041C841DF3003A0E30 /* CYChatInputMorePadItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYChatInputMorePadItem.m; sourceTree = "<group>"; };
+		611CB9051C841DF3003A0E30 /* CYChatInputMorePadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatInputMorePadView.h; sourceTree = "<group>"; };
+		611CB9061C841DF3003A0E30 /* CYChatInputMorePadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYChatInputMorePadView.m; sourceTree = "<group>"; };
+		611CB9071C841DF3003A0E30 /* CYChatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatView.h; sourceTree = "<group>"; };
+		611CB9081C841DF3003A0E30 /* CYChatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYChatView.m; sourceTree = "<group>"; };
+		611CB90E1C8421AD003A0E30 /* CYChatVoiceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatVoiceCell.h; sourceTree = "<group>"; };
+		611CB90F1C8421AD003A0E30 /* CYChatVoiceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYChatVoiceCell.m; sourceTree = "<group>"; };
+		611CB9111C842BCA003A0E30 /* CYChatVoiceLeftArrowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatVoiceLeftArrowCell.h; sourceTree = "<group>"; };
+		611CB9121C842BCA003A0E30 /* CYChatVoiceLeftArrowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYChatVoiceLeftArrowCell.m; sourceTree = "<group>"; };
+		611CB9141C843DD7003A0E30 /* CYChatVoiceRightArrowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatVoiceRightArrowCell.h; sourceTree = "<group>"; };
+		611CB9151C843DD7003A0E30 /* CYChatVoiceRightArrowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYChatVoiceRightArrowCell.m; sourceTree = "<group>"; };
 		611CC9871C33BAF700273718 /* UIView+CYAnimationUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CYAnimationUtil.h"; sourceTree = "<group>"; };
 		611CC9881C33BAF700273718 /* UIView+CYAnimationUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CYAnimationUtil.m"; sourceTree = "<group>"; };
 		6120958B1C51FC210035FD2D /* CYIAPTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYIAPTestViewController.h; sourceTree = "<group>"; };
@@ -125,18 +167,6 @@
 		613536AD1BDF5F900099E426 /* CYAddressBookUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYAddressBookUtils.m; sourceTree = "<group>"; };
 		614F22621BE0F58A00E3CF9D /* UIScrollView+CYUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+CYUtils.h"; sourceTree = "<group>"; };
 		614F22631BE0F58A00E3CF9D /* UIScrollView+CYUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+CYUtils.m"; sourceTree = "<group>"; };
-		61541D541C8046CE00AA7A6A /* CYChatTextLeftArrowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatTextLeftArrowCell.h; sourceTree = "<group>"; };
-		61541D551C8046CE00AA7A6A /* CYChatTextLeftArrowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYChatTextLeftArrowCell.m; sourceTree = "<group>"; };
-		61541D571C804A7F00AA7A6A /* CYChatTextRightArrowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatTextRightArrowCell.h; sourceTree = "<group>"; };
-		61541D581C804A7F00AA7A6A /* CYChatTextRightArrowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYChatTextRightArrowCell.m; sourceTree = "<group>"; };
-		616037CD1BD493B900BF4285 /* CYChatBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatBaseCell.h; sourceTree = "<group>"; };
-		616037CE1BD493B900BF4285 /* CYChatBaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYChatBaseCell.m; sourceTree = "<group>"; };
-		616037D01BD4943E00BF4285 /* CYChatImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatImageCell.h; sourceTree = "<group>"; };
-		616037D11BD4943E00BF4285 /* CYChatImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYChatImageCell.m; sourceTree = "<group>"; };
-		616037D31BD49A1300BF4285 /* CYChatImageLeftArrowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatImageLeftArrowCell.h; sourceTree = "<group>"; };
-		616037D41BD49A1300BF4285 /* CYChatImageLeftArrowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYChatImageLeftArrowCell.m; sourceTree = "<group>"; };
-		616037D61BD49A4100BF4285 /* CYChatImageRightArrowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatImageRightArrowCell.h; sourceTree = "<group>"; };
-		616037D71BD49A4100BF4285 /* CYChatImageRightArrowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYChatImageRightArrowCell.m; sourceTree = "<group>"; };
 		616037DD1BD49FFB00BF4285 /* CYDeviceUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYDeviceUtils.h; sourceTree = "<group>"; };
 		616037DE1BD49FFB00BF4285 /* CYDeviceUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYDeviceUtils.m; sourceTree = "<group>"; };
 		616037E01BD4D05A00BF4285 /* CYChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatViewController.h; sourceTree = "<group>"; };
@@ -184,19 +214,11 @@
 		61851F001BCD10B5005340C8 /* CYPullRefreshHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYPullRefreshHeaderView.m; sourceTree = "<group>"; };
 		61851F061BCD124F005340C8 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		618D6DD91BCF4D1D003ED49B /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
-		61C55F071BD5D86800B59F99 /* CYChatInputContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatInputContentView.h; sourceTree = "<group>"; };
-		61C55F081BD5D86800B59F99 /* CYChatInputContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYChatInputContentView.m; sourceTree = "<group>"; };
 		61C55F0C1BD5EAE200B59F99 /* CYChat.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CYChat.bundle; sourceTree = "<group>"; };
-		61C55F0E1BD621DB00B59F99 /* CYChatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatView.h; sourceTree = "<group>"; };
-		61C55F0F1BD621DB00B59F99 /* CYChatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYChatView.m; sourceTree = "<group>"; };
 		61DF52C41BE2049E0015CDF2 /* CYAnimatedTextLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYAnimatedTextLabel.h; sourceTree = "<group>"; };
 		61DF52C51BE2049E0015CDF2 /* CYAnimatedTextLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYAnimatedTextLabel.m; sourceTree = "<group>"; };
 		61DF52C81BE209C30015CDF2 /* CYAnimatedTextLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYAnimatedTextLabelViewController.h; sourceTree = "<group>"; };
 		61DF52C91BE209C30015CDF2 /* CYAnimatedTextLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYAnimatedTextLabelViewController.m; sourceTree = "<group>"; };
-		61DF52E01BE232370015CDF2 /* CYChatInputMorePadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatInputMorePadView.h; sourceTree = "<group>"; };
-		61DF52E11BE232370015CDF2 /* CYChatInputMorePadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYChatInputMorePadView.m; sourceTree = "<group>"; };
-		61E4DFAC1BE7087D0097E9AA /* CYChatInputEmotionPadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatInputEmotionPadView.h; sourceTree = "<group>"; };
-		61E4DFAD1BE7087D0097E9AA /* CYChatInputEmotionPadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYChatInputEmotionPadView.m; sourceTree = "<group>"; };
 		61E4DFAF1BE7307D0097E9AA /* CYChatMessageViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatMessageViewModel.h; sourceTree = "<group>"; };
 		61E4DFB01BE7307D0097E9AA /* CYChatMessageViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYChatMessageViewModel.m; sourceTree = "<group>"; };
 		61E4DFB21BE731CF0097E9AA /* CYChatUserViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatUserViewModel.h; sourceTree = "<group>"; };
@@ -263,10 +285,6 @@
 		61F7119D1BF1BDCF00881E3B /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		61F711A11BF1BE6400881E3B /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		61F711AB1BF1C3CE00881E3B /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
-		61F811561BEC420700F87E3C /* CYChatTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatTextCell.h; sourceTree = "<group>"; };
-		61F811571BEC420700F87E3C /* CYChatTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYChatTextCell.m; sourceTree = "<group>"; };
-		61FC40A71BE3489000BEDC51 /* CYChatInputMorePadItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatInputMorePadItem.h; sourceTree = "<group>"; };
-		61FC40A81BE3489000BEDC51 /* CYChatInputMorePadItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYChatInputMorePadItem.m; sourceTree = "<group>"; };
 		61FD03001BE99AEA00237EA3 /* CYCycleBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYCycleBannerView.h; sourceTree = "<group>"; };
 		61FD03011BE99AEA00237EA3 /* CYCycleBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYCycleBannerView.m; sourceTree = "<group>"; };
 		61FD03031BE9A58900237EA3 /* CYCycleBannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYCycleBannerViewController.h; sourceTree = "<group>"; };
@@ -317,6 +335,63 @@
 			);
 			name = CYSMS;
 			path = ../../CYSMS;
+			sourceTree = "<group>";
+		};
+		611CB8DE1C83F0B2003A0E30 /* CYChatModel */ = {
+			isa = PBXGroup;
+			children = (
+				611CB8E51C83F0E7003A0E30 /* CYChatBaseModel.h */,
+				611CB8E61C83F0E7003A0E30 /* CYChatBaseModel.m */,
+				611CB8DF1C83F0CC003A0E30 /* CYChatMessage.h */,
+				611CB8E01C83F0CC003A0E30 /* CYChatMessage.m */,
+				611CB8E21C83F0D7003A0E30 /* CYChatUser.h */,
+				611CB8E31C83F0D7003A0E30 /* CYChatUser.m */,
+			);
+			path = CYChatModel;
+			sourceTree = "<group>";
+		};
+		611CB8E81C841D37003A0E30 /* CYChatCell */ = {
+			isa = PBXGroup;
+			children = (
+				611CB8FB1C841D8D003A0E30 /* CYChatBaseCell.h */,
+				611CB8FC1C841D8D003A0E30 /* CYChatBaseCell.m */,
+				611CB8E91C841D6E003A0E30 /* CYChatImageCell.h */,
+				611CB8EA1C841D6E003A0E30 /* CYChatImageCell.m */,
+				611CB8EB1C841D6E003A0E30 /* CYChatImageLeftArrowCell.h */,
+				611CB8EC1C841D6E003A0E30 /* CYChatImageLeftArrowCell.m */,
+				611CB8ED1C841D6E003A0E30 /* CYChatImageRightArrowCell.h */,
+				611CB8EE1C841D6E003A0E30 /* CYChatImageRightArrowCell.m */,
+				611CB8EF1C841D6E003A0E30 /* CYChatTextCell.h */,
+				611CB8F01C841D6E003A0E30 /* CYChatTextCell.m */,
+				611CB8F11C841D6E003A0E30 /* CYChatTextLeftArrowCell.h */,
+				611CB8F21C841D6E003A0E30 /* CYChatTextLeftArrowCell.m */,
+				611CB8F31C841D6E003A0E30 /* CYChatTextRightArrowCell.h */,
+				611CB8F41C841D6E003A0E30 /* CYChatTextRightArrowCell.m */,
+				611CB90E1C8421AD003A0E30 /* CYChatVoiceCell.h */,
+				611CB90F1C8421AD003A0E30 /* CYChatVoiceCell.m */,
+				611CB9111C842BCA003A0E30 /* CYChatVoiceLeftArrowCell.h */,
+				611CB9121C842BCA003A0E30 /* CYChatVoiceLeftArrowCell.m */,
+				611CB9141C843DD7003A0E30 /* CYChatVoiceRightArrowCell.h */,
+				611CB9151C843DD7003A0E30 /* CYChatVoiceRightArrowCell.m */,
+			);
+			path = CYChatCell;
+			sourceTree = "<group>";
+		};
+		611CB8FE1C841DC4003A0E30 /* CYChatView */ = {
+			isa = PBXGroup;
+			children = (
+				611CB9071C841DF3003A0E30 /* CYChatView.h */,
+				611CB9081C841DF3003A0E30 /* CYChatView.m */,
+				611CB8FF1C841DF3003A0E30 /* CYChatInputContentView.h */,
+				611CB9001C841DF3003A0E30 /* CYChatInputContentView.m */,
+				611CB9011C841DF3003A0E30 /* CYChatInputEmotionPadView.h */,
+				611CB9021C841DF3003A0E30 /* CYChatInputEmotionPadView.m */,
+				611CB9051C841DF3003A0E30 /* CYChatInputMorePadView.h */,
+				611CB9061C841DF3003A0E30 /* CYChatInputMorePadView.m */,
+				611CB9031C841DF3003A0E30 /* CYChatInputMorePadItem.h */,
+				611CB9041C841DF3003A0E30 /* CYChatInputMorePadItem.m */,
+			);
+			path = CYChatView;
 			sourceTree = "<group>";
 		};
 		611CC9831C33B20E00273718 /* CYAnimationUtil */ = {
@@ -371,30 +446,9 @@
 		616037CC1BD4939100BF4285 /* CYChat */ = {
 			isa = PBXGroup;
 			children = (
-				616037CD1BD493B900BF4285 /* CYChatBaseCell.h */,
-				616037CE1BD493B900BF4285 /* CYChatBaseCell.m */,
-				616037D01BD4943E00BF4285 /* CYChatImageCell.h */,
-				616037D11BD4943E00BF4285 /* CYChatImageCell.m */,
-				616037D31BD49A1300BF4285 /* CYChatImageLeftArrowCell.h */,
-				616037D41BD49A1300BF4285 /* CYChatImageLeftArrowCell.m */,
-				616037D61BD49A4100BF4285 /* CYChatImageRightArrowCell.h */,
-				616037D71BD49A4100BF4285 /* CYChatImageRightArrowCell.m */,
-				61F811561BEC420700F87E3C /* CYChatTextCell.h */,
-				61F811571BEC420700F87E3C /* CYChatTextCell.m */,
-				61541D541C8046CE00AA7A6A /* CYChatTextLeftArrowCell.h */,
-				61541D551C8046CE00AA7A6A /* CYChatTextLeftArrowCell.m */,
-				61541D571C804A7F00AA7A6A /* CYChatTextRightArrowCell.h */,
-				61541D581C804A7F00AA7A6A /* CYChatTextRightArrowCell.m */,
-				61C55F071BD5D86800B59F99 /* CYChatInputContentView.h */,
-				61C55F081BD5D86800B59F99 /* CYChatInputContentView.m */,
-				61DF52E01BE232370015CDF2 /* CYChatInputMorePadView.h */,
-				61DF52E11BE232370015CDF2 /* CYChatInputMorePadView.m */,
-				61FC40A71BE3489000BEDC51 /* CYChatInputMorePadItem.h */,
-				61FC40A81BE3489000BEDC51 /* CYChatInputMorePadItem.m */,
-				61E4DFAC1BE7087D0097E9AA /* CYChatInputEmotionPadView.h */,
-				61E4DFAD1BE7087D0097E9AA /* CYChatInputEmotionPadView.m */,
-				61C55F0E1BD621DB00B59F99 /* CYChatView.h */,
-				61C55F0F1BD621DB00B59F99 /* CYChatView.m */,
+				611CB8FE1C841DC4003A0E30 /* CYChatView */,
+				611CB8E81C841D37003A0E30 /* CYChatCell */,
+				611CB8DE1C83F0B2003A0E30 /* CYChatModel */,
 				616037E01BD4D05A00BF4285 /* CYChatViewController.h */,
 				616037E11BD4D05A00BF4285 /* CYChatViewController.m */,
 				61E4DFAF1BE7307D0097E9AA /* CYChatMessageViewModel.h */,
@@ -748,7 +802,7 @@
 				TargetAttributes = {
 					61851EBA1BCD0964005340C8 = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = 85ZM2RJ86X;
+						DevelopmentTeam = BQN58WSC57;
 					};
 				};
 			};
@@ -798,53 +852,53 @@
 			files = (
 				61F0FCBA1BCF770C00E445EA /* MASConstraint.m in Sources */,
 				61F0FCBD1BCF770C00E445EA /* MASViewAttribute.m in Sources */,
+				611CB9101C8421AD003A0E30 /* CYChatVoiceCell.m in Sources */,
 				61E4DFB71BE732880097E9AA /* CYChatDataSource.m in Sources */,
 				61FD031E1BEA0A6700237EA3 /* CYBannerImageBrowserView.m in Sources */,
 				611780B91C07F172009EADD5 /* CYCustomUILabel.m in Sources */,
 				61F0FCBB1BCF770C00E445EA /* MASConstraintMaker.m in Sources */,
+				611CB90C1C841DF3003A0E30 /* CYChatInputMorePadView.m in Sources */,
 				61851EE31BCD0A86005340C8 /* CYBaseTableViewController.m in Sources */,
+				611CB9131C842BCA003A0E30 /* CYChatVoiceLeftArrowCell.m in Sources */,
 				61851EE51BCD0A86005340C8 /* CYBaseViewController.m in Sources */,
 				61851EE21BCD0A86005340C8 /* CYBaseService.m in Sources */,
 				61FD030C1BE9AFCA00237EA3 /* UIImageView+CYWebImageCache.m in Sources */,
-				616037D51BD49A1300BF4285 /* CYChatImageLeftArrowCell.m in Sources */,
 				616037DF1BD49FFB00BF4285 /* CYDeviceUtils.m in Sources */,
-				61FC40A91BE3489000BEDC51 /* CYChatInputMorePadItem.m in Sources */,
 				61851EE41BCD0A86005340C8 /* CYBaseView.m in Sources */,
+				611CB9161C843DD7003A0E30 /* CYChatVoiceRightArrowCell.m in Sources */,
 				61F0FCC51BCF7B8B00E445EA /* CYBaseTableWithPullRefreshViewController.m in Sources */,
-				61541D561C8046CE00AA7A6A /* CYChatTextLeftArrowCell.m in Sources */,
-				61541D591C804A7F00AA7A6A /* CYChatTextRightArrowCell.m in Sources */,
-				616037CF1BD493B900BF4285 /* CYChatBaseCell.m in Sources */,
+				611CB8F51C841D6E003A0E30 /* CYChatImageCell.m in Sources */,
 				61F0FCBE1BCF770C00E445EA /* MASViewConstraint.m in Sources */,
 				613373291C0EE66900813925 /* CYDatabase.m in Sources */,
+				611CB8F61C841D6E003A0E30 /* CYChatImageLeftArrowCell.m in Sources */,
 				61EEF9021BE88DE400E1C9EB /* CYPersistenceCache.m in Sources */,
-				61DF52E21BE232370015CDF2 /* CYChatInputMorePadView.m in Sources */,
 				61FD03021BE99AEA00237EA3 /* CYCycleBannerView.m in Sources */,
 				610199501C4E380B00E04080 /* CYIAPTransaction.m in Sources */,
 				616037E21BD4D05A00BF4285 /* CYChatViewController.m in Sources */,
 				61F0FCC11BCF770C00E445EA /* View+MASAdditions.m in Sources */,
+				611CB8F71C841D6E003A0E30 /* CYChatImageRightArrowCell.m in Sources */,
 				6133732D1C0EF4FB00813925 /* CYResultSet.m in Sources */,
-				616037D21BD4943E00BF4285 /* CYChatImageCell.m in Sources */,
+				611CB8FA1C841D6E003A0E30 /* CYChatTextRightArrowCell.m in Sources */,
+				611CB90A1C841DF3003A0E30 /* CYChatInputEmotionPadView.m in Sources */,
 				61F0FCB91BCF770C00E445EA /* MASCompositeConstraint.m in Sources */,
-				61C55F101BD621DB00B59F99 /* CYChatView.m in Sources */,
 				61FD030F1BE9B95E00237EA3 /* NSURLRequest+CYImageDownload.m in Sources */,
 				61E4DFBF1BE75F000097E9AA /* CYIAPUtils.m in Sources */,
 				61DF52C61BE2049E0015CDF2 /* CYAnimatedTextLabel.m in Sources */,
+				611CB9091C841DF3003A0E30 /* CYChatInputContentView.m in Sources */,
 				61EEF9081BE8A75500E1C9EB /* CYWebImageCache.m in Sources */,
 				613373301C0EF72100813925 /* CYPrepareStatement.m in Sources */,
 				61FD03161BE9D76F00237EA3 /* CYFullScreenImageViewController.m in Sources */,
 				61851EC61BCD0964005340C8 /* ViewController.m in Sources */,
-				61E4DFAE1BE7087D0097E9AA /* CYChatInputEmotionPadView.m in Sources */,
 				61851EC31BCD0964005340C8 /* AppDelegate.m in Sources */,
 				61E4DFB41BE731CF0097E9AA /* CYChatUserViewModel.m in Sources */,
 				61851EF21BCD0B1D005340C8 /* NSDictionary+CYJson.m in Sources */,
+				611CB8F81C841D6E003A0E30 /* CYChatTextCell.m in Sources */,
 				61EEF9051BE88E9A00E1C9EB /* CYImageDownloader.m in Sources */,
 				61E4DFC21BE760730097E9AA /* CYIAPKeychainUtils.m in Sources */,
 				61FD03131BE9D26B00237EA3 /* CYFullScreenImageView.m in Sources */,
 				61E4DFB11BE7307D0097E9AA /* CYChatMessageViewModel.m in Sources */,
 				61F0FCBC1BCF770C00E445EA /* MASLayoutConstraint.m in Sources */,
-				616037D81BD49A4100BF4285 /* CYChatImageRightArrowCell.m in Sources */,
 				61F0FCCE1BCF963B00E445EA /* CYAlertViewAction.m in Sources */,
-				61F811581BEC420700F87E3C /* CYChatTextCell.m in Sources */,
 				61FD03051BE9A58900237EA3 /* CYCycleBannerViewController.m in Sources */,
 				61851EE11BCD0A86005340C8 /* CYBaseModel.m in Sources */,
 				61F1884F1BEB7008006DE729 /* UIButton+CYWebImageCache.m in Sources */,
@@ -853,22 +907,28 @@
 				61851F051BCD10B5005340C8 /* CYPullRefreshHeaderView.m in Sources */,
 				614F22641BE0F58A00E3CF9D /* UIScrollView+CYUtils.m in Sources */,
 				61F0FCCB1BCF820200E445EA /* CYAlertView.m in Sources */,
+				611CB90D1C841DF3003A0E30 /* CYChatView.m in Sources */,
 				61851EC01BCD0964005340C8 /* main.m in Sources */,
 				61F0FCC01BCF770C00E445EA /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				61851F011BCD10B5005340C8 /* NSDate+CYPullRefresh.m in Sources */,
+				611CB8E71C83F0E7003A0E30 /* CYChatBaseModel.m in Sources */,
 				61F711741BF195E700881E3B /* CYQQUtils.m in Sources */,
 				6120958D1C51FC210035FD2D /* CYIAPTestViewController.m in Sources */,
 				610EB0BD1BDF47970086D048 /* CYSendSMSUtils.m in Sources */,
-				61C55F091BD5D86800B59F99 /* CYChatInputContentView.m in Sources */,
+				611CB90B1C841DF3003A0E30 /* CYChatInputMorePadItem.m in Sources */,
+				611CB8FD1C841D8D003A0E30 /* CYChatBaseCell.m in Sources */,
 				61DF52CA1BE209C30015CDF2 /* CYAnimatedTextLabelViewController.m in Sources */,
+				611CB8E11C83F0CC003A0E30 /* CYChatMessage.m in Sources */,
 				61851F021BCD10B5005340C8 /* CYPullRefreshBaseView.m in Sources */,
 				61F0FCBF1BCF770C00E445EA /* NSArray+MASAdditions.m in Sources */,
 				61F0FCC21BCF770C00E445EA /* ViewController+MASAdditions.m in Sources */,
 				61851EF11BCD0B1D005340C8 /* NSArray+CYJson.m in Sources */,
 				613536AE1BDF5F900099E426 /* CYAddressBookUtils.m in Sources */,
 				611CC9891C33BAF700273718 /* UIView+CYAnimationUtil.m in Sources */,
+				611CB8E41C83F0D7003A0E30 /* CYChatUser.m in Sources */,
 				61851EF51BCD0B1D005340C8 /* NSString+CYUtils.m in Sources */,
 				61851F041BCD10B5005340C8 /* CYPullRefreshFooterView.m in Sources */,
+				611CB8F91C841D6E003A0E30 /* CYChatTextLeftArrowCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

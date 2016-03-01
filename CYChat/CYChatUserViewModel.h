@@ -6,13 +6,17 @@
 //  Copyright © 2015 Charry. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "CYChatUser.h"
 
 @interface CYChatUserViewModel : NSObject
 
-@property (nonatomic, strong) NSString *userId;
+- (instancetype)initWithUser:(CYChatUser *)user;
 
-@property (nonatomic, strong) NSString *headImageUrl;
-@property (nonatomic, strong) NSString *nickname;
+@property (nonatomic, strong, readonly) CYChatUser *user;
+
+@property (nonatomic, strong, readonly) NSString *userId;
+
+@property (nonatomic, strong, readonly) NSString *headImageUrl;
+@property (nonatomic, strong, readonly) NSString *nickname;
 
 @end

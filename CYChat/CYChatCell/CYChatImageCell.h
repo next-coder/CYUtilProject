@@ -15,8 +15,8 @@
 
 - (CGSize)contentImageViewSize;
 
-+ (CGFloat)heightOfCellWithImage:(UIImage *)image
-                   hideHeadImage:(BOOL)hideHeadImage
-                        hideName:(BOOL)hideName;
++ (CGFloat)heightOfCellWithMessage:(CYChatMessageViewModel *)message
+                     hideHeadImage:(BOOL)hideHeadImage
+                          hideName:(BOOL)hideName;
 
 @end

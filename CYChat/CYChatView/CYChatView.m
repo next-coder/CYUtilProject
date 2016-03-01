@@ -237,7 +237,7 @@
 
 - (void)animatedRefreshConstraints {
     
-    [UIView animateWithDuration:0.25 animations:^{
+    [UIView animateWithDuration:0.2 animations:^{
         
         [self layoutIfNeeded];
     }];
@@ -292,6 +292,16 @@
 
 - (void)chatInputContentDidChangeInputType:(CYChatInputContentInputType)inputType {
     
+    // 非文字输入时，立即处理，文字输入时，交给UIKeyboardWillShowNotification消息通知中处理
+    if (inputType != CYChatInputContentInputTypeText) {
+        
+        [self chatInputChanged:inputType];
+    }
+}
+
+// Private method
+- (void)chatInputChanged:(CYChatInputContentInputType)inputType {
+    
     if (inputType == CYChatInputContentInputTypeVoice) {
         
         NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:_chatInputContentView
@@ -302,7 +312,60 @@
                                                                      multiplier:1
                                                                        constant:0];
         [self replaceChatInputContentViewBottomConstraint:constraint];
-    } else if (inputType == CYChatInputContentInputTypeMore) {
+    }
+    
+    [self refreshEmotionInputLayout:inputType];
+    [self refreshMoreInputLayout:inputType];
+    
+    [self animatedRefreshConstraints];
+    
+    [_tableView scrollToBottomAnimated:YES];
+}
+
+- (void)refreshEmotionInputLayout:(CYChatInputContentInputType)currentInputType {
+    
+    if (currentInputType == CYChatInputContentInputTypeEmotion) {
+        
+        // 显示emotion pad
+        [self removeConstraint:_chatInputEmotionPositionConstraint];
+        NSLayoutConstraint *inputEmotionConstraintBottom = [NSLayoutConstraint constraintWithItem:_chatInputEmotionPadView
+                                                                                        attribute:NSLayoutAttributeBottom
+                                                                                        relatedBy:NSLayoutRelationEqual
+                                                                                           toItem:self
+                                                                                        attribute:NSLayoutAttributeBottom
+                                                                                       multiplier:1
+                                                                                         constant:0];
+        [self addConstraint:inputEmotionConstraintBottom];
+        _chatInputEmotionPositionConstraint = inputEmotionConstraintBottom;
+        
+        // 输入栏在emotion pad的顶部
+        NSLayoutConstraint *inputConstraintBottom = [NSLayoutConstraint constraintWithItem:_chatInputContentView
+                                                                                 attribute:NSLayoutAttributeBottom
+                                                                                 relatedBy:NSLayoutRelationEqual
+                                                                                    toItem:_chatInputEmotionPadView
+                                                                                 attribute:NSLayoutAttributeTop
+                                                                                multiplier:1
+                                                                                  constant:0];
+        [self replaceChatInputContentViewBottomConstraint:inputConstraintBottom];
+    } else {
+        
+        // 隐藏emotion pad
+        [self removeConstraint:_chatInputEmotionPositionConstraint];
+        NSLayoutConstraint *inputEmotionConstraintTop = [NSLayoutConstraint constraintWithItem:_chatInputEmotionPadView
+                                                                                     attribute:NSLayoutAttributeTop
+                                                                                     relatedBy:NSLayoutRelationEqual
+                                                                                        toItem:self
+                                                                                     attribute:NSLayoutAttributeBottom
+                                                                                    multiplier:1
+                                                                                      constant:0];
+        [self addConstraint:inputEmotionConstraintTop];
+        _chatInputEmotionPositionConstraint = inputEmotionConstraintTop;
+    }
+}
+
+- (void)refreshMoreInputLayout:(CYChatInputContentInputType)currentInputType {
+    
+    if (currentInputType == CYChatInputContentInputTypeMore) {
         
         // 显示more pad
         [self removeConstraint:_chatInputMorePositionConstraint];
@@ -326,31 +389,7 @@
                                                                                   constant:0];
         [self replaceChatInputContentViewBottomConstraint:inputConstraintBottom];
         
-    } else if (inputType == CYChatInputContentInputTypeEmotion) {
-        
-        // 显示emotion pad
-        [self removeConstraint:_chatInputEmotionPositionConstraint];
-        NSLayoutConstraint *inputEmotionConstraintBottom = [NSLayoutConstraint constraintWithItem:_chatInputEmotionPadView
-                                                                                     attribute:NSLayoutAttributeBottom
-                                                                                     relatedBy:NSLayoutRelationEqual
-                                                                                        toItem:self
-                                                                                     attribute:NSLayoutAttributeBottom
-                                                                                    multiplier:1
-                                                                                      constant:0];
-        [self addConstraint:inputEmotionConstraintBottom];
-        _chatInputEmotionPositionConstraint = inputEmotionConstraintBottom;
-        
-        // 输入栏在emotion pad的顶部
-        NSLayoutConstraint *inputConstraintBottom = [NSLayoutConstraint constraintWithItem:_chatInputContentView
-                                                                                 attribute:NSLayoutAttributeBottom
-                                                                                 relatedBy:NSLayoutRelationEqual
-                                                                                    toItem:_chatInputEmotionPadView
-                                                                                 attribute:NSLayoutAttributeTop
-                                                                                multiplier:1
-                                                                                  constant:0];
-        [self replaceChatInputContentViewBottomConstraint:inputConstraintBottom];
-    }
-    if (inputType != CYChatInputContentInputTypeMore) {
+    } else {
         
         // 隐藏more pad
         [self removeConstraint:_chatInputMorePositionConstraint];
@@ -364,23 +403,6 @@
         [self addConstraint:inputMoreConstraintTop];
         _chatInputMorePositionConstraint = inputMoreConstraintTop;
     }
-    if (inputType != CYChatInputContentInputTypeEmotion) {
-        
-        // 隐藏emotion pad
-        [self removeConstraint:_chatInputEmotionPositionConstraint];
-        NSLayoutConstraint *inputEmotionConstraintTop = [NSLayoutConstraint constraintWithItem:_chatInputEmotionPadView
-                                                                                     attribute:NSLayoutAttributeTop
-                                                                                     relatedBy:NSLayoutRelationEqual
-                                                                                        toItem:self
-                                                                                     attribute:NSLayoutAttributeBottom
-                                                                                    multiplier:1
-                                                                                      constant:0];
-        [self addConstraint:inputEmotionConstraintTop];
-        _chatInputEmotionPositionConstraint = inputEmotionConstraintTop;
-    }
-    [self animatedRefreshConstraints];
-    
-    [_tableView scrollToBottomAnimated:YES];
 }
 
 #pragma mark - NSNotification
@@ -390,6 +412,14 @@
         
         CGFloat keyboardHeight = [[notice.userInfo objectForKey:@"UIKeyboardFrameEndUserInfoKey"] CGRectValue].size.height;
         
+        // 键盘高度为0时，直接忽略
+        if (keyboardHeight <= 1.f) {
+            
+            return;
+        }
+        
+        [self chatInputChanged:CYChatInputContentInputTypeText];
+        
         NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:_chatInputContentView
                                                                       attribute:NSLayoutAttributeBottom
                                                                       relatedBy:NSLayoutRelationEqual
@@ -398,7 +428,9 @@
                                                                      multiplier:1
                                                                        constant:-keyboardHeight];
         [self replaceChatInputContentViewBottomConstraint:constraint];
-        [self animatedRefreshConstraints];
+//        [self animatedRefreshConstraints];
+        
+        [_tableView scrollToBottomAnimated:YES];
     }
 }
 
@@ -427,6 +459,11 @@
         
         CGFloat keyboardHeight = [[notice.userInfo objectForKey:@"UIKeyboardFrameEndUserInfoKey"] CGRectValue].size.height;
         
+        if (keyboardHeight <= 1.f) {
+            
+            return;
+        }
+        
         NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:_chatInputContentView
                                                                       attribute:NSLayoutAttributeBottom
                                                                       relatedBy:NSLayoutRelationEqual
@@ -435,6 +472,8 @@
                                                                      multiplier:1
                                                                        constant:-keyboardHeight];
         [self replaceChatInputContentViewBottomConstraint:constraint];
+        
+        [_tableView scrollToBottomAnimated:YES];
     }
 }
 

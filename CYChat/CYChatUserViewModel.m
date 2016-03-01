@@ -10,4 +10,29 @@
 
 @implementation CYChatUserViewModel
 
+- (instancetype)initWithUser:(CYChatUser *)user {
+    
+    if (self = [super init]) {
+        
+        _user = user;
+    }
+    return self;
+}
+
+#pragma mark - getter
+- (NSString *)userId {
+    
+    return _user.userId;
+}
+
+- (NSString *)headImageUrl {
+    
+    return _user.headImageUrl;
+}
+
+- (NSString *)nickname {
+    
+    return _user.nickname;
+}
+
 @end

@@ -10,11 +10,18 @@
 
 @implementation CYChatTextRightArrowCell
 
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        
+        self.contentBackgroundImageView.image = [[UIImage imageNamed:@"CYChat.bundle/chat_message_sender_background.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(30, 20, 20, 20)];
+        self.nameLabel.textAlignment = NSTextAlignmentRight;
+    }
+    return self;
+}
+
 - (void)layoutSubviews {
     [super layoutSubviews];
-    
-    self.headImageButton.hidden = self.isHideHeadImage;
-    self.nameLabel.hidden = self.isHideName;
     
     CGFloat nextX = self.frame.size.width - CY_CHAT_CELL_RIGHT_MARGIN;
     CGFloat nextY = CY_CHAT_CELL_TOP_MARGIN;
@@ -41,8 +48,8 @@
                                                        contentSize.height);
     self.contentLabel.frame = CGRectMake(CY_CHAT_TEXT_MESSAGE_ARROW_GAP,
                                          CY_CHAT_TEXT_MESSAGE_NORMAL_GAP,
-                                         contentSize.width - CY_CHAT_TEXT_MESSAGE_NORMAL_GAP - CY_CHAT_TEXT_MESSAGE_ARROW_GAP,
-                                         contentSize.height - 2 * CY_CHAT_TEXT_MESSAGE_NORMAL_GAP);
+                                         contentSize.width - CY_CHAT_TEXT_MESSAGE_ARROW_GAP * 2,
+                                         contentSize.height - 3 * CY_CHAT_TEXT_MESSAGE_NORMAL_GAP);
 }
 
 @end

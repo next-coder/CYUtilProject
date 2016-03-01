@@ -7,6 +7,7 @@
 //
 
 #import "CYChatImageCell.h"
+#import "CYWebImageCache.h"
 
 @implementation CYChatImageCell
 
@@ -30,9 +31,10 @@
     self.contentImageView = content;
 }
 
+#pragma mark - content size
 - (CGSize)contentImageViewSize {
     
-    return [CYChatImageCell imageShowingSize:self.contentImageView.image];
+    return [CYChatImageCell contentSizeWithMessage:self.message];
 }
 
 + (CGSize)defaultContentImageViewSize {
@@ -40,13 +42,23 @@
     return CY_CHAT_CELL_DEFAULT_IMAGE_CONTENT_SIZE;
 }
 
-+ (CGSize)imageShowingSize:(UIImage *)image {
++ (CGSize)contentSizeWithMessage:(CYChatMessageViewModel *)message {
+    
+    if (!CGSizeEqualToSize(message.messageContentSize, CGSizeZero)) {
+        
+        return message.messageContentSize;
+    }
+    
+    // 根据图片计算size
+    UIImage *image = [[CYWebImageCache defaultCache] imageCacheWithUrlString:message.imageIconUrl];
     
     if (!image) {
         
+        // 图片未加载完成是，返回默认size
         return [self defaultContentImageViewSize];
     } else {
         
+        // 计算size
         CGSize imageSize = image.size;
         CGSize maxContentSize = [CYChatImageCell maxContentSize];
         CGSize minContentSize = [CYChatImageCell minContentSize];
@@ -76,24 +88,26 @@
             
             contentSize.height = minContentSize.height;
         }
+        
+        message.messageContentSize = contentSize;
         return contentSize;
     }
 }
 
-+ (CGFloat)heightOfCellWithImage:(UIImage *)image
-                   hideHeadImage:(BOOL)hideHeadImage
-                        hideName:(BOOL)hideName {
++ (CGFloat)heightOfCellWithMessage:(CYChatMessageViewModel *)message
+                     hideHeadImage:(BOOL)hideHeadImage
+                          hideName:(BOOL)hideName {
     
     CGFloat height = 0.f;
     
-    CGSize contentImageShowingSize = [self imageShowingSize:image];
+    CGSize contentImageShowingSize = [self contentSizeWithMessage:message];
     height += contentImageShowingSize.height;
     
     if (!hideName) {
         
         height += (CY_CHAT_CELL_NAME_VERTICAL_GAP + CY_CHAT_CELL_NAME_HEIGHT);
     }
-    height += (CY_CHAT_CELL_TOP_MARGIN + CY_CHAT_CELL_BOTTOM_MARGIN);
+    height += CY_CHAT_CELL_BOTTOM_MARGIN;
     return height;
 }
 

@@ -13,7 +13,7 @@
 - (void)scrollToBottomAnimated:(BOOL)animated {
     
     CGRect bottomRect = CGRectMake(self.contentOffset.x,
-                                   self.contentSize.height - self.frame.size.height,
+                                   self.contentSize.height,
                                    self.frame.size.width,
                                    self.frame.size.height);
     

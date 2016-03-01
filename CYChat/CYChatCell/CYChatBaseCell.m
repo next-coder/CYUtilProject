@@ -61,6 +61,28 @@
     [contentBackground addGestureRecognizer:tap];
 }
 
+#pragma mark - set message
+- (void)setMessage:(CYChatMessageViewModel *)message {
+    
+    _message = message;
+    
+    [self setNeedsLayout];
+}
+
+- (void)setHideHeadImage:(BOOL)hideHeadImage {
+    
+    _hideHeadImage = hideHeadImage;
+    
+    _headImageButton.hidden = hideHeadImage;
+}
+
+- (void)setHideName:(BOOL)hideName {
+    
+    _hideName = hideName;
+    
+    _nameLabel.hidden = hideName;
+}
+
 #pragma mark - event
 
 - (IBAction)headImageTapped:(id)sender {
@@ -95,7 +117,7 @@
 
 + (CGSize)minContentSize {
     
-    return CGSizeMake(5, CY_CHAT_CELL_HEAD_WIDTH);
+    return CGSizeMake(70, CY_CHAT_CELL_HEAD_WIDTH);
 }
 
 @end
