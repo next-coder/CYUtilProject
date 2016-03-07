@@ -17,6 +17,20 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    int a = 245;
+    int b = 1234;
+    const int c = 23;
+    const int *p = &a;
+    p = &b;
+    
+    int *q = &c;
+    *q = 203;
+    
+    NSLog(@"aaa = %d", *p);
+    NSLog(@"%d", *q);
+    NSLog(@"%d", c);
+    
     return YES;
 }
 

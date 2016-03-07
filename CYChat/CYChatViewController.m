@@ -19,7 +19,7 @@
 #import "UIScrollView+CYUtils.h"
 #import "CYCache.h"
 
-@interface CYChatViewController () <CYChatInputContentViewDelegate>
+@interface CYChatViewController () <CYChatViewDelegate>
 
 @property (nonatomic, weak) CYChatView *chatView;
 @property (nonatomic, strong) NSMutableArray *messages;
@@ -268,8 +268,7 @@ static NSString *voiceRightArrowCellIdentifier = @"CYChatVoiceRightArrowCell";
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     
-#warning here
-//    [_chatView endInput];
+    [_chatView endInput];
 }
 
 #pragma mark - CYChatDataSourceDelegate
@@ -305,6 +304,26 @@ static NSString *voiceRightArrowCellIdentifier = @"CYChatVoiceRightArrowCell";
     
     // reset contentoffset to show messages which show in the front before loading
     _chatView.tableView.contentOffset = CGPointMake(0, _chatView.tableView.contentSize.height - contentOffsetY - _chatView.tableView.frame.size.height);
+}
+
+#pragma mark - CYChatViewDelegate
+- (BOOL)chatViewShouldSendTextMessage:(NSString *)textMessage {
+    
+    CYChatMessageViewModel *message = [self.chatDataSource sendTextMessage:textMessage];
+    
+    [_messages addObject:message];
+    [_chatView.tableView insertRowsAtIndexPaths:@[ [NSIndexPath indexPathForRow:(_messages.count - 1) inSection:0] ] withRowAnimation:UITableViewRowAnimationAutomatic];
+    return YES;
+}
+
+- (void)chatViewShouldSendImageFromAlbum:(CYChatView *)chatView {
+    
+#warning here select image
+}
+
+- (void)chatViewShouldSendVideoFromCamera:(CYChatView *)chatView {
+    
+#warning take photo or video
 }
 
 @end

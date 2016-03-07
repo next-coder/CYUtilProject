@@ -12,9 +12,16 @@
 #import "CYChatInputMorePadView.h"
 #import "CYChatInputEmotionPadView.h"
 
+@class CYChatView;
+
 @protocol CYChatViewDelegate <NSObject>
 
+// send message
 - (BOOL)chatViewShouldSendTextMessage:(NSString *)textMessage;
+
+// 更多选项回调
+- (void)chatViewShouldSendImageFromAlbum:(CYChatView *)chatView;
+- (void)chatViewShouldSendVideoFromCamera:(CYChatView *)chatView;
 
 @end
 

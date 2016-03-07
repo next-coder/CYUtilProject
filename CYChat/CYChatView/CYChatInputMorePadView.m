@@ -10,7 +10,7 @@
 #define CY_CHAT_INPUT_MORE_PAD_COLUMNS_PER_PAGE 2
 #define CY_CHAT_INPUT_MORE_PAD_ITEM_WIDTH 59
 #define CY_CHAT_INPUT_MORE_PAD_ITEM_HEIGHT 85
-#define CY_CHAT_INPUT_MORE_PAD_VERTICAL_GAP 20
+#define CY_CHAT_INPUT_MORE_PAD_VERTICAL_GAP 10
 
 #import "CYChatInputMorePadView.h"
 #import "NSString+CYUtils.h"
@@ -25,7 +25,7 @@
     
     if (self = [super initWithFrame:frame]) {
         
-//        [self createChatInputMorePadViewSubviews];
+        [self createChatInputMorePadViewSubviews];
         _items = [NSMutableArray array];
     }
     return self;
@@ -52,8 +52,8 @@
     [_items enumerateObjectsUsingBlock:^(CYChatInputMorePadItem *item, NSUInteger idx, BOOL * _Nonnull stop) {
         
         
-        NSInteger coloumn = (idx -1) % CY_CHAT_INPUT_MORE_PAD_ITEMS_PER_ROW;
-        NSInteger page = (idx - 1) / (CY_CHAT_INPUT_MORE_PAD_ITEMS_PER_ROW * CY_CHAT_INPUT_MORE_PAD_COLUMNS_PER_PAGE);
+        NSInteger coloumn = idx % CY_CHAT_INPUT_MORE_PAD_ITEMS_PER_ROW;
+        NSInteger page = idx / (CY_CHAT_INPUT_MORE_PAD_ITEMS_PER_ROW * CY_CHAT_INPUT_MORE_PAD_COLUMNS_PER_PAGE);
         NSInteger row = (idx - page * (CY_CHAT_INPUT_MORE_PAD_ITEMS_PER_ROW * CY_CHAT_INPUT_MORE_PAD_COLUMNS_PER_PAGE)) / CY_CHAT_INPUT_MORE_PAD_ITEMS_PER_ROW;
         CGFloat originX = page * screenWidth + coloumn * (CY_CHAT_INPUT_MORE_PAD_ITEM_WIDTH + herizontalGap) + herizontalGap;
         CGFloat originY = row * (CY_CHAT_INPUT_MORE_PAD_VERTICAL_GAP + CY_CHAT_INPUT_MORE_PAD_ITEM_HEIGHT) + CY_CHAT_INPUT_MORE_PAD_VERTICAL_GAP;

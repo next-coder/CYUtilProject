@@ -25,16 +25,16 @@
 - (void)createChatInputMorePadItemSubviews {
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setBackgroundImage:[UIImage imageNamed:@"chat_input_more_cell_background.png"]
+    [button setBackgroundImage:[UIImage imageNamed:@"CYChat.bundle/chat_input_more_cell_background.png"]
                       forState:UIControlStateNormal];
-    [button setBackgroundImage:[UIImage imageNamed:@"chat_input_more_cell_background_hl.png"]
+    [button setBackgroundImage:[UIImage imageNamed:@"CYChat.bundle/chat_input_more_cell_background_hl.png"]
                       forState:UIControlStateHighlighted];
     [self addSubview:button];
     _itemButton = button;
     
     UILabel *label = [[UILabel alloc] init];
-    label.font = [UIFont systemFontOfSize:13.f];
-    label.textColor = [UIColor darkGrayColor];
+    label.font = [UIFont systemFontOfSize:12.f];
+    label.textColor = [UIColor grayColor];
     label.backgroundColor = [UIColor clearColor];
     [self addSubview:label];
     _itemLabel = label;
@@ -82,12 +82,12 @@
                                                                           multiplier:1
                                                                             constant:0];
     NSLayoutConstraint *labelLayoutTop = [NSLayoutConstraint constraintWithItem:_itemLabel
-                                                                      attribute:NSLayoutAttributeTop
+                                                                      attribute:NSLayoutAttributeBottom
                                                                       relatedBy:NSLayoutRelationEqual
-                                                                         toItem:_itemButton
+                                                                         toItem:self
                                                                       attribute:NSLayoutAttributeBottom
                                                                      multiplier:1
-                                                                       constant:3];
+                                                                       constant:-3];
     [self addConstraints:@[ labelLayoutCenterX, labelLayoutTop ]];
 }
 

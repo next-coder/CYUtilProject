@@ -107,7 +107,7 @@
         
         height += (CY_CHAT_CELL_NAME_VERTICAL_GAP + CY_CHAT_CELL_NAME_HEIGHT);
     }
-    height += CY_CHAT_CELL_BOTTOM_MARGIN;
+    height += (CY_CHAT_CELL_BOTTOM_MARGIN + CY_CHAT_CELL_TOP_MARGIN);
     return height;
 }
 

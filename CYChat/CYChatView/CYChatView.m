@@ -8,6 +8,7 @@
 
 #import "CYChatView.h"
 #import "UIScrollView+CYUtils.h"
+#import "NSString+CYUtils.h"
 
 @interface CYChatView () <UIGestureRecognizerDelegate, CYChatInputContentViewDelegate>
 
@@ -97,15 +98,67 @@
     
     CYChatInputMorePadView *inputMore = [[CYChatInputMorePadView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 210)];
     inputMore.translatesAutoresizingMaskIntoConstraints = NO;
-    inputMore.backgroundColor = [UIColor redColor];
+    inputMore.backgroundColor = [UIColor whiteColor];
     [self addSubview:inputMore];
     _chatInputMorePadView = inputMore;
+    [self createMorePadItems];
     
     CYChatInputEmotionPadView *inputEmotion = [[CYChatInputEmotionPadView alloc] init];
     inputEmotion.translatesAutoresizingMaskIntoConstraints = NO;
     inputEmotion.backgroundColor = [UIColor greenColor];
     [self addSubview:inputEmotion];
     _chatInputEmotionPadView = inputEmotion;
+}
+
+- (void)createMorePadItems {
+    
+    CYChatInputMorePadItem *itemImage = [[CYChatInputMorePadItem alloc] init];
+    [itemImage.itemButton setImage:[UIImage imageNamed:@"CYChat.bundle/chat_input_more_picture.png"]
+                          forState:UIControlStateNormal];
+    itemImage.backgroundColor = [UIColor clearColor];
+    itemImage.itemLabel.text = [@"照片" cy_localizedStringWithComment:nil];
+    [_chatInputMorePadView addItem:itemImage];
+    [itemImage addTarget:self
+                  action:@selector(selectImageItemTapped:)
+        forControlEvents:UIControlEventTouchUpInside];
+    
+    CYChatInputMorePadItem *itemVideo = [[CYChatInputMorePadItem alloc] init];
+    [itemVideo.itemButton setImage:[UIImage imageNamed:@"CYChat.bundle/chat_input_more_video.png"]
+                          forState:UIControlStateNormal];
+    itemVideo.backgroundColor = [UIColor clearColor];
+    itemVideo.itemLabel.text = [@"拍摄" cy_localizedStringWithComment:nil];
+    [_chatInputMorePadView addItem:itemVideo];
+    [itemVideo addTarget:self
+                  action:@selector(recordVideoItemTapped:)
+        forControlEvents:UIControlEventTouchUpInside];
+    
+//    CYChatInputMorePadItem *itemVideo1 = [[CYChatInputMorePadItem alloc] init];
+//    [itemVideo.itemButton setImage:[UIImage imageNamed:@"CYChat.bundle/chat_input_more_video.png"]
+//                          forState:UIControlStateNormal];
+//    itemVideo1.backgroundColor = [UIColor clearColor];
+//    itemVideo1.itemLabel.text = [@"拍摄" cy_localizedStringWithComment:nil];
+//    [_chatInputMorePadView addItem:itemVideo1];
+//    
+//    CYChatInputMorePadItem *itemVideo2 = [[CYChatInputMorePadItem alloc] init];
+//    [itemVideo2.itemButton setImage:[UIImage imageNamed:@"CYChat.bundle/chat_input_more_video.png"]
+//                          forState:UIControlStateNormal];
+//    itemVideo2.backgroundColor = [UIColor clearColor];
+//    itemVideo2.itemLabel.text = [@"拍摄" cy_localizedStringWithComment:nil];
+//    [_chatInputMorePadView addItem:itemVideo2];
+//    
+//    CYChatInputMorePadItem *itemVideo3 = [[CYChatInputMorePadItem alloc] init];
+//    [itemVideo3.itemButton setImage:[UIImage imageNamed:@"CYChat.bundle/chat_input_more_video.png"]
+//                          forState:UIControlStateNormal];
+//    itemVideo3.backgroundColor = [UIColor clearColor];
+//    itemVideo3.itemLabel.text = [@"拍摄" cy_localizedStringWithComment:nil];
+//    [_chatInputMorePadView addItem:itemVideo3];
+//    
+//    CYChatInputMorePadItem *itemVideo4 = [[CYChatInputMorePadItem alloc] init];
+//    [itemVideo4.itemButton setImage:[UIImage imageNamed:@"CYChat.bundle/chat_input_more_video.png"]
+//                          forState:UIControlStateNormal];
+//    itemVideo4.backgroundColor = [UIColor clearColor];
+//    itemVideo4.itemLabel.text = [@"拍摄" cy_localizedStringWithComment:nil];
+//    [_chatInputMorePadView addItem:itemVideo4];
 }
 
 - (void)createConstraintsForChatView {
@@ -283,9 +336,9 @@
 #pragma mark - CYChatInputContentViewDelegate
 - (BOOL)chatInputContentShouldSendText:(NSString *)text {
     
-    if (_delegate) {
+    if (self.delegate) {
         
-        [_delegate chatViewShouldSendTextMessage:text];
+        [self.delegate chatViewShouldSendTextMessage:text];
     }
     return YES;
 }
@@ -428,7 +481,7 @@
                                                                      multiplier:1
                                                                        constant:-keyboardHeight];
         [self replaceChatInputContentViewBottomConstraint:constraint];
-//        [self animatedRefreshConstraints];
+        [self animatedRefreshConstraints];
         
         [_tableView scrollToBottomAnimated:YES];
     }
@@ -481,6 +534,22 @@
 - (void)tableTapped:(id)sender {
     
     [self endInput];
+}
+
+- (void)selectImageItemTapped:(id)sender {
+    
+    if (self.delegate) {
+        
+        [self.delegate chatViewShouldSendImageFromAlbum:self];
+    }
+}
+
+- (void)recordVideoItemTapped:(id)sender {
+    
+    if (self.delegate) {
+        
+        [self.delegate chatViewShouldSendVideoFromCamera:self];
+    }
 }
 
 #pragma mark - UIGestureRecognizerDelegate
