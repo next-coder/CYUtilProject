@@ -24,4 +24,11 @@ typedef NS_ENUM(NSInteger, CYAddressBookNameFormat)  {
 
 @interface CYAddressBookUtils : NSObject
 
+// fectch list @[@{phonenumber: fullname}]
+- (NSArray *)fetchAllPeopleInAddressBookWithNameFormat:(CYAddressBookNameFormat)format;
+
+// address book authorization
+- (void)requestAddressBookAccessWithCompletion:(void (^)(BOOL granted, NSError *error))completion;
+- (CYAddressBookAuthorizedStatus)addressBookGetAuthorizationStatus;
+
 @end

@@ -163,13 +163,7 @@ typedef NS_ENUM(NSInteger, CYAlertViewActionViewsLayout) {
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    if (_style == CYAlertViewStyleAlert) {
-        
-        [self layoutAlert];
-    } else {
-        
-        [self layoutActionSheet];
-    }
+    [self layoutAlert];
 }
 
 - (void)layoutAlert {
@@ -330,71 +324,10 @@ typedef NS_ENUM(NSInteger, CYAlertViewActionViewsLayout) {
         
         nextY += CY_ALERT_VIEW_CONTENT_BODER_GAP;
     }
-    frame = CGRectMake(0, 0, 280, nextY);
+    frame = CGRectMake(0, 0, selfWidth, nextY);
     CGPoint center = self.center;
     self.frame = frame;
     self.center = center;
-}
-
-- (void)layoutActionSheet {
-    
-    CGFloat selfWidth = [UIScreen mainScreen].bounds.size.width - 2 * CY_ALERT_VIEW_BORDER_GAP;
-    __block CGFloat nextBottomY = [UIScreen mainScreen].bounds.size.height - CY_ALERT_VIEW_BORDER_GAP;
-    if (_cancelActionView) {
-        
-        _cancelActionView.frame = CGRectMake(CY_ALERT_VIEW_BORDER_GAP,
-                                             nextBottomY - CY_ALERT_VIEW_ACTION_VIEW_HEIGHT,
-                                             selfWidth,
-                                             CY_ALERT_VIEW_ACTION_VIEW_HEIGHT);
-        nextBottomY = CGRectGetMinY(_cancelActionView.frame) - CY_ALERT_VIEW_ACTION_VIEW_HEIGHT;
-    }
-    
-    if (_actionButtons
-        && [_actionButtons count] > 0) {
-        
-        [_actionButtons enumerateObjectsUsingBlock:^(UIView *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            
-            obj.frame = CGRectMake(CY_ALERT_VIEW_BORDER_GAP,
-                                   nextBottomY - CY_ALERT_VIEW_ACTION_VIEW_HEIGHT,
-                                   selfWidth,
-                                   CY_ALERT_VIEW_ACTION_VIEW_HEIGHT);
-            nextBottomY = CGRectGetMinY(obj.frame);
-        }];
-    }
-    
-    if (_customMessageViews) {
-        
-        nextBottomY -= CY_ALERT_VIEW_CONTENT_BETWEEN_GAP;
-        [_customMessageViews enumerateObjectsUsingBlock:^(UIView *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            
-            obj.center = CGPointMake(selfWidth / 2.f, nextBottomY - obj.frame.size.height / 2.f);
-            nextBottomY = CGRectGetMinY(obj.frame) - CY_ALERT_VIEW_CONTENT_BETWEEN_GAP;
-        }];
-    }
-    
-    if (_message
-        && ![_message isEqualToString:@""]) {
-        
-        CGSize size = [_messageTextView sizeThatFits:CGSizeMake(selfWidth - 2 * CY_ALERT_VIEW_BORDER_GAP,
-                                                                CY_ALERT_VIEW_MESSAGE_MAX_HEIGHT)];
-        _messageTextView.frame = CGRectMake(CY_ALERT_VIEW_BORDER_GAP,
-                                            nextBottomY - size.height,
-                                            size.width,
-                                            size.height);
-        nextBottomY = CGRectGetMinY(_messageTextView.frame) - 3;
-    }
-    
-    if (_title
-        && ![_title isEqualToString:@""]) {
-        
-        CGSize size = [_titleLabel sizeThatFits:CGSizeMake(selfWidth - 2 * CY_ALERT_VIEW_BORDER_GAP,
-                                                           100)];
-        _titleLabel.frame = CGRectMake(CY_ALERT_VIEW_BORDER_GAP,
-                                       nextBottomY - size.height,
-                                       size.width,
-                                       size.height);
-        nextBottomY = CGRectGetMinY(_titleLabel.frame) - CY_ALERT_VIEW_BORDER_GAP;
-    }
 }
 
 #pragma mark - draw separator

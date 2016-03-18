@@ -14,6 +14,9 @@
 #import "CYFullScreenImageView.h"
 #import "CYBannerImageBrowserView.h"
 #import "CYAlertView.h"
+#import "CYActionSheet.h"
+
+#import "CYContactsListTestViewController.h"
 
 #import "CYChat.h"
 
@@ -45,7 +48,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 7;
+    return 9;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -77,6 +80,12 @@
     } else if (indexPath.row == 6) {
         
         cell.textLabel.text = @"CYIAPUtils";
+    } else if (indexPath.row == 7) {
+        
+        cell.textLabel.text = @"CYContacts \u26b2";
+    } else if (indexPath.row == 8) {
+        
+        cell.textLabel.text = @"CYActionSheet";
     }
     return cell;
 }
@@ -182,6 +191,14 @@
         
         CYIAPTestViewController *vc = [[CYIAPTestViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
+    } else if (indexPath.row == 7) {
+        
+        CYContactsListTestViewController *vc = [[CYContactsListTestViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    } else if (indexPath.row == 8) {
+        
+        CYActionSheet *actionSheet = [[CYActionSheet alloc] initWithCancelTitle:@"取消"];
+        [actionSheet showAnimated:YES];
     }
 }
 

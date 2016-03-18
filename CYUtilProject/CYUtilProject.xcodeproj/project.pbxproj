@@ -8,8 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		610199501C4E380B00E04080 /* CYIAPTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 6101994F1C4E380B00E04080 /* CYIAPTransaction.m */; };
+		6103CD961C9BA639000B4C82 /* CYContactsSearchInNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6103CD951C9BA639000B4C82 /* CYContactsSearchInNavigationViewController.m */; };
+		6103CDA01C9BDA9F000B4C82 /* CYActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6103CD9F1C9BDA9F000B4C82 /* CYActionSheet.m */; };
+		6103CDA31C9BDAC3000B4C82 /* CYActionSheetAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 6103CDA21C9BDAC3000B4C82 /* CYActionSheetAction.m */; };
+		6103CDA61C9BDB33000B4C82 /* CYActionSheetSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 6103CDA51C9BDB33000B4C82 /* CYActionSheetSection.m */; };
 		610EB0BD1BDF47970086D048 /* CYSendSMSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 610EB0BC1BDF47970086D048 /* CYSendSMSUtils.m */; };
 		611780B91C07F172009EADD5 /* CYCustomUILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 611780B81C07F172009EADD5 /* CYCustomUILabel.m */; };
+		611B48281C97AFC300AD2772 /* CYContactsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 611B48271C97AFC300AD2772 /* CYContactsListViewController.m */; };
+		611B482C1C97B00200AD2772 /* CYContactsListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 611B482B1C97B00200AD2772 /* CYContactsListCell.m */; };
+		611B482F1C97B81A00AD2772 /* CYContactsListAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 611B482E1C97B81A00AD2772 /* CYContactsListAdapter.m */; };
+		611B48351C97EA0800AD2772 /* pinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = 611B48341C97EA0800AD2772 /* pinyin.m */; };
+		611B48381C98053000AD2772 /* CYContactsListHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 611B48371C98053000AD2772 /* CYContactsListHeaderView.m */; };
+		611B483C1C98095F00AD2772 /* CYContactsListTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 611B483B1C98095F00AD2772 /* CYContactsListTestViewController.m */; };
+		611B483F1C9809E700AD2772 /* CYContactViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 611B483E1C9809E700AD2772 /* CYContactViewModel.m */; };
 		611CB8E11C83F0CC003A0E30 /* CYChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 611CB8E01C83F0CC003A0E30 /* CYChatMessage.m */; };
 		611CB8E41C83F0D7003A0E30 /* CYChatUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 611CB8E31C83F0D7003A0E30 /* CYChatUser.m */; };
 		611CB8E71C83F0E7003A0E30 /* CYChatBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 611CB8E61C83F0E7003A0E30 /* CYChatBaseModel.m */; };
@@ -106,16 +117,41 @@
 		61FD03181BE9F73F00237EA3 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 61FD03171BE9F73F00237EA3 /* README */; };
 		61FD031A1BE9F76100237EA3 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 61FD03191BE9F76100237EA3 /* README */; };
 		61FD031E1BEA0A6700237EA3 /* CYBannerImageBrowserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FD031D1BEA0A6700237EA3 /* CYBannerImageBrowserView.m */; };
+		61FE98121C990B610019E3F8 /* CYContactsSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FE98111C990B610019E3F8 /* CYContactsSearchController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		560DD24FE4038A3D8BB79B6C /* Pods-CYUtilProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CYUtilProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CYUtilProject/Pods-CYUtilProject.debug.xcconfig"; sourceTree = "<group>"; };
 		6101994E1C4E380B00E04080 /* CYIAPTransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYIAPTransaction.h; sourceTree = "<group>"; };
 		6101994F1C4E380B00E04080 /* CYIAPTransaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYIAPTransaction.m; sourceTree = "<group>"; };
+		6103CD941C9BA639000B4C82 /* CYContactsSearchInNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYContactsSearchInNavigationViewController.h; sourceTree = "<group>"; };
+		6103CD951C9BA639000B4C82 /* CYContactsSearchInNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYContactsSearchInNavigationViewController.m; sourceTree = "<group>"; };
+		6103CD9E1C9BDA9F000B4C82 /* CYActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYActionSheet.h; sourceTree = "<group>"; };
+		6103CD9F1C9BDA9F000B4C82 /* CYActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYActionSheet.m; sourceTree = "<group>"; };
+		6103CDA11C9BDAC3000B4C82 /* CYActionSheetAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYActionSheetAction.h; sourceTree = "<group>"; };
+		6103CDA21C9BDAC3000B4C82 /* CYActionSheetAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYActionSheetAction.m; sourceTree = "<group>"; };
+		6103CDA41C9BDB33000B4C82 /* CYActionSheetSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYActionSheetSection.h; sourceTree = "<group>"; };
+		6103CDA51C9BDB33000B4C82 /* CYActionSheetSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYActionSheetSection.m; sourceTree = "<group>"; };
 		610EB0BB1BDF47970086D048 /* CYSendSMSUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYSendSMSUtils.h; sourceTree = "<group>"; };
 		610EB0BC1BDF47970086D048 /* CYSendSMSUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYSendSMSUtils.m; sourceTree = "<group>"; };
 		611780B71C07F172009EADD5 /* CYCustomUILabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYCustomUILabel.h; sourceTree = "<group>"; };
 		611780B81C07F172009EADD5 /* CYCustomUILabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYCustomUILabel.m; sourceTree = "<group>"; };
+		611B48261C97AFC300AD2772 /* CYContactsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYContactsListViewController.h; sourceTree = "<group>"; };
+		611B48271C97AFC300AD2772 /* CYContactsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYContactsListViewController.m; sourceTree = "<group>"; };
+		611B482A1C97B00200AD2772 /* CYContactsListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYContactsListCell.h; sourceTree = "<group>"; };
+		611B482B1C97B00200AD2772 /* CYContactsListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYContactsListCell.m; sourceTree = "<group>"; };
+		611B482D1C97B81A00AD2772 /* CYContactsListAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYContactsListAdapter.h; sourceTree = "<group>"; };
+		611B482E1C97B81A00AD2772 /* CYContactsListAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYContactsListAdapter.m; sourceTree = "<group>"; };
+		611B48311C97DF7800AD2772 /* CYContactsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYContactsModel.h; sourceTree = "<group>"; };
+		611B48331C97EA0800AD2772 /* pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pinyin.h; sourceTree = "<group>"; };
+		611B48341C97EA0800AD2772 /* pinyin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pinyin.m; sourceTree = "<group>"; };
+		611B48361C98053000AD2772 /* CYContactsListHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYContactsListHeaderView.h; sourceTree = "<group>"; };
+		611B48371C98053000AD2772 /* CYContactsListHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYContactsListHeaderView.m; sourceTree = "<group>"; };
+		611B483A1C98095F00AD2772 /* CYContactsListTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYContactsListTestViewController.h; sourceTree = "<group>"; };
+		611B483B1C98095F00AD2772 /* CYContactsListTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYContactsListTestViewController.m; sourceTree = "<group>"; };
+		611B483D1C9809E700AD2772 /* CYContactViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYContactViewModel.h; sourceTree = "<group>"; };
+		611B483E1C9809E700AD2772 /* CYContactViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYContactViewModel.m; sourceTree = "<group>"; };
+		611B48401C980A0400AD2772 /* CYContacts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYContacts.h; sourceTree = "<group>"; };
 		611CB8DF1C83F0CC003A0E30 /* CYChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatMessage.h; sourceTree = "<group>"; };
 		611CB8E01C83F0CC003A0E30 /* CYChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYChatMessage.m; sourceTree = "<group>"; };
 		611CB8E21C83F0D7003A0E30 /* CYChatUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYChatUser.h; sourceTree = "<group>"; };
@@ -303,6 +339,8 @@
 		61FD03191BE9F76100237EA3 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		61FD031C1BEA0A6700237EA3 /* CYBannerImageBrowserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYBannerImageBrowserView.h; sourceTree = "<group>"; };
 		61FD031D1BEA0A6700237EA3 /* CYBannerImageBrowserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYBannerImageBrowserView.m; sourceTree = "<group>"; };
+		61FE98101C990B610019E3F8 /* CYContactsSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYContactsSearchController.h; sourceTree = "<group>"; };
+		61FE98111C990B610019E3F8 /* CYContactsSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYContactsSearchController.m; sourceTree = "<group>"; };
 		E44A7E629213891F907F2C63 /* Pods-CYUtilProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CYUtilProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-CYUtilProject/Pods-CYUtilProject.release.xcconfig"; sourceTree = "<group>"; };
 		E4AD9CD239B0877B14E89AFA /* libPods-CYUtilProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CYUtilProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -327,6 +365,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6103CD931C9BA5AA000B4C82 /* CYContactsPrivate */ = {
+			isa = PBXGroup;
+			children = (
+				6103CD941C9BA639000B4C82 /* CYContactsSearchInNavigationViewController.h */,
+				6103CD951C9BA639000B4C82 /* CYContactsSearchInNavigationViewController.m */,
+			);
+			path = CYContactsPrivate;
+			sourceTree = "<group>";
+		};
+		6103CD9D1C9BDA83000B4C82 /* CYActionSheet */ = {
+			isa = PBXGroup;
+			children = (
+				6103CD9E1C9BDA9F000B4C82 /* CYActionSheet.h */,
+				6103CD9F1C9BDA9F000B4C82 /* CYActionSheet.m */,
+				6103CDA11C9BDAC3000B4C82 /* CYActionSheetAction.h */,
+				6103CDA21C9BDAC3000B4C82 /* CYActionSheetAction.m */,
+				6103CDA41C9BDB33000B4C82 /* CYActionSheetSection.h */,
+				6103CDA51C9BDB33000B4C82 /* CYActionSheetSection.m */,
+			);
+			name = CYActionSheet;
+			path = ../../CYActionSheet;
+			sourceTree = "<group>";
+		};
 		610EB0BA1BDF478E0086D048 /* CYSMS */ = {
 			isa = PBXGroup;
 			children = (
@@ -335,6 +396,63 @@
 			);
 			name = CYSMS;
 			path = ../../CYSMS;
+			sourceTree = "<group>";
+		};
+		611B48251C97AF9D00AD2772 /* CYContacts */ = {
+			isa = PBXGroup;
+			children = (
+				6103CD931C9BA5AA000B4C82 /* CYContactsPrivate */,
+				61FE980F1C990B450019E3F8 /* CYContactsSearch */,
+				611B48321C97EA0800AD2772 /* CYContactsPinYin */,
+				611B48301C97DF5600AD2772 /* CYContactsModel */,
+				611B48291C97AFEB00AD2772 /* CYContactsView */,
+				611B48261C97AFC300AD2772 /* CYContactsListViewController.h */,
+				611B48271C97AFC300AD2772 /* CYContactsListViewController.m */,
+				611B482D1C97B81A00AD2772 /* CYContactsListAdapter.h */,
+				611B482E1C97B81A00AD2772 /* CYContactsListAdapter.m */,
+				611B48401C980A0400AD2772 /* CYContacts.h */,
+			);
+			name = CYContacts;
+			path = ../../CYContacts;
+			sourceTree = "<group>";
+		};
+		611B48291C97AFEB00AD2772 /* CYContactsView */ = {
+			isa = PBXGroup;
+			children = (
+				611B482A1C97B00200AD2772 /* CYContactsListCell.h */,
+				611B482B1C97B00200AD2772 /* CYContactsListCell.m */,
+				611B48361C98053000AD2772 /* CYContactsListHeaderView.h */,
+				611B48371C98053000AD2772 /* CYContactsListHeaderView.m */,
+			);
+			path = CYContactsView;
+			sourceTree = "<group>";
+		};
+		611B48301C97DF5600AD2772 /* CYContactsModel */ = {
+			isa = PBXGroup;
+			children = (
+				611B48311C97DF7800AD2772 /* CYContactsModel.h */,
+			);
+			path = CYContactsModel;
+			sourceTree = "<group>";
+		};
+		611B48321C97EA0800AD2772 /* CYContactsPinYin */ = {
+			isa = PBXGroup;
+			children = (
+				611B48331C97EA0800AD2772 /* pinyin.h */,
+				611B48341C97EA0800AD2772 /* pinyin.m */,
+			);
+			path = CYContactsPinYin;
+			sourceTree = "<group>";
+		};
+		611B48391C98093500AD2772 /* CYContactsListTest */ = {
+			isa = PBXGroup;
+			children = (
+				611B483A1C98095F00AD2772 /* CYContactsListTestViewController.h */,
+				611B483B1C98095F00AD2772 /* CYContactsListTestViewController.m */,
+				611B483D1C9809E700AD2772 /* CYContactViewModel.h */,
+				611B483E1C9809E700AD2772 /* CYContactViewModel.m */,
+			);
+			path = CYContactsListTest;
 			sourceTree = "<group>";
 		};
 		611CB8DE1C83F0B2003A0E30 /* CYChatModel */ = {
@@ -507,12 +625,14 @@
 				613536AB1BDF5F590099E426 /* CYAddressBook */,
 				610EB0BA1BDF478E0086D048 /* CYSMS */,
 				616037D91BD49FB100BF4285 /* CYDeviceUtils */,
+				611B48251C97AF9D00AD2772 /* CYContacts */,
 				616037CC1BD4939100BF4285 /* CYChat */,
 				61F0FC9D1BCF770C00E445EA /* Masonry */,
 				61851EF61BCD10B5005340C8 /* CYPullRefresh */,
 				61851ED61BCD09E5005340C8 /* CYBase */,
 				61851EE61BCD0B1D005340C8 /* CYFoundationUtils */,
 				61851ED51BCD09C2005340C8 /* CYAlertView */,
+				6103CD9D1C9BDA83000B4C82 /* CYActionSheet */,
 				61851EC11BCD0964005340C8 /* AppDelegate.h */,
 				61851EC21BCD0964005340C8 /* AppDelegate.m */,
 				61851EC41BCD0964005340C8 /* ViewController.h */,
@@ -613,6 +733,7 @@
 		61DF52C71BE209B00015CDF2 /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				611B48391C98093500AD2772 /* CYContactsListTest */,
 				61DF52C81BE209C30015CDF2 /* CYAnimatedTextLabelViewController.h */,
 				61DF52C91BE209C30015CDF2 /* CYAnimatedTextLabelViewController.m */,
 				61FD03031BE9A58900237EA3 /* CYCycleBannerViewController.h */,
@@ -745,6 +866,15 @@
 			path = ../../CYBannerImageBrowser;
 			sourceTree = "<group>";
 		};
+		61FE980F1C990B450019E3F8 /* CYContactsSearch */ = {
+			isa = PBXGroup;
+			children = (
+				61FE98101C990B610019E3F8 /* CYContactsSearchController.h */,
+				61FE98111C990B610019E3F8 /* CYContactsSearchController.m */,
+			);
+			path = CYContactsSearch;
+			sourceTree = "<group>";
+		};
 		727051A8762199EC648BF785 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -857,10 +987,13 @@
 				61FD031E1BEA0A6700237EA3 /* CYBannerImageBrowserView.m in Sources */,
 				611780B91C07F172009EADD5 /* CYCustomUILabel.m in Sources */,
 				61F0FCBB1BCF770C00E445EA /* MASConstraintMaker.m in Sources */,
+				6103CDA01C9BDA9F000B4C82 /* CYActionSheet.m in Sources */,
 				611CB90C1C841DF3003A0E30 /* CYChatInputMorePadView.m in Sources */,
 				61851EE31BCD0A86005340C8 /* CYBaseTableViewController.m in Sources */,
+				611B483F1C9809E700AD2772 /* CYContactViewModel.m in Sources */,
 				611CB9131C842BCA003A0E30 /* CYChatVoiceLeftArrowCell.m in Sources */,
 				61851EE51BCD0A86005340C8 /* CYBaseViewController.m in Sources */,
+				611B483C1C98095F00AD2772 /* CYContactsListTestViewController.m in Sources */,
 				61851EE21BCD0A86005340C8 /* CYBaseService.m in Sources */,
 				61FD030C1BE9AFCA00237EA3 /* UIImageView+CYWebImageCache.m in Sources */,
 				616037DF1BD49FFB00BF4285 /* CYDeviceUtils.m in Sources */,
@@ -874,12 +1007,16 @@
 				61EEF9021BE88DE400E1C9EB /* CYPersistenceCache.m in Sources */,
 				61FD03021BE99AEA00237EA3 /* CYCycleBannerView.m in Sources */,
 				610199501C4E380B00E04080 /* CYIAPTransaction.m in Sources */,
+				611B48381C98053000AD2772 /* CYContactsListHeaderView.m in Sources */,
 				616037E21BD4D05A00BF4285 /* CYChatViewController.m in Sources */,
 				61F0FCC11BCF770C00E445EA /* View+MASAdditions.m in Sources */,
+				611B48351C97EA0800AD2772 /* pinyin.m in Sources */,
+				61FE98121C990B610019E3F8 /* CYContactsSearchController.m in Sources */,
 				611CB8F71C841D6E003A0E30 /* CYChatImageRightArrowCell.m in Sources */,
 				6133732D1C0EF4FB00813925 /* CYResultSet.m in Sources */,
 				611CB8FA1C841D6E003A0E30 /* CYChatTextRightArrowCell.m in Sources */,
 				611CB90A1C841DF3003A0E30 /* CYChatInputEmotionPadView.m in Sources */,
+				611B482F1C97B81A00AD2772 /* CYContactsListAdapter.m in Sources */,
 				61F0FCB91BCF770C00E445EA /* MASCompositeConstraint.m in Sources */,
 				61FD030F1BE9B95E00237EA3 /* NSURLRequest+CYImageDownload.m in Sources */,
 				61E4DFBF1BE75F000097E9AA /* CYIAPUtils.m in Sources */,
@@ -897,14 +1034,18 @@
 				61E4DFC21BE760730097E9AA /* CYIAPKeychainUtils.m in Sources */,
 				61FD03131BE9D26B00237EA3 /* CYFullScreenImageView.m in Sources */,
 				61E4DFB11BE7307D0097E9AA /* CYChatMessageViewModel.m in Sources */,
+				611B48281C97AFC300AD2772 /* CYContactsListViewController.m in Sources */,
 				61F0FCBC1BCF770C00E445EA /* MASLayoutConstraint.m in Sources */,
 				61F0FCCE1BCF963B00E445EA /* CYAlertViewAction.m in Sources */,
 				61FD03051BE9A58900237EA3 /* CYCycleBannerViewController.m in Sources */,
 				61851EE11BCD0A86005340C8 /* CYBaseModel.m in Sources */,
 				61F1884F1BEB7008006DE729 /* UIButton+CYWebImageCache.m in Sources */,
+				6103CD961C9BA639000B4C82 /* CYContactsSearchInNavigationViewController.m in Sources */,
 				61851F031BCD10B5005340C8 /* CYPullRefreshConstants.m in Sources */,
 				61851EF31BCD0B1D005340C8 /* NSDictionary+CYSecureValue.m in Sources */,
 				61851F051BCD10B5005340C8 /* CYPullRefreshHeaderView.m in Sources */,
+				611B482C1C97B00200AD2772 /* CYContactsListCell.m in Sources */,
+				6103CDA31C9BDAC3000B4C82 /* CYActionSheetAction.m in Sources */,
 				614F22641BE0F58A00E3CF9D /* UIScrollView+CYUtils.m in Sources */,
 				61F0FCCB1BCF820200E445EA /* CYAlertView.m in Sources */,
 				611CB90D1C841DF3003A0E30 /* CYChatView.m in Sources */,
@@ -921,6 +1062,7 @@
 				611CB8E11C83F0CC003A0E30 /* CYChatMessage.m in Sources */,
 				61851F021BCD10B5005340C8 /* CYPullRefreshBaseView.m in Sources */,
 				61F0FCBF1BCF770C00E445EA /* NSArray+MASAdditions.m in Sources */,
+				6103CDA61C9BDB33000B4C82 /* CYActionSheetSection.m in Sources */,
 				61F0FCC21BCF770C00E445EA /* ViewController+MASAdditions.m in Sources */,
 				61851EF11BCD0B1D005340C8 /* NSArray+CYJson.m in Sources */,
 				613536AE1BDF5F900099E426 /* CYAddressBookUtils.m in Sources */,

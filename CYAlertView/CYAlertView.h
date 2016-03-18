@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "CYAlertViewAction.h"
 
-typedef NS_ENUM(NSInteger, CYAlertViewStyle) {
-    
-    CYAlertViewStyleAlert,
-    CYAlertViewStyleActionSheet                 // not implemented
-};
+//typedef NS_ENUM(NSInteger, CYAlertViewStyle) {
+//    
+//    CYAlertViewStyleAlert,
+//    CYAlertViewStyleActionSheet                 // not implemented
+//};
 
 // 按钮样式，在CYAlertViewStyleAlert是有效
 typedef NS_ENUM(NSInteger, CYAlertViewActionStyle) {
@@ -28,7 +28,7 @@ typedef NS_ENUM(NSInteger, CYAlertViewActionStyle) {
 @property (nonatomic, strong, readonly) NSString *message;
 @property (nonatomic, strong, readonly) NSString *cancelTitle;
 
-@property (nonatomic, assign) CYAlertViewStyle style;
+//@property (nonatomic, assign) CYAlertViewStyle style;
 @property (nonatomic, assign) CYAlertViewActionStyle actionStyle;
 
 // default NO，点击空白区域，是否dismiss
