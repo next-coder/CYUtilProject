@@ -10,7 +10,7 @@
 
 #import "CYContacts.h"
 
-@interface CYContactViewModel : NSObject <CYContactsModel>
+@interface CYContactViewModel : NSObject
 
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *phoneNumber;

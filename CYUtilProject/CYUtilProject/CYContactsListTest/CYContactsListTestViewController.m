@@ -24,46 +24,46 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    CYAddressBookUtils *util = [[CYAddressBookUtils alloc] init];
-    
-    if ([util addressBookGetAuthorizationStatus] == CYAddressBookAuthorizedStatusNotDetermine) {
-        
-        [util requestAddressBookAccessWithCompletion:^(BOOL granted, NSError *error) {
-            
-            NSArray *list = [util fetchAllPeopleInAddressBookWithNameFormat:CYAddressBookNameFormatLastNameFirst];
-            
-            NSMutableArray<CYContactViewModel *> *allContacts = [NSMutableArray arrayWithCapacity:list.count];
-            [list enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                
-                CYContactViewModel *model = [[CYContactViewModel alloc] init];
-                model.name = [obj.allValues firstObject];
-                [allContacts addObject:model];
-            }];
-            
-            CYContactsListAdapter *adapter = [[CYContactsListAdapter alloc] initWithContacts:allContacts
-                                                                               groupContacts:YES];
-            self.adapter = adapter;
-        }];
-    } else {
-        
-        NSArray *list = [util fetchAllPeopleInAddressBookWithNameFormat:CYAddressBookNameFormatLastNameFirst];
-        
-        NSMutableArray<CYContactViewModel *> *allContacts = [NSMutableArray arrayWithCapacity:list.count];
-        [list enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            
-            CYContactViewModel *model = [[CYContactViewModel alloc] init];
-            model.name = [obj.allValues firstObject];
-            [allContacts addObject:model];
-        }];
-        
-        CYContactsListAdapter *adapter = [[CYContactsListAdapter alloc] initWithContacts:allContacts
-                                                                           groupContacts:YES];
-        self.adapter = adapter;
-        
-        self.title = @"CYContacts";
-        
-        self.searchBarPosition = CYContactsSearchBarPositionNavigationBar;
-    }
+//    CYAddressBookUtils *util = [[CYAddressBookUtils alloc] init];
+//    
+//    if ([util addressBookGetAuthorizationStatus] == CYAddressBookAuthorizedStatusNotDetermine) {
+//        
+//        [util requestAddressBookAccessWithCompletion:^(BOOL granted, NSError *error) {
+//            
+//            NSArray *list = [util fetchAllPeopleInAddressBookWithNameFormat:CYAddressBookNameFormatLastNameFirst];
+//            
+//            NSMutableArray<CYContactViewModel *> *allContacts = [NSMutableArray arrayWithCapacity:list.count];
+//            [list enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//                
+//                CYContactViewModel *model = [[CYContactViewModel alloc] init];
+//                model.name = [obj.allValues firstObject];
+//                [allContacts addObject:model];
+//            }];
+//            
+////            CYContactsListAdapter *adapter = [[CYContactsListAdapter alloc] initWithContacts:allContacts
+////                                                                               groupContacts:YES];
+////            self.adapter = adapter;
+//        }];
+//    } else {
+//        
+//        NSArray *list = [util fetchAllPeopleInAddressBookWithNameFormat:CYAddressBookNameFormatLastNameFirst];
+//        
+//        NSMutableArray<CYContactViewModel *> *allContacts = [NSMutableArray arrayWithCapacity:list.count];
+//        [list enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//            
+//            CYContactViewModel *model = [[CYContactViewModel alloc] init];
+//            model.name = [obj.allValues firstObject];
+//            [allContacts addObject:model];
+//        }];
+//        
+//        CYContactsListAdapter *adapter = [[CYContactsListAdapter alloc] initWithContacts:allContacts
+//                                                                           groupContacts:YES];
+//        self.adapter = adapter;
+//        
+//        self.title = @"CYContacts";
+//        
+//        self.searchBarPosition = CYContactsSearchBarPositionNavigationBar;
+//    }
 }
 
 @end

@@ -41,13 +41,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../CYActionSheet/CYActionSheetAction.m"
-            timestampString = "479986925.865305"
+            filePath = "../CYShareSDK/CYQQ/CYQQUtils.m"
+            timestampString = "480337683.096295"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "-actionDidTapped:"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "-shareWebWithTitle:description:thumbImageData:urlString:to:callback:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../CYShareSDK/CYSinaWeibo/CYSinaWeiboUtil.m"
+            timestampString = "480492401.812715"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "-init"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

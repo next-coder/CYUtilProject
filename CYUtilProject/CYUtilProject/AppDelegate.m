@@ -8,6 +8,10 @@
 
 #import "AppDelegate.h"
 
+#import "CYWechatUtil.h"
+#import "CYQQUtil.h"
+#import "CYSinaWeiboUtil.h"
+
 @interface AppDelegate ()
 
 @end
@@ -30,6 +34,17 @@
     NSLog(@"aaa = %d", *p);
     NSLog(@"%d", *q);
     NSLog(@"%d", c);
+    
+    [CYWechatUtil registerWithAppId:@"wx891f8f3380cba5e9" appKey:@"bdd4ed515ecda1a82d98d3bbee192b20"];
+    [CYQQUtil registerWithAppId:@"1104237169" appKey:@"2KGC4ae9ukj1j8IK"];
+    [CYSinaWeiboUtil registerWithAppId:@"972580554" appKey:@"3180958896"];
+    
+    UIImage *bg = [[UIImage imageNamed:@"common_navigation_background.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(2, 0, 2, 0)];
+    [[UINavigationBar appearance] setBackgroundImage:bg
+                                       forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor whiteColor],
+                                                            NSFontAttributeName : [UIFont systemFontOfSize:17.f]}];
     
     return YES;
 }
@@ -54,6 +69,11 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    
+    return [[CYWechatUtil sharedInstance] handleOpenURL:url] || [[CYQQUtil sharedInstance] handleOpenURL:url] || [[CYSinaWeiboUtil sharedInstance] handleOpenURL:url];
 }
 
 @end

@@ -16,7 +16,10 @@
 #import "CYAlertView.h"
 #import "CYActionSheet.h"
 
+#import "CYQQUtil.h"
+
 #import "CYContactsListTestViewController.h"
+#import "CYShareSDKTestViewController.h"
 
 #import "CYChat.h"
 
@@ -48,7 +51,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 9;
+    return 10;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -86,6 +89,9 @@
     } else if (indexPath.row == 8) {
         
         cell.textLabel.text = @"CYActionSheet";
+    } else if (indexPath.row == 9) {
+        
+        cell.textLabel.text = @"CYShareSDK";
     }
     return cell;
 }
@@ -194,11 +200,24 @@
     } else if (indexPath.row == 7) {
         
         CYContactsListTestViewController *vc = [[CYContactsListTestViewController alloc] init];
+//        vc.selected = YES;
         [self.navigationController pushViewController:vc animated:YES];
     } else if (indexPath.row == 8) {
         
-        CYActionSheet *actionSheet = [[CYActionSheet alloc] initWithCancelTitle:@"取消"];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"share_message"]];
+        UITextField *textField1 = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 100, 45)];
+        textField1.backgroundColor = [UIColor redColor];
+        
+        CYActionSheetSection *section = [[CYActionSheetSection alloc] initWithTitle:@"分享" message:@"分享内容到以下方式" contentViews:@[ imageView, textField1 ]];
+        section.showSeperatorForContents = YES;
+        
+        CYActionSheet *actionSheet = [[CYActionSheet alloc] initWithCancelTitle:@"取消" style:CYActionSheetStylePlain];
+        [actionSheet addActionSheetSection:section];
         [actionSheet showAnimated:YES];
+    } else if (indexPath.row == 9) {
+        
+        CYShareSDKTestViewController *share = [[CYShareSDKTestViewController alloc] init];
+        [self.navigationController pushViewController:share animated:YES];
     }
 }
 

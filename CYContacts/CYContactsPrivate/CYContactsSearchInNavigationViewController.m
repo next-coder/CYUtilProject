@@ -8,44 +8,47 @@
 
 #import "CYContactsSearchInNavigationViewController.h"
 
+@interface CYContactsSearchInNavigationViewController ()
+
+@end
+
 @implementation CYContactsSearchInNavigationViewController
 
-- (instancetype)initWithParentContactsListViewController:(CYContactsListViewController *)parentController {
-    
-    if (self = [super initWithContactsListAdapter:parentController.adapter]) {
-        
-        _parentContactsListViewController = parentController;
-    }
-    return self;
-}
+//- (instancetype)initWithParentContactsListViewController:(CYContactsListViewController *)parentController {
+//    
+//    if (self = [super initWithContactsListAdapter:parentController.adapter]) {
+//        
+//        _parentContactsListViewController = parentController;
+//    }
+//    return self;
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    self.searchController.delegate = self;
-    self.searchController.searchDisplayController.displaysSearchBarInNavigationBar = YES;
+    self.searchBar.showsCancelButton = YES;
     
-    self.searchController.searchBar.showsCancelButton = YES;
-    
+    self.searchDisplayController.displaysSearchBarInNavigationBar = YES;
     [self.searchDisplayController setActive:YES animated:YES];
-    [self.searchController.searchBar becomeFirstResponder];
+    
     self.navigationItem.hidesBackButton = YES;
 }
 
-#pragma mark - CYContactsSearchControllerDelegate，UISearchDisplayDelegate
-- (void)contactsSearchDisplayController:(CYContactsSearchController *)searchController
-                       didSelectContact:(id<CYContactsModel>)contact
-                                atIndex:(NSInteger)index {
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
-    [_parentContactsListViewController contactsSearchDisplayController:searchController
-                                                      didSelectContact:contact
-                                                               atIndex:index];
+    [self.searchBar becomeFirstResponder];
 }
 
-- (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller {
-    
-    [_parentContactsListViewController searchDisplayControllerDidEndSearch:controller];
-    [self.navigationController popViewControllerAnimated:YES];
-}
+//#pragma mark - UISearchDisplayDelegate
+//- (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller {
+//    
+//    if (self.delegate) {
+//        
+//        [self.delegate contactsDidEndSearch:self];
+//    }
+//    
+//    [self.navigationController popViewControllerAnimated:YES];
+//}
 
 @end

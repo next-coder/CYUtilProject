@@ -7,7 +7,4 @@
 //
 
 #import "CYContactsListViewController.h"
-#import "CYContactsSearchController.h"
-#import "CYContactsListAdapter.h"
-#import "CYContactsModel.h"
 

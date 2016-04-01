@@ -24,6 +24,7 @@
 @property (nonatomic, weak) CYActionSheet *actionSheet;
 
 @property (nonatomic, assign) BOOL showSeperatorForContents;
+@property (nonatomic, assign) UIEdgeInsets separatorInsets;
 
 - (instancetype)initWithTitle:(NSString *)title
                       message:(NSString *)message

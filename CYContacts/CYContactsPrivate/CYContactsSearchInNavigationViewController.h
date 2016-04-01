@@ -8,10 +8,21 @@
 
 #import "CYContactsListViewController.h"
 
+//@class CYContactsSearchInNavigationViewController;
+//
+//@protocol CYContactsSearchInNavigationDelegate <NSObject>
+//
+//- (void)contactsDidEndSearch:(CYContactsSearchInNavigationViewController *)search;
+//
+//@end
+
 @interface CYContactsSearchInNavigationViewController : CYContactsListViewController
 
-@property (nonatomic, weak, readonly) CYContactsListViewController *parentContactsListViewController;
-
-- (instancetype)initWithParentContactsListViewController:(CYContactsListViewController *)parentController;
+//
+//@property (nonatomic, weak) id<CYContactsSearchInNavigationDelegate> delegate;
+//
+//@property (nonatomic, weak, readonly) CYContactsListViewController *parentContactsListViewController;
+//
+//- (instancetype)initWithParentContactsListViewController:(CYContactsListViewController *)parentController;
 
 @end
