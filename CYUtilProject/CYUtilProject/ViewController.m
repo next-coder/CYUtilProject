@@ -207,9 +207,30 @@
         UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"share_message"]];
         UITextField *textField1 = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 100, 45)];
         textField1.backgroundColor = [UIColor redColor];
+        UILabel *label = [[UILabel alloc] init];
+        label.text = @"fadjklf;asdjkfl;asjkl f;jasdkl;fjaksdl;fjasdkl;fjkasdl;fjkasdl;fjkalsd;jfkl;asdjkfl;sajkl;";
+        label.numberOfLines = 0;
+//        label.frame = CGRectMake(0, 0, 200, 100);
+//        [label sizeToFit];
         
-        CYActionSheetSection *section = [[CYActionSheetSection alloc] initWithTitle:@"分享" message:@"分享内容到以下方式" contentViews:@[ imageView, textField1 ]];
+        CYActionSheetSection *section = [[CYActionSheetSection alloc] initWithTitle:@"分享fdal;ajf;lajkfladsjk;fasjk;fka;fjksa;fjkasl;fjkalds;fjkl;asdfa" message:@"分享内容到以下fjksal;fjkasdl;fjkals;djfkl;asjfkl;asdjfkl;asdfkl;sdajfkl;asdkfl;saf方式" contentViews:@[ imageView, textField1, label ]];
         section.showSeperatorForContents = YES;
+        
+        NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:label
+                                                                attribute:NSLayoutAttributeLeft
+                                                                relatedBy:NSLayoutRelationEqual
+                                                                   toItem:section
+                                                                attribute:NSLayoutAttributeLeft
+                                                               multiplier:1
+                                                                 constant:10];
+        NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:label
+                                                                 attribute:NSLayoutAttributeRight
+                                                                 relatedBy:NSLayoutRelationEqual
+                                                                    toItem:section
+                                                                 attribute:NSLayoutAttributeRight
+                                                                multiplier:1
+                                                                  constant:-10];
+        [section addConstraints:@[ left, right ]];
         
         CYActionSheet *actionSheet = [[CYActionSheet alloc] initWithCancelTitle:@"取消" style:CYActionSheetStylePlain];
         [actionSheet addActionSheetSection:section];

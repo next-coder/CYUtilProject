@@ -9,12 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "CYAlertViewAction.h"
 
-//typedef NS_ENUM(NSInteger, CYAlertViewStyle) {
-//    
-//    CYAlertViewStyleAlert,
-//    CYAlertViewStyleActionSheet                 // not implemented
-//};
-
 // 按钮样式，在CYAlertViewStyleAlert是有效
 typedef NS_ENUM(NSInteger, CYAlertViewActionStyle) {
     

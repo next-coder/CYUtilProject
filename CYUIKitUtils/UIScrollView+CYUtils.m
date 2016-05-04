@@ -12,40 +12,44 @@
 
 - (void)scrollToBottomAnimated:(BOOL)animated {
     
-    CGRect bottomRect = CGRectMake(self.contentOffset.x,
-                                   self.contentSize.height,
-                                   self.frame.size.width,
-                                   self.frame.size.height);
-    
-    if (animated) {
-        
-        [UIView animateWithDuration:0.25 animations:^{
-            
-            [self scrollRectToVisible:bottomRect animated:NO];
-        }];
-    } else {
-        
-        [self scrollRectToVisible:bottomRect animated:NO];
-    }
+    CGPoint contentOffset = CGPointMake(self.contentOffset.x, self.contentSize.height - self.frame.size.height);
+    [self setContentOffset:contentOffset animated:animated];
+//    CGRect bottomRect = CGRectMake(self.contentOffset.x,
+//                                   self.contentSize.height,
+//                                   self.frame.size.width,
+//                                   self.frame.size.height);
+//    
+//    if (animated) {
+//        
+//        [UIView animateWithDuration:0.25 animations:^{
+//            
+//            [self scrollRectToVisible:bottomRect animated:NO];
+//        }];
+//    } else {
+//        
+//        [self scrollRectToVisible:bottomRect animated:NO];
+//    }
 }
 
 - (void)scrollToTopAnimated:(BOOL)animated {
     
-    CGRect topRect = CGRectMake(self.contentOffset.x,
-                                0,
-                                self.frame.size.width,
-                                self.frame.size.height);
-    
-    if (animated) {
-        
-        [UIView animateWithDuration:0.25 animations:^{
-            
-            [self scrollRectToVisible:topRect animated:NO];
-        }];
-    } else {
-        
-        [self scrollRectToVisible:topRect animated:NO];
-    }
+    CGPoint contentOffset = CGPointMake(self.contentOffset.x, 0);
+    [self setContentOffset:contentOffset animated:animated];
+//    CGRect topRect = CGRectMake(self.contentOffset.x,
+//                                0,
+//                                self.frame.size.width,
+//                                self.frame.size.height);
+//    
+//    if (animated) {
+//        
+//        [UIView animateWithDuration:0.25 animations:^{
+//            
+//            [self scrollRectToVisible:topRect animated:NO];
+//        }];
+//    } else {
+//        
+//        [self scrollRectToVisible:topRect animated:NO];
+//    }
 }
 
 @end

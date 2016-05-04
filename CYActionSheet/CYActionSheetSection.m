@@ -16,9 +16,9 @@
 
 @interface CYActionSheetSection ()
 
-@property (nonatomic, assign, readonly) CGFloat sectionTotalHeight;
-//@property (nonatomic, assign, readonly) CGFloat sectionWidth;
-@property (nonatomic, assign, readonly) CGFloat contentWidth;
+//@property (nonatomic, assign, readonly) CGFloat sectionTotalHeight;
+////@property (nonatomic, assign, readonly) CGFloat sectionWidth;
+//@property (nonatomic, assign, readonly) CGFloat contentWidth;
 
 @end
 
@@ -36,7 +36,7 @@
         
         [self createSectionSubviews];
         
-        self.frame = CGRectMake(0, 0, 0, self.sectionTotalHeight);
+//        self.frame = CGRectMake(0, 0, 0, self.sectionTotalHeight);
         self.backgroundColor = [UIColor whiteColor];
     }
     return self;
@@ -44,6 +44,7 @@
 
 - (void)createSectionSubviews {
     
+    __block UIView *previousView = nil;
     if (_title
         && ![_title isEqualToString:@""]) {
         
@@ -56,83 +57,204 @@
         titleLabel.textAlignment = NSTextAlignmentCenter;
         [self addSubview:titleLabel];
         _titleLabel = titleLabel;
+        [_titleLabel sizeToFit];
+        
+        // add common layouts
+        [self contentLayout:_titleLabel
+           withPreviousView:nil
+                     topGap:CY_ACTION_SHEET_SECTION_CONTENT_BODER_GAP];
+        // add left and right layout
+        [self titleOrMessageHerizontalLayout:_titleLabel];
+        previousView = _titleLabel;
     }
     
     if (_message
         && ![_message isEqualToString:@""]) {
         
-        UITextView *message = [[UITextView alloc] init];
+        UILabel *message = [[UILabel alloc] init];
         message.font = [UIFont systemFontOfSize:14.f];
         message.textColor = [UIColor grayColor];
         message.backgroundColor = [UIColor clearColor];
         message.text = _message;
-        message.editable = NO;
         message.textAlignment = NSTextAlignmentCenter;
+        message.numberOfLines = 0;
         [self addSubview:message];
-        _messageTextView = message;
+        _messageLabel = message;
+        
+        // add common layouts
+        [self contentLayout:_messageLabel
+           withPreviousView:_titleLabel
+                     topGap:10];
+        // add left and right layout
+        [self titleOrMessageHerizontalLayout:_messageLabel];
+        previousView = _messageLabel;
     }
     
     [_contentViews enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
         [self addSubview:obj];
+        
+        if (idx == 0
+            && previousView) {
+            
+            [self contentLayout:obj
+               withPreviousView:previousView
+                         topGap:10];
+        } else {
+            
+            [self contentLayout:obj
+               withPreviousView:previousView
+                         topGap:0];
+        }
+        
+        previousView = obj;
     }];
+    
+    NSLayoutConstraint *lastBottom = [NSLayoutConstraint constraintWithItem:previousView
+                                                                  attribute:NSLayoutAttributeBottom
+                                                                  relatedBy:NSLayoutRelationEqual
+                                                                     toItem:self
+                                                                  attribute:NSLayoutAttributeBottom
+                                                                 multiplier:1
+                                                                   constant:0];
+    [self addConstraint:lastBottom];
 }
 
-#pragma mark - layout
-- (void)layoutSubviews {
-    [super layoutSubviews];
+- (void)titleOrMessageHerizontalLayout:(UILabel *)titleOrMessage {
     
-    CGFloat selfWidth = self.frame.size.width;
-    CGFloat contentWidth = self.contentWidth;
-    CGRect frame;
-    __block CGFloat nextY = 0;
-    if (self.title
-        && ![self.title isEqualToString:@""]) {
-        
-        nextY = CY_ACTION_SHEET_SECTION_CONTENT_BODER_GAP;
-        CGSize size = [self.titleLabel sizeThatFits:CGSizeMake(contentWidth, 100)];
-        frame.size = size;
-        frame.origin.x = (selfWidth - size.width) / 2.f;
-        frame.origin.y = nextY;
-        self.titleLabel.frame = frame;
-        
-        nextY = CGRectGetMaxY(self.titleLabel.frame);
-    }
-    
-    if (self.message
-        && ![self.message isEqualToString:@""]) {
-        
-        CGSize size = [self.messageTextView sizeThatFits:CGSizeMake(contentWidth, CY_ACTION_SHEET_SECTION_MESSAGE_MAX_HEIGHT)];
-        frame.size = size;
-        frame.origin.x = (selfWidth - size.width) / 2.f;
-        frame.origin.y = nextY;
-        self.messageTextView.frame = frame;
-        
-        nextY = CGRectGetMaxY(self.messageTextView.frame) + 5;
-    } else if (self.title
-               && ![self.title isEqualToString:@""]) {
-        
-        // 有title时，增加分割距离
-        nextY += CY_ACTION_SHEET_SECTION_CONTENT_BODER_GAP;
-    }
-    
-    [self.contentViews enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-        if (self.showSeperatorForContents) {
-            
-            nextY += 1;
-        }
-        
-        // 设置action的frame
-        if ([obj isKindOfClass:[CYActionSheetAction class]]) {
-            
-            obj.frame = CGRectMake(0, 0, self.frame.size.width, obj.frame.size.height);
-        }
-        
-        obj.center = CGPointMake(selfWidth / 2.f, nextY + obj.frame.size.height / 2.f);
-        nextY += obj.frame.size.height;
-    }];
+    // since title and message are labels, to fit the content size, we must set the left and right constraints of them
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:titleOrMessage
+                                                            attribute:NSLayoutAttributeLeft
+                                                            relatedBy:NSLayoutRelationEqual
+                                                               toItem:self
+                                                            attribute:NSLayoutAttributeLeft
+                                                           multiplier:1
+                                                             constant:CY_ACTION_SHEET_SECTION_CONTENT_BODER_GAP];
+    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:titleOrMessage
+                                                             attribute:NSLayoutAttributeRight
+                                                             relatedBy:NSLayoutRelationEqual
+                                                                toItem:self
+                                                             attribute:NSLayoutAttributeRight
+                                                            multiplier:1
+                                                              constant:-CY_ACTION_SHEET_SECTION_CONTENT_BODER_GAP];
+    [self addConstraints:@[ left, right ]];
 }
+
+- (void)contentLayout:(UIView *)contentView
+     withPreviousView:(UIView *)previousView
+               topGap:(CGFloat)topGap {
+    
+    contentView.translatesAutoresizingMaskIntoConstraints = NO;
+    // all the following constraints priority are all low, user can add their own constraints to replace the default behavior
+    // content x in the center of section
+    NSLayoutConstraint *centerX = [NSLayoutConstraint constraintWithItem:contentView
+                                                               attribute:NSLayoutAttributeCenterX
+                                                               relatedBy:NSLayoutRelationEqual
+                                                                  toItem:self
+                                                               attribute:NSLayoutAttributeCenterX
+                                                              multiplier:1
+                                                                constant:0];
+    centerX.priority = UILayoutPriorityDefaultLow;
+    // content height equal to the default frame.size.height
+    NSLayoutConstraint *height = [NSLayoutConstraint constraintWithItem:contentView
+                                                              attribute:NSLayoutAttributeHeight
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:nil
+                                                              attribute:NSLayoutAttributeNotAnAttribute
+                                                             multiplier:1
+                                                               constant:contentView.frame.size.height];
+    height.priority = UILayoutPriorityDefaultLow;
+    
+    // content width equal to the default frame.size.width
+    NSLayoutConstraint *width = [NSLayoutConstraint constraintWithItem:contentView
+                                                              attribute:NSLayoutAttributeWidth
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:nil
+                                                              attribute:NSLayoutAttributeNotAnAttribute
+                                                             multiplier:1
+                                                               constant:contentView.frame.size.width];
+    width.priority = UILayoutPriorityDefaultLow;
+    
+    // top is the bottom of the previous view
+    NSLayoutConstraint *top = nil;
+    if (previousView) {
+        
+        top = [NSLayoutConstraint constraintWithItem:contentView
+                                           attribute:NSLayoutAttributeTop
+                                           relatedBy:NSLayoutRelationEqual
+                                              toItem:previousView
+                                           attribute:NSLayoutAttributeBottom
+                                          multiplier:1
+                                            constant:topGap];
+    } else {
+        
+        top = [NSLayoutConstraint constraintWithItem:contentView
+                                           attribute:NSLayoutAttributeTop
+                                           relatedBy:NSLayoutRelationEqual
+                                              toItem:self
+                                           attribute:NSLayoutAttributeTop
+                                          multiplier:1
+                                            constant:topGap];
+    }
+    
+    [self addConstraints:@[ centerX, width, height, top ]];
+}
+
+//#pragma mark - layout
+//- (void)layoutSubviews {
+//    [super layoutSubviews];
+//    
+////    CGFloat selfWidth = self.frame.size.width;
+////    CGFloat contentWidth = self.contentWidth;
+////    CGRect frame;
+////    __block CGFloat nextY = 0;
+////    if (self.title
+////        && ![self.title isEqualToString:@""]) {
+////        
+////        nextY = CY_ACTION_SHEET_SECTION_CONTENT_BODER_GAP;
+////        CGSize size = [self.titleLabel sizeThatFits:CGSizeMake(contentWidth, 100)];
+////        frame.size = size;
+////        frame.origin.x = (selfWidth - size.width) / 2.f;
+////        frame.origin.y = nextY;
+////        self.titleLabel.frame = frame;
+////        
+////        nextY = CGRectGetMaxY(self.titleLabel.frame);
+////    }
+////    
+////    if (self.message
+////        && ![self.message isEqualToString:@""]) {
+////        
+////        CGSize size = [self.messageTextView sizeThatFits:CGSizeMake(contentWidth, CY_ACTION_SHEET_SECTION_MESSAGE_MAX_HEIGHT)];
+////        frame.size = size;
+////        frame.origin.x = (selfWidth - size.width) / 2.f;
+////        frame.origin.y = nextY;
+////        self.messageTextView.frame = frame;
+////        
+////        nextY = CGRectGetMaxY(self.messageTextView.frame) + 5;
+////    } else if (self.title
+////               && ![self.title isEqualToString:@""]) {
+////        
+////        // 有title时，增加分割距离
+////        nextY += CY_ACTION_SHEET_SECTION_CONTENT_BODER_GAP;
+////    }
+////    
+////    [self.contentViews enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+////        
+////        if (self.showSeperatorForContents) {
+////            
+////            nextY += 1;
+////        }
+////        
+////        // 设置action的frame
+////        if ([obj isKindOfClass:[CYActionSheetAction class]]) {
+////            
+////            obj.frame = CGRectMake(0, 0, self.frame.size.width, obj.frame.size.height);
+////        }
+////        
+////        obj.center = CGPointMake(selfWidth / 2.f, nextY + obj.frame.size.height / 2.f);
+////        nextY += obj.frame.size.height;
+////    }];
+//}
 
 #pragma mark - draw separator
 - (void)drawRect:(CGRect)rect {
@@ -176,43 +298,43 @@
     }];
 }
 
-#pragma mark - getter
-
-- (CGFloat)contentWidth {
-    
-    return self.frame.size.width - 2 * CY_ACTION_SHEET_SECTION_CONTENT_BODER_GAP;
-}
-
-- (CGFloat)sectionTotalHeight {
-    
-    __block CGFloat totalHeight = 0;
-    if (self.titleLabel) {
-        
-        totalHeight += CY_ACTION_SHEET_SECTION_CONTENT_BODER_GAP;
-        
-        CGSize size = [_titleLabel sizeThatFits:CGSizeMake(self.contentWidth, 100)];
-        totalHeight += size.height;
-    }
-    if (self.messageTextView) {
-        
-        CGSize size = [_messageTextView sizeThatFits:CGSizeMake(self.contentWidth, CY_ACTION_SHEET_SECTION_MESSAGE_MAX_HEIGHT)];
-        totalHeight += size.height;
-    } else if (_titleLabel) {
-        
-        totalHeight += CY_ACTION_SHEET_SECTION_CONTENT_BODER_GAP;
-    }
-    
-    [self.contentViews enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-        totalHeight += obj.frame.size.height;
-        
-        if (self.showSeperatorForContents) {
-            
-            totalHeight += 1;
-        }
-    }];
-    
-    return totalHeight;
-}
+//#pragma mark - getter
+//
+//- (CGFloat)contentWidth {
+//    
+//    return self.frame.size.width - 2 * CY_ACTION_SHEET_SECTION_CONTENT_BODER_GAP;
+//}
+//
+//- (CGFloat)sectionTotalHeight {
+//    
+//    __block CGFloat totalHeight = 0;
+//    if (self.titleLabel) {
+//        
+//        totalHeight += CY_ACTION_SHEET_SECTION_CONTENT_BODER_GAP;
+//        
+//        CGSize size = [_titleLabel sizeThatFits:CGSizeMake(self.contentWidth, 100)];
+//        totalHeight += size.height;
+//    }
+//    if (self.messageLabel) {
+//        
+//        CGSize size = [_messageLabel sizeThatFits:CGSizeMake(self.contentWidth, CY_ACTION_SHEET_SECTION_MESSAGE_MAX_HEIGHT)];
+//        totalHeight += size.height;
+//    } else if (_titleLabel) {
+//        
+//        totalHeight += CY_ACTION_SHEET_SECTION_CONTENT_BODER_GAP;
+//    }
+//    
+//    [self.contentViews enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        
+//        totalHeight += obj.frame.size.height;
+//        
+//        if (self.showSeperatorForContents) {
+//            
+//            totalHeight += 1;
+//        }
+//    }];
+//    
+//    return totalHeight;
+//}
 
 @end

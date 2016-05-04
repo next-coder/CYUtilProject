@@ -23,12 +23,14 @@
 
 @property (nonatomic, assign, readonly) BOOL isRefreshing;
 
-@property (nonatomic, weak, readonly) UIImageView *imageView;
-@property (nonatomic, weak, readonly) UILabel *titleLabel;
-@property (nonatomic, weak, readonly) UILabel *detailLabel;
+@property (nonatomic, weak) UIActivityIndicatorView *activityIndicatorView;
 
-@property (nonatomic, strong) NSDate *lastUpdateTime;
-@property (nonatomic, strong) NSString *lastUpdateTimeKey;          // 存储最后更新时间的Key
+//@property (nonatomic, weak, readonly) UIImageView *imageView;
+//@property (nonatomic, weak, readonly) UILabel *titleLabel;
+//@property (nonatomic, weak, readonly) UILabel *detailLabel;
+//
+//@property (nonatomic, strong) NSDate *lastUpdateTime;
+//@property (nonatomic, strong) NSString *lastUpdateTimeKey;          // 存储最后更新时间的Key
 
 - (void)cy_beginRefreshing;
 - (void)cy_endRefreshing;

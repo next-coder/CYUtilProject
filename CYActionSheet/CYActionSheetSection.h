@@ -16,7 +16,7 @@
 @property (nonatomic, strong, readonly) NSString *message;
 
 @property (nonatomic, weak, readonly) UILabel *titleLabel;
-@property (nonatomic, weak, readonly) UITextView *messageTextView;
+@property (nonatomic, weak, readonly) UILabel *messageLabel;
 
 // custom views or CYActionSheetAction list, will be showed on this section from top to bottom
 @property (nonatomic, strong, readonly) NSArray<UIView *> *contentViews;

@@ -61,12 +61,6 @@
 		61851EF21BCD0B1D005340C8 /* NSDictionary+CYJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 61851EEA1BCD0B1D005340C8 /* NSDictionary+CYJson.m */; };
 		61851EF31BCD0B1D005340C8 /* NSDictionary+CYSecureValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 61851EEC1BCD0B1D005340C8 /* NSDictionary+CYSecureValue.m */; };
 		61851EF51BCD0B1D005340C8 /* NSString+CYUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 61851EF01BCD0B1D005340C8 /* NSString+CYUtils.m */; };
-		61851F011BCD10B5005340C8 /* NSDate+CYPullRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 61851EF81BCD10B5005340C8 /* NSDate+CYPullRefresh.m */; };
-		61851F021BCD10B5005340C8 /* CYPullRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61851EFA1BCD10B5005340C8 /* CYPullRefreshBaseView.m */; };
-		61851F031BCD10B5005340C8 /* CYPullRefreshConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 61851EFC1BCD10B5005340C8 /* CYPullRefreshConstants.m */; };
-		61851F041BCD10B5005340C8 /* CYPullRefreshFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61851EFE1BCD10B5005340C8 /* CYPullRefreshFooterView.m */; };
-		61851F051BCD10B5005340C8 /* CYPullRefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61851F001BCD10B5005340C8 /* CYPullRefreshHeaderView.m */; };
-		61851F071BCD124F005340C8 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 61851F061BCD124F005340C8 /* README */; };
 		619772211CA53FE7004F13EA /* CYShareBySMSUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 619772201CA53FE7004F13EA /* CYShareBySMSUtil.m */; };
 		61A316A11CA389AE0079C13B /* CYSinaWeiboUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A316A01CA389AE0079C13B /* CYSinaWeiboUtil.m */; };
 		61A316A31CA38CA50079C13B /* Readme in Resources */ = {isa = PBXBuildFile; fileRef = 61A316A21CA38CA50079C13B /* Readme */; };
@@ -103,6 +97,11 @@
 		61F0FCCB1BCF820200E445EA /* CYAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F0FCCA1BCF820200E445EA /* CYAlertView.m */; };
 		61F0FCCE1BCF963B00E445EA /* CYAlertViewAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F0FCCD1BCF963B00E445EA /* CYAlertViewAction.m */; };
 		61F1884F1BEB7008006DE729 /* UIButton+CYWebImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F1884E1BEB7008006DE729 /* UIButton+CYWebImageCache.m */; };
+		61F614331CD992FE007CD3AF /* CYPullRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F6142B1CD992FE007CD3AF /* CYPullRefreshBaseView.m */; };
+		61F614341CD992FE007CD3AF /* CYPullRefreshConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F6142D1CD992FE007CD3AF /* CYPullRefreshConstants.m */; };
+		61F614351CD992FE007CD3AF /* CYPullRefreshFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F6142F1CD992FE007CD3AF /* CYPullRefreshFooterView.m */; };
+		61F614361CD992FE007CD3AF /* CYPullRefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F614311CD992FE007CD3AF /* CYPullRefreshHeaderView.m */; };
+		61F614371CD992FE007CD3AF /* README in Resources */ = {isa = PBXBuildFile; fileRef = 61F614321CD992FE007CD3AF /* README */; };
 		61F711AC1BF1C3CE00881E3B /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F711AB1BF1C3CE00881E3B /* TencentOpenAPI.framework */; };
 		61F711AD1BF1C4B500881E3B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F711751BF1983F00881E3B /* Security.framework */; };
 		61F711AE1BF1C4BE00881E3B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F711931BF1BD5400881E3B /* SystemConfiguration.framework */; };
@@ -247,17 +246,6 @@
 		61851EEC1BCD0B1D005340C8 /* NSDictionary+CYSecureValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+CYSecureValue.m"; sourceTree = "<group>"; };
 		61851EEF1BCD0B1D005340C8 /* NSString+CYUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CYUtils.h"; sourceTree = "<group>"; };
 		61851EF01BCD0B1D005340C8 /* NSString+CYUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CYUtils.m"; sourceTree = "<group>"; };
-		61851EF71BCD10B5005340C8 /* NSDate+CYPullRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+CYPullRefresh.h"; sourceTree = "<group>"; };
-		61851EF81BCD10B5005340C8 /* NSDate+CYPullRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+CYPullRefresh.m"; sourceTree = "<group>"; };
-		61851EF91BCD10B5005340C8 /* CYPullRefreshBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYPullRefreshBaseView.h; sourceTree = "<group>"; };
-		61851EFA1BCD10B5005340C8 /* CYPullRefreshBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYPullRefreshBaseView.m; sourceTree = "<group>"; };
-		61851EFB1BCD10B5005340C8 /* CYPullRefreshConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYPullRefreshConstants.h; sourceTree = "<group>"; };
-		61851EFC1BCD10B5005340C8 /* CYPullRefreshConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYPullRefreshConstants.m; sourceTree = "<group>"; };
-		61851EFD1BCD10B5005340C8 /* CYPullRefreshFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYPullRefreshFooterView.h; sourceTree = "<group>"; };
-		61851EFE1BCD10B5005340C8 /* CYPullRefreshFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYPullRefreshFooterView.m; sourceTree = "<group>"; };
-		61851EFF1BCD10B5005340C8 /* CYPullRefreshHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYPullRefreshHeaderView.h; sourceTree = "<group>"; };
-		61851F001BCD10B5005340C8 /* CYPullRefreshHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYPullRefreshHeaderView.m; sourceTree = "<group>"; };
-		61851F061BCD124F005340C8 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		618D6DD91BCF4D1D003ED49B /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		6197721F1CA53FE7004F13EA /* CYShareBySMSUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYShareBySMSUtil.h; sourceTree = "<group>"; };
 		619772201CA53FE7004F13EA /* CYShareBySMSUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYShareBySMSUtil.m; sourceTree = "<group>"; };
@@ -332,7 +320,6 @@
 		61F0FCB71BCF770C00E445EA /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+MASAdditions.m"; sourceTree = "<group>"; };
 		61F0FCC31BCF7B8B00E445EA /* CYBaseTableWithPullRefreshViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYBaseTableWithPullRefreshViewController.h; sourceTree = "<group>"; };
 		61F0FCC41BCF7B8B00E445EA /* CYBaseTableWithPullRefreshViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYBaseTableWithPullRefreshViewController.m; sourceTree = "<group>"; };
-		61F0FCC61BCF7BE400E445EA /* CYPullRefresh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYPullRefresh.h; sourceTree = "<group>"; };
 		61F0FCC71BCF7D1000E445EA /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		61F0FCC91BCF820200E445EA /* CYAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYAlertView.h; sourceTree = "<group>"; };
 		61F0FCCA1BCF820200E445EA /* CYAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYAlertView.m; sourceTree = "<group>"; };
@@ -341,6 +328,16 @@
 		61F1884C1BEB6BEA006DE729 /* CYCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYCache.h; sourceTree = "<group>"; };
 		61F1884D1BEB7008006DE729 /* UIButton+CYWebImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+CYWebImageCache.h"; sourceTree = "<group>"; };
 		61F1884E1BEB7008006DE729 /* UIButton+CYWebImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+CYWebImageCache.m"; sourceTree = "<group>"; };
+		61F614291CD992FE007CD3AF /* CYPullRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYPullRefresh.h; sourceTree = "<group>"; };
+		61F6142A1CD992FE007CD3AF /* CYPullRefreshBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYPullRefreshBaseView.h; sourceTree = "<group>"; };
+		61F6142B1CD992FE007CD3AF /* CYPullRefreshBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYPullRefreshBaseView.m; sourceTree = "<group>"; };
+		61F6142C1CD992FE007CD3AF /* CYPullRefreshConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYPullRefreshConstants.h; sourceTree = "<group>"; };
+		61F6142D1CD992FE007CD3AF /* CYPullRefreshConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYPullRefreshConstants.m; sourceTree = "<group>"; };
+		61F6142E1CD992FE007CD3AF /* CYPullRefreshFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYPullRefreshFooterView.h; sourceTree = "<group>"; };
+		61F6142F1CD992FE007CD3AF /* CYPullRefreshFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYPullRefreshFooterView.m; sourceTree = "<group>"; };
+		61F614301CD992FE007CD3AF /* CYPullRefreshHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYPullRefreshHeaderView.h; sourceTree = "<group>"; };
+		61F614311CD992FE007CD3AF /* CYPullRefreshHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYPullRefreshHeaderView.m; sourceTree = "<group>"; };
+		61F614321CD992FE007CD3AF /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		61F711751BF1983F00881E3B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		61F711911BF1BD4800881E3B /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		61F711931BF1BD5400881E3B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -645,6 +642,7 @@
 		61851EBD1BCD0964005340C8 /* CYUtilProject */ = {
 			isa = PBXGroup;
 			children = (
+				61F614281CD992FE007CD3AF /* CYPullRefresh */,
 				61F7834C1CA0E1E7004DE856 /* CYShareSDK */,
 				613DF5751C9FE2FA0037F86C /* CYSearch */,
 				611CC9831C33B20E00273718 /* CYAnimationUtil */,
@@ -662,7 +660,6 @@
 				611B48251C97AF9D00AD2772 /* CYContacts */,
 				616037CC1BD4939100BF4285 /* CYChat */,
 				61F0FC9D1BCF770C00E445EA /* Masonry */,
-				61851EF61BCD10B5005340C8 /* CYPullRefresh */,
 				61851ED61BCD09E5005340C8 /* CYBase */,
 				61851EE61BCD0B1D005340C8 /* CYFoundationUtils */,
 				61851ED51BCD09C2005340C8 /* CYAlertView */,
@@ -745,26 +742,6 @@
 			);
 			name = CYFoundationUtils;
 			path = ../../CYFoundationUtils;
-			sourceTree = "<group>";
-		};
-		61851EF61BCD10B5005340C8 /* CYPullRefresh */ = {
-			isa = PBXGroup;
-			children = (
-				61851F061BCD124F005340C8 /* README */,
-				61F0FCC61BCF7BE400E445EA /* CYPullRefresh.h */,
-				61851EFB1BCD10B5005340C8 /* CYPullRefreshConstants.h */,
-				61851EFC1BCD10B5005340C8 /* CYPullRefreshConstants.m */,
-				61851EF71BCD10B5005340C8 /* NSDate+CYPullRefresh.h */,
-				61851EF81BCD10B5005340C8 /* NSDate+CYPullRefresh.m */,
-				61851EF91BCD10B5005340C8 /* CYPullRefreshBaseView.h */,
-				61851EFA1BCD10B5005340C8 /* CYPullRefreshBaseView.m */,
-				61851EFD1BCD10B5005340C8 /* CYPullRefreshFooterView.h */,
-				61851EFE1BCD10B5005340C8 /* CYPullRefreshFooterView.m */,
-				61851EFF1BCD10B5005340C8 /* CYPullRefreshHeaderView.h */,
-				61851F001BCD10B5005340C8 /* CYPullRefreshHeaderView.m */,
-			);
-			name = CYPullRefresh;
-			path = ../../CYPullRefresh;
 			sourceTree = "<group>";
 		};
 		6197721E1CA53FCA004F13EA /* CYSMS */ = {
@@ -889,6 +866,23 @@
 			);
 			name = Masonry;
 			path = ../../Masonry;
+			sourceTree = "<group>";
+		};
+		61F614281CD992FE007CD3AF /* CYPullRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				61F614291CD992FE007CD3AF /* CYPullRefresh.h */,
+				61F6142A1CD992FE007CD3AF /* CYPullRefreshBaseView.h */,
+				61F6142B1CD992FE007CD3AF /* CYPullRefreshBaseView.m */,
+				61F6142C1CD992FE007CD3AF /* CYPullRefreshConstants.h */,
+				61F6142D1CD992FE007CD3AF /* CYPullRefreshConstants.m */,
+				61F6142E1CD992FE007CD3AF /* CYPullRefreshFooterView.h */,
+				61F6142F1CD992FE007CD3AF /* CYPullRefreshFooterView.m */,
+				61F614301CD992FE007CD3AF /* CYPullRefreshHeaderView.h */,
+				61F614311CD992FE007CD3AF /* CYPullRefreshHeaderView.m */,
+				61F614321CD992FE007CD3AF /* README */,
+			);
+			path = CYPullRefresh;
 			sourceTree = "<group>";
 		};
 		61F7834C1CA0E1E7004DE856 /* CYShareSDK */ = {
@@ -1109,8 +1103,8 @@
 				61FD031A1BE9F76100237EA3 /* README in Resources */,
 				61FD03181BE9F73F00237EA3 /* README in Resources */,
 				61C55F0D1BD5EAE200B59F99 /* CYChat.bundle in Resources */,
+				61F614371CD992FE007CD3AF /* README in Resources */,
 				61F0FCC81BCF7D1000E445EA /* README in Resources */,
-				61851F071BCD124F005340C8 /* README in Resources */,
 				61851ECE1BCD0964005340C8 /* LaunchScreen.storyboard in Resources */,
 				61F7837B1CA0F731004DE856 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				61851ECB1BCD0964005340C8 /* Assets.xcassets in Resources */,
@@ -1135,6 +1129,7 @@
 				61F0FCBD1BCF770C00E445EA /* MASViewAttribute.m in Sources */,
 				611CB9101C8421AD003A0E30 /* CYChatVoiceCell.m in Sources */,
 				61E4DFB71BE732880097E9AA /* CYChatDataSource.m in Sources */,
+				61F614361CD992FE007CD3AF /* CYPullRefreshHeaderView.m in Sources */,
 				61FD031E1BEA0A6700237EA3 /* CYBannerImageBrowserView.m in Sources */,
 				611780B91C07F172009EADD5 /* CYCustomUILabel.m in Sources */,
 				61F0FCBB1BCF770C00E445EA /* MASConstraintMaker.m in Sources */,
@@ -1183,21 +1178,21 @@
 				61851EF21BCD0B1D005340C8 /* NSDictionary+CYJson.m in Sources */,
 				611CB8F81C841D6E003A0E30 /* CYChatTextCell.m in Sources */,
 				61EEF9051BE88E9A00E1C9EB /* CYImageDownloader.m in Sources */,
+				61F614331CD992FE007CD3AF /* CYPullRefreshBaseView.m in Sources */,
 				61E4DFC21BE760730097E9AA /* CYIAPKeychainUtils.m in Sources */,
 				61FD03131BE9D26B00237EA3 /* CYFullScreenImageView.m in Sources */,
 				61E4DFB11BE7307D0097E9AA /* CYChatMessageViewModel.m in Sources */,
 				611B48281C97AFC300AD2772 /* CYContactsListViewController.m in Sources */,
 				61F0FCBC1BCF770C00E445EA /* MASLayoutConstraint.m in Sources */,
 				61F0FCCE1BCF963B00E445EA /* CYAlertViewAction.m in Sources */,
+				61F614341CD992FE007CD3AF /* CYPullRefreshConstants.m in Sources */,
 				613DF5781C9FEB6C0037F86C /* CYSearchController.m in Sources */,
 				61FD03051BE9A58900237EA3 /* CYCycleBannerViewController.m in Sources */,
 				61851EE11BCD0A86005340C8 /* CYBaseModel.m in Sources */,
 				61F1884F1BEB7008006DE729 /* UIButton+CYWebImageCache.m in Sources */,
 				6103CD961C9BA639000B4C82 /* CYContactsSearchInNavigationViewController.m in Sources */,
-				61851F031BCD10B5005340C8 /* CYPullRefreshConstants.m in Sources */,
 				61FEF34D1CA13D8500BE87D9 /* CYShareSDKTestViewController.m in Sources */,
 				61851EF31BCD0B1D005340C8 /* NSDictionary+CYSecureValue.m in Sources */,
-				61851F051BCD10B5005340C8 /* CYPullRefreshHeaderView.m in Sources */,
 				6103CDA31C9BDAC3000B4C82 /* CYActionSheetAction.m in Sources */,
 				61FFA6781CAE23200077EB1B /* CYBaseContentsGroup.m in Sources */,
 				614F22641BE0F58A00E3CF9D /* UIScrollView+CYUtils.m in Sources */,
@@ -1206,15 +1201,14 @@
 				611CB90D1C841DF3003A0E30 /* CYChatView.m in Sources */,
 				61851EC01BCD0964005340C8 /* main.m in Sources */,
 				61F0FCC01BCF770C00E445EA /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
-				61851F011BCD10B5005340C8 /* NSDate+CYPullRefresh.m in Sources */,
 				611CB8E71C83F0E7003A0E30 /* CYChatBaseModel.m in Sources */,
+				61F614351CD992FE007CD3AF /* CYPullRefreshFooterView.m in Sources */,
 				6120958D1C51FC210035FD2D /* CYIAPTestViewController.m in Sources */,
 				610EB0BD1BDF47970086D048 /* CYSendSMSUtils.m in Sources */,
 				611CB90B1C841DF3003A0E30 /* CYChatInputMorePadItem.m in Sources */,
 				611CB8FD1C841D8D003A0E30 /* CYChatBaseCell.m in Sources */,
 				61DF52CA1BE209C30015CDF2 /* CYAnimatedTextLabelViewController.m in Sources */,
 				611CB8E11C83F0CC003A0E30 /* CYChatMessage.m in Sources */,
-				61851F021BCD10B5005340C8 /* CYPullRefreshBaseView.m in Sources */,
 				61F0FCBF1BCF770C00E445EA /* NSArray+MASAdditions.m in Sources */,
 				61F783501CA0E29C004DE856 /* CYWechatUtil.m in Sources */,
 				6103CDA61C9BDB33000B4C82 /* CYActionSheetSection.m in Sources */,
@@ -1225,7 +1219,6 @@
 				611CC9891C33BAF700273718 /* UIView+CYAnimationUtil.m in Sources */,
 				611CB8E41C83F0D7003A0E30 /* CYChatUser.m in Sources */,
 				61851EF51BCD0B1D005340C8 /* NSString+CYUtils.m in Sources */,
-				61851F041BCD10B5005340C8 /* CYPullRefreshFooterView.m in Sources */,
 				611CB8F91C841D6E003A0E30 /* CYChatTextLeftArrowCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

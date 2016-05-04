@@ -25,6 +25,11 @@
 @property (nonatomic, strong) UIWindow *showWindow;
 @property (nonatomic, strong) UIWindow *originWindow;
 
+// distance between section and screen border
+@property (nonatomic, assign) CGFloat borderGap;
+// distance between sections
+@property (nonatomic, assign) CGFloat sectionGap;
+
 @end
 
 @implementation CYActionSheet
@@ -73,6 +78,8 @@
         section.actionSheet = self;
         [_contentView addSubview:section];
         _cancelSection = section;
+        
+        [self sectionLayout:_cancelSection withPreviousSection:nil];
     }
 }
 
@@ -80,6 +87,29 @@
     [super didMoveToSuperview];
     
     self.frame = self.superview.bounds;
+}
+
+#pragma mark - getter and setter
+- (CGFloat)borderGap {
+    
+    if (self.style == CYActionSheetStylePlain) {
+        
+        return 0;
+    } else {
+        
+        return CY_ACTION_SHEET_SECTION_BORDER_GAP;
+    }
+}
+
+- (CGFloat)sectionGap {
+    
+    if (self.style == CYActionSheetStylePlain) {
+        
+        return 0;
+    } else {
+        
+        return CY_ACTION_SHEET_GAP_BETWEEN_SECTIONS;
+    }
 }
 
 #pragma mark - getter
@@ -118,16 +148,29 @@
     
     if (section) {
         
+        // get previous section
+        CYActionSheetSection *previousSection = self.internalSections.lastObject;
+        if (!previousSection) {
+            
+            previousSection = _cancelSection;
+        }
+        
+        // add section
         section.actionSheet = self;
         [self.internalSections addObject:section];
         [self.contentView addSubview:section];
         
+        // add constraints for section
+        [self sectionLayout:section withPreviousSection:previousSection];
+        
+        // add corner radius for section in grouped style action sheet
         if (self.style == CYActionSheetStyleGrouped) {
             
             section.layer.cornerRadius = 10.f;
             section.clipsToBounds = YES;
         }
         
+        // add section separator line if needed
         if (self.showSeperatorForSections) {
             
             if (!self.separatorViews) {
@@ -139,151 +182,137 @@
             separator.backgroundColor = CY_ACTION_SHEET_SECTION_SEPARATOR_COLOR;
             [self.contentView addSubview:separator];
             [self.separatorViews addObject:separator];
+            [self separatorLayout:separator inSection:section];
         }
     }
+}
+
+- (void)sectionLayout:(CYActionSheetSection *)section
+  withPreviousSection:(CYActionSheetSection *)previousSection {
+    
+    section.translatesAutoresizingMaskIntoConstraints = NO;
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:section
+                                                            attribute:NSLayoutAttributeLeft
+                                                            relatedBy:NSLayoutRelationEqual
+                                                               toItem:_contentView
+                                                            attribute:NSLayoutAttributeLeft
+                                                           multiplier:1
+                                                             constant:self.borderGap];
+    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:section
+                                                             attribute:NSLayoutAttributeRight
+                                                             relatedBy:NSLayoutRelationEqual
+                                                                toItem:_contentView
+                                                             attribute:NSLayoutAttributeRight
+                                                            multiplier:1
+                                                              constant:-self.borderGap];
+    
+    NSLayoutConstraint *bottom = nil;
+    if (previousSection) {
+        
+        bottom = [NSLayoutConstraint constraintWithItem:section
+                                              attribute:NSLayoutAttributeBottom
+                                              relatedBy:NSLayoutRelationEqual
+                                                 toItem:previousSection
+                                              attribute:NSLayoutAttributeTop
+                                             multiplier:1
+                                               constant:-self.sectionGap];
+    } else {
+        
+        bottom = [NSLayoutConstraint constraintWithItem:section
+                                              attribute:NSLayoutAttributeBottom
+                                              relatedBy:NSLayoutRelationEqual
+                                                 toItem:_contentView
+                                              attribute:NSLayoutAttributeBottom
+                                             multiplier:1
+                                               constant:-self.sectionGap];
+    }
+    [self.contentView addConstraints:@[ left, right, bottom ]];
+}
+
+- (void)separatorLayout:(UIView *)separatorView
+              inSection:(CYActionSheetSection *)section {
+    
+    
+    separatorView.translatesAutoresizingMaskIntoConstraints = NO;
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:separatorView
+                                                            attribute:NSLayoutAttributeLeft
+                                                            relatedBy:NSLayoutRelationEqual
+                                                               toItem:section
+                                                            attribute:NSLayoutAttributeLeft
+                                                           multiplier:1
+                                                             constant:self.borderGap];
+    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:separatorView
+                                                             attribute:NSLayoutAttributeRight
+                                                             relatedBy:NSLayoutRelationEqual
+                                                                toItem:section
+                                                             attribute:NSLayoutAttributeRight
+                                                            multiplier:1
+                                                              constant:-self.borderGap];
+    
+    NSLayoutConstraint *height = [NSLayoutConstraint constraintWithItem:separatorView
+                                                              attribute:NSLayoutAttributeHeight
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:nil
+                                                              attribute:NSLayoutAttributeNotAnAttribute
+                                                             multiplier:1
+                                                               constant:0.5];
+    
+    NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:separatorView
+                                                              attribute:NSLayoutAttributeBottom
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:section
+                                                              attribute:NSLayoutAttributeBottom
+                                                             multiplier:1
+                                                               constant:0];
+    [self.contentView addConstraints:@[ left, right, bottom, height ]];
 }
 
 #pragma mark - layout
 - (void)refreshLayout {
     
-    CGFloat sectionFrameWidth = 0;
-    CGFloat sectionFrameX = 0;
-    if (self.style == CYActionSheetStylePlain) {
+    if (self.internalSections.count > 0) {
         
-        sectionFrameWidth = self.frame.size.width;
-    } else {
+        CYActionSheetSection *lastSection = self.internalSections.lastObject;
         
-        sectionFrameWidth = self.frame.size.width - 2 * CY_ACTION_SHEET_SECTION_BORDER_GAP;
-        sectionFrameX = CY_ACTION_SHEET_SECTION_BORDER_GAP;
+        self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
+        NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.contentView
+                                                                attribute:NSLayoutAttributeLeft
+                                                                relatedBy:NSLayoutRelationEqual
+                                                                   toItem:self
+                                                                attribute:NSLayoutAttributeLeft
+                                                               multiplier:1
+                                                                 constant:0];
+        NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.contentView
+                                                                 attribute:NSLayoutAttributeRight
+                                                                 relatedBy:NSLayoutRelationEqual
+                                                                    toItem:self
+                                                                 attribute:NSLayoutAttributeRight
+                                                                multiplier:1
+                                                                  constant:0];
+        
+        NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.contentView
+                                                               attribute:NSLayoutAttributeTop
+                                                               relatedBy:NSLayoutRelationEqual
+                                                                  toItem:lastSection
+                                                               attribute:NSLayoutAttributeTop
+                                                              multiplier:1
+                                                                constant:self.sectionGap];
+        
+        NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:self.contentView
+                                                                  attribute:NSLayoutAttributeBottom
+                                                                  relatedBy:NSLayoutRelationEqual
+                                                                     toItem:self
+                                                                  attribute:NSLayoutAttributeBottom
+                                                                 multiplier:1
+                                                                   constant:0];
+        [self addConstraints:@[ left, right, bottom, top ]];
     }
-    __block CGFloat nextY = 0;
-    [self.internalSections enumerateObjectsUsingBlock:^(CYActionSheetSection * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-        obj.frame = CGRectMake(sectionFrameX, nextY, sectionFrameWidth, obj.frame.size.height);
-        nextY += obj.frame.size.height;
-        if (self.style == CYActionSheetStyleGrouped) {
-            
-            nextY += CY_ACTION_SHEET_GAP_BETWEEN_SECTIONS;
-        }
-        if (self.showSeperatorForSections) {
-            
-            // layout separator
-            UIView *separator = self.separatorViews[idx];
-            separator.frame = CGRectMake(self.separatorInsets.left,
-                                         nextY,
-                                         self.frame.size.width - self.separatorInsets.left - self.separatorInsets.right,
-                                         0.5);
-            
-            nextY += 1;
-        }
-    }];
-    
-    if (self.cancelSection) {
-        
-        self.cancelSection.frame = CGRectMake(sectionFrameX, nextY, sectionFrameWidth, self.cancelSection.frame.size.height);
-        nextY += self.cancelSection.frame.size.height;
-        if (self.style == CYActionSheetStyleGrouped) {
-            
-            nextY += CY_ACTION_SHEET_GAP_BETWEEN_SECTIONS;
-        }
-    } else {
-        
-        // 没有cancel section时，减去多加的分割线高度
-        nextY -= 1;
-    }
-    
-    self.contentView.frame = CGRectMake(0, self.frame.size.height - nextY, self.frame.size.width, nextY);
 }
-
-//- (void)layoutSection:(CYActionSheetSection *)section
-//     withUnderSection:(CYActionSheetSection *)underSection
-//     verticalConstant:(CGFloat)verticalConstant {
-//    
-//    section.translatesAutoresizingMaskIntoConstraints = NO;
-//    
-//    NSLayoutConstraint *layoutLeft = [NSLayoutConstraint constraintWithItem:section
-//                                                                  attribute:NSLayoutAttributeLeft
-//                                                                  relatedBy:NSLayoutRelationEqual
-//                                                                     toItem:self.contentView
-//                                                                  attribute:NSLayoutAttributeLeft
-//                                                                 multiplier:1
-//                                                                   constant:0];
-//    NSLayoutConstraint *layoutRight = [NSLayoutConstraint constraintWithItem:section
-//                                                                   attribute:NSLayoutAttributeRight
-//                                                                   relatedBy:NSLayoutRelationEqual
-//                                                                      toItem:self.contentView
-//                                                                   attribute:NSLayoutAttributeRight
-//                                                                  multiplier:1
-//                                                                    constant:0];
-//    NSLayoutConstraint *layoutTop = nil;
-//    
-//    if (!underSection) {
-//        
-//        layoutTop = [NSLayoutConstraint constraintWithItem:section
-//                                                 attribute:NSLayoutAttributeBottom
-//                                                 relatedBy:NSLayoutRelationEqual
-//                                                    toItem:self.contentView
-//                                                 attribute:NSLayoutAttributeBottom
-//                                                multiplier:1
-//                                                  constant:-verticalConstant];
-//    } else {
-//        
-//        layoutTop = [NSLayoutConstraint constraintWithItem:section
-//                                                 attribute:NSLayoutAttributeBottom
-//                                                 relatedBy:NSLayoutRelationEqual
-//                                                    toItem:underSection
-//                                                 attribute:NSLayoutAttributeTop
-//                                                multiplier:1
-//                                                  constant:verticalConstant];
-//    }
-//    
-//    [self.contentView addConstraints:@[ layoutLeft, layoutRight, layoutTop ]];
-//}
-//
-//#pragma mark - draw line
-//- (void)drawRect:(CGRect)rect {
-//    [super drawRect:rect];
-//    
-//    if (self.showSeperatorForSections) {
-//        
-//        CGContextRef context = UIGraphicsGetCurrentContext();
-//        CGContextSetLineWidth(context, 0.5);
-//        CGContextSetStrokeColorWithColor(context, CY_ACTION_SHEET_SECTION_SEPARATOR_COLOR);
-//        [self.sections enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//            
-//            CGFloat lineY = CGRectGetMinY([self convertRect:obj.frame fromView:obj]) - 1;
-//            CGContextMoveToPoint(context, self.separatorInsets.left, lineY);
-//            CGContextAddLineToPoint(context, self.frame.size.width - self.separatorInsets.left + self.separatorInsets.right, lineY);
-//            CGContextStrokePath(context);
-//        }];
-//        
-//        if (self.cancelSection) {
-//            
-//            CGFloat lineY = CGRectGetMinY([self convertRect:self.cancelSection.frame fromView:self.cancelSection]) - 1;
-//            CGContextMoveToPoint(context, self.separatorInsets.left, lineY);
-//            CGContextAddLineToPoint(context, self.frame.size.width - self.separatorInsets.left + self.separatorInsets.right, lineY);
-//            CGContextStrokePath(context);
-//        }
-//    }
-//}
 
 #pragma mark - event
 - (void)actionSheetTapped:(UITapGestureRecognizer *)sender {
     
     CGPoint touchPoint = [sender locationInView:self];
-    
-//    __block BOOL touchInBlank = YES;
-//    [self.internalSections enumerateObjectsUsingBlock:^(CYActionSheetSection * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//        
-//        // 点击在section内时，不处理点击事件
-//        if (CGRectContainsPoint(obj.frame, touchPoint)) {
-//            
-//            touchInBlank = NO;
-//            *stop = YES;
-//        }
-//    }];
-//    
-//    if ()
     
     if (!CGRectContainsPoint(self.contentView.frame, touchPoint)
         && self.dimissOnBlankAreaTapped) {
@@ -302,6 +331,7 @@
     
     if (animated) {
         
+        [self layoutIfNeeded];
         self.contentView.center = CGPointMake(self.frame.size.width / 2.f, self.frame.size.height + self.contentView.frame.size.height / 2.f);
         self.backgroundColor = [UIColor clearColor];
         
