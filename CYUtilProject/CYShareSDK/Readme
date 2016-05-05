@@ -1,0 +1,116 @@
+
+接入分享util请注意一下：
+    1、本SDK包含分享网页和图片功能。
+    2、使用本SDK需要开发者自己下载第三方SDK，并包含在项目中。
+
+
+各SDK需要添加的framework如下：
+
+    1、 qqSDK
+        Security.framework
+        libiconv.dylib
+        SystemConfiguration.framework
+        CoreGraphics.Framework
+        libsqlite3.dylib
+        CoreTelephony.framework
+        libstdc++.dylib
+        libz.dylib
+
+
+
+各SDK处理iOS9兼容，需增加一下配置到Info.plist：
+    1、新浪微博
+        <key>LSApplicationQueriesSchemes</key>
+        <array>
+            <string>sinaweibohd</string>
+            <string>sinaweibo</string>
+            <string>weibosdk</string>
+            <string>weibosdk2.5</string>
+        </array>
+
+
+        <key>NSAppTransportSecurity</key>
+        <dict>
+            <key>NSExceptionDomains</key>
+            <dict>
+                <key>sina.cn</key>
+                <dict>
+                    <key>NSIncludesSubdomains</key>
+                    <true/>
+                    <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+                    <false/>
+                </dict>
+                <key>weibo.cn</key>
+                <dict>
+                    <key>NSIncludesSubdomains</key>
+                    <true/>
+                    <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+                    <false/>
+                </dict>
+                <key>weibo.com</key>
+                <dict>
+                    <key>NSIncludesSubdomains</key>
+                    <true/>
+                    <key>NSThirdPartyExceptionAllowsInsecureHTTPLoads</key>
+                    <true/>
+                    <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+                    <false/>
+                </dict>
+                <key>sinaimg.cn</key>
+                <dict>
+                    <key>NSIncludesSubdomains</key>
+                    <true/>
+                    <key>NSThirdPartyExceptionAllowsInsecureHTTPLoads</key>
+                    <true/>
+                    <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+                    <false/>
+                </dict>
+                <key>sinajs.cn</key>
+                <dict>
+                    <key>NSIncludesSubdomains</key>
+                    <true/>
+                    <key>NSThirdPartyExceptionAllowsInsecureHTTPLoads</key>
+                    <true/>
+                    <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+                    <false/>
+                </dict>
+                <key>sina.com.cn</key>
+                <dict>
+                    <key>NSIncludesSubdomains</key>
+                    <true/>
+                    <key>NSThirdPartyExceptionAllowsInsecureHTTPLoads</key>
+                    <true/>
+                    <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+                    <false/>
+                </dict>
+            </dict>
+        </dict>
+
+
+    2、微信
+        <key>LSApplicationQueriesSchemes</key>
+        <array>
+            <string>weixin</string>
+            <string>wechat</string>
+        </array>
+
+    3、qq
+
+        <key>LSApplicationQueriesSchemes</key>
+        <array>
+            <string>mqqOpensdkSSoLogin</string>
+            <string>mqzone</string>
+            <string>mqq</string>
+            <string>mqqapi</string>
+            <string>mqqopensdkapiV3</string>
+            <string>mqqopensdkapiV2</string>
+            <string>mqqapiwallet</string>
+            <string>mqqwpa</string>
+            <string>mqqbrowser</string>
+            <string>wtloginmqq2</string>
+        </array>
+
+
+
+
+
