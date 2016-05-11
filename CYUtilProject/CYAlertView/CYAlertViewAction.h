@@ -12,27 +12,18 @@
 @class CYAlertViewAction;
 @class CYAlertView;
 
-typedef void (^CYAlertViewActionHandler)(CYAlertViewAction *action);
+typedef void (^CYAlertViewActionHandler)(CYAlertView *alertView, CYAlertViewAction *action);
 
-@interface CYAlertViewAction : NSObject
+@interface CYAlertViewAction : UIButton
 
-@property (nonatomic, strong, readonly) NSString *title;
-// default YES
-@property (nonatomic, assign) BOOL enabled;
+// background color for highlighted state
+@property (nonatomic, strong) UIColor *highlightedBackgroundColor;
+// background color for other state
+@property (nonatomic, strong) UIColor *normalBackgroundColor;
+
 // default YES, 点击后，自动dismiss alert
 @property (nonatomic, assign) BOOL dismissAlert;
 
-@property (nonatomic, strong) UIColor *backgroundColor;
-@property (nonatomic, strong) UIColor *highlightedBackgroundColor;
-
-@property (nonatomic, strong) UIColor *titleColor;
-@property (nonatomic, strong) UIColor *highlightedTitleColor;
-@property (nonatomic, strong) UIImage *backgroundImage;
-@property (nonatomic, strong) UIImage *highlightedBackgroundImage;
-@property (nonatomic, strong) UIImage *image;
-@property (nonatomic, strong) UIImage *highlightedImage;
-
-@property (nonatomic, strong, readonly) UIView *actionView;
 @property (nonatomic, weak) CYAlertView *alertView;
 
 // handler should not have an strong refrence to CYAlertView, or it may be memory leaks

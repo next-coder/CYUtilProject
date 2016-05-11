@@ -8,15 +8,11 @@
 
 #import "CYAlertView.h"
 
-#define CY_ALERT_VIEW_MESSAGE_MAX_HEIGHT   200
 #define CY_ALERT_VIEW_CONTENT_BODER_GAP    15
-#define CY_ALERT_VIEW_CONTENT_BETWEEN_GAP  15
 #define CY_ALERT_VIEW_ACTION_VIEW_HEIGHT    44
-#define CY_ALERT_VIEW_ACTION_SEPARATOR_COLOR ([UIColor colorWithRed:200/255.f green:200/255.f blue:200/255.f alpha:1.f].CGColor)
-//#define CY_ALERT_VIEW_ACTION_SEPARATOR_COLOR ([UIColor greenColor].CGColor)
 
-#define CY_ALERT_VIEW_BORDER_GAP            20
-
+// action layouts, 2 actions are layout as CYAlertViewActionViewsLayoutHerizontal,
+// more than 2 actions are layout as CYAlertViewActionViewsLayoutVertical
 typedef NS_ENUM(NSInteger, CYAlertViewActionViewsLayout) {
     
     CYAlertViewActionViewsLayoutVertical,
@@ -26,39 +22,41 @@ typedef NS_ENUM(NSInteger, CYAlertViewActionViewsLayout) {
 @interface CYAlertView ()
 
 @property (nonatomic, strong) UILabel *titleLabel;
-@property (nonatomic, strong) UITextView *messageTextView;
+@property (nonatomic, strong) UILabel *messageLabel;
 
-@property (nonatomic, strong) UIView *cancelActionView;
 @property (nonatomic, strong) CYAlertViewAction *cancelAction;
-
-@property (nonatomic, strong) NSMutableArray *customMessageViews;
-
-@property (nonatomic, strong) NSMutableArray *actionButtons;
-@property (nonatomic, strong) NSMutableArray *actions;
+@property (nonatomic, strong) NSArray *actions;
+@property (nonatomic, strong) NSArray *customViews;
+@property (nonatomic, strong) NSArray *actionSeparatorLineViews;
 
 @property (nonatomic, assign, readonly) CYAlertViewActionViewsLayout actionLayout;
-@property (nonatomic, assign, readonly) NSInteger numberOfActions;
+
+@property (nonatomic, strong) UIWindow *showWindow;
+@property (nonatomic, assign) CGFloat bottomInset;
 
 @end
 
 @implementation CYAlertView
 
-- (void)dealloc {
-    
-    [alertShowingWindowTap removeTarget:self action:@selector(alertTapped:)];
-}
-
 - (instancetype)initWithTitle:(NSString *)title
                       message:(NSString *)message
-                  cancelTitle:(NSString *)cancelTitle {
+                  cancelTitle:(NSString *)cancelTitle
+                  actionStyle:(CYAlertViewActionStyle)actionStyle
+                  customViews:(NSArray<UIView *> *)customViews
+                      actions:(NSArray<CYAlertViewAction *> *)actions {
     
     if (self = [super initWithFrame:CGRectZero]) {
         
         _title = title;
         _message = message;
         _cancelTitle = cancelTitle;
+        _actionStyle = actionStyle;
+        _actions = actions;
+        _customViews = customViews;
         
         [self createSubViews];
+        
+        // background
         self.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.98];
         self.layer.cornerRadius = 10.f;
         self.clipsToBounds = YES;
@@ -68,8 +66,10 @@ typedef NS_ENUM(NSInteger, CYAlertViewActionViewsLayout) {
 
 - (void)createSubViews {
     
+    __block UIView *previousView = nil;
     if (_title) {
         
+        // create title
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.font = [UIFont boldSystemFontOfSize:16.f];
         _titleLabel.textColor = [UIColor blackColor];
@@ -77,35 +77,129 @@ typedef NS_ENUM(NSInteger, CYAlertViewActionViewsLayout) {
         _titleLabel.numberOfLines = 0;
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         [self addSubview:_titleLabel];
+        
+        // layout
+        [self contentLayout:_titleLabel
+           withPreviousView:nil
+                     topGap:10];
+        [self titleOrMessageHerizontalLayout:_titleLabel];
+        previousView = _titleLabel;
     }
     if (_message) {
         
-        _messageTextView = [[UITextView alloc] init];
-        _messageTextView.font = [UIFont systemFontOfSize:14.f];
-        _messageTextView.textColor = [UIColor darkGrayColor];
-        _messageTextView.backgroundColor = [UIColor clearColor];
-        _messageTextView.text = _message;
-        _messageTextView.editable = NO;
-        _messageTextView.textAlignment = NSTextAlignmentCenter;
-        [self addSubview:_messageTextView];
+        // create message
+        _messageLabel = [[UILabel alloc] init];
+        _messageLabel.font = [UIFont systemFontOfSize:14.f];
+        _messageLabel.textColor = [UIColor darkGrayColor];
+        _messageLabel.backgroundColor = [UIColor clearColor];
+        _messageLabel.text = _message;
+        _messageLabel.textAlignment = NSTextAlignmentCenter;
+        _messageLabel.numberOfLines = 0;
+        [self addSubview:_messageLabel];
+        
+        // layout
+        [self contentLayout:_messageLabel
+           withPreviousView:previousView
+                     topGap:10];
+        [self titleOrMessageHerizontalLayout:_messageLabel];
+        previousView = _messageLabel;
     }
+    
+    // layout custom views, layout one by one, from top to bottom,
+    [_customViews enumerateObjectsUsingBlock:^(UIView *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        [self addSubview:obj];
+        
+        if (idx == 0
+            && previousView) {
+            
+            [self contentLayout:obj
+               withPreviousView:previousView
+                         topGap:10];
+        } else {
+            
+            [self contentLayout:obj
+               withPreviousView:previousView
+                         topGap:0];
+        }
+        
+        previousView = obj;
+    }];
+    
+    // layout action
     if (_cancelTitle
         && ![_cancelTitle isEqualToString:@""]) {
         
-        __weak CYAlertView *weakSelf = self;
+        // create cancel action
         _cancelAction = [[CYAlertViewAction alloc] initWithTitle:_cancelTitle
-                                                         handler:^(CYAlertViewAction *action) {
-                                                             
-                                                             [weakSelf dismiss];
-                                                         }];
-        _cancelActionView = _cancelAction.actionView;
-        [self addSubview:_cancelActionView];
+                                                         handler:nil];
+        [self addSubview:_cancelAction];
+        _actions = [@[ _cancelAction ] arrayByAddingObjectsFromArray:_actions];
     }
+    
+    // layout actions, layout one by one, from bottom to top
+    __block CYAlertViewAction *previousAcion = nil;
+    [_actions enumerateObjectsUsingBlock:^(CYAlertViewAction *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        obj.alertView = self;
+        [self addSubview:obj];
+        if (self.actionLayout == CYAlertViewActionViewsLayoutHerizontal) {
+            
+            [self actionHerizontalLayout:obj withPreviousAction:previousAcion];
+        } else {
+            
+            [self actionVerticalLayout:obj withPreviousAction:previousAcion];
+        }
+        
+        previousAcion = obj;
+    }];
+    
+    if (self.actionStyle == CYAlertViewActionStyleDefault) {
+        
+        // create action separators，only action type is CYAlertViewActionStyleDefault has separators
+        NSInteger separatorCount = self.actions.count;
+        NSMutableArray *separators = [NSMutableArray arrayWithCapacity:separatorCount];
+        for (int i = 0; i < separatorCount; i++) {
+            
+            UIView *separator = [[UIView alloc] init];
+            separator.backgroundColor = [UIColor colorWithRed:200/255.f green:200/255.f blue:200/255.f alpha:1.f];
+            separator.translatesAutoresizingMaskIntoConstraints = NO;
+            [self addSubview:separator];
+            [separators addObject:separator];
+            
+            if (self.actionLayout == CYAlertViewActionViewsLayoutVertical) {
+                
+                // action layout in vertical, separator layouts
+                [self verticalActionSeparatorLayout:separator
+                                     previousAction:self.actions[i]];
+            } else if (i == (separatorCount - 1)) {
+                
+                // action layout in herizotal, top separator layouts
+                [self herizontalActionTopSeparatorLayout:separator];
+            } else {
+                
+                // action layout in herizotal, separator layouts
+                [self herizontalActionSeparatorLayout:separator
+                                       previousAction:self.actions[i]];
+            }
+        }
+        self.actionSeparatorLineViews = [separators copy];
+    }
+    
+    // last custom view layout on the top of top action
+    NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:previousView
+                                                              attribute:NSLayoutAttributeBottom
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:previousAcion
+                                                              attribute:NSLayoutAttributeTop
+                                                             multiplier:1
+                                                               constant:-10];
+    [self addConstraint:bottom];
 }
 
 - (CYAlertViewActionViewsLayout)actionLayout {
     
-    if (self.numberOfActions <= 2) {
+    if (self.actions.count <= 2) {
         
         return CYAlertViewActionViewsLayoutHerizontal;
     } else {
@@ -114,305 +208,391 @@ typedef NS_ENUM(NSInteger, CYAlertViewActionViewsLayout) {
     }
 }
 
-- (NSInteger)numberOfActions {
+- (UIWindow *)showWindow {
     
-    NSInteger numberOfActions = [_actions count];
-    if (_cancelAction) {
+    if (!_showWindow) {
         
-        numberOfActions++;
+        _showWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        _showWindow.windowLevel = 10;
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(alertTapped:)];
+        [_showWindow addGestureRecognizer:tap];
     }
-    return numberOfActions;
+    return _showWindow;
 }
 
-#pragma mark - custom alert
-- (void)addCustomMessageView:(UIView *)view {
+- (void)didMoveToSuperview {
+    [super didMoveToSuperview];
     
-    if (!view) {
-        return;
-    }
-    if (!_customMessageViews) {
+    if (self.superview) {
         
-        _customMessageViews = [NSMutableArray array];
+        self.translatesAutoresizingMaskIntoConstraints = NO;
+        NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self
+                                                                attribute:NSLayoutAttributeLeft
+                                                                relatedBy:NSLayoutRelationEqual
+                                                                   toItem:self.superview
+                                                                attribute:NSLayoutAttributeLeft
+                                                               multiplier:1
+                                                                 constant:20];
+        NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self
+                                                                 attribute:NSLayoutAttributeRight
+                                                                 relatedBy:NSLayoutRelationEqual
+                                                                    toItem:self.superview
+                                                                 attribute:NSLayoutAttributeRight
+                                                                multiplier:1
+                                                                  constant:-20];
+        NSLayoutConstraint *centerY = [NSLayoutConstraint constraintWithItem:self
+                                                                   attribute:NSLayoutAttributeCenterY
+                                                                   relatedBy:NSLayoutRelationEqual
+                                                                      toItem:self.superview
+                                                                   attribute:NSLayoutAttributeCenterY
+                                                                  multiplier:1
+                                                                    constant:-self.bottomInset];
+        [self.superview addConstraints:@[ left, right, centerY ]];
     }
-    [self addSubview:view];
-    [_customMessageViews addObject:view];
-}
-
-- (void)addAction:(CYAlertViewAction *)action {
-    
-    if (!action) {
-        
-        return;
-    }
-    if (!_actions) {
-        
-        _actions = [NSMutableArray array];
-    }
-    if (!_actionButtons) {
-        
-        _actionButtons = [NSMutableArray array];
-    }
-    action.alertView = self;
-    [_actions addObject:action];
-    [_actionButtons addObject:action.actionView];
-    
-    [self addSubview:action.actionView];
 }
 
 #pragma mark - layout content views
-- (void)layoutSubviews {
-    [super layoutSubviews];
+- (void)titleOrMessageHerizontalLayout:(UILabel *)titleOrMessage {
     
-    [self layoutAlert];
+    // since title and message are labels, to fit the content size, we must set the left and right constraints of them
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:titleOrMessage
+                                                            attribute:NSLayoutAttributeLeft
+                                                            relatedBy:NSLayoutRelationEqual
+                                                               toItem:self
+                                                            attribute:NSLayoutAttributeLeft
+                                                           multiplier:1
+                                                             constant:CY_ALERT_VIEW_CONTENT_BODER_GAP];
+    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:titleOrMessage
+                                                             attribute:NSLayoutAttributeRight
+                                                             relatedBy:NSLayoutRelationEqual
+                                                                toItem:self
+                                                             attribute:NSLayoutAttributeRight
+                                                            multiplier:1
+                                                              constant:-CY_ALERT_VIEW_CONTENT_BODER_GAP];
+    [self addConstraints:@[ left, right ]];
 }
 
-- (void)layoutAlert {
+- (void)contentLayout:(UIView *)contentView
+     withPreviousView:(UIView *)previousView
+               topGap:(CGFloat)topGap {
     
-    CGFloat selfWidth = 280;
-    CGFloat contentWidth = selfWidth - CY_ALERT_VIEW_CONTENT_BODER_GAP * 2;
-    CGRect frame;
-    __block CGFloat nextY = CY_ALERT_VIEW_CONTENT_BODER_GAP;
-    if (_title
-        && ![_title isEqualToString:@""]) {
-        
-        CGSize size = [_titleLabel sizeThatFits:CGSizeMake(contentWidth, 100)];
-        frame.size = size;
-        frame.origin.x = (selfWidth - size.width) / 2.f;
-        frame.origin.y = nextY;
-        _titleLabel.frame = frame;
-        
-        nextY = CGRectGetMaxY(_titleLabel.frame);
-    }
+    contentView.translatesAutoresizingMaskIntoConstraints = NO;
+    // all the following constraints priority are all low, user can add their own constraints to replace the default behavior
+    // content x in the center of section
+    NSLayoutConstraint *centerX = [NSLayoutConstraint constraintWithItem:contentView
+                                                               attribute:NSLayoutAttributeCenterX
+                                                               relatedBy:NSLayoutRelationEqual
+                                                                  toItem:self
+                                                               attribute:NSLayoutAttributeCenterX
+                                                              multiplier:1
+                                                                constant:0];
+    centerX.priority = UILayoutPriorityDefaultLow;
+    // content height equal to the default frame.size.height
+    NSLayoutConstraint *height = [NSLayoutConstraint constraintWithItem:contentView
+                                                              attribute:NSLayoutAttributeHeight
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:nil
+                                                              attribute:NSLayoutAttributeNotAnAttribute
+                                                             multiplier:1
+                                                               constant:contentView.frame.size.height];
+    height.priority = UILayoutPriorityDefaultLow;
     
-    if (_message
-        && ![_message isEqualToString:@""]) {
+    // content width equal to the default frame.size.width
+    NSLayoutConstraint *width = [NSLayoutConstraint constraintWithItem:contentView
+                                                             attribute:NSLayoutAttributeWidth
+                                                             relatedBy:NSLayoutRelationEqual
+                                                                toItem:nil
+                                                             attribute:NSLayoutAttributeNotAnAttribute
+                                                            multiplier:1
+                                                              constant:contentView.frame.size.width];
+    width.priority = UILayoutPriorityDefaultLow;
+    
+    // top is the bottom of the previous view
+    NSLayoutConstraint *top = nil;
+    if (previousView) {
         
-        CGSize size = [_messageTextView sizeThatFits:CGSizeMake(contentWidth, CY_ALERT_VIEW_MESSAGE_MAX_HEIGHT)];
-        frame.size = size;
-        frame.origin.x = (selfWidth - size.width) / 2.f;
-        frame.origin.y = nextY;
-        _messageTextView.frame = frame;
-        
-        nextY = CGRectGetMaxY(_messageTextView.frame) + 5;
+        top = [NSLayoutConstraint constraintWithItem:contentView
+                                           attribute:NSLayoutAttributeTop
+                                           relatedBy:NSLayoutRelationEqual
+                                              toItem:previousView
+                                           attribute:NSLayoutAttributeBottom
+                                          multiplier:1
+                                            constant:topGap];
     } else {
         
-        nextY += CY_ALERT_VIEW_CONTENT_BETWEEN_GAP;
+        top = [NSLayoutConstraint constraintWithItem:contentView
+                                           attribute:NSLayoutAttributeTop
+                                           relatedBy:NSLayoutRelationEqual
+                                              toItem:self
+                                           attribute:NSLayoutAttributeTop
+                                          multiplier:1
+                                            constant:topGap];
     }
     
-    if (_customMessageViews
-        && [_customMessageViews count] > 0) {
-        
-        [_customMessageViews enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL * _Nonnull stop) {
-            
-            CGRect frame = view.frame;
-            frame.origin.x = (selfWidth - frame.size.width) / 2.f;
-            frame.origin.y = nextY;
-            view.frame = frame;
-            
-            nextY = CGRectGetMaxY(view.frame) + CY_ALERT_VIEW_CONTENT_BETWEEN_GAP;
-        }];
-    }
-    
-    if (self.numberOfActions > 0) {
-        
-        if (self.actionLayout == CYAlertViewActionViewsLayoutVertical) {
-            
-            CGFloat buttonOriginX = 0;
-            CGFloat buttonWidth = selfWidth;
-            if (self.actionStyle == CYAlertViewActionStyleRoundRect) {
-                
-                buttonOriginX = CY_ALERT_VIEW_CONTENT_BODER_GAP;
-                buttonWidth = selfWidth - 2 * CY_ALERT_VIEW_CONTENT_BODER_GAP;
-            }
-            // 按钮竖着布局
-            [_actionButtons enumerateObjectsUsingBlock:^(UIButton *button, NSUInteger idx, BOOL * _Nonnull stop) {
-                
-                CGRect frame;
-                frame.origin.x = buttonOriginX;
-                frame.origin.y = nextY + 0.5;
-                frame.size.width = buttonWidth;
-                frame.size.height = CY_ALERT_VIEW_ACTION_VIEW_HEIGHT - 0.5;
-                button.frame = frame;
-                
-                nextY = CGRectGetMaxY(button.frame);
-                if (self.actionStyle == CYAlertViewActionStyleRoundRect) {
-                    
-                    nextY += CY_ALERT_VIEW_CONTENT_BETWEEN_GAP;
-                }
-            }];
-            if (_cancelActionView) {
-                
-                CGRect frame;
-                frame.origin.x = buttonOriginX;
-                frame.origin.y = nextY + 0.5;
-                frame.size.width = buttonWidth;
-                frame.size.height = CY_ALERT_VIEW_ACTION_VIEW_HEIGHT - 0.5;
-                _cancelActionView.frame = frame;
-                
-                nextY = CGRectGetMaxY(_cancelActionView.frame);
-                if (self.actionStyle == CYAlertViewActionStyleRoundRect) {
-                    
-                    nextY += CY_ALERT_VIEW_CONTENT_BETWEEN_GAP;
-                }
-            }
-        } else {
-            
-            // 按钮水平布局
-            __block CGFloat nextX = 0;
-            CGFloat buttonWidth = 0;
-            if (self.actionStyle == CYAlertViewActionStyleRoundRect) {
-                
-                buttonWidth = (selfWidth - CY_ALERT_VIEW_CONTENT_BODER_GAP * (self.numberOfActions + 1)) / self.numberOfActions;
-            } else {
-                
-                buttonWidth = selfWidth / self.numberOfActions;
-            }
-            CGSize buttonSize = CGSizeMake(buttonWidth - 0.5, CY_ALERT_VIEW_ACTION_VIEW_HEIGHT);
-            if (self.actionStyle == CYAlertViewActionStyleRoundRect) {
-                nextX = CY_ALERT_VIEW_CONTENT_BODER_GAP;
-            }
-            if (_cancelActionView) {
-                
-                CGRect frame;
-                frame.origin.x = 0;
-                frame.origin.y = nextY;
-                if (!_actionButtons
-                    || _actionButtons.count == 0) {
-                    
-                    frame.size = CGSizeMake(buttonWidth, CY_ALERT_VIEW_ACTION_VIEW_HEIGHT);
-                } else {
-                    
-                    frame.size = buttonSize;
-                }
-                _cancelActionView.frame = frame;
-                
-                nextX = CGRectGetMaxX(_cancelActionView.frame);
-                if (self.actionStyle == CYAlertViewActionStyleRoundRect) {
-                    nextX = CGRectGetMaxX(_cancelActionView.frame) + CY_ALERT_VIEW_CONTENT_BODER_GAP;
-                }
-            }
-            [_actionButtons enumerateObjectsUsingBlock:^(UIButton *button, NSUInteger idx, BOOL * _Nonnull stop) {
-                
-                CGRect frame;
-                frame.origin.x = nextX;
-                frame.origin.y = nextY;
-                if (idx == (_actionButtons.count - 1)) {
-                    
-                    frame.size = CGSizeMake(buttonWidth, CY_ALERT_VIEW_ACTION_VIEW_HEIGHT);
-                } else {
-                    
-                    frame.size = buttonSize;
-                }
-                button.frame = frame;
-                
-                if (self.actionStyle == CYAlertViewActionStyleRoundRect) {
-                    
-                    nextX = CGRectGetMaxX(button.frame) + CY_ALERT_VIEW_CONTENT_BODER_GAP;
-                } else {
-                    
-                    nextX = CGRectGetMaxX(button.frame) + 0.5;
-                }
-            }];
-            nextY += 44;
-            if (self.actionStyle == CYAlertViewActionStyleRoundRect) {
-                
-                nextY += CY_ALERT_VIEW_CONTENT_BODER_GAP;
-            }
-        }
-        
-    } else {
-        
-        nextY += CY_ALERT_VIEW_CONTENT_BODER_GAP;
-    }
-    frame = CGRectMake(0, 0, selfWidth, nextY);
-    CGPoint center = self.center;
-    self.frame = frame;
-    self.center = center;
+    [self addConstraints:@[ centerX, width, height, top ]];
 }
 
-#pragma mark - draw separator
-- (void)drawRect:(CGRect)rect {
-    [super drawRect:rect];
+- (void)actionHerizontalLayout:(CYAlertViewAction *)action
+            withPreviousAction:(CYAlertViewAction *)previousAction {
     
+    CGFloat herizontalGap = 0;
     if (self.actionStyle == CYAlertViewActionStyleRoundRect) {
         
-        return;
+        herizontalGap = CY_ALERT_VIEW_CONTENT_BODER_GAP;
     }
-    NSInteger numberOfActions = self.numberOfActions;
-    if (numberOfActions > 0) {
+    CGFloat verticalGap = 0;
+    if (self.actionStyle == CYAlertViewActionStyleRoundRect) {
         
-        NSInteger leftSeparatorCount = numberOfActions;
-        if (self.actionLayout == CYAlertViewActionViewsLayoutVertical) {
-            
-            CGContextRef context = UIGraphicsGetCurrentContext();
-            CGContextSetLineWidth(context, 0.5);
-            CGContextSetStrokeColorWithColor(context, CY_ALERT_VIEW_ACTION_SEPARATOR_COLOR);
-            while (leftSeparatorCount > 0) {
-                
-                CGFloat lineY = self.frame.size.height - CY_ALERT_VIEW_ACTION_VIEW_HEIGHT * leftSeparatorCount;
-                CGContextMoveToPoint(context, 0, lineY);
-                CGContextAddLineToPoint(context, self.frame.size.width, lineY);
-                CGContextStrokePath(context);
-                leftSeparatorCount--;
-            }
-        } else {
-            
-            // 最上面一条横线
-            CGContextRef context = UIGraphicsGetCurrentContext();
-            CGContextSetLineWidth(context, 0.5);
-            CGContextSetStrokeColorWithColor(context, CY_ALERT_VIEW_ACTION_SEPARATOR_COLOR);
-            CGContextMoveToPoint(context, 0, self.frame.size.height - CY_ALERT_VIEW_ACTION_VIEW_HEIGHT - 0.5);
-            CGContextAddLineToPoint(context, self.frame.size.width, self.frame.size.height - CY_ALERT_VIEW_ACTION_VIEW_HEIGHT);
-            CGContextStrokePath(context);
-            
-            // 按钮之间的分割线
-            CGFloat actionWidth = self.frame.size.width / numberOfActions;
-            leftSeparatorCount--;
-            while (leftSeparatorCount > 0) {
-                
-                CGContextMoveToPoint(context, actionWidth * leftSeparatorCount, self.frame.size.height);
-                CGContextAddLineToPoint(context, actionWidth * leftSeparatorCount, self.frame.size.height - CY_ALERT_VIEW_ACTION_VIEW_HEIGHT);
-                CGContextStrokePath(context);
-                leftSeparatorCount--;
-            }
-        }
+        verticalGap = 10.f;
+    }
+    
+    action.translatesAutoresizingMaskIntoConstraints = NO;
+    // since title and message are labels, to fit the content size, we must set the left and right constraints of them
+    NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:action
+                                                              attribute:NSLayoutAttributeBottom
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:self
+                                                              attribute:NSLayoutAttributeBottom
+                                                             multiplier:1
+                                                               constant:-verticalGap];
+    NSLayoutConstraint *width = [NSLayoutConstraint constraintWithItem:action
+                                                             attribute:NSLayoutAttributeWidth
+                                                             relatedBy:NSLayoutRelationEqual
+                                                                toItem:self
+                                                             attribute:NSLayoutAttributeWidth
+                                                            multiplier:1.0 / self.actions.count
+                                                              constant:-(CGFloat)herizontalGap * (self.actions.count + 1) / self.actions.count];
+    NSLayoutConstraint *height = [NSLayoutConstraint constraintWithItem:action
+                                                              attribute:NSLayoutAttributeHeight
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:nil
+                                                              attribute:NSLayoutAttributeNotAnAttribute
+                                                             multiplier:1
+                                                               constant:CY_ALERT_VIEW_ACTION_VIEW_HEIGHT];
+    
+    NSLayoutConstraint *left = nil;
+    if (previousAction) {
+        
+        left = [NSLayoutConstraint constraintWithItem:action
+                                            attribute:NSLayoutAttributeLeft
+                                            relatedBy:NSLayoutRelationEqual
+                                               toItem:previousAction
+                                            attribute:NSLayoutAttributeRight
+                                           multiplier:1
+                                             constant:herizontalGap];
+    } else {
+        
+        left = [NSLayoutConstraint constraintWithItem:action
+                                            attribute:NSLayoutAttributeLeft
+                                            relatedBy:NSLayoutRelationEqual
+                                               toItem:self
+                                            attribute:NSLayoutAttributeLeft
+                                           multiplier:1
+                                             constant:herizontalGap];
+    }
+    
+    [self addConstraints:@[ left, width, height, bottom ]];
+}
+
+- (void)actionVerticalLayout:(CYAlertViewAction *)action
+          withPreviousAction:(CYAlertViewAction *)previousAction {
+    
+    CGFloat herizontalGap = 0;
+    if (self.actionStyle == CYAlertViewActionStyleRoundRect) {
+        
+        herizontalGap = CY_ALERT_VIEW_CONTENT_BODER_GAP;
+    }
+    
+    // since title and message are labels, to fit the content size, we must set the left and right constraints of them
+    action.translatesAutoresizingMaskIntoConstraints = NO;
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:action
+                                                            attribute:NSLayoutAttributeLeft
+                                                            relatedBy:NSLayoutRelationEqual
+                                                               toItem:self
+                                                            attribute:NSLayoutAttributeLeft
+                                                           multiplier:1
+                                                             constant:herizontalGap];
+    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:action
+                                                             attribute:NSLayoutAttributeRight
+                                                             relatedBy:NSLayoutRelationEqual
+                                                                toItem:self
+                                                             attribute:NSLayoutAttributeRight
+                                                            multiplier:1
+                                                              constant:-herizontalGap];
+    NSLayoutConstraint *height = [NSLayoutConstraint constraintWithItem:action
+                                                             attribute:NSLayoutAttributeHeight
+                                                             relatedBy:NSLayoutRelationEqual
+                                                                toItem:nil
+                                                             attribute:NSLayoutAttributeNotAnAttribute
+                                                            multiplier:1
+                                                              constant:CY_ALERT_VIEW_ACTION_VIEW_HEIGHT];
+    
+    
+    CGFloat bottomGap = 0;
+    if (self.actionStyle == CYAlertViewActionStyleRoundRect) {
+        
+        bottomGap = 10.f;
+    }
+    NSLayoutConstraint *bottom = nil;
+    if (previousAction) {
+        
+        bottom = [NSLayoutConstraint constraintWithItem:action
+                                              attribute:NSLayoutAttributeBottom
+                                              relatedBy:NSLayoutRelationEqual
+                                                 toItem:previousAction
+                                              attribute:NSLayoutAttributeTop
+                                             multiplier:1
+                                               constant:-bottomGap];
+    } else {
+        
+        bottom = [NSLayoutConstraint constraintWithItem:action
+                                              attribute:NSLayoutAttributeBottom
+                                              relatedBy:NSLayoutRelationEqual
+                                                 toItem:self
+                                              attribute:NSLayoutAttributeBottom
+                                             multiplier:1
+                                               constant:-bottomGap];
+    }
+
+    [self addConstraints:@[ left, right, height, bottom ]];
+}
+
+- (void)verticalActionSeparatorLayout:(UIView *)separator
+                       previousAction:(CYAlertViewAction *)previousAction {
+    
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:separator
+                                                            attribute:NSLayoutAttributeLeft
+                                                            relatedBy:NSLayoutRelationEqual
+                                                               toItem:previousAction
+                                                            attribute:NSLayoutAttributeLeft
+                                                           multiplier:1
+                                                             constant:0];
+    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:separator
+                                                             attribute:NSLayoutAttributeRight
+                                                             relatedBy:NSLayoutRelationEqual
+                                                                toItem:previousAction
+                                                             attribute:NSLayoutAttributeRight
+                                                            multiplier:1
+                                                              constant:0];
+    NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:separator
+                                                              attribute:NSLayoutAttributeBottom
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:previousAction
+                                                              attribute:NSLayoutAttributeTop
+                                                             multiplier:1
+                                                               constant:0];
+    NSLayoutConstraint *height = [NSLayoutConstraint constraintWithItem:separator
+                                                              attribute:NSLayoutAttributeHeight
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:nil
+                                                              attribute:NSLayoutAttributeNotAnAttribute
+                                                             multiplier:1
+                                                               constant:0.5];
+    [self addConstraints:@[ left, right, bottom, height ]];
+}
+
+- (void)herizontalActionSeparatorLayout:(UIView *)separator
+                         previousAction:(CYAlertViewAction *)previousAction {
+    
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:separator
+                                                            attribute:NSLayoutAttributeLeft
+                                                            relatedBy:NSLayoutRelationEqual
+                                                               toItem:previousAction
+                                                            attribute:NSLayoutAttributeRight
+                                                           multiplier:1
+                                                             constant:0];
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:separator
+                                                           attribute:NSLayoutAttributeTop
+                                                           relatedBy:NSLayoutRelationEqual
+                                                              toItem:previousAction
+                                                           attribute:NSLayoutAttributeTop
+                                                          multiplier:1
+                                                            constant:0];
+    NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:separator
+                                                              attribute:NSLayoutAttributeBottom
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:previousAction
+                                                              attribute:NSLayoutAttributeBottom
+                                                             multiplier:1
+                                                               constant:0];
+    NSLayoutConstraint *width = [NSLayoutConstraint constraintWithItem:separator
+                                                              attribute:NSLayoutAttributeWidth
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:nil
+                                                              attribute:NSLayoutAttributeNotAnAttribute
+                                                             multiplier:1
+                                                               constant:0.5];
+    [self addConstraints:@[ left, top, bottom, width ]];
+}
+
+- (void)herizontalActionTopSeparatorLayout:(UIView *)separator {
+    
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:separator
+                                                            attribute:NSLayoutAttributeLeft
+                                                            relatedBy:NSLayoutRelationEqual
+                                                               toItem:self
+                                                            attribute:NSLayoutAttributeLeft
+                                                           multiplier:1
+                                                             constant:0];
+    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:separator
+                                                             attribute:NSLayoutAttributeRight
+                                                             relatedBy:NSLayoutRelationEqual
+                                                                toItem:self
+                                                             attribute:NSLayoutAttributeRight
+                                                            multiplier:1
+                                                              constant:0];
+    NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:separator
+                                                              attribute:NSLayoutAttributeBottom
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:[self anyAction]
+                                                              attribute:NSLayoutAttributeTop
+                                                             multiplier:1
+                                                               constant:0];
+    NSLayoutConstraint *height = [NSLayoutConstraint constraintWithItem:separator
+                                                              attribute:NSLayoutAttributeHeight
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:nil
+                                                              attribute:NSLayoutAttributeNotAnAttribute
+                                                             multiplier:1
+                                                               constant:0.5];
+    [self addConstraints:@[ left, right, bottom, height ]];
+}
+
+- (CYAlertViewAction *)anyAction {
+    
+    if (self.cancelAction) {
+        
+        return self.cancelAction;
+    } else {
+        
+        return self.actions.firstObject;
     }
 }
 
 #pragma mark - show
 
-static UIWindow *alertShowingWindow = nil;
-static UITapGestureRecognizer *alertShowingWindowTap = nil;
+//static UIWindow *alertShowingWindow = nil;
+//static UITapGestureRecognizer *alertShowingWindowTap = nil;
 
 - (void)show {
     
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        
-        UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
-        
-        alertShowingWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        alertShowingWindow.windowLevel = 10;
-        [alertShowingWindow makeKeyAndVisible];
-        
-        alertShowingWindowTap = [[UITapGestureRecognizer alloc] init];
-        [alertShowingWindow addGestureRecognizer:alertShowingWindowTap];
-        
-        [keyWindow makeKeyWindow];
-    });
+    [self showWithBottomInset:0];
+}
+
+- (void)showWithBottomInset:(CGFloat)bottomInset {
     
-    [alertShowingWindowTap addTarget:self action:@selector(alertTapped:)];
-    alertShowingWindow.backgroundColor = [UIColor clearColor];
-    [alertShowingWindow addSubview:self];
-    self.center = CGPointMake(alertShowingWindow.frame.size.width / 2.f, alertShowingWindow.frame.size.height / 2.f);
+    self.bottomInset = bottomInset;
+    self.showWindow.backgroundColor = [UIColor clearColor];
+    [self.showWindow addSubview:self];
+    [self.showWindow makeKeyAndVisible];
+    
     self.transform = CGAffineTransformMakeScale(1.2, 1.2);
     [UIView animateWithDuration:0.3
                      animations:^{
                          
-                         alertShowingWindow.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.4];
+                         self.showWindow.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.4];
                          self.transform = CGAffineTransformIdentity;
-                     } completion:^(BOOL finished) {
-                         
                      }];
     
     CAKeyframeAnimation *keyframeAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
@@ -424,8 +604,6 @@ static UITapGestureRecognizer *alertShowingWindowTap = nil;
     keyframeAnimation.removedOnCompletion = YES;
     keyframeAnimation.fillMode = kCAFillModeForwards;
     [self.layer addAnimation:keyframeAnimation forKey:@"showAlert"];
-    
-    alertShowingWindow.hidden = NO;
 }
 
 - (void)dismiss {
@@ -433,12 +611,11 @@ static UITapGestureRecognizer *alertShowingWindowTap = nil;
     [UIView animateWithDuration:0.2
                      animations:^{
                          
-                         alertShowingWindow.alpha = 0;
+                         self.showWindow.alpha = 0;
                      } completion:^(BOOL finished) {
                          
-                         alertShowingWindow.hidden = YES;
-                         alertShowingWindow.alpha = 1;
-                         [alertShowingWindowTap removeTarget:self action:@selector(alertTapped:)];
+                         [self.showWindow resignKeyWindow];
+                         self.showWindow = nil;
                          [self removeFromSuperview];
                      }];
 }
@@ -447,8 +624,7 @@ static UITapGestureRecognizer *alertShowingWindowTap = nil;
 - (void)alertTapped:(UITapGestureRecognizer *)sender {
     
     [self endEditing:YES];
-    if (_dimissOnBlankAreaTapped
-        && alertShowingWindowTap) {
+    if (self.dimissOnBlankAreaTapped) {
         
         CGPoint touchPoint = [sender locationInView:self];
         if (!CGRectContainsPoint(self.bounds, touchPoint)) {

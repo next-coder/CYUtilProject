@@ -17,13 +17,11 @@
 
 @interface CYActionSheet ()
 
-@property (nonatomic, strong, readwrite) NSMutableArray<CYActionSheetSection *> *internalSections;
 @property (nonatomic, strong, readwrite) CYActionSheetSection *cancelSection;
-
+@property (nonatomic, strong, readwrite) NSMutableArray<CYActionSheetSection *> *internalSections;
 @property (nonatomic, strong, readwrite) NSMutableArray<UIView *> *separatorViews;
 
 @property (nonatomic, strong) UIWindow *showWindow;
-@property (nonatomic, strong) UIWindow *originWindow;
 
 // distance between section and screen border
 @property (nonatomic, assign) CGFloat borderGap;
@@ -364,11 +362,13 @@
                          completion:^(BOOL finished) {
                              
                              [self.showWindow resignKeyWindow];
+                             self.showWindow = nil;
                              [self removeFromSuperview];
                          }];
     } else {
         
         [self.showWindow resignKeyWindow];
+        self.showWindow = nil;
         [self removeFromSuperview];
     }
 }

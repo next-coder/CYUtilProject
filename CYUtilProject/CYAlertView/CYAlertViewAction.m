@@ -9,15 +9,7 @@
 #import "CYAlertViewAction.h"
 #import "CYAlertView.h"
 
-@interface CYAlertViewButton : UIButton
-
-@property (nonatomic, weak) CYAlertViewAction *action;
-
-@end
-
 @interface CYAlertViewAction ()
-
-@property (nonatomic, strong, readwrite) UIView *actionView;
 
 @end
 
@@ -27,85 +19,47 @@
     
     if (self = [super init]) {
         
-        _title = title;
         _handler = handler;
-        _enabled = YES;
         _dismissAlert = YES;
+        [self setTitle:title
+              forState:UIControlStateNormal];
+        [self addTarget:self
+                 action:@selector(actionDidTapped:)
+       forControlEvents:UIControlEventTouchUpInside];
     }
     return self;
 }
 
-- (UIView *)actionView {
+- (void)setNormalBackgroundColor:(UIColor *)normalBackgroundColor {
     
-    if (!_actionView) {
+    _normalBackgroundColor = normalBackgroundColor;
+    if (!self.highlighted) {
         
-        CYAlertViewButton *actionButton = [CYAlertViewButton buttonWithType:UIButtonTypeCustom];
-        actionButton.enabled = _enabled;
-        actionButton.titleLabel.font = [UIFont systemFontOfSize:16.f];
-        if (_title) {
-            [actionButton setTitle:self.title forState:UIControlStateNormal];
-        }
-        if (_backgroundColor) {
-            actionButton.backgroundColor = _backgroundColor;
-        } else {
-            actionButton.backgroundColor = [UIColor clearColor];
-        }
-        if (_titleColor) {
-            [actionButton setTitleColor:_titleColor forState:UIControlStateNormal];
-        } else {
-            [actionButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-        }
-        if (_highlightedTitleColor) {
-            [actionButton setTitleColor:_highlightedTitleColor forState:UIControlStateHighlighted];
-        } else {
-            [actionButton setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
-        }
-        if (_backgroundImage) {
-            [actionButton setBackgroundImage:_backgroundImage forState:UIControlStateNormal];
-        }
-        if (_highlightedBackgroundImage) {
-            [actionButton setBackgroundImage:_highlightedBackgroundImage forState:UIControlStateHighlighted];
-        }
-        if (_image) {
-            [actionButton setImage:_image forState:UIControlStateNormal];
-        }
-        if (_highlightedImage) {
-            [actionButton setImage:_highlightedImage forState:UIControlStateHighlighted];
-        }
-        actionButton.action = self;
-        [actionButton addTarget:self
-                         action:@selector(actionDidTapped:)
-               forControlEvents:UIControlEventTouchUpInside];
-        _actionView = actionButton;
+        self.backgroundColor = normalBackgroundColor;
     }
-    return _actionView;
 }
 
 - (void)actionDidTapped:(id)sender {
     
-    if (_handler) {
+    if (self.handler) {
         
-        _handler(self);
+        self.handler(self.alertView, self);
     }
-    if (_dismissAlert) {
+    if (self.dismissAlert) {
         
-        [_alertView dismiss];
+        [self.alertView dismiss];
     }
 }
-
-@end
-
-@implementation CYAlertViewButton
 
 - (void)setHighlighted:(BOOL)highlighted {
     [super setHighlighted:highlighted];
     
     if (!highlighted) {
         
-        self.backgroundColor = (_action.backgroundColor ? : [UIColor clearColor]);
+        self.backgroundColor = (self.normalBackgroundColor ? : [UIColor clearColor]);
     } else {
         
-        self.backgroundColor = (_action.highlightedBackgroundColor ? : [UIColor colorWithRed:230/255.f green:230/255.f blue:230/255.f alpha:1.f]);
+        self.backgroundColor = (self.highlightedBackgroundColor ? : [UIColor colorWithRed:230/255.f green:230/255.f blue:230/255.f alpha:1.f]);
     }
 }
 

@@ -23,20 +23,22 @@ typedef NS_ENUM(NSInteger, CYAlertViewActionStyle) {
 @property (nonatomic, strong, readonly) NSString *cancelTitle;
 
 //@property (nonatomic, assign) CYAlertViewStyle style;
-@property (nonatomic, assign) CYAlertViewActionStyle actionStyle;
+@property (nonatomic, assign, readonly) CYAlertViewActionStyle actionStyle;
 
 // default NO，点击空白区域，是否dismiss
 @property (nonatomic, assign) BOOL dimissOnBlankAreaTapped;
 
 - (instancetype)initWithTitle:(NSString *)title
                       message:(NSString *)message
-                  cancelTitle:(NSString *)cancelTitle;
-
-- (void)addCustomMessageView:(UIView *)view;
-- (void)addAction:(CYAlertViewAction *)action;
+                  cancelTitle:(NSString *)cancelTitle
+                  actionStyle:(CYAlertViewActionStyle)actionStyle
+                  customViews:(NSArray<UIView *> *)customViews
+                      actions:(NSArray<CYAlertViewAction *> *)actions;
 
 #pragma mark - show
 - (void)show;
+// add bottom inset distance from bottom
+- (void)showWithBottomInset:(CGFloat)bottomInset;
 - (void)dismiss;
 
 @end
