@@ -34,18 +34,19 @@
         
         return data;
     } else {
-        
-//        CYDLog(@"parse json error : %@", error);
+
         return nil;
     }
 }
 
+// create array from json string
 + (NSArray *)cy_arrayFromJsonString:(NSString *)jsonString {
     
     NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
     return [self cy_arrayFromJsonData:jsonData];
 }
 
+// create array from json Data
 + (NSArray *)cy_arrayFromJsonData:(NSData *)jsonData {
     
     NSError *error = nil;
@@ -58,10 +59,31 @@
         return jsonObject;
     } else {
         
-//        CYDLog(@"parse json error : %@", error);
         return nil;
     }
     
+}
+
+#pragma mark - writeToFile
+// write to file as json string
+- (BOOL)writeToFileAsJson:(NSString *)filePath automically:(BOOL)useAuxiliaryFile {
+
+    return [self writeToFileAsJson:filePath
+                        atomically:useAuxiliaryFile
+                             error:nil];
+}
+
+- (BOOL)writeToFileAsJson:(NSString *)filePath atomically:(BOOL)useAuxiliaryFile error:(NSError **)error {
+
+    if (!filePath) {
+
+        return NO;
+    }
+    NSString *jsonString = [self cy_jsonString];
+    return [jsonString writeToFile:filePath
+                        atomically:useAuxiliaryFile
+                          encoding:NSUTF8StringEncoding
+                             error:error];
 }
 
 @end

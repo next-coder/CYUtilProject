@@ -134,6 +134,9 @@
 		61FD03051BE9A58900237EA3 /* CYCycleBannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FD03041BE9A58900237EA3 /* CYCycleBannerViewController.m */; };
 		61FD03161BE9D76F00237EA3 /* CYFullScreenImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FD03151BE9D76F00237EA3 /* CYFullScreenImageViewController.m */; };
 		61FEF34D1CA13D8500BE87D9 /* CYShareSDKTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FEF34C1CA13D8500BE87D9 /* CYShareSDKTestViewController.m */; };
+		A306D5661CE3378F008341F3 /* UIImage+CYUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A306D5651CE3378F008341F3 /* UIImage+CYUtils.m */; };
+		A32601F61CE9B4B00032E21C /* CYIPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A32601F51CE9B4B00032E21C /* CYIPUtils.m */; };
+		A3271D541CE585F7005DE1A1 /* CYExceptionUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A3271D531CE585F7005DE1A1 /* CYExceptionUtils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -388,6 +391,12 @@
 		61FD03151BE9D76F00237EA3 /* CYFullScreenImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYFullScreenImageViewController.m; sourceTree = "<group>"; };
 		61FEF34B1CA13D8500BE87D9 /* CYShareSDKTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYShareSDKTestViewController.h; sourceTree = "<group>"; };
 		61FEF34C1CA13D8500BE87D9 /* CYShareSDKTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYShareSDKTestViewController.m; sourceTree = "<group>"; };
+		A306D5641CE3378F008341F3 /* UIImage+CYUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CYUtils.h"; sourceTree = "<group>"; };
+		A306D5651CE3378F008341F3 /* UIImage+CYUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CYUtils.m"; sourceTree = "<group>"; };
+		A32601F41CE9B4B00032E21C /* CYIPUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYIPUtils.h; sourceTree = "<group>"; };
+		A32601F51CE9B4B00032E21C /* CYIPUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYIPUtils.m; sourceTree = "<group>"; };
+		A3271D521CE585F7005DE1A1 /* CYExceptionUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYExceptionUtils.h; sourceTree = "<group>"; };
+		A3271D531CE585F7005DE1A1 /* CYExceptionUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYExceptionUtils.m; sourceTree = "<group>"; };
 		E44A7E629213891F907F2C63 /* Pods-CYUtilProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CYUtilProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-CYUtilProject/Pods-CYUtilProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -795,6 +804,8 @@
 				61091CD71CDAF563008B7EA3 /* UIScrollView+CYUtils.m */,
 				61091CD81CDAF563008B7EA3 /* UIView+CYAnimationUtil.h */,
 				61091CD91CDAF563008B7EA3 /* UIView+CYAnimationUtil.m */,
+				A306D5641CE3378F008341F3 /* UIImage+CYUtils.h */,
+				A306D5651CE3378F008341F3 /* UIImage+CYUtils.m */,
 			);
 			path = CYUIKitUtils;
 			sourceTree = SOURCE_ROOT;
@@ -863,6 +874,9 @@
 		61851EBD1BCD0964005340C8 /* CYUtilProject */ = {
 			isa = PBXGroup;
 			children = (
+				A311A1611CEC3A13001C64C9 /* CYPath */,
+				A32601F31CE9B4A10032E21C /* CYIPUtils */,
+				A3271D511CE585F7005DE1A1 /* CYExceptionUtils */,
 				61091D2B1CDAF56C008B7EA3 /* Masonry */,
 				61091C1B1CDAF563008B7EA3 /* CYActionSheet */,
 				61091C221CDAF563008B7EA3 /* CYAddressBook */,
@@ -992,6 +1006,31 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		A311A1611CEC3A13001C64C9 /* CYPath */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CYPath;
+			sourceTree = SOURCE_ROOT;
+		};
+		A32601F31CE9B4A10032E21C /* CYIPUtils */ = {
+			isa = PBXGroup;
+			children = (
+				A32601F41CE9B4B00032E21C /* CYIPUtils.h */,
+				A32601F51CE9B4B00032E21C /* CYIPUtils.m */,
+			);
+			path = CYIPUtils;
+			sourceTree = SOURCE_ROOT;
+		};
+		A3271D511CE585F7005DE1A1 /* CYExceptionUtils */ = {
+			isa = PBXGroup;
+			children = (
+				A3271D521CE585F7005DE1A1 /* CYExceptionUtils.h */,
+				A3271D531CE585F7005DE1A1 /* CYExceptionUtils.m */,
+			);
+			path = CYExceptionUtils;
+			sourceTree = SOURCE_ROOT;
+		};
 		E299DF45F885184B4A142853 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1101,6 +1140,8 @@
 				61091CE31CDAF563008B7EA3 /* CYBaseTableViewController.m in Sources */,
 				61091CFD1CDAF563008B7EA3 /* CYChatUser.m in Sources */,
 				61091D171CDAF563008B7EA3 /* CYPullRefreshConstants.m in Sources */,
+				A306D5661CE3378F008341F3 /* UIImage+CYUtils.m in Sources */,
+				A32601F61CE9B4B00032E21C /* CYIPUtils.m in Sources */,
 				61091D491CDAF56C008B7EA3 /* MASViewAttribute.m in Sources */,
 				61091D111CDAF563008B7EA3 /* CYContentsGroupByFirstPinYin.m in Sources */,
 				61091CFA1CDAF563008B7EA3 /* CYChatMessageViewModel.m in Sources */,
@@ -1114,6 +1155,7 @@
 				61091D061CDAF563008B7EA3 /* CYContactsSearchInNavigationViewController.m in Sources */,
 				61091D1E1CDAF563008B7EA3 /* CYShareBaseUtil.m in Sources */,
 				61091D251CDAF563008B7EA3 /* CYPrepareStatement.m in Sources */,
+				A3271D541CE585F7005DE1A1 /* CYExceptionUtils.m in Sources */,
 				61091D1B1CDAF563008B7EA3 /* CYSearchController.m in Sources */,
 				61091D2A1CDAF563008B7EA3 /* UIView+CYAnimationUtil.m in Sources */,
 				61091D051CDAF563008B7EA3 /* CYContactsListViewController.m in Sources */,

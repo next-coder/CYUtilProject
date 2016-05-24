@@ -10,10 +10,20 @@
 
 @interface NSArray (CYJson)
 
+// to json
 - (NSString *)cy_jsonString;
 - (NSData *)cy_jsonData;
 
+// create array from json
 + (NSArray *)cy_arrayFromJsonString:(NSString *)jsonString;
 + (NSArray *)cy_arrayFromJsonData:(NSData *)jsonData;
+
+// write to file as json string
+- (BOOL)writeToFileAsJson:(NSString *)filePath
+              automically:(BOOL)useAuxiliaryFile;
+
+- (BOOL)writeToFileAsJson:(NSString *)filePath
+               atomically:(BOOL)useAuxiliaryFile
+                    error:(NSError **)error;
 
 @end

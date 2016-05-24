@@ -13,6 +13,7 @@
 		61091D651CDAF8E4008B7EA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61091D641CDAF8E4008B7EA3 /* Assets.xcassets */; };
 		61091D681CDAF8E4008B7EA3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61091D661CDAF8E4008B7EA3 /* LaunchScreen.storyboard */; };
 		61091D721CDAFCDA008B7EA3 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61091D711CDAFCDA008B7EA3 /* ImageDownloader.swift */; };
+		A306D5631CE330A8008341F3 /* CYAlertViewAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A306D5621CE330A8008341F3 /* CYAlertViewAction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		61091D671CDAF8E4008B7EA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		61091D691CDAF8E4008B7EA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61091D711CDAFCDA008B7EA3 /* ImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
+		A306D5621CE330A8008341F3 /* CYAlertViewAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYAlertViewAction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 		61091D6F1CDAFCB0008B7EA3 /* CYUtils */ = {
 			isa = PBXGroup;
 			children = (
+				A306D5611CE33096008341F3 /* CYAlertView */,
 				61091D701CDAFCB0008B7EA3 /* CYCache */,
 			);
 			path = CYUtils;
@@ -81,6 +84,14 @@
 				61091D711CDAFCDA008B7EA3 /* ImageDownloader.swift */,
 			);
 			path = CYCache;
+			sourceTree = "<group>";
+		};
+		A306D5611CE33096008341F3 /* CYAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				A306D5621CE330A8008341F3 /* CYAlertViewAction.swift */,
+			);
+			path = CYAlertView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,6 +168,7 @@
 				61091D601CDAF8E4008B7EA3 /* ViewController.swift in Sources */,
 				61091D721CDAFCDA008B7EA3 /* ImageDownloader.swift in Sources */,
 				61091D5E1CDAF8E4008B7EA3 /* AppDelegate.swift in Sources */,
+				A306D5631CE330A8008341F3 /* CYAlertViewAction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +322,7 @@
 				61091D6E1CDAF8E4008B7EA3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

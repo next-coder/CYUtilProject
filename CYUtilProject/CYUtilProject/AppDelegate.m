@@ -11,6 +11,7 @@
 #import "CYWechatUtil.h"
 #import "CYQQUtil.h"
 #import "CYSinaWeiboUtil.h"
+#import "CYIPUtils.h"
 
 @interface AppDelegate ()
 
@@ -34,6 +35,8 @@
     NSLog(@"aaa = %d", *p);
     NSLog(@"%d", *q);
     NSLog(@"%d", c);
+
+    NSLog(@"IP Address : %@", [CYIPUtils IPAddress]);
     
     [CYWechatUtil registerWithAppId:@"wx891f8f3380cba5e9" appKey:@"bdd4ed515ecda1a82d98d3bbee192b20"];
     [CYQQUtil registerWithAppId:@"1104237169" appKey:@"2KGC4ae9ukj1j8IK"];
