@@ -137,6 +137,10 @@
 		A306D5661CE3378F008341F3 /* UIImage+CYUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A306D5651CE3378F008341F3 /* UIImage+CYUtils.m */; };
 		A32601F61CE9B4B00032E21C /* CYIPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A32601F51CE9B4B00032E21C /* CYIPUtils.m */; };
 		A3271D541CE585F7005DE1A1 /* CYExceptionUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A3271D531CE585F7005DE1A1 /* CYExceptionUtils.m */; };
+		A330B09F1CF6ACCE00C8639D /* UIDevice+CYUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A330B09E1CF6ACCE00C8639D /* UIDevice+CYUtils.m */; };
+		A330B0A21CF6ADC400C8639D /* UIScreen+CYUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A330B0A11CF6ADC400C8639D /* UIScreen+CYUtils.m */; };
+		A330B0AE1CF6F53F00C8639D /* CYSecurityUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A330B0AD1CF6F53F00C8639D /* CYSecurityUtils.m */; };
+		A341ECB11CF54E6000D37D32 /* NSDate+CYUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A341ECB01CF54E6000D37D32 /* NSDate+CYUtils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -397,6 +401,14 @@
 		A32601F51CE9B4B00032E21C /* CYIPUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYIPUtils.m; sourceTree = "<group>"; };
 		A3271D521CE585F7005DE1A1 /* CYExceptionUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYExceptionUtils.h; sourceTree = "<group>"; };
 		A3271D531CE585F7005DE1A1 /* CYExceptionUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYExceptionUtils.m; sourceTree = "<group>"; };
+		A330B09D1CF6ACCE00C8639D /* UIDevice+CYUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+CYUtils.h"; sourceTree = "<group>"; };
+		A330B09E1CF6ACCE00C8639D /* UIDevice+CYUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+CYUtils.m"; sourceTree = "<group>"; };
+		A330B0A01CF6ADC400C8639D /* UIScreen+CYUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScreen+CYUtils.h"; sourceTree = "<group>"; };
+		A330B0A11CF6ADC400C8639D /* UIScreen+CYUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScreen+CYUtils.m"; sourceTree = "<group>"; };
+		A330B0AC1CF6F53F00C8639D /* CYSecurityUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYSecurityUtils.h; sourceTree = "<group>"; };
+		A330B0AD1CF6F53F00C8639D /* CYSecurityUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYSecurityUtils.m; sourceTree = "<group>"; };
+		A341ECAF1CF54E6000D37D32 /* NSDate+CYUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+CYUtils.h"; sourceTree = "<group>"; };
+		A341ECB01CF54E6000D37D32 /* NSDate+CYUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+CYUtils.m"; sourceTree = "<group>"; };
 		E44A7E629213891F907F2C63 /* Pods-CYUtilProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CYUtilProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-CYUtilProject/Pods-CYUtilProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -636,6 +648,8 @@
 				61091C8F1CDAF563008B7EA3 /* NSDictionary+CYSecureValue.m */,
 				61091C901CDAF563008B7EA3 /* NSString+CYUtils.h */,
 				61091C911CDAF563008B7EA3 /* NSString+CYUtils.m */,
+				A341ECAF1CF54E6000D37D32 /* NSDate+CYUtils.h */,
+				A341ECB01CF54E6000D37D32 /* NSDate+CYUtils.m */,
 			);
 			path = CYFoundationUtils;
 			sourceTree = SOURCE_ROOT;
@@ -806,6 +820,10 @@
 				61091CD91CDAF563008B7EA3 /* UIView+CYAnimationUtil.m */,
 				A306D5641CE3378F008341F3 /* UIImage+CYUtils.h */,
 				A306D5651CE3378F008341F3 /* UIImage+CYUtils.m */,
+				A330B09D1CF6ACCE00C8639D /* UIDevice+CYUtils.h */,
+				A330B09E1CF6ACCE00C8639D /* UIDevice+CYUtils.m */,
+				A330B0A01CF6ADC400C8639D /* UIScreen+CYUtils.h */,
+				A330B0A11CF6ADC400C8639D /* UIScreen+CYUtils.m */,
 			);
 			path = CYUIKitUtils;
 			sourceTree = SOURCE_ROOT;
@@ -874,6 +892,7 @@
 		61851EBD1BCD0964005340C8 /* CYUtilProject */ = {
 			isa = PBXGroup;
 			children = (
+				A330B0AB1CF6F53000C8639D /* CYSecurity */,
 				A311A1611CEC3A13001C64C9 /* CYPath */,
 				A32601F31CE9B4A10032E21C /* CYIPUtils */,
 				A3271D511CE585F7005DE1A1 /* CYExceptionUtils */,
@@ -1031,6 +1050,15 @@
 			path = CYExceptionUtils;
 			sourceTree = SOURCE_ROOT;
 		};
+		A330B0AB1CF6F53000C8639D /* CYSecurity */ = {
+			isa = PBXGroup;
+			children = (
+				A330B0AC1CF6F53F00C8639D /* CYSecurityUtils.h */,
+				A330B0AD1CF6F53F00C8639D /* CYSecurityUtils.m */,
+			);
+			path = CYSecurity;
+			sourceTree = SOURCE_ROOT;
+		};
 		E299DF45F885184B4A142853 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1077,6 +1105,7 @@
 		61851EB31BCD0964005340C8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Charry;
 				TargetAttributes = {
@@ -1168,6 +1197,7 @@
 				61091D001CDAF563008B7EA3 /* CYChatInputEmotionPadView.m in Sources */,
 				61091D181CDAF563008B7EA3 /* CYPullRefreshFooterView.m in Sources */,
 				61091D241CDAF563008B7EA3 /* CYDatabase.m in Sources */,
+				A330B0AE1CF6F53F00C8639D /* CYSecurityUtils.m in Sources */,
 				61091CDA1CDAF563008B7EA3 /* CYActionSheet.m in Sources */,
 				61091CF11CDAF563008B7EA3 /* CYChatImageLeftArrowCell.m in Sources */,
 				61091D291CDAF563008B7EA3 /* UIScrollView+CYUtils.m in Sources */,
@@ -1218,6 +1248,8 @@
 				61091D071CDAF563008B7EA3 /* CYCycleBannerView.m in Sources */,
 				61FEF34D1CA13D8500BE87D9 /* CYShareSDKTestViewController.m in Sources */,
 				61091D261CDAF563008B7EA3 /* CYResultSet.m in Sources */,
+				A330B09F1CF6ACCE00C8639D /* UIDevice+CYUtils.m in Sources */,
+				A341ECB11CF54E6000D37D32 /* NSDate+CYUtils.m in Sources */,
 				61091CFC1CDAF563008B7EA3 /* CYChatMessage.m in Sources */,
 				61851EC01BCD0964005340C8 /* main.m in Sources */,
 				61091CF41CDAF563008B7EA3 /* CYChatTextLeftArrowCell.m in Sources */,
@@ -1230,6 +1262,7 @@
 				61091CE01CDAF563008B7EA3 /* CYBannerImageBrowserView.m in Sources */,
 				61091D021CDAF563008B7EA3 /* CYChatInputMorePadView.m in Sources */,
 				61091CF71CDAF563008B7EA3 /* CYChatVoiceLeftArrowCell.m in Sources */,
+				A330B0A21CF6ADC400C8639D /* UIScreen+CYUtils.m in Sources */,
 				6120958D1C51FC210035FD2D /* CYIAPTestViewController.m in Sources */,
 				61DF52CA1BE209C30015CDF2 /* CYAnimatedTextLabelViewController.m in Sources */,
 				61091D0E1CDAF563008B7EA3 /* CYFullScreenImageView.m in Sources */,
@@ -1305,6 +1338,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
@@ -1332,6 +1366,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.xiaoniuapp.CYUtilProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "CYUtilProject/CYUtilProject-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};

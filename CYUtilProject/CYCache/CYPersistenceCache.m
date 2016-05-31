@@ -8,6 +8,7 @@
 
 #import <CommonCrypto/CommonDigest.h>
 #import <UIKit/UIKit.h>
+#import <sys/xattr.h>
 
 #import "CYPersistenceCache.h"
 
@@ -24,24 +25,33 @@
     return [self initWithNamespace:nil];
 }
 
-- (id)initWithNamespace:(NSString *)ns {
+- (instancetype)initWithNamespace:(NSString *)ns {
     
+    return [self initWithNamespace:ns cachePolicy:CYPersistenceCachePolicyDefault];
+}
+
+- (instancetype)initWithNamespace:(NSString *)ns cachePolicy:(CYPersistenceCachePolicy)cachePolicy {
+
     if (self = [super init]) {
-        
+
         _cacheNamespace = ns;
-        
+        _cachePolicy = cachePolicy;
+
         if (!_cacheNamespace) {
-            
+
             _cacheNamespace = @"default";
         }
-        
+
         NSString *fullNamespace = [NSString stringWithFormat:@"com.xiaoniuapp.cache.%@", _cacheNamespace];
         _diskCachePath = [self makeDiskCachePath:fullNamespace];
         self.totalCostLimit = 100 * 1024 * 1024;
+
+        [self startClearCacheAsyncIfNeeded];
     }
     return self;
 }
 
+#pragma mark - save image
 - (void)setImage:(UIImage *)image forKey:(NSString *)key toDisk:(BOOL)toDisk {
     [self setObject:image forKey:key cost:(image.size.width * image.size.height * 8)];
     
@@ -83,7 +93,7 @@
     }
     
     NSString *savePath = [self defaultCachePathForKey:key];
-    NSFileManager *manager = [NSFileManager defaultManager];
+    NSFileManager *manager = [CYPersistenceCache persistanceSharedManager];
     
     if (![manager fileExistsAtPath:_diskCachePath]) {
         
@@ -99,7 +109,10 @@
     }
     
     [manager createFileAtPath:savePath contents:imageData attributes:nil];
-    
+
+    // refresh last read date
+    [self refreshFileLastReadDate:savePath];
+
     // 不备份
     [[NSURL fileURLWithPath:savePath] setResourceValue:[NSNumber numberWithBool:YES]
                                                 forKey:NSURLIsExcludedFromBackupKey
@@ -112,7 +125,7 @@
         return;
     }
     NSString *savePath = [self defaultCachePathForKey:key];
-    NSFileManager *manager = [NSFileManager defaultManager];
+    NSFileManager *manager = [CYPersistenceCache persistanceSharedManager];
     [manager removeItemAtPath:savePath error:NULL];
 }
 
@@ -121,12 +134,65 @@
     if (!key) {
         return nil;
     }
-    
+
     NSString *savePath = [self defaultCachePathForKey:key];
     NSData *data = [NSData dataWithContentsOfFile:savePath];
     if (data) {
-        
+
+        // refresh read date
+        [self refreshFileLastReadDate:savePath];
         return [UIImage imageWithData:data];
+    }
+    return nil;
+}
+
+static NSString *const fileLastReadDateAttributeKey = @"kCYLastReadDate";
+- (void)refreshFileLastReadDate:(NSString *)filePath {
+
+    NSTimeInterval time = [[NSDate date] timeIntervalSince1970];
+    const char *value = [[NSString stringWithFormat:@"%.0f", time] UTF8String];
+    setxattr([filePath fileSystemRepresentation],
+             [fileLastReadDateAttributeKey UTF8String],
+             value,
+             strlen(value),
+             0,
+             0);
+}
+
+- (NSDate *)fileLastReadDate:(NSString *)filePath {
+
+    const char *filePathC = [filePath fileSystemRepresentation];
+    const char *attrName = [fileLastReadDateAttributeKey UTF8String];
+
+    // get size of needed buffer
+    int bufferLength = getxattr(filePathC,
+                                attrName,
+                                NULL,
+                                0,
+                                0,
+                                0);
+
+    // make a buffer of sufficient length
+    char *buffer = malloc(bufferLength);
+
+    // now actually get the attribute string
+    getxattr(filePathC, attrName, buffer, 255, 0, 0);
+
+    // convert to NSString
+    NSString *retString = [[NSString alloc] initWithBytes:buffer
+                                                   length:bufferLength
+                                                 encoding:NSUTF8StringEncoding];
+    
+    // release buffer
+    free(buffer);
+
+    if (retString) {
+
+        NSTimeInterval time = (NSTimeInterval)[retString doubleValue];
+        if (time > 0) {
+
+            return [NSDate dateWithTimeIntervalSince1970:time];
+        }
     }
     return nil;
 }
@@ -158,6 +224,76 @@
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     return [paths[0] stringByAppendingPathComponent:fullNamespace];
+}
+
+#pragma mark - clear cache
+static NSString *const CYPersistenceCacheLastDeleteCacheDateKey = @"CYPersistenceCacheLastDeleteCacheDateKey";
+
+- (void)startClearCacheAsyncIfNeeded {
+
+    NSDate *currentDate = [NSDate date];
+
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSDate *lastDeleteDate = [userDefaults objectForKey:CYPersistenceCacheLastDeleteCacheDateKey];
+
+    if (!lastDeleteDate) {
+
+        // if haven't an last delete date, save now
+        [userDefaults setObject:[NSDate date]
+                         forKey:CYPersistenceCacheLastDeleteCacheDateKey];
+        [userDefaults synchronize];
+        return;
+    }
+    // every other 30 days clear
+    if (lastDeleteDate
+        && [lastDeleteDate isKindOfClass:[NSDate class]]
+        && [currentDate timeIntervalSinceDate:lastDeleteDate] > 30l * 24 * 60 * 60) {
+
+        [self clearCacheAsync];
+    }
+}
+
+- (void)clearCacheAsync {
+
+    NSDate *currentDate = [NSDate date];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+
+        NSFileManager *fileManager = [CYPersistenceCache persistanceSharedManager];
+        // get file enumerator from current cache directory
+        NSDirectoryEnumerator<NSString *> *enumerator = [fileManager enumeratorAtPath:self.diskCachePath];
+
+        // enumerate all cached file, remove the items that the last read date more than 30 days util now
+        NSMutableArray *removeFile = [NSMutableArray array];
+        NSString *filePath = nil;
+        while ((filePath = enumerator.nextObject)) {
+
+            NSDate *lastReadDate = [self fileLastReadDate:filePath];
+            if (lastReadDate
+                && [currentDate timeIntervalSinceDate:lastReadDate] > 30l * 24 * 60 * 60) {
+
+                [removeFile addObject:filePath];
+            }
+        }
+
+        // remove all the items which should delete
+        [removeFile enumerateObjectsUsingBlock:^(NSString *path, NSUInteger idx, BOOL * _Nonnull stop) {
+
+            [fileManager removeItemAtPath:path
+                                    error:nil];
+        }];
+    });
+}
+
+#pragma mark - static file manager
++ (NSFileManager *)persistanceSharedManager {
+
+    static NSFileManager *fileManager = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^ {
+
+        fileManager = [[NSFileManager alloc] init];
+    });
+    return fileManager;
 }
 
 #pragma mark - default cache

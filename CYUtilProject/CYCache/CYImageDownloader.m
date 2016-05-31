@@ -87,7 +87,8 @@
 
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error {
     
-    if ([task isKindOfClass:[NSURLSessionDownloadTask class]]) {
+    if ([task isKindOfClass:[NSURLSessionDownloadTask class]]
+        && error) {
         
         NSURLRequest *request = task.originalRequest ? : task.currentRequest;
         CYImageDownloadCompletion completion = request.completion;

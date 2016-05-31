@@ -14,6 +14,10 @@
 		61091D681CDAF8E4008B7EA3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61091D661CDAF8E4008B7EA3 /* LaunchScreen.storyboard */; };
 		61091D721CDAFCDA008B7EA3 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61091D711CDAFCDA008B7EA3 /* ImageDownloader.swift */; };
 		A306D5631CE330A8008341F3 /* CYAlertViewAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A306D5621CE330A8008341F3 /* CYAlertViewAction.swift */; };
+		A33913CE1CF3EE4400C8C147 /* Dictionary+CYUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33913CD1CF3EE4400C8C147 /* Dictionary+CYUtils.swift */; };
+		A33913D11CF4236800C8C147 /* CYJSONUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33913D01CF4236800C8C147 /* CYJSONUtils.swift */; };
+		A33913D31CF4282700C8C147 /* Array+CYUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33913D21CF4282700C8C147 /* Array+CYUtils.swift */; };
+		A3E2530A1CFD976F002F8E18 /* ObjectiveCTestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E253091CFD976F002F8E18 /* ObjectiveCTestObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +30,12 @@
 		61091D691CDAF8E4008B7EA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61091D711CDAFCDA008B7EA3 /* ImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		A306D5621CE330A8008341F3 /* CYAlertViewAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYAlertViewAction.swift; sourceTree = "<group>"; };
+		A33913CD1CF3EE4400C8C147 /* Dictionary+CYUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+CYUtils.swift"; sourceTree = "<group>"; };
+		A33913D01CF4236800C8C147 /* CYJSONUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYJSONUtils.swift; sourceTree = "<group>"; };
+		A33913D21CF4282700C8C147 /* Array+CYUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+CYUtils.swift"; sourceTree = "<group>"; };
+		A3E253071CFD976F002F8E18 /* CYUtilProjectSwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CYUtilProjectSwift-Bridging-Header.h"; sourceTree = "<group>"; };
+		A3E253081CFD976F002F8E18 /* ObjectiveCTestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveCTestObject.h; sourceTree = "<group>"; };
+		A3E253091CFD976F002F8E18 /* ObjectiveCTestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectiveCTestObject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,10 +71,13 @@
 				61091D6F1CDAFCB0008B7EA3 /* CYUtils */,
 				61091D5D1CDAF8E4008B7EA3 /* AppDelegate.swift */,
 				61091D5F1CDAF8E4008B7EA3 /* ViewController.swift */,
+				A3E253081CFD976F002F8E18 /* ObjectiveCTestObject.h */,
+				A3E253091CFD976F002F8E18 /* ObjectiveCTestObject.m */,
 				61091D611CDAF8E4008B7EA3 /* Main.storyboard */,
 				61091D641CDAF8E4008B7EA3 /* Assets.xcassets */,
 				61091D661CDAF8E4008B7EA3 /* LaunchScreen.storyboard */,
 				61091D691CDAF8E4008B7EA3 /* Info.plist */,
+				A3E253071CFD976F002F8E18 /* CYUtilProjectSwift-Bridging-Header.h */,
 			);
 			path = CYUtilProjectSwift;
 			sourceTree = "<group>";
@@ -72,6 +85,8 @@
 		61091D6F1CDAFCB0008B7EA3 /* CYUtils */ = {
 			isa = PBXGroup;
 			children = (
+				A33913CF1CF4235400C8C147 /* CYJSONUtils */,
+				A33913CC1CF3EE0700C8C147 /* CYFoundationUtils */,
 				A306D5611CE33096008341F3 /* CYAlertView */,
 				61091D701CDAFCB0008B7EA3 /* CYCache */,
 			);
@@ -92,6 +107,23 @@
 				A306D5621CE330A8008341F3 /* CYAlertViewAction.swift */,
 			);
 			path = CYAlertView;
+			sourceTree = "<group>";
+		};
+		A33913CC1CF3EE0700C8C147 /* CYFoundationUtils */ = {
+			isa = PBXGroup;
+			children = (
+				A33913CD1CF3EE4400C8C147 /* Dictionary+CYUtils.swift */,
+				A33913D21CF4282700C8C147 /* Array+CYUtils.swift */,
+			);
+			path = CYFoundationUtils;
+			sourceTree = "<group>";
+		};
+		A33913CF1CF4235400C8C147 /* CYJSONUtils */ = {
+			isa = PBXGroup;
+			children = (
+				A33913D01CF4236800C8C147 /* CYJSONUtils.swift */,
+			);
+			path = CYJSONUtils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,9 +198,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				61091D601CDAF8E4008B7EA3 /* ViewController.swift in Sources */,
+				A33913D11CF4236800C8C147 /* CYJSONUtils.swift in Sources */,
 				61091D721CDAFCDA008B7EA3 /* ImageDownloader.swift in Sources */,
 				61091D5E1CDAF8E4008B7EA3 /* AppDelegate.swift in Sources */,
 				A306D5631CE330A8008341F3 /* CYAlertViewAction.swift in Sources */,
+				A33913D31CF4282700C8C147 /* Array+CYUtils.swift in Sources */,
+				A3E2530A1CFD976F002F8E18 /* ObjectiveCTestObject.m in Sources */,
+				A33913CE1CF3EE4400C8C147 /* Dictionary+CYUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,11 +319,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = CYUtilProjectSwift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Jasper.CYUtilProjectSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CYUtilProjectSwift/CYUtilProjectSwift-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -295,11 +334,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = CYUtilProjectSwift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Jasper.CYUtilProjectSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CYUtilProjectSwift/CYUtilProjectSwift-Bridging-Header.h";
 			};
 			name = Release;
 		};
