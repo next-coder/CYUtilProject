@@ -54,7 +54,6 @@
 		61091D061CDAF563008B7EA3 /* CYContactsSearchInNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61091C811CDAF563008B7EA3 /* CYContactsSearchInNavigationViewController.m */; };
 		61091D071CDAF563008B7EA3 /* CYCycleBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61091C841CDAF563008B7EA3 /* CYCycleBannerView.m */; };
 		61091D081CDAF563008B7EA3 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 61091C851CDAF563008B7EA3 /* README */; };
-		61091D091CDAF563008B7EA3 /* CYDeviceUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 61091C881CDAF563008B7EA3 /* CYDeviceUtils.m */; };
 		61091D0A1CDAF563008B7EA3 /* NSArray+CYJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 61091C8B1CDAF563008B7EA3 /* NSArray+CYJson.m */; };
 		61091D0B1CDAF563008B7EA3 /* NSDictionary+CYJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 61091C8D1CDAF563008B7EA3 /* NSDictionary+CYJson.m */; };
 		61091D0C1CDAF563008B7EA3 /* NSDictionary+CYSecureValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 61091C8F1CDAF563008B7EA3 /* NSDictionary+CYSecureValue.m */; };
@@ -88,16 +87,6 @@
 		61091D281CDAF563008B7EA3 /* CYCustomUILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 61091CD51CDAF563008B7EA3 /* CYCustomUILabel.m */; };
 		61091D291CDAF563008B7EA3 /* UIScrollView+CYUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 61091CD71CDAF563008B7EA3 /* UIScrollView+CYUtils.m */; };
 		61091D2A1CDAF563008B7EA3 /* UIView+CYAnimationUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 61091CD91CDAF563008B7EA3 /* UIView+CYAnimationUtil.m */; };
-		61091D451CDAF56C008B7EA3 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 61091D2D1CDAF56C008B7EA3 /* MASCompositeConstraint.m */; };
-		61091D461CDAF56C008B7EA3 /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 61091D301CDAF56C008B7EA3 /* MASConstraint.m */; };
-		61091D471CDAF56C008B7EA3 /* MASConstraintMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 61091D321CDAF56C008B7EA3 /* MASConstraintMaker.m */; };
-		61091D481CDAF56C008B7EA3 /* MASLayoutConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 61091D341CDAF56C008B7EA3 /* MASLayoutConstraint.m */; };
-		61091D491CDAF56C008B7EA3 /* MASViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 61091D381CDAF56C008B7EA3 /* MASViewAttribute.m */; };
-		61091D4A1CDAF56C008B7EA3 /* MASViewConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 61091D3A1CDAF56C008B7EA3 /* MASViewConstraint.m */; };
-		61091D4B1CDAF56C008B7EA3 /* NSArray+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 61091D3C1CDAF56C008B7EA3 /* NSArray+MASAdditions.m */; };
-		61091D4C1CDAF56C008B7EA3 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 61091D3F1CDAF56C008B7EA3 /* NSLayoutConstraint+MASDebugAdditions.m */; };
-		61091D4D1CDAF56C008B7EA3 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 61091D411CDAF56C008B7EA3 /* View+MASAdditions.m */; };
-		61091D4E1CDAF56C008B7EA3 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 61091D441CDAF56C008B7EA3 /* ViewController+MASAdditions.m */; };
 		61091D501CDAF68B008B7EA3 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61091D4F1CDAF68B008B7EA3 /* TencentOpenAPI.framework */; };
 		611B483C1C98095F00AD2772 /* CYContactsListTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 611B483B1C98095F00AD2772 /* CYContactsListTestViewController.m */; };
 		611B483F1C9809E700AD2772 /* CYContactViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 611B483E1C9809E700AD2772 /* CYContactViewModel.m */; };
@@ -135,6 +124,11 @@
 		61FD03161BE9D76F00237EA3 /* CYFullScreenImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FD03151BE9D76F00237EA3 /* CYFullScreenImageViewController.m */; };
 		61FEF34D1CA13D8500BE87D9 /* CYShareSDKTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FEF34C1CA13D8500BE87D9 /* CYShareSDKTestViewController.m */; };
 		A306D5661CE3378F008341F3 /* UIImage+CYUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A306D5651CE3378F008341F3 /* UIImage+CYUtils.m */; };
+		A30EA3C71CFE7B06006FEF23 /* UITableView+CYUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A30EA3C61CFE7B06006FEF23 /* UITableView+CYUtils.m */; };
+		A30EA3C91CFE7CEC006FEF23 /* README in Resources */ = {isa = PBXBuildFile; fileRef = A30EA3C81CFE7CEC006FEF23 /* README */; };
+		A30EA3CB1CFE7D42006FEF23 /* README in Resources */ = {isa = PBXBuildFile; fileRef = A30EA3CA1CFE7D42006FEF23 /* README */; };
+		A30EA3CD1CFE801C006FEF23 /* README in Resources */ = {isa = PBXBuildFile; fileRef = A30EA3CC1CFE801C006FEF23 /* README */; };
+		A30EA3CF1CFE80B9006FEF23 /* README in Resources */ = {isa = PBXBuildFile; fileRef = A30EA3CE1CFE80B9006FEF23 /* README */; };
 		A32601F61CE9B4B00032E21C /* CYIPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A32601F51CE9B4B00032E21C /* CYIPUtils.m */; };
 		A3271D541CE585F7005DE1A1 /* CYExceptionUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A3271D531CE585F7005DE1A1 /* CYExceptionUtils.m */; };
 		A330B09F1CF6ACCE00C8639D /* UIDevice+CYUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A330B09E1CF6ACCE00C8639D /* UIDevice+CYUtils.m */; };
@@ -239,8 +233,6 @@
 		61091C831CDAF563008B7EA3 /* CYCycleBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYCycleBannerView.h; sourceTree = "<group>"; };
 		61091C841CDAF563008B7EA3 /* CYCycleBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYCycleBannerView.m; sourceTree = "<group>"; };
 		61091C851CDAF563008B7EA3 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
-		61091C871CDAF563008B7EA3 /* CYDeviceUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYDeviceUtils.h; sourceTree = "<group>"; };
-		61091C881CDAF563008B7EA3 /* CYDeviceUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYDeviceUtils.m; sourceTree = "<group>"; };
 		61091C8A1CDAF563008B7EA3 /* NSArray+CYJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CYJson.h"; sourceTree = "<group>"; };
 		61091C8B1CDAF563008B7EA3 /* NSArray+CYJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+CYJson.m"; sourceTree = "<group>"; };
 		61091C8C1CDAF563008B7EA3 /* NSDictionary+CYJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+CYJson.h"; sourceTree = "<group>"; };
@@ -306,31 +298,6 @@
 		61091CD71CDAF563008B7EA3 /* UIScrollView+CYUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+CYUtils.m"; sourceTree = "<group>"; };
 		61091CD81CDAF563008B7EA3 /* UIView+CYAnimationUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CYAnimationUtil.h"; sourceTree = "<group>"; };
 		61091CD91CDAF563008B7EA3 /* UIView+CYAnimationUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CYAnimationUtil.m"; sourceTree = "<group>"; };
-		61091D2C1CDAF56C008B7EA3 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
-		61091D2D1CDAF56C008B7EA3 /* MASCompositeConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASCompositeConstraint.m; sourceTree = "<group>"; };
-		61091D2E1CDAF56C008B7EA3 /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
-		61091D2F1CDAF56C008B7EA3 /* MASConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASConstraint.h; sourceTree = "<group>"; };
-		61091D301CDAF56C008B7EA3 /* MASConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASConstraint.m; sourceTree = "<group>"; };
-		61091D311CDAF56C008B7EA3 /* MASConstraintMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASConstraintMaker.h; sourceTree = "<group>"; };
-		61091D321CDAF56C008B7EA3 /* MASConstraintMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASConstraintMaker.m; sourceTree = "<group>"; };
-		61091D331CDAF56C008B7EA3 /* MASLayoutConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASLayoutConstraint.h; sourceTree = "<group>"; };
-		61091D341CDAF56C008B7EA3 /* MASLayoutConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASLayoutConstraint.m; sourceTree = "<group>"; };
-		61091D351CDAF56C008B7EA3 /* Masonry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Masonry.h; sourceTree = "<group>"; };
-		61091D361CDAF56C008B7EA3 /* MASUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASUtilities.h; sourceTree = "<group>"; };
-		61091D371CDAF56C008B7EA3 /* MASViewAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASViewAttribute.h; sourceTree = "<group>"; };
-		61091D381CDAF56C008B7EA3 /* MASViewAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewAttribute.m; sourceTree = "<group>"; };
-		61091D391CDAF56C008B7EA3 /* MASViewConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASViewConstraint.h; sourceTree = "<group>"; };
-		61091D3A1CDAF56C008B7EA3 /* MASViewConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewConstraint.m; sourceTree = "<group>"; };
-		61091D3B1CDAF56C008B7EA3 /* NSArray+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+MASAdditions.h"; sourceTree = "<group>"; };
-		61091D3C1CDAF56C008B7EA3 /* NSArray+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+MASAdditions.m"; sourceTree = "<group>"; };
-		61091D3D1CDAF56C008B7EA3 /* NSArray+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+MASShorthandAdditions.h"; sourceTree = "<group>"; };
-		61091D3E1CDAF56C008B7EA3 /* NSLayoutConstraint+MASDebugAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+MASDebugAdditions.h"; sourceTree = "<group>"; };
-		61091D3F1CDAF56C008B7EA3 /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
-		61091D401CDAF56C008B7EA3 /* View+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASAdditions.h"; sourceTree = "<group>"; };
-		61091D411CDAF56C008B7EA3 /* View+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "View+MASAdditions.m"; sourceTree = "<group>"; };
-		61091D421CDAF56C008B7EA3 /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
-		61091D431CDAF56C008B7EA3 /* ViewController+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ViewController+MASAdditions.h"; sourceTree = "<group>"; };
-		61091D441CDAF56C008B7EA3 /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+MASAdditions.m"; sourceTree = "<group>"; };
 		61091D4F1CDAF68B008B7EA3 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		611B483A1C98095F00AD2772 /* CYContactsListTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYContactsListTestViewController.h; sourceTree = "<group>"; };
 		611B483B1C98095F00AD2772 /* CYContactsListTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYContactsListTestViewController.m; sourceTree = "<group>"; };
@@ -397,6 +364,12 @@
 		61FEF34C1CA13D8500BE87D9 /* CYShareSDKTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYShareSDKTestViewController.m; sourceTree = "<group>"; };
 		A306D5641CE3378F008341F3 /* UIImage+CYUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CYUtils.h"; sourceTree = "<group>"; };
 		A306D5651CE3378F008341F3 /* UIImage+CYUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CYUtils.m"; sourceTree = "<group>"; };
+		A30EA3C51CFE7B06006FEF23 /* UITableView+CYUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+CYUtils.h"; sourceTree = "<group>"; };
+		A30EA3C61CFE7B06006FEF23 /* UITableView+CYUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+CYUtils.m"; sourceTree = "<group>"; };
+		A30EA3C81CFE7CEC006FEF23 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		A30EA3CA1CFE7D42006FEF23 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		A30EA3CC1CFE801C006FEF23 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		A30EA3CE1CFE80B9006FEF23 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		A32601F41CE9B4B00032E21C /* CYIPUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYIPUtils.h; sourceTree = "<group>"; };
 		A32601F51CE9B4B00032E21C /* CYIPUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYIPUtils.m; sourceTree = "<group>"; };
 		A3271D521CE585F7005DE1A1 /* CYExceptionUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYExceptionUtils.h; sourceTree = "<group>"; };
@@ -457,6 +430,7 @@
 			children = (
 				61091C231CDAF563008B7EA3 /* CYAddressBookUtils.h */,
 				61091C241CDAF563008B7EA3 /* CYAddressBookUtils.m */,
+				A30EA3CC1CFE801C006FEF23 /* README */,
 			);
 			path = CYAddressBook;
 			sourceTree = SOURCE_ROOT;
@@ -628,15 +602,6 @@
 			path = CYCycleBanner;
 			sourceTree = SOURCE_ROOT;
 		};
-		61091C861CDAF563008B7EA3 /* CYDeviceUtils */ = {
-			isa = PBXGroup;
-			children = (
-				61091C871CDAF563008B7EA3 /* CYDeviceUtils.h */,
-				61091C881CDAF563008B7EA3 /* CYDeviceUtils.m */,
-			);
-			path = CYDeviceUtils;
-			sourceTree = SOURCE_ROOT;
-		};
 		61091C891CDAF563008B7EA3 /* CYFoundationUtils */ = {
 			isa = PBXGroup;
 			children = (
@@ -789,6 +754,7 @@
 			children = (
 				61091CC71CDAF563008B7EA3 /* CYSendSMSUtils.h */,
 				61091CC81CDAF563008B7EA3 /* CYSendSMSUtils.m */,
+				A30EA3CE1CFE80B9006FEF23 /* README */,
 			);
 			path = CYSMS;
 			sourceTree = SOURCE_ROOT;
@@ -824,40 +790,10 @@
 				A330B09E1CF6ACCE00C8639D /* UIDevice+CYUtils.m */,
 				A330B0A01CF6ADC400C8639D /* UIScreen+CYUtils.h */,
 				A330B0A11CF6ADC400C8639D /* UIScreen+CYUtils.m */,
+				A30EA3C51CFE7B06006FEF23 /* UITableView+CYUtils.h */,
+				A30EA3C61CFE7B06006FEF23 /* UITableView+CYUtils.m */,
 			);
 			path = CYUIKitUtils;
-			sourceTree = SOURCE_ROOT;
-		};
-		61091D2B1CDAF56C008B7EA3 /* Masonry */ = {
-			isa = PBXGroup;
-			children = (
-				61091D2C1CDAF56C008B7EA3 /* MASCompositeConstraint.h */,
-				61091D2D1CDAF56C008B7EA3 /* MASCompositeConstraint.m */,
-				61091D2E1CDAF56C008B7EA3 /* MASConstraint+Private.h */,
-				61091D2F1CDAF56C008B7EA3 /* MASConstraint.h */,
-				61091D301CDAF56C008B7EA3 /* MASConstraint.m */,
-				61091D311CDAF56C008B7EA3 /* MASConstraintMaker.h */,
-				61091D321CDAF56C008B7EA3 /* MASConstraintMaker.m */,
-				61091D331CDAF56C008B7EA3 /* MASLayoutConstraint.h */,
-				61091D341CDAF56C008B7EA3 /* MASLayoutConstraint.m */,
-				61091D351CDAF56C008B7EA3 /* Masonry.h */,
-				61091D361CDAF56C008B7EA3 /* MASUtilities.h */,
-				61091D371CDAF56C008B7EA3 /* MASViewAttribute.h */,
-				61091D381CDAF56C008B7EA3 /* MASViewAttribute.m */,
-				61091D391CDAF56C008B7EA3 /* MASViewConstraint.h */,
-				61091D3A1CDAF56C008B7EA3 /* MASViewConstraint.m */,
-				61091D3B1CDAF56C008B7EA3 /* NSArray+MASAdditions.h */,
-				61091D3C1CDAF56C008B7EA3 /* NSArray+MASAdditions.m */,
-				61091D3D1CDAF56C008B7EA3 /* NSArray+MASShorthandAdditions.h */,
-				61091D3E1CDAF56C008B7EA3 /* NSLayoutConstraint+MASDebugAdditions.h */,
-				61091D3F1CDAF56C008B7EA3 /* NSLayoutConstraint+MASDebugAdditions.m */,
-				61091D401CDAF56C008B7EA3 /* View+MASAdditions.h */,
-				61091D411CDAF56C008B7EA3 /* View+MASAdditions.m */,
-				61091D421CDAF56C008B7EA3 /* View+MASShorthandAdditions.h */,
-				61091D431CDAF56C008B7EA3 /* ViewController+MASAdditions.h */,
-				61091D441CDAF56C008B7EA3 /* ViewController+MASAdditions.m */,
-			);
-			path = Masonry;
 			sourceTree = SOURCE_ROOT;
 		};
 		611B48391C98093500AD2772 /* CYContactsListTest */ = {
@@ -896,7 +832,6 @@
 				A311A1611CEC3A13001C64C9 /* CYPath */,
 				A32601F31CE9B4A10032E21C /* CYIPUtils */,
 				A3271D511CE585F7005DE1A1 /* CYExceptionUtils */,
-				61091D2B1CDAF56C008B7EA3 /* Masonry */,
 				61091C1B1CDAF563008B7EA3 /* CYActionSheet */,
 				61091C221CDAF563008B7EA3 /* CYAddressBook */,
 				61091C251CDAF563008B7EA3 /* CYAlertView */,
@@ -906,7 +841,6 @@
 				61091C491CDAF563008B7EA3 /* CYChat */,
 				61091C7B1CDAF563008B7EA3 /* CYContacts */,
 				61091C821CDAF563008B7EA3 /* CYCycleBanner */,
-				61091C861CDAF563008B7EA3 /* CYDeviceUtils */,
 				61091C891CDAF563008B7EA3 /* CYFoundationUtils */,
 				61091C921CDAF563008B7EA3 /* CYFullScreenImage */,
 				61091C961CDAF563008B7EA3 /* CYGroupContents */,
@@ -1037,6 +971,7 @@
 			children = (
 				A32601F41CE9B4B00032E21C /* CYIPUtils.h */,
 				A32601F51CE9B4B00032E21C /* CYIPUtils.m */,
+				A30EA3CA1CFE7D42006FEF23 /* README */,
 			);
 			path = CYIPUtils;
 			sourceTree = SOURCE_ROOT;
@@ -1055,6 +990,7 @@
 			children = (
 				A330B0AC1CF6F53F00C8639D /* CYSecurityUtils.h */,
 				A330B0AD1CF6F53F00C8639D /* CYSecurityUtils.m */,
+				A30EA3C81CFE7CEC006FEF23 /* README */,
 			);
 			path = CYSecurity;
 			sourceTree = SOURCE_ROOT;
@@ -1138,6 +1074,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A30EA3CF1CFE80B9006FEF23 /* README in Resources */,
+				A30EA3CB1CFE7D42006FEF23 /* README in Resources */,
 				61091D1A1CDAF563008B7EA3 /* README in Resources */,
 				61091D081CDAF563008B7EA3 /* README in Resources */,
 				61851ECE1BCD0964005340C8 /* LaunchScreen.storyboard in Resources */,
@@ -1146,10 +1084,12 @@
 				61F7837B1CA0F731004DE856 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				61851ECB1BCD0964005340C8 /* Assets.xcassets in Resources */,
 				61A316B51CA397890079C13B /* share_message.png in Resources */,
+				A30EA3C91CFE7CEC006FEF23 /* README in Resources */,
 				61091D0F1CDAF563008B7EA3 /* README in Resources */,
 				61851EC91BCD0964005340C8 /* Main.storyboard in Resources */,
 				61A316B31CA390C90079C13B /* WeiboSDK.bundle in Resources */,
 				61F783761CA0F5B9004DE856 /* read_me.txt in Resources */,
+				A30EA3CD1CFE801C006FEF23 /* README in Resources */,
 				616037E51BD4D1FE00BF4285 /* introduction_3_5_1.png in Resources */,
 				61091CEE1CDAF563008B7EA3 /* CYChat.bundle in Resources */,
 				61F9586E1CA6765C00B7BB50 /* common_navigation_background@3x.png in Resources */,
@@ -1171,7 +1111,6 @@
 				61091D171CDAF563008B7EA3 /* CYPullRefreshConstants.m in Sources */,
 				A306D5661CE3378F008341F3 /* UIImage+CYUtils.m in Sources */,
 				A32601F61CE9B4B00032E21C /* CYIPUtils.m in Sources */,
-				61091D491CDAF56C008B7EA3 /* MASViewAttribute.m in Sources */,
 				61091D111CDAF563008B7EA3 /* CYContentsGroupByFirstPinYin.m in Sources */,
 				61091CFA1CDAF563008B7EA3 /* CYChatMessageViewModel.m in Sources */,
 				611B483F1C9809E700AD2772 /* CYContactViewModel.m in Sources */,
@@ -1179,7 +1118,6 @@
 				61091D0D1CDAF563008B7EA3 /* NSString+CYUtils.m in Sources */,
 				61091CEA1CDAF563008B7EA3 /* CYWebImageCache.m in Sources */,
 				61091D151CDAF563008B7EA3 /* CYIAPUtils.m in Sources */,
-				61091D451CDAF56C008B7EA3 /* MASCompositeConstraint.m in Sources */,
 				611B483C1C98095F00AD2772 /* CYContactsListTestViewController.m in Sources */,
 				61091D061CDAF563008B7EA3 /* CYContactsSearchInNavigationViewController.m in Sources */,
 				61091D1E1CDAF563008B7EA3 /* CYShareBaseUtil.m in Sources */,
@@ -1192,6 +1130,7 @@
 				61851EC61BCD0964005340C8 /* ViewController.m in Sources */,
 				61091CDC1CDAF563008B7EA3 /* CYActionSheetSection.m in Sources */,
 				61091D0A1CDAF563008B7EA3 /* NSArray+CYJson.m in Sources */,
+				A30EA3C71CFE7B06006FEF23 /* UITableView+CYUtils.m in Sources */,
 				61091D231CDAF563008B7EA3 /* CYSendSMSUtils.m in Sources */,
 				61091CEB1CDAF563008B7EA3 /* NSURLRequest+CYImageDownload.m in Sources */,
 				61091D001CDAF563008B7EA3 /* CYChatInputEmotionPadView.m in Sources */,
@@ -1207,12 +1146,9 @@
 				61091CF21CDAF563008B7EA3 /* CYChatImageRightArrowCell.m in Sources */,
 				61091CDE1CDAF563008B7EA3 /* CYAlertView.m in Sources */,
 				61091D211CDAF563008B7EA3 /* CYWechatUtil.m in Sources */,
-				61091D4A1CDAF56C008B7EA3 /* MASViewConstraint.m in Sources */,
 				61091CE51CDAF563008B7EA3 /* CYBaseView.m in Sources */,
-				61091D091CDAF563008B7EA3 /* CYDeviceUtils.m in Sources */,
 				61091CF31CDAF563008B7EA3 /* CYChatTextCell.m in Sources */,
 				61091CFF1CDAF563008B7EA3 /* CYChatInputContentView.m in Sources */,
-				61091D4D1CDAF56C008B7EA3 /* View+MASAdditions.m in Sources */,
 				61091D121CDAF563008B7EA3 /* pinyin.m in Sources */,
 				61091CFB1CDAF563008B7EA3 /* CYChatBaseModel.m in Sources */,
 				61091D011CDAF563008B7EA3 /* CYChatInputMorePadItem.m in Sources */,
@@ -1224,16 +1160,13 @@
 				61851EC31BCD0964005340C8 /* AppDelegate.m in Sources */,
 				61091CFE1CDAF563008B7EA3 /* CYChatUserViewModel.m in Sources */,
 				61091CED1CDAF563008B7EA3 /* UIImageView+CYWebImageCache.m in Sources */,
-				61091D471CDAF56C008B7EA3 /* MASConstraintMaker.m in Sources */,
 				61091D161CDAF563008B7EA3 /* CYPullRefreshBaseView.m in Sources */,
 				61091CE11CDAF563008B7EA3 /* CYBaseModel.m in Sources */,
 				61091D191CDAF563008B7EA3 /* CYPullRefreshHeaderView.m in Sources */,
-				61091D481CDAF56C008B7EA3 /* MASLayoutConstraint.m in Sources */,
 				61091D201CDAF563008B7EA3 /* CYShareBySMSUtil.m in Sources */,
 				61091CF81CDAF563008B7EA3 /* CYChatVoiceRightArrowCell.m in Sources */,
 				61091D281CDAF563008B7EA3 /* CYCustomUILabel.m in Sources */,
 				61091D041CDAF563008B7EA3 /* CYChatViewController.m in Sources */,
-				61091D4B1CDAF56C008B7EA3 /* NSArray+MASAdditions.m in Sources */,
 				61FD03051BE9A58900237EA3 /* CYCycleBannerViewController.m in Sources */,
 				61091D1F1CDAF563008B7EA3 /* CYSinaWeiboUtil.m in Sources */,
 				61091D1C1CDAF563008B7EA3 /* CYQQUtil.m in Sources */,
@@ -1256,9 +1189,6 @@
 				61091CE81CDAF563008B7EA3 /* CYImageDownloader.m in Sources */,
 				61091CF51CDAF563008B7EA3 /* CYChatTextRightArrowCell.m in Sources */,
 				61091CF01CDAF563008B7EA3 /* CYChatImageCell.m in Sources */,
-				61091D4E1CDAF56C008B7EA3 /* ViewController+MASAdditions.m in Sources */,
-				61091D461CDAF56C008B7EA3 /* MASConstraint.m in Sources */,
-				61091D4C1CDAF56C008B7EA3 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				61091CE01CDAF563008B7EA3 /* CYBannerImageBrowserView.m in Sources */,
 				61091D021CDAF563008B7EA3 /* CYChatInputMorePadView.m in Sources */,
 				61091CF71CDAF563008B7EA3 /* CYChatVoiceLeftArrowCell.m in Sources */,

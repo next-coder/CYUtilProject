@@ -10,19 +10,19 @@
 
 @implementation NSDate (CYUtils)
 
-- (long)timeIntervalInMiniSecondsSinceDate:(NSDate *)date {
+- (long)cy_timeIntervalInMilliSecondsSinceDate:(NSDate *)date {
 
     NSTimeInterval timeInterval = [self timeIntervalSinceDate:date];
     return (long)(timeInterval * 1000);
 }
 
-- (long)timeIntervalInMiniSecondsSinceNow {
+- (long)cy_timeIntervalInMilliSecondsSinceNow {
 
     NSTimeInterval timeInterval = [self timeIntervalSinceNow];
     return (long)(timeInterval * 1000);
 }
 
-- (long)timeIntervalInMiniSecondsSince1970 {
+- (long)cy_timeIntervalInMilliSecondsSince1970 {
 
     NSTimeInterval timeInterval = [self timeIntervalSince1970];
     return (long)(timeInterval * 1000);

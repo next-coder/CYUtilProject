@@ -22,20 +22,20 @@ typedef NS_ENUM(NSInteger, CYDeviceScreenType) {
 @interface UIScreen (CYUtils)
 
 // 当前设备屏幕尺寸类型，详见CYDeviceScreenType
-- (CYDeviceScreenType)currentDeviceScreenType;
+- (CYDeviceScreenType)cy_currentDeviceScreenType;
 
 // 屏幕长边的长度
-- (CGFloat)screenLongerSideLength;
+- (CGFloat)cy_screenLongerSideLength;
 // 屏幕短边的长度
-- (CGFloat)screenShorterSideLength;
+- (CGFloat)cy_screenShorterSideLength;
 
 // 屏幕宽度
-- (CGFloat)screenWidth;
+- (CGFloat)cy_screenWidth;
 
 // 屏幕高度
-- (CGFloat)screenHeight;
+- (CGFloat)cy_screenHeight;
 
 // 屏幕像素(width*height格式)
-- (NSString *)screenPixelResolution;
+- (NSString *)cy_screenPixelResolution;
 
 @end

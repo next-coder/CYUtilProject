@@ -12,7 +12,7 @@
 
 @implementation CYSecurityUtils
 
-+ (uLong)crc32Value:(NSData *)data {
++ (unsigned long)crc32Value:(NSData *)data {
 
     uLong crc = crc32(0, NULL, 0);
     uLong crcValue = crc32(crc, [data bytes], (uInt)data.length);

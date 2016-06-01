@@ -10,7 +10,7 @@
 
 @implementation UIScrollView (CYUtils)
 
-- (void)scrollToBottomAnimated:(BOOL)animated {
+- (void)cy_scrollToBottomAnimated:(BOOL)animated {
     
     CGPoint contentOffset = CGPointMake(self.contentOffset.x, self.contentSize.height - self.frame.size.height);
     [self setContentOffset:contentOffset animated:animated];
@@ -31,7 +31,7 @@
 //    }
 }
 
-- (void)scrollToTopAnimated:(BOOL)animated {
+- (void)cy_scrollToTopAnimated:(BOOL)animated {
     
     CGPoint contentOffset = CGPointMake(self.contentOffset.x, 0);
     [self setContentOffset:contentOffset animated:animated];

@@ -10,7 +10,7 @@
 
 @implementation UIImage (CYUtils)
 
-- (UIImage *)imageByScaleImageToSize:(CGSize)size {
+- (UIImage *)cy_imageByScaleImageToSize:(CGSize)size {
     
     UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
     [self drawInRect:CGRectMake(0, 0, size.width, size.height)];
@@ -19,7 +19,7 @@
     return newImage;
 }
 
-- (UIImage *)imageByScaleImageWidthTo:(CGFloat)width {
+- (UIImage *)cy_imageByScaleImageWidthTo:(CGFloat)width {
     
     CGSize originSize = self.size;
     
@@ -28,7 +28,7 @@
     return [self imageByScaleImageToSize:newSize];
 }
 
-- (UIImage *)imageByScaleImageHeightTo:(CGFloat)height {
+- (UIImage *)cy_imageByScaleImageHeightTo:(CGFloat)height {
     
     CGSize originSize = self.size;
     
@@ -36,13 +36,13 @@
     return [self imageByScaleImageToSize:newSize];
 }
 
-+ (UIImage *)resizableImageWithName:(NSString *)name
++ (UIImage *)cy_resizableImageWithName:(NSString *)name
                           capInsets:(UIEdgeInsets)capInsets {
     
     return [[UIImage imageNamed:name] resizableImageWithCapInsets:capInsets];
 }
 
-+ (UIImage *)originalRenderingModeImageWithName:(NSString *)name {
++ (UIImage *)cy_originalRenderingModeImageWithName:(NSString *)name {
     
     return [[UIImage imageNamed:name] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 }

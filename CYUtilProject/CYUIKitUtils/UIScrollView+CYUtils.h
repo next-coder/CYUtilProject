@@ -10,7 +10,7 @@
 
 @interface UIScrollView (CYUtils)
 
-- (void)scrollToBottomAnimated:(BOOL)animated;
-- (void)scrollToTopAnimated:(BOOL)animated;
+- (void)cy_scrollToBottomAnimated:(BOOL)animated;
+- (void)cy_scrollToTopAnimated:(BOOL)animated;
 
 @end

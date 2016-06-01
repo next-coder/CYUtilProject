@@ -11,8 +11,8 @@
 @interface NSDate (CYUtils)
 
 // time interval in mini seconds
-- (long)timeIntervalInMiniSecondsSinceDate:(NSDate *)date;
-- (long)timeIntervalInMiniSecondsSinceNow;
-- (long)timeIntervalInMiniSecondsSince1970;
+- (long)cy_timeIntervalInMilliSecondsSinceDate:(NSDate *)date;
+- (long)cy_timeIntervalInMilliSecondsSinceNow;
+- (long)cy_timeIntervalInMilliSecondsSince1970;
 
 @end

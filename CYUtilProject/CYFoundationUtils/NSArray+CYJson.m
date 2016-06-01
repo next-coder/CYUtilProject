@@ -66,14 +66,14 @@
 
 #pragma mark - writeToFile
 // write to file as json string
-- (BOOL)writeToFileAsJson:(NSString *)filePath automically:(BOOL)useAuxiliaryFile {
+- (BOOL)cy_writeToFileAsJson:(NSString *)filePath automically:(BOOL)useAuxiliaryFile {
 
     return [self writeToFileAsJson:filePath
                         atomically:useAuxiliaryFile
                              error:nil];
 }
 
-- (BOOL)writeToFileAsJson:(NSString *)filePath atomically:(BOOL)useAuxiliaryFile error:(NSError **)error {
+- (BOOL)cy_writeToFileAsJson:(NSString *)filePath atomically:(BOOL)useAuxiliaryFile error:(NSError **)error {
 
     if (!filePath) {
 

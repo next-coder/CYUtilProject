@@ -10,13 +10,13 @@
 
 @implementation UIDevice (CYUtils)
 
-- (BOOL)systemIsIos8AndLater {
+- (BOOL)cy_systemIsIos8AndLater {
 
     NSString *systemVersion = [self systemVersion];
     return [systemVersion floatValue] >= 8.f;
 }
 
-- (NSString *)currentAppVersion {
+- (NSString *)cy_currentAppVersion {
 
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
 }

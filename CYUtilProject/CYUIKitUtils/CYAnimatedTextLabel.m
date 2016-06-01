@@ -127,7 +127,7 @@
     }
 }
 
-- (void)startAnimatingTextWithDuration:(CGFloat)duration {
+- (void)cy_startAnimatingTextWithDuration:(CGFloat)duration {
     
     _animatedTextLabelLayer.animationDuration = duration;
     _animatedTextLabelLayer.animationProperty += duration;

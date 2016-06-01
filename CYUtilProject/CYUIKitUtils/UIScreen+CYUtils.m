@@ -10,7 +10,7 @@
 
 @implementation UIScreen (CYUtils)
 
-- (CYDeviceScreenType)currentDeviceScreenType {
+- (CYDeviceScreenType)cy_currentDeviceScreenType {
 
     CGSize screenSize = self.bounds.size;
     CGFloat screenMaxSide = MAX(screenSize.width, screenSize.height);
@@ -35,29 +35,29 @@
     }
 }
 
-- (CGFloat)screenLongerSideLength {
+- (CGFloat)cy_screenLongerSideLength {
 
     CGSize screenSize = self.bounds.size;
     return MAX(screenSize.width, screenSize.height);
 }
 
-- (CGFloat)screenShorterSideLength {
+- (CGFloat)cy_screenShorterSideLength {
 
     CGSize screenSize = self.bounds.size;
     return MIN(screenSize.width, screenSize.height);
 }
 
-- (CGFloat)screenWidth {
+- (CGFloat)cy_screenWidth {
 
     return self.bounds.size.width;
 }
 
-- (CGFloat)screenHeight {
+- (CGFloat)cy_screenHeight {
     
     return self.bounds.size.height;
 }
 
-- (NSString *)screenPixelResolution {
+- (NSString *)cy_screenPixelResolution {
 
     CGFloat width = self.bounds.size.width * self.scale;
     CGFloat height = self.bounds.size.height * self.scale;

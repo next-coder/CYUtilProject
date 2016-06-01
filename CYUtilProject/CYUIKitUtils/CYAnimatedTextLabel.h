@@ -21,6 +21,6 @@
 
 @property (nonatomic, weak) id<CYAnimatedTextLabelDelegate> delegate;
 
-- (void)startAnimatingTextWithDuration:(CGFloat)duration;
+- (void)cy_startAnimatingTextWithDuration:(CGFloat)duration;
 
 @end

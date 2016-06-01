@@ -12,9 +12,9 @@
 @interface UIDevice (CYUtils)
 
 // 当前设备系统是否为8.0或更新
-- (BOOL)systemIsIos8AndLater;
+- (BOOL)cy_systemIsIos8AndLater;
 
 // 当前app版本号
-- (NSString *)currentAppVersion;
+- (NSString *)cy_currentAppVersion;
 
 @end
