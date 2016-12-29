@@ -8,44 +8,44 @@
 
 import UIKit
 
-class ImageDownloader : NSObject, NSURLSessionDownloadDelegate {
+class ImageDownloader : NSObject, URLSessionDownloadDelegate {
     
-    let downloadQueue: NSOperationQueue
-    var downloadSession: NSURLSession?
+    let downloadQueue: OperationQueue
+    var downloadSession: Foundation.URLSession?
 
     override init() {
 
-        self.downloadQueue = NSOperationQueue()
+        self.downloadQueue = OperationQueue()
         self.downloadQueue.maxConcurrentOperationCount = 5
 
         super.init()
 
-        let config = NSURLSessionConfiguration.defaultSessionConfiguration()
-        config.requestCachePolicy = .ReloadIgnoringLocalCacheData
-        config.HTTPShouldSetCookies = false
-        self.downloadSession = NSURLSession(configuration: config,
+        let config = URLSessionConfiguration.default
+        config.requestCachePolicy = .reloadIgnoringLocalCacheData
+        config.httpShouldSetCookies = false
+        self.downloadSession = Foundation.URLSession(configuration: config,
                                             delegate: self,
                                             delegateQueue: self.downloadQueue)
     }
 
-    func downloadImage(imageUrl: String) {
+    func downloadImage(_ imageUrl: String) {
         
-        let session = NSURLSession()
-        let task = session.downloadTaskWithURL(NSURL(string: imageUrl)!)
+        let session = Foundation.URLSession()
+        _ = session.downloadTask(with: URL(string: imageUrl)!)
 //        task.start
     }
 
     // NSURLSessionDelegate methods
-    func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
 
 
     }
 
-    @objc func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didFinishDownloadingToURL location: NSURL) {
+    @objc func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
 
     }
 
-    func URLSession(session: NSURLSession, task: NSURLSessionTask, didCompleteWithError error: NSError?) {
+    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
 
 
     }

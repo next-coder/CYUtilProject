@@ -10,12 +10,12 @@ import Foundation
 
 extension Array {
 
-    static func arrayFromJSONData(JSONData: NSData) -> [AnyObject]? {
+    static func arrayFromJSONData(_ JSONData: Data) -> [AnyObject]? {
 
         return CYJSONUtils.arrayFromJSONData(JSONData)
     }
 
-    static func arrayFromJSONString(JSONString: String) -> [AnyObject]? {
+    static func arrayFromJSONString(_ JSONString: String) -> [AnyObject]? {
 
         return CYJSONUtils.arrayFromJSONString(JSONString)
     }

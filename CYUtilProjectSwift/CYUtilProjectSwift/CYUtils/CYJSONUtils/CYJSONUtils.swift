@@ -11,13 +11,13 @@ import Foundation
 class CYJSONUtils {
 
     // data from JSONObject, transfer object to json data
-    static func dataFromJSONObject(let JSONObject: AnyObject) -> NSData? {
+    static func dataFromJSONObject(_ JSONObject: AnyObject) -> Data? {
 
-        if NSJSONSerialization.isValidJSONObject(JSONObject) {
+        if JSONSerialization.isValidJSONObject(JSONObject) {
 
             do {
 
-                let data = try NSJSONSerialization.dataWithJSONObject(JSONObject, options: .PrettyPrinted)
+                let data = try JSONSerialization.data(withJSONObject: JSONObject, options: .prettyPrinted)
                 return data
             } catch {
 
@@ -27,23 +27,23 @@ class CYJSONUtils {
         return nil
     }
 
-    static func stringFromJSONObject(JSONObject: AnyObject) -> String? {
+    static func stringFromJSONObject(_ JSONObject: AnyObject) -> String? {
 
         if let JSONData = self.dataFromJSONObject(JSONObject) {
 
-            return String(data: JSONData, encoding: NSUTF8StringEncoding)
+            return String(data: JSONData, encoding: String.Encoding.utf8)
         }
         return nil
     }
 
 
     // JSON Object from data
-    static func JSONObjectFromData(let data: NSData) -> AnyObject? {
+    static func JSONObjectFromData(_ data: Data) -> AnyObject? {
 
         do {
 
-            let JSONObject =  try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
-            return JSONObject
+            let JSONObject =  try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+            return JSONObject as AnyObject?
         } catch {
 
             // exception
@@ -51,7 +51,7 @@ class CYJSONUtils {
         return nil
     }
 
-    static func dictionaryFromJSONData(data: NSData) -> [String : AnyObject]? {
+    static func dictionaryFromJSONData(_ data: Data) -> [String : AnyObject]? {
 
         if let JSONObject = self.JSONObjectFromData(data) {
 
@@ -60,7 +60,7 @@ class CYJSONUtils {
         return nil
     }
 
-    static func arrayFromJSONData(data: NSData) -> [AnyObject]? {
+    static func arrayFromJSONData(_ data: Data) -> [AnyObject]? {
 
         if let JSONObject = self.JSONObjectFromData(data) {
 
@@ -70,27 +70,27 @@ class CYJSONUtils {
     }
 
     // JSON Object from String, must UTF8 encoding string, otherwise use JSONObjectFromData
-    static func JSONObjectFromString(JSONString: String) -> AnyObject? {
+    static func JSONObjectFromString(_ JSONString: String) -> AnyObject? {
 
-        if let data = JSONString.dataUsingEncoding(NSUTF8StringEncoding) {
+        if let data = JSONString.data(using: String.Encoding.utf8) {
 
             return self.JSONObjectFromData(data)
         }
         return nil
     }
 
-    static func dictionaryFromJSONString(JSONString: String) -> [String : AnyObject]? {
+    static func dictionaryFromJSONString(_ JSONString: String) -> [String : AnyObject]? {
 
-        if let data = JSONString.dataUsingEncoding(NSUTF8StringEncoding) {
+        if let data = JSONString.data(using: String.Encoding.utf8) {
 
             return self.dictionaryFromJSONData(data)
         }
         return nil
     }
 
-    static func arrayFromJSONString(JSONString: String) -> [AnyObject]? {
+    static func arrayFromJSONString(_ JSONString: String) -> [AnyObject]? {
 
-        if let data = JSONString.dataUsingEncoding(NSUTF8StringEncoding) {
+        if let data = JSONString.data(using: String.Encoding.utf8) {
 
             return self.arrayFromJSONData(data)
         }

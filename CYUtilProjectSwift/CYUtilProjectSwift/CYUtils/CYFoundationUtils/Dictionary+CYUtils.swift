@@ -10,12 +10,12 @@ import Foundation
 
 extension Dictionary {
 
-    static func dictionaryFromJSONData(JSONData: NSData) -> [String : AnyObject]? {
+    static func dictionaryFromJSONData(_ JSONData: Data) -> [String : AnyObject]? {
 
         return CYJSONUtils.dictionaryFromJSONData(JSONData)
     }
 
-    static func dictionaryFromJSONString(JSONString: String) -> [String : AnyObject]? {
+    static func dictionaryFromJSONString(_ JSONString: String) -> [String : AnyObject]? {
 
         return CYJSONUtils.dictionaryFromJSONString(JSONString)
     }

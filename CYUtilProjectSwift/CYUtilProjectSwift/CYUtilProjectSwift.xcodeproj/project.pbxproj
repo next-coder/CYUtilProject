@@ -14,9 +14,21 @@
 		61091D681CDAF8E4008B7EA3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61091D661CDAF8E4008B7EA3 /* LaunchScreen.storyboard */; };
 		61091D721CDAFCDA008B7EA3 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61091D711CDAFCDA008B7EA3 /* ImageDownloader.swift */; };
 		A306D5631CE330A8008341F3 /* CYAlertViewAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A306D5621CE330A8008341F3 /* CYAlertViewAction.swift */; };
+		A30EA3D21CFED40F006FEF23 /* CYAudioPlayUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30EA3D11CFED40F006FEF23 /* CYAudioPlayUtils.swift */; };
+		A30EA3D41CFEE023006FEF23 /* CYAudioRecordUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30EA3D31CFEE023006FEF23 /* CYAudioRecordUtils.swift */; };
 		A33913CE1CF3EE4400C8C147 /* Dictionary+CYUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33913CD1CF3EE4400C8C147 /* Dictionary+CYUtils.swift */; };
 		A33913D11CF4236800C8C147 /* CYJSONUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33913D01CF4236800C8C147 /* CYJSONUtils.swift */; };
 		A33913D31CF4282700C8C147 /* Array+CYUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33913D21CF4282700C8C147 /* Array+CYUtils.swift */; };
+		A33E4B3B1D069B0C001B0AB1 /* CYJSLocalRequestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33E4B3A1D069B0C001B0AB1 /* CYJSLocalRequestUtils.swift */; };
+		A33E4B3D1D06ABDC001B0AB1 /* CYJSCommonActionRequestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33E4B3C1D06ABDC001B0AB1 /* CYJSCommonActionRequestUtils.swift */; };
+		A345C5FC1DEBDE2F0094AF5A /* CYBaseProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A345C5FB1DEBDE2F0094AF5A /* CYBaseProgressBar.swift */; };
+		A38580201DEFCFA800FF989F /* CYLineProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A385801F1DEFCFA800FF989F /* CYLineProgressBar.swift */; };
+		A38580221DEFD1E900FF989F /* CYArcProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38580211DEFD1E900FF989F /* CYArcProgressBar.swift */; };
+		A38580241DEFF6E100FF989F /* CYCycleProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38580231DEFF6E100FF989F /* CYCycleProgressBar.swift */; };
+		A3CCAF311D17A56000A40969 /* CYJSJSONParametersSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCAF301D17A56000A40969 /* CYJSJSONParametersSerialization.swift */; };
+		A3CCAF331D17A57900A40969 /* CYJSParametersSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCAF321D17A57900A40969 /* CYJSParametersSerialization.swift */; };
+		A3CCAF351D17A58900A40969 /* CYJSHTTPParametersSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCAF341D17A58900A40969 /* CYJSHTTPParametersSerialization.swift */; };
+		A3CCAF371D17D6EE00A40969 /* CYAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCAF361D17D6EE00A40969 /* CYAlertView.swift */; };
 		A3E2530A1CFD976F002F8E18 /* ObjectiveCTestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E253091CFD976F002F8E18 /* ObjectiveCTestObject.m */; };
 /* End PBXBuildFile section */
 
@@ -30,9 +42,21 @@
 		61091D691CDAF8E4008B7EA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61091D711CDAFCDA008B7EA3 /* ImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		A306D5621CE330A8008341F3 /* CYAlertViewAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYAlertViewAction.swift; sourceTree = "<group>"; };
+		A30EA3D11CFED40F006FEF23 /* CYAudioPlayUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYAudioPlayUtils.swift; sourceTree = "<group>"; };
+		A30EA3D31CFEE023006FEF23 /* CYAudioRecordUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYAudioRecordUtils.swift; sourceTree = "<group>"; };
 		A33913CD1CF3EE4400C8C147 /* Dictionary+CYUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+CYUtils.swift"; sourceTree = "<group>"; };
 		A33913D01CF4236800C8C147 /* CYJSONUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYJSONUtils.swift; sourceTree = "<group>"; };
 		A33913D21CF4282700C8C147 /* Array+CYUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+CYUtils.swift"; sourceTree = "<group>"; };
+		A33E4B3A1D069B0C001B0AB1 /* CYJSLocalRequestUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYJSLocalRequestUtils.swift; sourceTree = "<group>"; };
+		A33E4B3C1D06ABDC001B0AB1 /* CYJSCommonActionRequestUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYJSCommonActionRequestUtils.swift; sourceTree = "<group>"; };
+		A345C5FB1DEBDE2F0094AF5A /* CYBaseProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYBaseProgressBar.swift; sourceTree = "<group>"; };
+		A385801F1DEFCFA800FF989F /* CYLineProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYLineProgressBar.swift; sourceTree = "<group>"; };
+		A38580211DEFD1E900FF989F /* CYArcProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYArcProgressBar.swift; sourceTree = "<group>"; };
+		A38580231DEFF6E100FF989F /* CYCycleProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYCycleProgressBar.swift; sourceTree = "<group>"; };
+		A3CCAF301D17A56000A40969 /* CYJSJSONParametersSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYJSJSONParametersSerialization.swift; sourceTree = "<group>"; };
+		A3CCAF321D17A57900A40969 /* CYJSParametersSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYJSParametersSerialization.swift; sourceTree = "<group>"; };
+		A3CCAF341D17A58900A40969 /* CYJSHTTPParametersSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYJSHTTPParametersSerialization.swift; sourceTree = "<group>"; };
+		A3CCAF361D17D6EE00A40969 /* CYAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYAlertView.swift; sourceTree = "<group>"; };
 		A3E253071CFD976F002F8E18 /* CYUtilProjectSwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CYUtilProjectSwift-Bridging-Header.h"; sourceTree = "<group>"; };
 		A3E253081CFD976F002F8E18 /* ObjectiveCTestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveCTestObject.h; sourceTree = "<group>"; };
 		A3E253091CFD976F002F8E18 /* ObjectiveCTestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectiveCTestObject.m; sourceTree = "<group>"; };
@@ -85,6 +109,9 @@
 		61091D6F1CDAFCB0008B7EA3 /* CYUtils */ = {
 			isa = PBXGroup;
 			children = (
+				A345C5F81DEBDE0A0094AF5A /* CYProgressUtils */,
+				A33E4B391D069A9C001B0AB1 /* CYWebViewUtils */,
+				A30EA3D01CFED3F9006FEF23 /* CYAudioUtils */,
 				A33913CF1CF4235400C8C147 /* CYJSONUtils */,
 				A33913CC1CF3EE0700C8C147 /* CYFoundationUtils */,
 				A306D5611CE33096008341F3 /* CYAlertView */,
@@ -105,8 +132,18 @@
 			isa = PBXGroup;
 			children = (
 				A306D5621CE330A8008341F3 /* CYAlertViewAction.swift */,
+				A3CCAF361D17D6EE00A40969 /* CYAlertView.swift */,
 			);
 			path = CYAlertView;
+			sourceTree = "<group>";
+		};
+		A30EA3D01CFED3F9006FEF23 /* CYAudioUtils */ = {
+			isa = PBXGroup;
+			children = (
+				A30EA3D11CFED40F006FEF23 /* CYAudioPlayUtils.swift */,
+				A30EA3D31CFEE023006FEF23 /* CYAudioRecordUtils.swift */,
+			);
+			path = CYAudioUtils;
 			sourceTree = "<group>";
 		};
 		A33913CC1CF3EE0700C8C147 /* CYFoundationUtils */ = {
@@ -124,6 +161,37 @@
 				A33913D01CF4236800C8C147 /* CYJSONUtils.swift */,
 			);
 			path = CYJSONUtils;
+			sourceTree = "<group>";
+		};
+		A33E4B391D069A9C001B0AB1 /* CYWebViewUtils */ = {
+			isa = PBXGroup;
+			children = (
+				A3CCAF2F1D17A56000A40969 /* CYJSParametersSerialization */,
+				A33E4B3A1D069B0C001B0AB1 /* CYJSLocalRequestUtils.swift */,
+				A33E4B3C1D06ABDC001B0AB1 /* CYJSCommonActionRequestUtils.swift */,
+			);
+			path = CYWebViewUtils;
+			sourceTree = "<group>";
+		};
+		A345C5F81DEBDE0A0094AF5A /* CYProgressUtils */ = {
+			isa = PBXGroup;
+			children = (
+				A345C5FB1DEBDE2F0094AF5A /* CYBaseProgressBar.swift */,
+				A385801F1DEFCFA800FF989F /* CYLineProgressBar.swift */,
+				A38580231DEFF6E100FF989F /* CYCycleProgressBar.swift */,
+				A38580211DEFD1E900FF989F /* CYArcProgressBar.swift */,
+			);
+			path = CYProgressUtils;
+			sourceTree = "<group>";
+		};
+		A3CCAF2F1D17A56000A40969 /* CYJSParametersSerialization */ = {
+			isa = PBXGroup;
+			children = (
+				A3CCAF321D17A57900A40969 /* CYJSParametersSerialization.swift */,
+				A3CCAF341D17A58900A40969 /* CYJSHTTPParametersSerialization.swift */,
+				A3CCAF301D17A56000A40969 /* CYJSJSONParametersSerialization.swift */,
+			);
+			path = CYJSParametersSerialization;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -153,11 +221,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = Jasper;
 				TargetAttributes = {
 					61091D591CDAF8E4008B7EA3 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = BQN58WSC57;
+						LastSwiftMigration = 0810;
 					};
 				};
 			};
@@ -197,14 +267,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A30EA3D21CFED40F006FEF23 /* CYAudioPlayUtils.swift in Sources */,
+				A345C5FC1DEBDE2F0094AF5A /* CYBaseProgressBar.swift in Sources */,
+				A33E4B3B1D069B0C001B0AB1 /* CYJSLocalRequestUtils.swift in Sources */,
 				61091D601CDAF8E4008B7EA3 /* ViewController.swift in Sources */,
+				A38580221DEFD1E900FF989F /* CYArcProgressBar.swift in Sources */,
+				A30EA3D41CFEE023006FEF23 /* CYAudioRecordUtils.swift in Sources */,
+				A38580241DEFF6E100FF989F /* CYCycleProgressBar.swift in Sources */,
+				A3CCAF311D17A56000A40969 /* CYJSJSONParametersSerialization.swift in Sources */,
 				A33913D11CF4236800C8C147 /* CYJSONUtils.swift in Sources */,
 				61091D721CDAFCDA008B7EA3 /* ImageDownloader.swift in Sources */,
+				A3CCAF331D17A57900A40969 /* CYJSParametersSerialization.swift in Sources */,
 				61091D5E1CDAF8E4008B7EA3 /* AppDelegate.swift in Sources */,
 				A306D5631CE330A8008341F3 /* CYAlertViewAction.swift in Sources */,
+				A38580201DEFCFA800FF989F /* CYLineProgressBar.swift in Sources */,
+				A3CCAF351D17A58900A40969 /* CYJSHTTPParametersSerialization.swift in Sources */,
+				A3CCAF371D17D6EE00A40969 /* CYAlertView.swift in Sources */,
 				A33913D31CF4282700C8C147 /* Array+CYUtils.swift in Sources */,
 				A3E2530A1CFD976F002F8E18 /* ObjectiveCTestObject.m in Sources */,
 				A33913CE1CF3EE4400C8C147 /* Dictionary+CYUtils.swift in Sources */,
+				A33E4B3D1D06ABDC001B0AB1 /* CYJSCommonActionRequestUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,8 +326,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -290,8 +374,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -310,6 +396,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -320,6 +407,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = BQN58WSC57;
 				INFOPLIST_FILE = CYUtilProjectSwift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -327,6 +416,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CYUtilProjectSwift/CYUtilProjectSwift-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -335,12 +425,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				DEVELOPMENT_TEAM = BQN58WSC57;
 				INFOPLIST_FILE = CYUtilProjectSwift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Jasper.CYUtilProjectSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CYUtilProjectSwift/CYUtilProjectSwift-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
