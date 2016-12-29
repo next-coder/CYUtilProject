@@ -98,15 +98,16 @@ class CYCycleProgressBar: CYBaseProgressBar {
                                 endAngle: CGFloat(progress * 2 * M_PI + startAngle),
                                 clockwise: true)
         completionLayer?.path = path.cgPath
+        completedPath = path.cgPath
     }
 
     override func addAnimation() {
         super.addAnimation()
 
-//        let animation = CAKeyframeAnimation(keyPath: "position")
-//        animation.path = completedPath?.cgPath
-//        animation.calculationMode = kCAAnimationPaced
-//        animation.duration = 2
-//        progressHeaderView?.layer.add(animation, forKey: nil)
+        let animation = CAKeyframeAnimation(keyPath: "position")
+        animation.path = completedPath
+        animation.calculationMode = kCAAnimationPaced
+        animation.duration = 2
+        progressHeaderView?.layer.add(animation, forKey: nil)
     }
 }

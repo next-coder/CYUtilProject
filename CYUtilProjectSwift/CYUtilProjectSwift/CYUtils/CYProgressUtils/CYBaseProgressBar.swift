@@ -15,7 +15,7 @@ class CYBaseProgressBar: UIView {
     private(set) var fullLayer: CAShapeLayer?
     private(set) var completionLayer: CAShapeLayer?
 
-    private var completedPath: UIBezierPath?
+    var completedPath: CGPath?
 
     // progress, use
     private(set) var progress = 0.0

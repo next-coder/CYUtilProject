@@ -75,16 +75,17 @@ class CYLineProgressBar: CYBaseProgressBar {
         path.addLine(to: CGPoint(x: (endPoint.x - startPoint.x) * CGFloat(progress) + startPoint.x,
                                  y: (endPoint.y - startPoint.y) * CGFloat(progress) + startPoint.y))
         completionLayer?.path = path
+        completedPath = path
     }
 
     override func addAnimation() {
         super.addAnimation()
 
-//        let animation = CAKeyframeAnimation(keyPath: "position")
-//        animation.path = completedPath?.cgPath
-//        animation.calculationMode = kCAAnimationPaced
-//        animation.duration = 2
-//        progressHeaderView?.layer.add(animation, forKey: nil)
+        let animation = CAKeyframeAnimation(keyPath: "position")
+        animation.path = completedPath
+        animation.calculationMode = kCAAnimationPaced
+        animation.duration = 2
+        progressHeaderView?.layer.add(animation, forKey: nil)
     }
 
 }

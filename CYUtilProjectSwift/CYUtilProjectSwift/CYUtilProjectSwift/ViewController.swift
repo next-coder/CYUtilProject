@@ -25,17 +25,30 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
 
 //        let progress = CYLineProgressBar(frame: CGRect(x: 10, y: 150, width: 100, height: 30))
-//        let progress = CYCycleProgressBar(frame: CGRect(x: 10, y: 150, width: 100, height: 100))
+        let progress = CYCycleProgressBar(startAngle: M_PI * 3 / 2,
+                                          cycleRadius: Double(48.5),
+                                          cycleCenter: CGPoint(x: 50, y: 50),
+                                          barWidth: 3,
+                                          frame: CGRect(x: 10, y: 150, width: 100, height: 100))
+        progress.color = UIColor.clear
+        progress.completionColor = UIColor.red
+        progress.lineCap = kCALineCapButt
 //        let progress = CYCycleProgressBar(startAngle: M_PI, cycleRadius: 48, cycleCenter: CGPoint(x: 50, y: 50), frame: CGRect(x: 10, y: 150, width: 100, height: 100))
 //        let progress = CYArcProgressBar(frame: CGRect(x: 10, y: 150, width: 100, height: 100))
-        let progress = CYArcProgressBar(startAngle: 2.8, endAngle: 6.8, arcRadius: 48, arcCenter: CGPoint(x: 50, y: 50), frame: CGRect(x: 10, y: 150, width: 100, height: 100))
+//        let progress = CYArcProgressBar(startAngle: 2.8, calculateStartAngle: 3.5, endAngle: 6.8, arcRadius: 48, arcCenter: CGPoint(x: 50, y: 50), frame: CGRect(x: 10, y: 150, width: 100, height: 100))
+//        let progress = CYArcProgressBar(startAngle: 2.8,
+//                                        calculateStartAngle: 3.5,
+//                                        endAngle: 6.8,
+//                                        arcRadius: 48,
+//                                        arcCenter: CGPoint(x: 50, y: 50),
+//                                        frame: CGRect(x: 10, y: 150, width: 100, height: 100))
         progress.backgroundColor = UIColor.green
         let progressHeader = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: 8))
         progressHeader.backgroundColor = UIColor.red
         progressHeader.layer.cornerRadius = 4
         progress.progressHeaderView = progressHeader
         self.view.addSubview(progress)
-        progress.setProgress(progress: 0.75, animated: true)
+        progress.setProgress(progress: 0.3, animated: true)
         progressView = progress
     }
 
