@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UITableViewController {
 
     @IBOutlet weak var recordPauseButton: UIButton!
     @IBOutlet weak var recordStopButton: UIButton!
@@ -24,13 +24,13 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
-//        let progress = CYLineProgressBar(frame: CGRect(x: 10, y: 150, width: 100, height: 30))
-        let progress = CYCycleProgressBar(startAngle: M_PI * 3 / 2,
-                                          cycleRadius: Double(48.5),
-                                          cycleCenter: CGPoint(x: 50, y: 50),
-                                          barWidth: 3,
-                                          frame: CGRect(x: 10, y: 150, width: 100, height: 100))
-        progress.color = UIColor.clear
+        let progress = CYLineProgressBar(frame: CGRect(x: 10, y: 150, width: 100, height: 30))
+//        let progress = CYCycleProgressBar(startAngle: M_PI * 3 / 2,
+//                                          cycleRadius: Double(48.5),
+//                                          cycleCenter: CGPoint(x: 50, y: 50),
+//                                          barWidth: 3,
+//                                          frame: CGRect(x: 10, y: 150, width: 100, height: 100))
+//        progress.color = UIColor.clear
         progress.completionColor = UIColor.red
         progress.lineCap = kCALineCapButt
 //        let progress = CYCycleProgressBar(startAngle: M_PI, cycleRadius: 48, cycleCenter: CGPoint(x: 50, y: 50), frame: CGRect(x: 10, y: 150, width: 100, height: 100))
@@ -137,6 +137,18 @@ class ViewController: UIViewController {
             audioPlayUtil.stop()
             self.playPauseButton.setTitle("Play", for: UIControlState())
             self.audioPlayUtil = nil
+        }
+    }
+
+    // UITableViewDelegate
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        if indexPath.section == 0 {
+            if indexPath.row == 0 {
+//                self.present(ProgressWebTestViewController(), animated: true, completion: nil)
+                self.navigationController?.pushViewController(ProgressWebTestViewController(), animated: true)
+            }
         }
     }
 }

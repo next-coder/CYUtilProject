@@ -372,7 +372,7 @@
     
     [self animatedRefreshConstraints];
     
-    [_tableView scrollToBottomAnimated:YES];
+    [self.tableView cy_scrollToBottomAnimated:YES];
 }
 
 - (void)refreshEmotionInputLayout:(CYChatInputContentInputType)currentInputType {
@@ -461,7 +461,7 @@
 #pragma mark - NSNotification
 - (void)keyboardWillShow:(NSNotification *)notice {
     
-    if (_chatInputContentView.textView.isFirstResponder) {
+    if (self.chatInputContentView.textView.isFirstResponder) {
         
         CGFloat keyboardHeight = [[notice.userInfo objectForKey:@"UIKeyboardFrameEndUserInfoKey"] CGRectValue].size.height;
         
@@ -483,7 +483,7 @@
         [self replaceChatInputContentViewBottomConstraint:constraint];
         [self animatedRefreshConstraints];
         
-        [_tableView scrollToBottomAnimated:YES];
+        [self.tableView cy_scrollToBottomAnimated:YES];
     }
 }
 
@@ -526,7 +526,7 @@
                                                                        constant:-keyboardHeight];
         [self replaceChatInputContentViewBottomConstraint:constraint];
         
-        [_tableView scrollToBottomAnimated:YES];
+        [self.tableView cy_scrollToBottomAnimated:YES];
     }
 }
 

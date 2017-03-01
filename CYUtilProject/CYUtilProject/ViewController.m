@@ -23,6 +23,8 @@
 
 #import "CYChat.h"
 
+#import "UIImage+CYUtils.h"
+
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -61,6 +63,7 @@
         
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
+    cell.imageView.image = [[UIImage imageNamed:@"share_message"] cy_roundCornerimageWithCornerRadius:5];
     if (indexPath.row == 0) {
         
         cell.textLabel.text = @"CYChatViewController";
@@ -182,6 +185,7 @@
                                                     customViews:@[ imageView, textField1, textField2 ]
                                                         actions:@[ action1, action2 ]];
         alert.dimissOnBlankAreaTapped = YES;
+        alert.backgroundColor = [UIColor clearColor];
         
 //        CYAlertViewAction *action3 = [[CYAlertViewAction alloc] initWithTitle:@"试一下3" handler:^(CYAlertViewAction *action) {
 //            

@@ -124,6 +124,9 @@
 		61FD03161BE9D76F00237EA3 /* CYFullScreenImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FD03151BE9D76F00237EA3 /* CYFullScreenImageViewController.m */; };
 		61FEF34D1CA13D8500BE87D9 /* CYShareSDKTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FEF34C1CA13D8500BE87D9 /* CYShareSDKTestViewController.m */; };
 		A306D5661CE3378F008341F3 /* UIImage+CYUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A306D5651CE3378F008341F3 /* UIImage+CYUtils.m */; };
+		A307B6481D080FE700DE9B9E /* CYPlainSegmentedView.m in Sources */ = {isa = PBXBuildFile; fileRef = A307B6451D080FE700DE9B9E /* CYPlainSegmentedView.m */; };
+		A307B6491D080FE700DE9B9E /* CYSegmentedScrollContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = A307B6471D080FE700DE9B9E /* CYSegmentedScrollContentView.m */; };
+		A307B64C1D08103F00DE9B9E /* CYVerticalMultiPageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = A307B64B1D08103F00DE9B9E /* CYVerticalMultiPageScrollView.m */; };
 		A30EA3C71CFE7B06006FEF23 /* UITableView+CYUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A30EA3C61CFE7B06006FEF23 /* UITableView+CYUtils.m */; };
 		A30EA3C91CFE7CEC006FEF23 /* README in Resources */ = {isa = PBXBuildFile; fileRef = A30EA3C81CFE7CEC006FEF23 /* README */; };
 		A30EA3CB1CFE7D42006FEF23 /* README in Resources */ = {isa = PBXBuildFile; fileRef = A30EA3CA1CFE7D42006FEF23 /* README */; };
@@ -364,6 +367,12 @@
 		61FEF34C1CA13D8500BE87D9 /* CYShareSDKTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYShareSDKTestViewController.m; sourceTree = "<group>"; };
 		A306D5641CE3378F008341F3 /* UIImage+CYUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CYUtils.h"; sourceTree = "<group>"; };
 		A306D5651CE3378F008341F3 /* UIImage+CYUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CYUtils.m"; sourceTree = "<group>"; };
+		A307B6441D080FE700DE9B9E /* CYPlainSegmentedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYPlainSegmentedView.h; sourceTree = "<group>"; };
+		A307B6451D080FE700DE9B9E /* CYPlainSegmentedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYPlainSegmentedView.m; sourceTree = "<group>"; };
+		A307B6461D080FE700DE9B9E /* CYSegmentedScrollContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYSegmentedScrollContentView.h; sourceTree = "<group>"; };
+		A307B6471D080FE700DE9B9E /* CYSegmentedScrollContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYSegmentedScrollContentView.m; sourceTree = "<group>"; };
+		A307B64A1D08103F00DE9B9E /* CYVerticalMultiPageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYVerticalMultiPageScrollView.h; sourceTree = "<group>"; };
+		A307B64B1D08103F00DE9B9E /* CYVerticalMultiPageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYVerticalMultiPageScrollView.m; sourceTree = "<group>"; };
 		A30EA3C51CFE7B06006FEF23 /* UITableView+CYUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+CYUtils.h"; sourceTree = "<group>"; };
 		A30EA3C61CFE7B06006FEF23 /* UITableView+CYUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+CYUtils.m"; sourceTree = "<group>"; };
 		A30EA3C81CFE7CEC006FEF23 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
@@ -828,6 +837,8 @@
 		61851EBD1BCD0964005340C8 /* CYUtilProject */ = {
 			isa = PBXGroup;
 			children = (
+				A307B6431D080FD900DE9B9E /* CYSegmented */,
+				A307B6421D080FBA00DE9B9E /* CYPageView */,
 				A330B0AB1CF6F53000C8639D /* CYSecurity */,
 				A311A1611CEC3A13001C64C9 /* CYPath */,
 				A32601F31CE9B4A10032E21C /* CYIPUtils */,
@@ -958,6 +969,26 @@
 			);
 			name = Pods;
 			sourceTree = "<group>";
+		};
+		A307B6421D080FBA00DE9B9E /* CYPageView */ = {
+			isa = PBXGroup;
+			children = (
+				A307B64A1D08103F00DE9B9E /* CYVerticalMultiPageScrollView.h */,
+				A307B64B1D08103F00DE9B9E /* CYVerticalMultiPageScrollView.m */,
+			);
+			path = CYPageView;
+			sourceTree = SOURCE_ROOT;
+		};
+		A307B6431D080FD900DE9B9E /* CYSegmented */ = {
+			isa = PBXGroup;
+			children = (
+				A307B6441D080FE700DE9B9E /* CYPlainSegmentedView.h */,
+				A307B6451D080FE700DE9B9E /* CYPlainSegmentedView.m */,
+				A307B6461D080FE700DE9B9E /* CYSegmentedScrollContentView.h */,
+				A307B6471D080FE700DE9B9E /* CYSegmentedScrollContentView.m */,
+			);
+			path = CYSegmented;
+			sourceTree = SOURCE_ROOT;
 		};
 		A311A1611CEC3A13001C64C9 /* CYPath */ = {
 			isa = PBXGroup;
@@ -1114,6 +1145,7 @@
 				61091D111CDAF563008B7EA3 /* CYContentsGroupByFirstPinYin.m in Sources */,
 				61091CFA1CDAF563008B7EA3 /* CYChatMessageViewModel.m in Sources */,
 				611B483F1C9809E700AD2772 /* CYContactViewModel.m in Sources */,
+				A307B6491D080FE700DE9B9E /* CYSegmentedScrollContentView.m in Sources */,
 				61091D0C1CDAF563008B7EA3 /* NSDictionary+CYSecureValue.m in Sources */,
 				61091D0D1CDAF563008B7EA3 /* NSString+CYUtils.m in Sources */,
 				61091CEA1CDAF563008B7EA3 /* CYWebImageCache.m in Sources */,
@@ -1160,6 +1192,7 @@
 				61851EC31BCD0964005340C8 /* AppDelegate.m in Sources */,
 				61091CFE1CDAF563008B7EA3 /* CYChatUserViewModel.m in Sources */,
 				61091CED1CDAF563008B7EA3 /* UIImageView+CYWebImageCache.m in Sources */,
+				A307B6481D080FE700DE9B9E /* CYPlainSegmentedView.m in Sources */,
 				61091D161CDAF563008B7EA3 /* CYPullRefreshBaseView.m in Sources */,
 				61091CE11CDAF563008B7EA3 /* CYBaseModel.m in Sources */,
 				61091D191CDAF563008B7EA3 /* CYPullRefreshHeaderView.m in Sources */,
@@ -1175,6 +1208,7 @@
 				61091D031CDAF563008B7EA3 /* CYChatView.m in Sources */,
 				61091CE41CDAF563008B7EA3 /* CYBaseTableWithPullRefreshViewController.m in Sources */,
 				61091CEF1CDAF563008B7EA3 /* CYChatBaseCell.m in Sources */,
+				A307B64C1D08103F00DE9B9E /* CYVerticalMultiPageScrollView.m in Sources */,
 				61091CF61CDAF563008B7EA3 /* CYChatVoiceCell.m in Sources */,
 				61091CF91CDAF563008B7EA3 /* CYChatDataSource.m in Sources */,
 				61091CDF1CDAF563008B7EA3 /* CYAlertViewAction.m in Sources */,

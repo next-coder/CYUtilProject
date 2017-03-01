@@ -25,7 +25,7 @@
     
     CGSize newSize = CGSizeMake(width, width * originSize.height / originSize.width);
     
-    return [self imageByScaleImageToSize:newSize];
+    return [self cy_imageByScaleImageToSize:newSize];
 }
 
 - (UIImage *)cy_imageByScaleImageHeightTo:(CGFloat)height {
@@ -33,7 +33,27 @@
     CGSize originSize = self.size;
     
     CGSize newSize = CGSizeMake(height * originSize.width / originSize.height, height);
-    return [self imageByScaleImageToSize:newSize];
+    return [self cy_imageByScaleImageToSize:newSize];
+}
+
+- (UIImage *)cy_roundCornerimageWithCornerRadius:(CGFloat)cornerRadius {
+
+    if (cornerRadius <= 0) {
+
+        return self;
+    }
+
+    CGSize imageSize = self.size;
+
+    UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0.0);
+
+    [[UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, imageSize.width, imageSize.height)
+                                cornerRadius:cornerRadius] addClip];
+
+    [self drawInRect:CGRectMake(0, 0, imageSize.width, imageSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
 }
 
 + (UIImage *)cy_resizableImageWithName:(NSString *)name

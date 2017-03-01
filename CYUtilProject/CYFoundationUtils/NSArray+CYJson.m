@@ -68,9 +68,9 @@
 // write to file as json string
 - (BOOL)cy_writeToFileAsJson:(NSString *)filePath automically:(BOOL)useAuxiliaryFile {
 
-    return [self writeToFileAsJson:filePath
-                        atomically:useAuxiliaryFile
-                             error:nil];
+    return [self cy_writeToFileAsJson:filePath
+                           atomically:useAuxiliaryFile
+                                error:nil];
 }
 
 - (BOOL)cy_writeToFileAsJson:(NSString *)filePath atomically:(BOOL)useAuxiliaryFile error:(NSError **)error {

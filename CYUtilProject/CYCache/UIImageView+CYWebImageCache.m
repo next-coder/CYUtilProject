@@ -72,4 +72,50 @@ static char CYImageViewWebImageCacheURLStringKey;
     }
 }
 
+- (void)cy_setImageWithURL:(NSURL *)url
+               placeholder:(UIImage *)placeholder
+               roundCorner:(CGFloat)cornerRadius
+                 imageSize:(CGSize)imageSize
+                completion:(void (^)(UIImage *image, NSError *error))completion {
+
+    self.imageURLString = url.absoluteString;
+    if (placeholder) {
+
+        self.image = placeholder;
+    }
+    if (url) {
+
+        [[CYWebImageCache defaultCache] imageWithURL:url
+                                         roundCorner:cornerRadius
+                                           imageSize:imageSize
+                                            progress:nil
+                                          completion:^(UIImage *image, NSError *error) {
+
+                                              if (image
+                                                  && [self.imageURLString isEqualToString:url.absoluteString]) {
+
+                                                  self.image = image;
+                                              }
+                                              if (completion) {
+
+                                                  completion(image, error);
+                                              }
+                                          }
+                                         persistence:YES];
+//        [[CYWebImageCache defaultCache] imageWithURL:url
+//                                          completion:^(UIImage *image, NSError *error) {
+//
+//                                              if (image
+//                                                  && [self.imageURLString isEqualToString:url.absoluteString]) {
+//
+//                                                  self.image = image;
+//                                              }
+//                                              if (completion) {
+//
+//                                                  completion(image, error);
+//                                              }
+//                                          }];
+    }
+}
+
 @end

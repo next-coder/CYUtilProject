@@ -25,6 +25,8 @@
 		A38580201DEFCFA800FF989F /* CYLineProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A385801F1DEFCFA800FF989F /* CYLineProgressBar.swift */; };
 		A38580221DEFD1E900FF989F /* CYArcProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38580211DEFD1E900FF989F /* CYArcProgressBar.swift */; };
 		A38580241DEFF6E100FF989F /* CYCycleProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38580231DEFF6E100FF989F /* CYCycleProgressBar.swift */; };
+		A3B700981E1B449C00823B7B /* CYProgressWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B700971E1B449C00823B7B /* CYProgressWebView.swift */; };
+		A3B7009B1E1B500B00823B7B /* ProgressWebTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B7009A1E1B500B00823B7B /* ProgressWebTestViewController.swift */; };
 		A3CCAF311D17A56000A40969 /* CYJSJSONParametersSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCAF301D17A56000A40969 /* CYJSJSONParametersSerialization.swift */; };
 		A3CCAF331D17A57900A40969 /* CYJSParametersSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCAF321D17A57900A40969 /* CYJSParametersSerialization.swift */; };
 		A3CCAF351D17A58900A40969 /* CYJSHTTPParametersSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCAF341D17A58900A40969 /* CYJSHTTPParametersSerialization.swift */; };
@@ -53,6 +55,8 @@
 		A385801F1DEFCFA800FF989F /* CYLineProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYLineProgressBar.swift; sourceTree = "<group>"; };
 		A38580211DEFD1E900FF989F /* CYArcProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYArcProgressBar.swift; sourceTree = "<group>"; };
 		A38580231DEFF6E100FF989F /* CYCycleProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYCycleProgressBar.swift; sourceTree = "<group>"; };
+		A3B700971E1B449C00823B7B /* CYProgressWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYProgressWebView.swift; sourceTree = "<group>"; };
+		A3B7009A1E1B500B00823B7B /* ProgressWebTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressWebTestViewController.swift; sourceTree = "<group>"; };
 		A3CCAF301D17A56000A40969 /* CYJSJSONParametersSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYJSJSONParametersSerialization.swift; sourceTree = "<group>"; };
 		A3CCAF321D17A57900A40969 /* CYJSParametersSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYJSParametersSerialization.swift; sourceTree = "<group>"; };
 		A3CCAF341D17A58900A40969 /* CYJSHTTPParametersSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYJSHTTPParametersSerialization.swift; sourceTree = "<group>"; };
@@ -92,6 +96,7 @@
 		61091D5C1CDAF8E4008B7EA3 /* CYUtilProjectSwift */ = {
 			isa = PBXGroup;
 			children = (
+				A3B700991E1B4FED00823B7B /* Test */,
 				61091D6F1CDAFCB0008B7EA3 /* CYUtils */,
 				61091D5D1CDAF8E4008B7EA3 /* AppDelegate.swift */,
 				61091D5F1CDAF8E4008B7EA3 /* ViewController.swift */,
@@ -109,6 +114,7 @@
 		61091D6F1CDAFCB0008B7EA3 /* CYUtils */ = {
 			isa = PBXGroup;
 			children = (
+				A3B700961E1B446900823B7B /* CYProgressWeb */,
 				A345C5F81DEBDE0A0094AF5A /* CYProgressUtils */,
 				A33E4B391D069A9C001B0AB1 /* CYWebViewUtils */,
 				A30EA3D01CFED3F9006FEF23 /* CYAudioUtils */,
@@ -182,6 +188,22 @@
 				A38580211DEFD1E900FF989F /* CYArcProgressBar.swift */,
 			);
 			path = CYProgressUtils;
+			sourceTree = "<group>";
+		};
+		A3B700961E1B446900823B7B /* CYProgressWeb */ = {
+			isa = PBXGroup;
+			children = (
+				A3B700971E1B449C00823B7B /* CYProgressWebView.swift */,
+			);
+			path = CYProgressWeb;
+			sourceTree = "<group>";
+		};
+		A3B700991E1B4FED00823B7B /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				A3B7009A1E1B500B00823B7B /* ProgressWebTestViewController.swift */,
+			);
+			path = Test;
 			sourceTree = "<group>";
 		};
 		A3CCAF2F1D17A56000A40969 /* CYJSParametersSerialization */ = {
@@ -275,6 +297,7 @@
 				A30EA3D41CFEE023006FEF23 /* CYAudioRecordUtils.swift in Sources */,
 				A38580241DEFF6E100FF989F /* CYCycleProgressBar.swift in Sources */,
 				A3CCAF311D17A56000A40969 /* CYJSJSONParametersSerialization.swift in Sources */,
+				A3B7009B1E1B500B00823B7B /* ProgressWebTestViewController.swift in Sources */,
 				A33913D11CF4236800C8C147 /* CYJSONUtils.swift in Sources */,
 				61091D721CDAFCDA008B7EA3 /* ImageDownloader.swift in Sources */,
 				A3CCAF331D17A57900A40969 /* CYJSParametersSerialization.swift in Sources */,
@@ -286,6 +309,7 @@
 				A33913D31CF4282700C8C147 /* Array+CYUtils.swift in Sources */,
 				A3E2530A1CFD976F002F8E18 /* ObjectiveCTestObject.m in Sources */,
 				A33913CE1CF3EE4400C8C147 /* Dictionary+CYUtils.swift in Sources */,
+				A3B700981E1B449C00823B7B /* CYProgressWebView.swift in Sources */,
 				A33E4B3D1D06ABDC001B0AB1 /* CYJSCommonActionRequestUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

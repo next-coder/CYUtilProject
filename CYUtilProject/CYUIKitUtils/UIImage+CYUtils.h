@@ -17,6 +17,9 @@
 - (UIImage *)cy_imageByScaleImageWidthTo:(CGFloat)width;
 - (UIImage *)cy_imageByScaleImageHeightTo:(CGFloat)height;
 
+// 圆角图片
+- (UIImage *)cy_roundCornerimageWithCornerRadius:(CGFloat)cornerRadius;
+
 // get resizable image from file, use imageNamed:
 + (UIImage *)cy_resizableImageWithName:(NSString *)name
                           capInsets:(UIEdgeInsets)capInsets;

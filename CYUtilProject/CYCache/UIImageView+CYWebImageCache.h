@@ -23,4 +23,10 @@
                placeholder:(UIImage *)placeholder
                 completion:(void (^)(UIImage *image, NSError *error))completion;
 
+- (void)cy_setImageWithURL:(NSURL *)url
+               placeholder:(UIImage *)placeholder
+               roundCorner:(CGFloat)cornerRadius
+                 imageSize:(CGSize)imageSize
+                completion:(void (^)(UIImage *image, NSError *error))completion;
+
 @end

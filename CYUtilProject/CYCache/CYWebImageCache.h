@@ -38,6 +38,13 @@ typedef void (^CYWebImageCacheProgress)(CGFloat finishedPercent);
           completion:(CYWebImageCacheCompletion)completion
          persistence:(BOOL)persistence;
 
+- (void)imageWithURL:(NSURL *)url
+         roundCorner:(CGFloat)cornerRadius
+           imageSize:(CGSize)imageSize
+            progress:(CYWebImageCacheProgress)progress
+          completion:(CYWebImageCacheCompletion)completion
+         persistence:(BOOL)persistence;
+
 #pragma mark - shared instance
 + (instancetype)defaultCache;
 
