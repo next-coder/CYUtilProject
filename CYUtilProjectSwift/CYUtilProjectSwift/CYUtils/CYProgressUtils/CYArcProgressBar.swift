@@ -45,7 +45,7 @@ class CYArcProgressBar: CYBaseProgressBar {
         // compute total Angle
         totalAngle = endAngle - calculateStartAngle
         if totalAngle < 0 {
-            totalAngle += 2 * M_PI
+            totalAngle += 2 * .pi
         }
         super.init(barWidth: barWidth, frame: frame)
     }

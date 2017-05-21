@@ -147,7 +147,7 @@ class ViewController: UITableViewController {
         if indexPath.section == 0 {
             if indexPath.row == 0 {
 //                self.present(ProgressWebTestViewController(), animated: true, completion: nil)
-                self.navigationController?.pushViewController(ProgressWebTestViewController(), animated: true)
+                self.navigationController?.pushViewController(CYProgressWebViewController(rootUrl: URL(string: "https://m.baidu.com")!), animated: true)
             }
         }
     }

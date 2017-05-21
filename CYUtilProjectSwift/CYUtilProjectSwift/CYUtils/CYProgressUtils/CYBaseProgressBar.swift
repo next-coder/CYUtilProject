@@ -132,7 +132,7 @@ class CYBaseProgressBar: UIView {
     func addAnimation() {
 
         let animation = CABasicAnimation(keyPath: "strokeEnd")
-        animation.fromValue = 0
+        animation.fromValue = 0.5
         animation.toValue = 1
         animation.duration = 2.0
         completionLayer?.add(animation, forKey: nil)

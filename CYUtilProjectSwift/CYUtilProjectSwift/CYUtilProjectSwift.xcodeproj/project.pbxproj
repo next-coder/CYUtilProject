@@ -25,12 +25,22 @@
 		A38580201DEFCFA800FF989F /* CYLineProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A385801F1DEFCFA800FF989F /* CYLineProgressBar.swift */; };
 		A38580221DEFD1E900FF989F /* CYArcProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38580211DEFD1E900FF989F /* CYArcProgressBar.swift */; };
 		A38580241DEFF6E100FF989F /* CYCycleProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38580231DEFF6E100FF989F /* CYCycleProgressBar.swift */; };
+		A385A69F1ED138EA0022C2EB /* UIWindow+CYAlertWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A385A69E1ED138EA0022C2EB /* UIWindow+CYAlertWindow.swift */; };
+		A385A6A11ED13BD10022C2EB /* UIWindow+CYRedPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A385A6A01ED13BD10022C2EB /* UIWindow+CYRedPacket.swift */; };
+		A385A6A31ED13C220022C2EB /* CYRedPacketOpenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A385A6A21ED13C220022C2EB /* CYRedPacketOpenView.swift */; };
+		A385A6A51ED150C40022C2EB /* CYRedPacketDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A385A6A41ED150C40022C2EB /* CYRedPacketDetailHeaderView.swift */; };
+		A385A6A71ED1585B0022C2EB /* CYRedPacketDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A385A6A61ED1585B0022C2EB /* CYRedPacketDetailCell.swift */; };
+		A385A6A91ED168BE0022C2EB /* CYRedPacketDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A385A6A81ED168BE0022C2EB /* CYRedPacketDetailViewController.swift */; };
+		A385A6AC1ED16A8E0022C2EB /* CYRedPacketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A385A6AB1ED16A8E0022C2EB /* CYRedPacketViewModel.swift */; };
+		A385A6AE1ED16C240022C2EB /* CYRedPacketDrawViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A385A6AD1ED16C240022C2EB /* CYRedPacketDrawViewModel.swift */; };
 		A3B700981E1B449C00823B7B /* CYProgressWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B700971E1B449C00823B7B /* CYProgressWebView.swift */; };
 		A3B7009B1E1B500B00823B7B /* ProgressWebTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B7009A1E1B500B00823B7B /* ProgressWebTestViewController.swift */; };
+		A3BA5F1C1E67ED8200B31B8C /* CYProgressWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BA5F1B1E67ED8200B31B8C /* CYProgressWebViewController.swift */; };
 		A3CCAF311D17A56000A40969 /* CYJSJSONParametersSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCAF301D17A56000A40969 /* CYJSJSONParametersSerialization.swift */; };
 		A3CCAF331D17A57900A40969 /* CYJSParametersSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCAF321D17A57900A40969 /* CYJSParametersSerialization.swift */; };
 		A3CCAF351D17A58900A40969 /* CYJSHTTPParametersSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCAF341D17A58900A40969 /* CYJSHTTPParametersSerialization.swift */; };
 		A3CCAF371D17D6EE00A40969 /* CYAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCAF361D17D6EE00A40969 /* CYAlertView.swift */; };
+		A3DEB59E1E66C89F000B6001 /* CYWebViewProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DEB59D1E66C89F000B6001 /* CYWebViewProgress.swift */; };
 		A3E2530A1CFD976F002F8E18 /* ObjectiveCTestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E253091CFD976F002F8E18 /* ObjectiveCTestObject.m */; };
 /* End PBXBuildFile section */
 
@@ -55,12 +65,22 @@
 		A385801F1DEFCFA800FF989F /* CYLineProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYLineProgressBar.swift; sourceTree = "<group>"; };
 		A38580211DEFD1E900FF989F /* CYArcProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYArcProgressBar.swift; sourceTree = "<group>"; };
 		A38580231DEFF6E100FF989F /* CYCycleProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYCycleProgressBar.swift; sourceTree = "<group>"; };
+		A385A69E1ED138EA0022C2EB /* UIWindow+CYAlertWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWindow+CYAlertWindow.swift"; sourceTree = "<group>"; };
+		A385A6A01ED13BD10022C2EB /* UIWindow+CYRedPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWindow+CYRedPacket.swift"; sourceTree = "<group>"; };
+		A385A6A21ED13C220022C2EB /* CYRedPacketOpenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYRedPacketOpenView.swift; sourceTree = "<group>"; };
+		A385A6A41ED150C40022C2EB /* CYRedPacketDetailHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYRedPacketDetailHeaderView.swift; sourceTree = "<group>"; };
+		A385A6A61ED1585B0022C2EB /* CYRedPacketDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYRedPacketDetailCell.swift; sourceTree = "<group>"; };
+		A385A6A81ED168BE0022C2EB /* CYRedPacketDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYRedPacketDetailViewController.swift; sourceTree = "<group>"; };
+		A385A6AB1ED16A8E0022C2EB /* CYRedPacketViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYRedPacketViewModel.swift; sourceTree = "<group>"; };
+		A385A6AD1ED16C240022C2EB /* CYRedPacketDrawViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYRedPacketDrawViewModel.swift; sourceTree = "<group>"; };
 		A3B700971E1B449C00823B7B /* CYProgressWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYProgressWebView.swift; sourceTree = "<group>"; };
 		A3B7009A1E1B500B00823B7B /* ProgressWebTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressWebTestViewController.swift; sourceTree = "<group>"; };
+		A3BA5F1B1E67ED8200B31B8C /* CYProgressWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYProgressWebViewController.swift; sourceTree = "<group>"; };
 		A3CCAF301D17A56000A40969 /* CYJSJSONParametersSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYJSJSONParametersSerialization.swift; sourceTree = "<group>"; };
 		A3CCAF321D17A57900A40969 /* CYJSParametersSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYJSParametersSerialization.swift; sourceTree = "<group>"; };
 		A3CCAF341D17A58900A40969 /* CYJSHTTPParametersSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYJSHTTPParametersSerialization.swift; sourceTree = "<group>"; };
 		A3CCAF361D17D6EE00A40969 /* CYAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYAlertView.swift; sourceTree = "<group>"; };
+		A3DEB59D1E66C89F000B6001 /* CYWebViewProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYWebViewProgress.swift; sourceTree = "<group>"; };
 		A3E253071CFD976F002F8E18 /* CYUtilProjectSwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CYUtilProjectSwift-Bridging-Header.h"; sourceTree = "<group>"; };
 		A3E253081CFD976F002F8E18 /* ObjectiveCTestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveCTestObject.h; sourceTree = "<group>"; };
 		A3E253091CFD976F002F8E18 /* ObjectiveCTestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectiveCTestObject.m; sourceTree = "<group>"; };
@@ -114,6 +134,8 @@
 		61091D6F1CDAFCB0008B7EA3 /* CYUtils */ = {
 			isa = PBXGroup;
 			children = (
+				A385A69D1ED138CE0022C2EB /* CYAlertWindow */,
+				A385A69C1ED138810022C2EB /* CYRedPacketUI */,
 				A3B700961E1B446900823B7B /* CYProgressWeb */,
 				A345C5F81DEBDE0A0094AF5A /* CYProgressUtils */,
 				A33E4B391D069A9C001B0AB1 /* CYWebViewUtils */,
@@ -190,10 +212,42 @@
 			path = CYProgressUtils;
 			sourceTree = "<group>";
 		};
+		A385A69C1ED138810022C2EB /* CYRedPacketUI */ = {
+			isa = PBXGroup;
+			children = (
+				A385A6AA1ED16A710022C2EB /* ViewModel */,
+				A385A6A01ED13BD10022C2EB /* UIWindow+CYRedPacket.swift */,
+				A385A6A21ED13C220022C2EB /* CYRedPacketOpenView.swift */,
+				A385A6A41ED150C40022C2EB /* CYRedPacketDetailHeaderView.swift */,
+				A385A6A61ED1585B0022C2EB /* CYRedPacketDetailCell.swift */,
+				A385A6A81ED168BE0022C2EB /* CYRedPacketDetailViewController.swift */,
+			);
+			path = CYRedPacketUI;
+			sourceTree = "<group>";
+		};
+		A385A69D1ED138CE0022C2EB /* CYAlertWindow */ = {
+			isa = PBXGroup;
+			children = (
+				A385A69E1ED138EA0022C2EB /* UIWindow+CYAlertWindow.swift */,
+			);
+			path = CYAlertWindow;
+			sourceTree = "<group>";
+		};
+		A385A6AA1ED16A710022C2EB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A385A6AB1ED16A8E0022C2EB /* CYRedPacketViewModel.swift */,
+				A385A6AD1ED16C240022C2EB /* CYRedPacketDrawViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		A3B700961E1B446900823B7B /* CYProgressWeb */ = {
 			isa = PBXGroup;
 			children = (
 				A3B700971E1B449C00823B7B /* CYProgressWebView.swift */,
+				A3DEB59D1E66C89F000B6001 /* CYWebViewProgress.swift */,
+				A3BA5F1B1E67ED8200B31B8C /* CYProgressWebViewController.swift */,
 			);
 			path = CYProgressWeb;
 			sourceTree = "<group>";
@@ -291,7 +345,9 @@
 			files = (
 				A30EA3D21CFED40F006FEF23 /* CYAudioPlayUtils.swift in Sources */,
 				A345C5FC1DEBDE2F0094AF5A /* CYBaseProgressBar.swift in Sources */,
+				A385A6AE1ED16C240022C2EB /* CYRedPacketDrawViewModel.swift in Sources */,
 				A33E4B3B1D069B0C001B0AB1 /* CYJSLocalRequestUtils.swift in Sources */,
+				A385A6A91ED168BE0022C2EB /* CYRedPacketDetailViewController.swift in Sources */,
 				61091D601CDAF8E4008B7EA3 /* ViewController.swift in Sources */,
 				A38580221DEFD1E900FF989F /* CYArcProgressBar.swift in Sources */,
 				A30EA3D41CFEE023006FEF23 /* CYAudioRecordUtils.swift in Sources */,
@@ -303,14 +359,22 @@
 				A3CCAF331D17A57900A40969 /* CYJSParametersSerialization.swift in Sources */,
 				61091D5E1CDAF8E4008B7EA3 /* AppDelegate.swift in Sources */,
 				A306D5631CE330A8008341F3 /* CYAlertViewAction.swift in Sources */,
+				A385A6A31ED13C220022C2EB /* CYRedPacketOpenView.swift in Sources */,
+				A3DEB59E1E66C89F000B6001 /* CYWebViewProgress.swift in Sources */,
 				A38580201DEFCFA800FF989F /* CYLineProgressBar.swift in Sources */,
 				A3CCAF351D17A58900A40969 /* CYJSHTTPParametersSerialization.swift in Sources */,
+				A385A6A11ED13BD10022C2EB /* UIWindow+CYRedPacket.swift in Sources */,
 				A3CCAF371D17D6EE00A40969 /* CYAlertView.swift in Sources */,
 				A33913D31CF4282700C8C147 /* Array+CYUtils.swift in Sources */,
 				A3E2530A1CFD976F002F8E18 /* ObjectiveCTestObject.m in Sources */,
+				A385A6A51ED150C40022C2EB /* CYRedPacketDetailHeaderView.swift in Sources */,
+				A385A6AC1ED16A8E0022C2EB /* CYRedPacketViewModel.swift in Sources */,
 				A33913CE1CF3EE4400C8C147 /* Dictionary+CYUtils.swift in Sources */,
 				A3B700981E1B449C00823B7B /* CYProgressWebView.swift in Sources */,
+				A385A6A71ED1585B0022C2EB /* CYRedPacketDetailCell.swift in Sources */,
+				A3BA5F1C1E67ED8200B31B8C /* CYProgressWebViewController.swift in Sources */,
 				A33E4B3D1D06ABDC001B0AB1 /* CYJSCommonActionRequestUtils.swift in Sources */,
+				A385A69F1ED138EA0022C2EB /* UIWindow+CYAlertWindow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
