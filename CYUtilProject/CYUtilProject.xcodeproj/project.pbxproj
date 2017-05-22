@@ -138,6 +138,11 @@
 		A330B0A21CF6ADC400C8639D /* UIScreen+CYUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A330B0A11CF6ADC400C8639D /* UIScreen+CYUtils.m */; };
 		A330B0AE1CF6F53F00C8639D /* CYSecurityUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A330B0AD1CF6F53F00C8639D /* CYSecurityUtils.m */; };
 		A341ECB11CF54E6000D37D32 /* NSDate+CYUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A341ECB01CF54E6000D37D32 /* NSDate+CYUtils.m */; };
+		A369041D1E6D6224005F7697 /* UIImage+CYScale.m in Sources */ = {isa = PBXBuildFile; fileRef = A369041C1E6D6224005F7697 /* UIImage+CYScale.m */; };
+		A369041F1E6D6746005F7697 /* tab_origin.png in Resources */ = {isa = PBXBuildFile; fileRef = A369041E1E6D6746005F7697 /* tab_origin.png */; };
+		A36904211E6D6765005F7697 /* tab_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A36904201E6D6765005F7697 /* tab_1@2x.png */; };
+		A36F4C591EBB1312009C0704 /* CYAlertView+AdditionalView.m in Sources */ = {isa = PBXBuildFile; fileRef = A36F4C581EBB1312009C0704 /* CYAlertView+AdditionalView.m */; };
+		A3BA5F291E6814F100B31B8C /* CYWebListener.m in Sources */ = {isa = PBXBuildFile; fileRef = A3BA5F281E6814F100B31B8C /* CYWebListener.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -391,6 +396,14 @@
 		A330B0AD1CF6F53F00C8639D /* CYSecurityUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYSecurityUtils.m; sourceTree = "<group>"; };
 		A341ECAF1CF54E6000D37D32 /* NSDate+CYUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+CYUtils.h"; sourceTree = "<group>"; };
 		A341ECB01CF54E6000D37D32 /* NSDate+CYUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+CYUtils.m"; sourceTree = "<group>"; };
+		A369041B1E6D6224005F7697 /* UIImage+CYScale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CYScale.h"; sourceTree = "<group>"; };
+		A369041C1E6D6224005F7697 /* UIImage+CYScale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CYScale.m"; sourceTree = "<group>"; };
+		A369041E1E6D6746005F7697 /* tab_origin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_origin.png; sourceTree = "<group>"; };
+		A36904201E6D6765005F7697 /* tab_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_1@2x.png"; sourceTree = "<group>"; };
+		A36F4C571EBB1312009C0704 /* CYAlertView+AdditionalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CYAlertView+AdditionalView.h"; sourceTree = "<group>"; };
+		A36F4C581EBB1312009C0704 /* CYAlertView+AdditionalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CYAlertView+AdditionalView.m"; sourceTree = "<group>"; };
+		A3BA5F271E6814F100B31B8C /* CYWebListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYWebListener.h; sourceTree = "<group>"; };
+		A3BA5F281E6814F100B31B8C /* CYWebListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYWebListener.m; sourceTree = "<group>"; };
 		E44A7E629213891F907F2C63 /* Pods-CYUtilProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CYUtilProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-CYUtilProject/Pods-CYUtilProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -451,6 +464,8 @@
 				61091C271CDAF563008B7EA3 /* CYAlertView.m */,
 				61091C281CDAF563008B7EA3 /* CYAlertViewAction.h */,
 				61091C291CDAF563008B7EA3 /* CYAlertViewAction.m */,
+				A36F4C571EBB1312009C0704 /* CYAlertView+AdditionalView.h */,
+				A36F4C581EBB1312009C0704 /* CYAlertView+AdditionalView.m */,
 			);
 			path = CYAlertView;
 			sourceTree = SOURCE_ROOT;
@@ -837,6 +852,8 @@
 		61851EBD1BCD0964005340C8 /* CYUtilProject */ = {
 			isa = PBXGroup;
 			children = (
+				A369041A1E6D61DF005F7697 /* CYImage */,
+				A3BA5F241E6814C900B31B8C /* CYWebListener */,
 				A307B6431D080FD900DE9B9E /* CYSegmented */,
 				A307B6421D080FBA00DE9B9E /* CYPageView */,
 				A330B0AB1CF6F53000C8639D /* CYSecurity */,
@@ -880,6 +897,8 @@
 		61851EBE1BCD0964005340C8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A369041E1E6D6746005F7697 /* tab_origin.png */,
+				A36904201E6D6765005F7697 /* tab_1@2x.png */,
 				61F9586B1CA6765C00B7BB50 /* common_navigation_background@2x.png */,
 				61F9586C1CA6765C00B7BB50 /* common_navigation_background@3x.png */,
 				61A316B41CA397890079C13B /* share_message.png */,
@@ -1026,6 +1045,24 @@
 			path = CYSecurity;
 			sourceTree = SOURCE_ROOT;
 		};
+		A369041A1E6D61DF005F7697 /* CYImage */ = {
+			isa = PBXGroup;
+			children = (
+				A369041B1E6D6224005F7697 /* UIImage+CYScale.h */,
+				A369041C1E6D6224005F7697 /* UIImage+CYScale.m */,
+			);
+			path = CYImage;
+			sourceTree = SOURCE_ROOT;
+		};
+		A3BA5F241E6814C900B31B8C /* CYWebListener */ = {
+			isa = PBXGroup;
+			children = (
+				A3BA5F271E6814F100B31B8C /* CYWebListener.h */,
+				A3BA5F281E6814F100B31B8C /* CYWebListener.m */,
+			);
+			path = CYWebListener;
+			sourceTree = SOURCE_ROOT;
+		};
 		E299DF45F885184B4A142853 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1117,8 +1154,10 @@
 				61A316B51CA397890079C13B /* share_message.png in Resources */,
 				A30EA3C91CFE7CEC006FEF23 /* README in Resources */,
 				61091D0F1CDAF563008B7EA3 /* README in Resources */,
+				A36904211E6D6765005F7697 /* tab_1@2x.png in Resources */,
 				61851EC91BCD0964005340C8 /* Main.storyboard in Resources */,
 				61A316B31CA390C90079C13B /* WeiboSDK.bundle in Resources */,
+				A369041F1E6D6746005F7697 /* tab_origin.png in Resources */,
 				61F783761CA0F5B9004DE856 /* read_me.txt in Resources */,
 				A30EA3CD1CFE801C006FEF23 /* README in Resources */,
 				616037E51BD4D1FE00BF4285 /* introduction_3_5_1.png in Resources */,
@@ -1177,8 +1216,10 @@
 				61091CEC1CDAF563008B7EA3 /* UIButton+CYWebImageCache.m in Sources */,
 				61091CF21CDAF563008B7EA3 /* CYChatImageRightArrowCell.m in Sources */,
 				61091CDE1CDAF563008B7EA3 /* CYAlertView.m in Sources */,
+				A3BA5F291E6814F100B31B8C /* CYWebListener.m in Sources */,
 				61091D211CDAF563008B7EA3 /* CYWechatUtil.m in Sources */,
 				61091CE51CDAF563008B7EA3 /* CYBaseView.m in Sources */,
+				A36F4C591EBB1312009C0704 /* CYAlertView+AdditionalView.m in Sources */,
 				61091CF31CDAF563008B7EA3 /* CYChatTextCell.m in Sources */,
 				61091CFF1CDAF563008B7EA3 /* CYChatInputContentView.m in Sources */,
 				61091D121CDAF563008B7EA3 /* pinyin.m in Sources */,
@@ -1186,6 +1227,7 @@
 				61091D011CDAF563008B7EA3 /* CYChatInputMorePadItem.m in Sources */,
 				61091D271CDAF563008B7EA3 /* CYAnimatedTextLabel.m in Sources */,
 				61091CE21CDAF563008B7EA3 /* CYBaseService.m in Sources */,
+				A369041D1E6D6224005F7697 /* UIImage+CYScale.m in Sources */,
 				61091CDD1CDAF563008B7EA3 /* CYAddressBookUtils.m in Sources */,
 				61091D1D1CDAF563008B7EA3 /* CYShare.m in Sources */,
 				61091D131CDAF563008B7EA3 /* CYIAPKeychainUtils.m in Sources */,

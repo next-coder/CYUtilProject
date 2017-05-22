@@ -9,9 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "CYAlertViewAction.h"
 
-// 按钮样式，在CYAlertViewStyleAlert是有效
+//typedef NS_ENUM(NSInteger, CYAlertViewStyle) {
+//
+//    CYAlertViewStyleAlert,
+//    CYAlertViewStyleActionSheet                 // not implemented
+//};
+
 typedef NS_ENUM(NSInteger, CYAlertViewActionStyle) {
-    
+
     CYAlertViewActionStyleDefault,
     CYAlertViewActionStyleRoundRect
 };
@@ -22,23 +27,28 @@ typedef NS_ENUM(NSInteger, CYAlertViewActionStyle) {
 @property (nonatomic, strong, readonly) NSString *message;
 @property (nonatomic, strong, readonly) NSString *cancelTitle;
 
-//@property (nonatomic, assign) CYAlertViewStyle style;
 @property (nonatomic, assign, readonly) CYAlertViewActionStyle actionStyle;
 
 // default NO，点击空白区域，是否dismiss
-@property (nonatomic, assign) BOOL dimissOnBlankAreaTapped;
+@property (nonatomic, assign) BOOL dismissOnBlankAreaTapped;
 
+//- (instancetype)initWithTitle:(NSString *)title
+//                      message:(NSString *)message
+//                  cancelTitle:(NSString *)cancelTitle;
 - (instancetype)initWithTitle:(NSString *)title
                       message:(NSString *)message
                   cancelTitle:(NSString *)cancelTitle
-                  actionStyle:(CYAlertViewActionStyle)actionStyle
-                  customViews:(NSArray<UIView *> *)customViews
-                      actions:(NSArray<CYAlertViewAction *> *)actions;
+                  actionStyle:(CYAlertViewActionStyle)actionStyle;
+
+// the next two methods add view in the white background area
+// add view in the white background area
+- (void)addMessageView:(UIView *)view;
+// add alert action
+- (void)addAction:(CYAlertViewAction *)action;
 
 #pragma mark - show
 - (void)show;
-// add bottom inset distance from bottom
-- (void)showWithBottomInset:(CGFloat)bottomInset;
 - (void)dismiss;
+- (void)dismissAnimated:(BOOL)animated;
 
 @end

@@ -157,19 +157,19 @@
             NSLog(@"tapped : %@", action);
         }];
         action1.normalBackgroundColor = [UIColor redColor];
-        
+
         CYAlertViewAction *action2 = [[CYAlertViewAction alloc] initWithTitle:@"试一下2" handler:^(CYAlertView *alertView, CYAlertViewAction *action) {
             
             NSLog(@"tapped : %@", action);
         }];
         action2.normalBackgroundColor = [UIColor greenColor];
-        
-//        CYAlertViewAction *action3 = [[CYAlertViewAction alloc] initWithTitle:@"试一下3" handler:^(CYAlertView *alertView, CYAlertViewAction *action) {
-//            
-//            NSLog(@"tapped : %@", action);
-//        }];
-//        action3.backgroundColor = [UIColor redColor];
-        
+
+        CYAlertViewAction *action3 = [[CYAlertViewAction alloc] initWithTitle:@"试一下3" handler:^(CYAlertView *alertView, CYAlertViewAction *action) {
+            
+            NSLog(@"tapped : %@", action);
+        }];
+        action3.normalBackgroundColor = [UIColor redColor];
+
         UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"share_message"]];
         
         UITextField *textField1 = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 100, 50)];
@@ -178,24 +178,28 @@
         UITextField *textField2 = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 100, 50)];
         textField2.backgroundColor = [UIColor greenColor];
         
-        CYAlertView *alert = [[CYAlertView alloc] initWithTitle:@"fdafdaf"
-                                                        message:@"fdasjlf;dasjkfljasdklffdasfjadksl;fjakdsl;f"
+//        CYAlertView *alert = [[CYAlertView alloc] initWithTitle:@"fdafdaf"
+//                                                        message:@"fdasjlf;dasjkfljasdklffdasfjadksl;fjakdsl;f"
+//                                                    cancelTitle:nil
+//                                                    actionStyle:CYAlertViewActionStyleRoundRect
+//                                                    customViews:@[ imageView, textField1, textField2 ]
+//                                                        actions:@[ action1, action2 ]];
+//        alert.dimissOnBlankAreaTapped = YES;
+//        alert.backgroundColor = [UIColor clearColor];
+
+        CYAlertView *alert = [[CYAlertView alloc] initWithTitle:@"fdafdas"
+                                                        message:@"fdafdasfds"
                                                     cancelTitle:nil
-                                                    actionStyle:CYAlertViewActionStyleRoundRect
-                                                    customViews:@[ imageView, textField1, textField2 ]
-                                                        actions:@[ action1, action2 ]];
-        alert.dimissOnBlankAreaTapped = YES;
-        alert.backgroundColor = [UIColor clearColor];
-        
-//        CYAlertViewAction *action3 = [[CYAlertViewAction alloc] initWithTitle:@"试一下3" handler:^(CYAlertViewAction *action) {
-//            
-//            NSLog(@"tapped : %@", action.title);
-//        }];
-//        action3.titleColor = [UIColor whiteColor];
-//        action3.backgroundColor = [UIColor redColor];
+                                                    actionStyle:CYAlertViewActionStyleDefault];
+        [alert addMessageView:imageView];
+        [alert addMessageView:textField1];
+        [alert addMessageView:textField2];
+        [alert addAction:action1];
+        [alert addAction:action2];
 //        [alert addAction:action3];
-        
-        [alert showWithBottomInset:50];
+
+        [alert show];
+//        [alert showWithBottomInset:50];
     } else if (indexPath.row == 6) {
         
         CYIAPTestViewController *vc = [[CYIAPTestViewController alloc] init];

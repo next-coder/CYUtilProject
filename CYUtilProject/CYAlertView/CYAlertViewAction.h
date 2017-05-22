@@ -16,21 +16,21 @@ typedef void (^CYAlertViewActionHandler)(CYAlertView *alertView, CYAlertViewActi
 
 @interface CYAlertViewAction : UIButton
 
-// background color for highlighted state
-@property (nonatomic, strong) UIColor *highlightedBackgroundColor;
-// background color for other state
+// default is [UIColor clearColor]
 @property (nonatomic, strong) UIColor *normalBackgroundColor;
+// defautl is [UIColor colorWithRed:230/255.f green:230/255.f blue:230/255.f alpha:1.f]
+@property (nonatomic, strong) UIColor *highlightedBackgroundColor;
 
 // default YES, 点击后，自动dismiss alert
 @property (nonatomic, assign) BOOL dismissAlert;
 
-@property (nonatomic, weak) CYAlertView *alertView;
+// 关联的alertView，在添加到alertView之后有效
+@property (nonatomic, weak, readonly) CYAlertView *alertView;
 
 // handler should not have an strong refrence to CYAlertView, or it may be memory leaks
 @property (nonatomic, copy, readonly) CYAlertViewActionHandler handler;
 
-- (instancetype)initWithTitle:(NSString *)title
-                      handler:(CYAlertViewActionHandler)handler;
+- (instancetype)initWithTitle:(NSString *)title handler:(CYAlertViewActionHandler)handler;
 
 @end
 
