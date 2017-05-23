@@ -26,8 +26,13 @@ class CycleBannerTestViewController: UIViewController, CycleBannerViewDataSource
         cycleBannerView.itemHeaderWidth = 10
         cycleBannerView.itemFooterWidth = 10
         cycleBannerView.itemCenterEnabled = true
+        cycleBannerView.cycleScrollEnabled = true
         cycleBannerView.scrollView.backgroundColor = UIColor.gray
-        view.addSubview(cycleBannerView)
+        self.view.addSubview(cycleBannerView)
+
+        let view = UIView(frame: CGRect(x: 170, y: 310, width: 20, height: 20))
+        view.backgroundColor = UIColor.green
+        self.view.addSubview(view)
     }
 
     override func viewDidLoad() {
@@ -38,18 +43,27 @@ class CycleBannerTestViewController: UIViewController, CycleBannerViewDataSource
     // CycleBannerViewDataSource
     func numberOfItems(in cycleBannerView: CycleBannerView) -> UInt {
 
-        return 10
+        return 3
     }
 
     func cycleBannerView(cycleBannerView: CycleBannerView, itemAtIndex index: UInt) -> CycleBannerViewItem {
 
         let item = CycleBannerViewItem(reuseIdentifier: "lllllll")
-        if index % 2 == 0 {
+        if index == 0 {
 
             item.backgroundColor = UIColor.red
-        } else {
+        } else if index == 1 {
 
             item.backgroundColor = UIColor.blue
+        } else if index == 2 {
+
+            item.backgroundColor = UIColor.green
+        } else if index == 3 {
+
+            item.backgroundColor = UIColor.brown
+        } else if index == 4 {
+
+            item.backgroundColor = UIColor.cyan
         }
         return item
     }

@@ -151,6 +151,8 @@ class ViewController: UITableViewController {
             } else if indexPath.row == 1 {
 
                 self.navigationController?.pushViewController(CycleBannerTestViewController(), animated: true)
+            } else if indexPath.row == 2 {
+                self.navigationController?.pushViewController(RedPacketViewController(), animated: true)
             }
         }
     }

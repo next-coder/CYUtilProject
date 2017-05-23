@@ -1,0 +1,55 @@
+//
+//  RedPacketViewController.swift
+//  CYUtilProjectSwift
+//
+//  Created by xn011644 on 22/05/2017.
+//  Copyright © 2017 Jasper. All rights reserved.
+//
+
+import UIKit
+
+class RedPacketViewController: UIViewController, CYRedPacketOpenViewDelegate {
+
+    var window: UIWindow?
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        let open = UIButton(type: .custom)
+        open.frame = CGRect(x: 100, y: 100, width: 100, height: 50)
+        open.backgroundColor = UIColor.red
+        open.setTitle("Open", for: .normal)
+        open.addTarget(self, action: #selector(openPacket), for: .touchUpInside)
+        self.view.addSubview(open)
+    }
+
+    func openPacket(sender: Any) {
+        let view = CYRedPacketOpenView(frame: CGRect(x: 100, y: 100, width: 200, height: 500))
+        view.backgroundColor = UIColor.green
+        view.backgroundView.backgroundColor = UIColor.cyan
+        view.closeButton.backgroundColor = UIColor.red
+        view.headImageButton.backgroundColor = UIColor.red
+        view.nicknameButton.backgroundColor = UIColor.black
+        view.openButton.backgroundColor = UIColor.blue
+        view.detailButton.backgroundColor = UIColor.brown
+        view.blessingLabel.backgroundColor = UIColor.white
+        view.receiveTipsLabel.backgroundColor = UIColor.red
+        view.delegate = self
+
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.addSubview(view)
+        window?.show_cyRedPacket()
+    }
+
+    func redPacketOpenViewShouldDismiss(redPacketView: CYRedPacketOpenView) {
+
+        window?.dismiss_cyRedPacket()
+        window = nil
+    }
+
+
+    func redPacketOpenViewOpenPacket(redPacketView: CYRedPacketOpenView) {
+
+    }
+
+}
