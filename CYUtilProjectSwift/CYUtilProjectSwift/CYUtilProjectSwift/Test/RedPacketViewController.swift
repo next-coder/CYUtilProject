@@ -24,16 +24,20 @@ class RedPacketViewController: UIViewController, CYRedPacketOpenViewDelegate {
     }
 
     func openPacket(sender: Any) {
-        let view = CYRedPacketOpenView(frame: CGRect(x: 100, y: 100, width: 200, height: 500))
-        view.backgroundColor = UIColor.green
-        view.backgroundView.backgroundColor = UIColor.cyan
-        view.closeButton.backgroundColor = UIColor.red
-        view.headImageButton.backgroundColor = UIColor.red
-        view.nicknameButton.backgroundColor = UIColor.black
-        view.openButton.backgroundColor = UIColor.blue
-        view.detailButton.backgroundColor = UIColor.brown
-        view.blessingLabel.backgroundColor = UIColor.white
-        view.receiveTipsLabel.backgroundColor = UIColor.red
+        let view = CYRedPacketOpenView(frame: CGRect(x: 100, y: 100, width: 200, height: 350))
+//        view.backgroundColor = UIColor.green
+//        view.backgroundView.backgroundColor = UIColor.cyan
+//        view.closeButton.backgroundColor = UIColor.red
+//        view.headImageButton.backgroundColor = UIColor.red
+//        view.nicknameButton.backgroundColor = UIColor.black
+        view.nicknameButton.setTitle("发大幅度", for: .normal)
+//        view.openButton.backgroundColor = UIColor.blue
+//        view.detailButton.backgroundColor = UIColor.brown
+        view.detailButton.setTitle("发大幅度fdd", for: .normal)
+//        view.blessingLabel.backgroundColor = UIColor.white
+        view.blessingLabel.text = "发发发范德萨范德萨"
+//        view.receiveTipsLabel.backgroundColor = UIColor.red
+        view.receiveTipsLabel.text = "发发发范德萨范德萨"
         view.delegate = self
 
         window = UIWindow(frame: UIScreen.main.bounds)

@@ -16,6 +16,7 @@ import UIKit
 
 @objc protocol CycleBannerViewDelegate: UIScrollViewDelegate {
 
+    @objc optional func cycleBannerView(cycleBannerView: CycleBannerView, didSelectItemAt index: UInt)
     @objc optional func cycleBannerView(cycleBannerView: CycleBannerView, sizeForItemAtIndex index: UInt) -> CGSize
     @objc optional func cycleBannerView(cycleBannerView: CycleBannerView, widthForHeaderAtIndex index: UInt) -> CGFloat
     @objc optional func cycleBannerView(cycleBannerView: CycleBannerView, widthForFooterAtIndex index: UInt) -> CGFloat
@@ -109,7 +110,14 @@ class CycleBannerView: UIView, UIScrollViewDelegate {
 
         if let index = visibleItems.index(of: item) {
 
-            return index + Int(_visibleItemStartIndex_)
+            var realIndex = index + Int(_visibleItemStartIndex_)
+            if realIndex >= Int(numberOfItems) {
+
+                return realIndex - Int(numberOfItems)
+            } else {
+
+                return realIndex
+            }
         } else {
 
             return nil
@@ -174,6 +182,9 @@ class CycleBannerView: UIView, UIScrollViewDelegate {
             scrollView.addSubview(item)
             visibleItems.append(item)
 
+            let tap = UITapGestureRecognizer(target: self, action: #selector(_itemTapped_(sender:)))
+            item.addGestureRecognizer(tap)
+
             // calculate frame
             nextX += _itemHeaderWidth_(atIndex: i)
             let itemSize = _itemSize_(atIndex: i)
@@ -199,6 +210,9 @@ class CycleBannerView: UIView, UIScrollViewDelegate {
 //                item.backgroundColor = UIColor.brown
                 scrollView.addSubview(item)
                 visibleItems.append(item)
+
+                let tap = UITapGestureRecognizer(target: self, action: #selector(_itemTapped_(sender:)))
+                item.addGestureRecognizer(tap)
 
                 // calculate frame
                 nextX += _itemHeaderWidth_(atIndex: i)
@@ -417,6 +431,18 @@ class CycleBannerView: UIView, UIScrollViewDelegate {
     private func _removeUnVisibleItemIfNeeded_() {
 
         // TODO 删除不在显示的item
+    }
+
+    // event
+    @objc private func _itemTapped_(sender: UITapGestureRecognizer?) {
+
+        if let item = sender?.view as? CycleBannerViewItem {
+
+            if let index = index(forItem: item) {
+
+                delegate?.cycleBannerView?(cycleBannerView: self, didSelectItemAt: UInt(index))
+            }
+        }
     }
 
 //    private func _refreshItem_(atIndex index: UInt) {

@@ -24,7 +24,7 @@ extension UIWindow {
 
     func dismiss_cyalert() {
 
-        UIView.animate(withDuration: 0.3,
+        UIView.animate(withDuration: 0.1,
                        animations: {
 
                         self.backgroundColor = UIColor.clear

@@ -26,6 +26,7 @@
 		A3636A8A1ED297D200B0F8E9 /* CycleBannerViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3636A891ED297D200B0F8E9 /* CycleBannerViewItem.swift */; };
 		A3636A9E1ED2C77800B0F8E9 /* CycleBannerTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3636A9D1ED2C77800B0F8E9 /* CycleBannerTestViewController.swift */; };
 		A3636AAC1ED31E7600B0F8E9 /* RedPacketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3636AAB1ED31E7600B0F8E9 /* RedPacketViewController.swift */; };
+		A3636B0B1ED52BAA00B0F8E9 /* RedPacketAssets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A3636B0A1ED52BAA00B0F8E9 /* RedPacketAssets.bundle */; };
 		A38580201DEFCFA800FF989F /* CYLineProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A385801F1DEFCFA800FF989F /* CYLineProgressBar.swift */; };
 		A38580221DEFD1E900FF989F /* CYArcProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38580211DEFD1E900FF989F /* CYArcProgressBar.swift */; };
 		A38580241DEFF6E100FF989F /* CYCycleProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38580231DEFF6E100FF989F /* CYCycleProgressBar.swift */; };
@@ -70,6 +71,7 @@
 		A3636A891ED297D200B0F8E9 /* CycleBannerViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleBannerViewItem.swift; sourceTree = "<group>"; };
 		A3636A9D1ED2C77800B0F8E9 /* CycleBannerTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleBannerTestViewController.swift; sourceTree = "<group>"; };
 		A3636AAB1ED31E7600B0F8E9 /* RedPacketViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedPacketViewController.swift; sourceTree = "<group>"; };
+		A3636B0A1ED52BAA00B0F8E9 /* RedPacketAssets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = RedPacketAssets.bundle; sourceTree = "<group>"; };
 		A385801F1DEFCFA800FF989F /* CYLineProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYLineProgressBar.swift; sourceTree = "<group>"; };
 		A38580211DEFD1E900FF989F /* CYArcProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYArcProgressBar.swift; sourceTree = "<group>"; };
 		A38580231DEFF6E100FF989F /* CYCycleProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYCycleProgressBar.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 		A385A69C1ED138810022C2EB /* CYRedPacketUI */ = {
 			isa = PBXGroup;
 			children = (
+				A3636B0A1ED52BAA00B0F8E9 /* RedPacketAssets.bundle */,
 				A385A6AA1ED16A710022C2EB /* ViewModel */,
 				A385A6A01ED13BD10022C2EB /* UIWindow+CYRedPacket.swift */,
 				A385A6A21ED13C220022C2EB /* CYRedPacketOpenView.swift */,
@@ -350,6 +353,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3636B0B1ED52BAA00B0F8E9 /* RedPacketAssets.bundle in Resources */,
 				61091D681CDAF8E4008B7EA3 /* LaunchScreen.storyboard in Resources */,
 				61091D651CDAF8E4008B7EA3 /* Assets.xcassets in Resources */,
 				61091D631CDAF8E4008B7EA3 /* Main.storyboard in Resources */,

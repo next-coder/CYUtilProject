@@ -87,4 +87,9 @@ class CycleBannerTestViewController: UIViewController, CycleBannerViewDataSource
         item.transform = CGAffineTransform(scaleX: scale, y: scale)
     }
 
+    func cycleBannerView(cycleBannerView: CycleBannerView, didSelectItemAt index: UInt) {
+
+        print("tap item at = %d", index)
+    }
+
 }

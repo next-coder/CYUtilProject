@@ -27,6 +27,9 @@ class CYRedPacketOpenView: UIView {
     weak var delegate: CYRedPacketOpenViewDelegate?
 
     var backgroundView: UIImageView!
+    var openBackgroundView: UIView!
+//    var openBackgroundCycleView: UIView!
+//    var openCenterRectView: UIView!
 
     var closeButton: UIButton!
     var headImageButton: UIButton!
@@ -65,24 +68,57 @@ class CYRedPacketOpenView: UIView {
 
         createSubviews()
         createConstraints()
+        self.backgroundColor = UIColor.clear
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func didMoveToSuperview() {
+        super.didMoveToSuperview()
+
+        if let superview = self.superview {
+            self.frame = CGRect(x: 0, y: 0, width: 300, height: 350)
+            self.center = CGPoint(x: superview.frame.width / 2.0, y: superview.frame.height / 2.0)
+        }
+    }
+
     func createSubviews() {
 
         backgroundView = UIImageView(frame: self.bounds)
-        backgroundView.backgroundColor = UIColor.clear
+        backgroundView.backgroundColor = UIColor(red: 224/255.0, green: 88/255.0, blue: 70/255.0, alpha: 1)
         backgroundView.image = UIImage(named: "")
         backgroundView.layer.cornerRadius = 3
         backgroundView.isUserInteractionEnabled = true
+        backgroundView.layer.cornerRadius = 5.0
+        backgroundView.clipsToBounds = true
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(backgroundView)
 
+        openBackgroundView = UIView()
+        openBackgroundView.backgroundColor = UIColor(red: 223/255.0, green: 188/255.0, blue: 136/255.0, alpha: 1)
+        openBackgroundView.layer.cornerRadius = 50
+        openBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundView.addSubview(openBackgroundView)
+
+//        openBackgroundCycleView = UIView()
+//        openBackgroundCycleView.backgroundColor = UIColor.clear
+//        openBackgroundCycleView.layer.cornerRadius = 45
+//        openBackgroundCycleView.layer.borderColor = UIColor.lightText.cgColor
+//        openBackgroundCycleView.layer.borderWidth = 1.0
+//        openBackgroundCycleView.translatesAutoresizingMaskIntoConstraints = false
+//        backgroundView.addSubview(openBackgroundCycleView)
+//
+//        openCenterRectView = UIView()
+//        openCenterRectView.backgroundColor = UIColor.black
+//        openCenterRectView.layer.borderColor = UIColor.lightText.cgColor
+//        openCenterRectView.layer.borderWidth = 5.0
+//        openCenterRectView.translatesAutoresizingMaskIntoConstraints = false
+//        backgroundView.addSubview(openCenterRectView)
+
         closeButton = UIButton(type: .custom)
-        closeButton.setImage(UIImage(named: ""), for: .normal)
+        closeButton.setImage(UIImage(named: "RedPacketAssets.bundle/redpacket_close"), for: .normal)
         closeButton.addTarget(self,
                               action: #selector(closeTapped),
                               for: .touchUpInside)
@@ -135,6 +171,10 @@ class CYRedPacketOpenView: UIView {
         openButton.addTarget(self,
                              action: #selector(openTapped),
                              for: .touchUpInside)
+//        openButton.backgroundColor = UIColor(red: 223/255.0, green: 188/255.0, blue: 136/255.0, alpha: 1)
+        openButton.layer.cornerRadius = 50
+//        openButton.layer.shadowOffset = CGSize(width: 10.0, height: 10.0)
+//        openButton.layer.shadowColor = UIColor.black.cgColor
         openButton.translatesAutoresizingMaskIntoConstraints = false
         backgroundView.addSubview(openButton)
 
@@ -183,6 +223,96 @@ class CYRedPacketOpenView: UIView {
                                                   constant: 0)
         addConstraints([backgroundLeft, backgroundRight, backgroundTop, backgroundBottom])
 
+        let openBackgroundCenterX = NSLayoutConstraint(item: openBackgroundView,
+                                             attribute: .centerX,
+                                             relatedBy: .equal,
+                                             toItem: backgroundView,
+                                             attribute: .centerX,
+                                             multiplier: 1,
+                                             constant: 0)
+        let openBackgroundCenterY = NSLayoutConstraint(item: openBackgroundView,
+                                             attribute: .centerY,
+                                             relatedBy: .equal,
+                                             toItem: backgroundView,
+                                             attribute: .centerY,
+                                             multiplier: 1,
+                                             constant: 60)
+        let openBackgroundWidth = NSLayoutConstraint(item: openBackgroundView,
+                                           attribute: .width,
+                                           relatedBy: .equal,
+                                           toItem: nil,
+                                           attribute: .notAnAttribute,
+                                           multiplier: 1,
+                                           constant: 100)
+        let openBackgroundHeight = NSLayoutConstraint(item: openBackgroundView,
+                                            attribute: .height,
+                                            relatedBy: .equal,
+                                            toItem: nil,
+                                            attribute: .notAnAttribute,
+                                            multiplier: 1,
+                                            constant: 100)
+        addConstraints([openBackgroundCenterX, openBackgroundCenterY, openBackgroundWidth, openBackgroundHeight])
+
+//        let openBackgroundCycleCenterX = NSLayoutConstraint(item: openBackgroundCycleView,
+//                                                       attribute: .centerX,
+//                                                       relatedBy: .equal,
+//                                                       toItem: backgroundView,
+//                                                       attribute: .centerX,
+//                                                       multiplier: 1,
+//                                                       constant: 0)
+//        let openBackgroundCycleCenterY = NSLayoutConstraint(item: openBackgroundCycleView,
+//                                                       attribute: .centerY,
+//                                                       relatedBy: .equal,
+//                                                       toItem: backgroundView,
+//                                                       attribute: .centerY,
+//                                                       multiplier: 1,
+//                                                       constant: 60)
+//        let openBackgroundCycleWidth = NSLayoutConstraint(item: openBackgroundCycleView,
+//                                                     attribute: .width,
+//                                                     relatedBy: .equal,
+//                                                     toItem: nil,
+//                                                     attribute: .notAnAttribute,
+//                                                     multiplier: 1,
+//                                                     constant: 90)
+//        let openBackgroundCycleHeight = NSLayoutConstraint(item: openBackgroundCycleView,
+//                                                      attribute: .height,
+//                                                      relatedBy: .equal,
+//                                                      toItem: nil,
+//                                                      attribute: .notAnAttribute,
+//                                                      multiplier: 1,
+//                                                      constant: 90)
+//        addConstraints([openBackgroundCycleCenterX, openBackgroundCycleCenterY, openBackgroundCycleWidth, openBackgroundCycleHeight])
+//
+//        let openCenterRectCenterX = NSLayoutConstraint(item: openCenterRectView,
+//                                                            attribute: .centerX,
+//                                                            relatedBy: .equal,
+//                                                            toItem: backgroundView,
+//                                                            attribute: .centerX,
+//                                                            multiplier: 1,
+//                                                            constant: 0)
+//        let openCenterRectCenterY = NSLayoutConstraint(item: openCenterRectView,
+//                                                            attribute: .centerY,
+//                                                            relatedBy: .equal,
+//                                                            toItem: backgroundView,
+//                                                            attribute: .centerY,
+//                                                            multiplier: 1,
+//                                                            constant: 60)
+//        let openCenterRectWidth = NSLayoutConstraint(item: openCenterRectView,
+//                                                          attribute: .width,
+//                                                          relatedBy: .equal,
+//                                                          toItem: nil,
+//                                                          attribute: .notAnAttribute,
+//                                                          multiplier: 1,
+//                                                          constant: 30)
+//        let openCenterRectHeight = NSLayoutConstraint(item: openCenterRectView,
+//                                                           attribute: .height,
+//                                                           relatedBy: .equal,
+//                                                           toItem: nil,
+//                                                           attribute: .notAnAttribute,
+//                                                           multiplier: 1,
+//                                                           constant: 30)
+//        addConstraints([openCenterRectCenterX, openCenterRectCenterY, openCenterRectWidth, openCenterRectHeight])
+
         let closeLeft = NSLayoutConstraint(item: closeButton,
                                            attribute: .left,
                                            relatedBy: .equal,
@@ -219,7 +349,7 @@ class CYRedPacketOpenView: UIView {
                                          toItem: backgroundView,
                                          attribute: .top,
                                          multiplier: 1,
-                                         constant: 50)
+                                         constant: 30)
         let headCenterX = NSLayoutConstraint(item: headImageButton,
                                              attribute: .centerX,
                                              relatedBy: .equal,
@@ -249,7 +379,7 @@ class CYRedPacketOpenView: UIView {
                                              toItem: headImageButton,
                                              attribute: .bottom,
                                              multiplier: 1,
-                                             constant: 15)
+                                             constant: 7)
         let nicknameCenterX = NSLayoutConstraint(item: nicknameButton,
                                                  attribute: .centerX,
                                                  relatedBy: .equal,
@@ -265,7 +395,7 @@ class CYRedPacketOpenView: UIView {
                                                 toItem: nicknameButton,
                                                 attribute: .bottom,
                                                 multiplier: 1,
-                                                constant: 15)
+                                                constant: 7)
         let receiveTipsCenterX = NSLayoutConstraint(item: receiveTipsLabel,
                                                     attribute: .centerX,
                                                     relatedBy: .equal,
@@ -288,7 +418,7 @@ class CYRedPacketOpenView: UIView {
                                                  toItem: backgroundView,
                                                  attribute: .centerY,
                                                  multiplier: 1,
-                                                 constant: -10)
+                                                 constant: -15)
         addConstraints([blessingCenterX, blessingCenterY])
 
         let openCenterX = NSLayoutConstraint(item: openButton,
@@ -304,21 +434,21 @@ class CYRedPacketOpenView: UIView {
                                              toItem: backgroundView,
                                              attribute: .centerY,
                                              multiplier: 1,
-                                             constant: 150)
+                                             constant: 60)
         let openWidth = NSLayoutConstraint(item: openButton,
                                            attribute: .width,
                                            relatedBy: .equal,
                                            toItem: nil,
                                            attribute: .notAnAttribute,
                                            multiplier: 1,
-                                           constant: 120)
+                                           constant: 100)
         let openHeight = NSLayoutConstraint(item: openButton,
                                             attribute: .height,
                                             relatedBy: .equal,
                                             toItem: nil,
                                             attribute: .notAnAttribute,
                                             multiplier: 1,
-                                            constant: 120)
+                                            constant: 100)
         addConstraints([openCenterX, openCenterY, openWidth, openHeight])
 
         let detailCenterX = NSLayoutConstraint(item: detailButton,
@@ -334,7 +464,7 @@ class CYRedPacketOpenView: UIView {
                                               toItem: backgroundView,
                                               attribute: .bottom,
                                               multiplier: 1,
-                                              constant: 20)
+                                              constant: -15)
         addConstraints([detailCenterX, detailBottom])
     }
 
@@ -354,8 +484,22 @@ class CYRedPacketOpenView: UIView {
     }
     
     func openTapped(sender: Any) {
-        
-        delegate?.redPacketOpenViewOpenPacket(redPacketView: self)
+
+        if let delegate = self.delegate {
+
+            delegate.redPacketOpenViewOpenPacket(redPacketView: self)
+            self.openButton.isHidden = true
+            UIView.animate(withDuration: 0.5, delay: 0, options: [.repeat], animations: {
+
+                self.openBackgroundView.layer.transform = CATransform3DMakeRotation(.pi, 0, 1, 0)
+            }, completion: nil)
+        }
+    }
+
+    func endOpen() {
+        self.openBackgroundView.layer.removeAllAnimations()
+        self.openBackgroundView.layer.transform = CATransform3DIdentity
+        self.openButton.isHidden = false
     }
     
     func detailTapped(sender: Any) {
