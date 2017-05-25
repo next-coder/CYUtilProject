@@ -21,6 +21,13 @@ class RedPacketViewController: UIViewController, CYRedPacketOpenViewDelegate {
         open.setTitle("Open", for: .normal)
         open.addTarget(self, action: #selector(openPacket), for: .touchUpInside)
         self.view.addSubview(open)
+
+        let send = UIButton(type: .custom)
+        send.frame = CGRect(x: 100, y: 200, width: 100, height: 50)
+        send.backgroundColor = UIColor.red
+        send.setTitle("Send", for: .normal)
+        send.addTarget(self, action: #selector(sendPacket), for: .touchUpInside)
+        self.view.addSubview(send)
     }
 
     func openPacket(sender: Any) {
@@ -43,6 +50,11 @@ class RedPacketViewController: UIViewController, CYRedPacketOpenViewDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.addSubview(view)
         window?.show_cyRedPacket()
+    }
+
+    func sendPacket(sender: Any) {
+
+        self.navigationController?.pushViewController(SendRedPacketViewController(), animated: true)
     }
 
     func redPacketOpenViewShouldDismiss(redPacketView: CYRedPacketOpenView) {
