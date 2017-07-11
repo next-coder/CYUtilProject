@@ -22,6 +22,7 @@
 		A33E4B3B1D069B0C001B0AB1 /* CYJSLocalRequestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33E4B3A1D069B0C001B0AB1 /* CYJSLocalRequestUtils.swift */; };
 		A33E4B3D1D06ABDC001B0AB1 /* CYJSCommonActionRequestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33E4B3C1D06ABDC001B0AB1 /* CYJSCommonActionRequestUtils.swift */; };
 		A345C5FC1DEBDE2F0094AF5A /* CYBaseProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A345C5FB1DEBDE2F0094AF5A /* CYBaseProgressBar.swift */; };
+		A34F17F11EF8B78200538F20 /* HerizontalTableViewTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34F17F01EF8B78200538F20 /* HerizontalTableViewTestViewController.swift */; };
 		A3636A881ED28FA600B0F8E9 /* CycleBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3636A871ED28FA600B0F8E9 /* CycleBannerView.swift */; };
 		A3636A8A1ED297D200B0F8E9 /* CycleBannerViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3636A891ED297D200B0F8E9 /* CycleBannerViewItem.swift */; };
 		A3636A9E1ED2C77800B0F8E9 /* CycleBannerTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3636A9D1ED2C77800B0F8E9 /* CycleBannerTestViewController.swift */; };
@@ -47,6 +48,8 @@
 		A3CCAF331D17A57900A40969 /* CYJSParametersSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCAF321D17A57900A40969 /* CYJSParametersSerialization.swift */; };
 		A3CCAF351D17A58900A40969 /* CYJSHTTPParametersSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCAF341D17A58900A40969 /* CYJSHTTPParametersSerialization.swift */; };
 		A3CCAF371D17D6EE00A40969 /* CYAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCAF361D17D6EE00A40969 /* CYAlertView.swift */; };
+		A3D086FB1EEE3B30007752ED /* HerizontalTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D086FA1EEE3B30007752ED /* HerizontalTableView.swift */; };
+		A3D086FD1EEE3B47007752ED /* HerizontalTableViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D086FC1EEE3B47007752ED /* HerizontalTableViewItem.swift */; };
 		A3DEB59E1E66C89F000B6001 /* CYWebViewProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DEB59D1E66C89F000B6001 /* CYWebViewProgress.swift */; };
 		A3E2530A1CFD976F002F8E18 /* ObjectiveCTestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E253091CFD976F002F8E18 /* ObjectiveCTestObject.m */; };
 /* End PBXBuildFile section */
@@ -69,6 +72,7 @@
 		A33E4B3A1D069B0C001B0AB1 /* CYJSLocalRequestUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYJSLocalRequestUtils.swift; sourceTree = "<group>"; };
 		A33E4B3C1D06ABDC001B0AB1 /* CYJSCommonActionRequestUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYJSCommonActionRequestUtils.swift; sourceTree = "<group>"; };
 		A345C5FB1DEBDE2F0094AF5A /* CYBaseProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYBaseProgressBar.swift; sourceTree = "<group>"; };
+		A34F17F01EF8B78200538F20 /* HerizontalTableViewTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HerizontalTableViewTestViewController.swift; sourceTree = "<group>"; };
 		A3636A871ED28FA600B0F8E9 /* CycleBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleBannerView.swift; sourceTree = "<group>"; };
 		A3636A891ED297D200B0F8E9 /* CycleBannerViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleBannerViewItem.swift; sourceTree = "<group>"; };
 		A3636A9D1ED2C77800B0F8E9 /* CycleBannerTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleBannerTestViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +98,8 @@
 		A3CCAF321D17A57900A40969 /* CYJSParametersSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYJSParametersSerialization.swift; sourceTree = "<group>"; };
 		A3CCAF341D17A58900A40969 /* CYJSHTTPParametersSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYJSHTTPParametersSerialization.swift; sourceTree = "<group>"; };
 		A3CCAF361D17D6EE00A40969 /* CYAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYAlertView.swift; sourceTree = "<group>"; };
+		A3D086FA1EEE3B30007752ED /* HerizontalTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HerizontalTableView.swift; sourceTree = "<group>"; };
+		A3D086FC1EEE3B47007752ED /* HerizontalTableViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HerizontalTableViewItem.swift; sourceTree = "<group>"; };
 		A3DEB59D1E66C89F000B6001 /* CYWebViewProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYWebViewProgress.swift; sourceTree = "<group>"; };
 		A3E253071CFD976F002F8E18 /* CYUtilProjectSwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CYUtilProjectSwift-Bridging-Header.h"; sourceTree = "<group>"; };
 		A3E253081CFD976F002F8E18 /* ObjectiveCTestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveCTestObject.h; sourceTree = "<group>"; };
@@ -148,6 +154,7 @@
 		61091D6F1CDAFCB0008B7EA3 /* CYUtils */ = {
 			isa = PBXGroup;
 			children = (
+				A3D086F91EEE3B17007752ED /* HerizontalTable */,
 				A3636A861ED28FA600B0F8E9 /* CycleBanner */,
 				A385A69D1ED138CE0022C2EB /* CYAlertWindow */,
 				A385A69C1ED138810022C2EB /* CYRedPacketUI */,
@@ -285,6 +292,7 @@
 				A3B7009A1E1B500B00823B7B /* ProgressWebTestViewController.swift */,
 				A3636A9D1ED2C77800B0F8E9 /* CycleBannerTestViewController.swift */,
 				A3636AAB1ED31E7600B0F8E9 /* RedPacketViewController.swift */,
+				A34F17F01EF8B78200538F20 /* HerizontalTableViewTestViewController.swift */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -297,6 +305,15 @@
 				A3CCAF301D17A56000A40969 /* CYJSJSONParametersSerialization.swift */,
 			);
 			path = CYJSParametersSerialization;
+			sourceTree = "<group>";
+		};
+		A3D086F91EEE3B17007752ED /* HerizontalTable */ = {
+			isa = PBXGroup;
+			children = (
+				A3D086FA1EEE3B30007752ED /* HerizontalTableView.swift */,
+				A3D086FC1EEE3B47007752ED /* HerizontalTableViewItem.swift */,
+			);
+			path = HerizontalTable;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -383,6 +400,7 @@
 				A3636A9E1ED2C77800B0F8E9 /* CycleBannerTestViewController.swift in Sources */,
 				A38580221DEFD1E900FF989F /* CYArcProgressBar.swift in Sources */,
 				A30EA3D41CFEE023006FEF23 /* CYAudioRecordUtils.swift in Sources */,
+				A3D086FD1EEE3B47007752ED /* HerizontalTableViewItem.swift in Sources */,
 				A38580241DEFF6E100FF989F /* CYCycleProgressBar.swift in Sources */,
 				A3CCAF311D17A56000A40969 /* CYJSJSONParametersSerialization.swift in Sources */,
 				A37D5B481ED7037500A63AB9 /* SendRedPacketView.swift in Sources */,
@@ -395,6 +413,7 @@
 				61091D5E1CDAF8E4008B7EA3 /* AppDelegate.swift in Sources */,
 				A306D5631CE330A8008341F3 /* CYAlertViewAction.swift in Sources */,
 				A385A6A31ED13C220022C2EB /* CYRedPacketOpenView.swift in Sources */,
+				A3D086FB1EEE3B30007752ED /* HerizontalTableView.swift in Sources */,
 				A3DEB59E1E66C89F000B6001 /* CYWebViewProgress.swift in Sources */,
 				A38580201DEFCFA800FF989F /* CYLineProgressBar.swift in Sources */,
 				A3CCAF351D17A58900A40969 /* CYJSHTTPParametersSerialization.swift in Sources */,
@@ -404,6 +423,7 @@
 				A3E2530A1CFD976F002F8E18 /* ObjectiveCTestObject.m in Sources */,
 				A385A6A51ED150C40022C2EB /* CYRedPacketDetailHeaderView.swift in Sources */,
 				A385A6AC1ED16A8E0022C2EB /* CYRedPacketViewModel.swift in Sources */,
+				A34F17F11EF8B78200538F20 /* HerizontalTableViewTestViewController.swift in Sources */,
 				A3636A8A1ED297D200B0F8E9 /* CycleBannerViewItem.swift in Sources */,
 				A33913CE1CF3EE4400C8C147 /* Dictionary+CYUtils.swift in Sources */,
 				A3B700981E1B449C00823B7B /* CYProgressWebView.swift in Sources */,

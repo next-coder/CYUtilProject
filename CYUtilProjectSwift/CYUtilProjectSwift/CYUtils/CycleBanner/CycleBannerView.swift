@@ -8,66 +8,54 @@
 
 import UIKit
 
-@objc protocol CycleBannerViewDataSource {
+@objc public protocol CycleBannerViewDelegate: NSObjectProtocol, UIScrollViewDelegate {
 
-    func numberOfItems(in cycleBannerView: CycleBannerView) -> UInt
-    func cycleBannerView(cycleBannerView: CycleBannerView, itemAtIndex index: UInt) -> CycleBannerViewItem
+    @objc optional func cycleBannerView(_ cycleBannerView: CycleBannerView,
+                                        didSelectItemAt index: Int)
 }
 
-@objc protocol CycleBannerViewDelegate: UIScrollViewDelegate {
+open class CycleBannerView: UIView, UIScrollViewDelegate {
 
-    @objc optional func cycleBannerView(cycleBannerView: CycleBannerView, didSelectItemAt index: UInt)
-    @objc optional func cycleBannerView(cycleBannerView: CycleBannerView, sizeForItemAtIndex index: UInt) -> CGSize
-    @objc optional func cycleBannerView(cycleBannerView: CycleBannerView, widthForHeaderAtIndex index: UInt) -> CGFloat
-    @objc optional func cycleBannerView(cycleBannerView: CycleBannerView, widthForFooterAtIndex index: UInt) -> CGFloat
-    @objc optional func cycleBannerView(cycleBannerView: CycleBannerView,
-                                        item: CycleBannerViewItem,
-                                        willScrollToCenter distance: CGFloat,
-                                        total totalDistance: CGFloat)
-}
-
-class CycleBannerView: UIView, UIScrollViewDelegate {
-
-    @IBOutlet weak var dataSource: CycleBannerViewDataSource?
     @IBOutlet weak var delegate: CycleBannerViewDelegate?
 
     // never change the scrollView's delegate property
     private(set) var scrollView: UIScrollView!
 
+    // 所有已显示的item
+    public var items: [CycleBannerViewItem]?
+
     // 默认item大小，开发者可以通过设置这个，来统一指定所有的item大小
     // 如果不设置，则值为scrollView.frame.size
-    var itemSize: CGSize = CGSize.zero
+    public var itemSize: CGSize = CGSize.zero
 
     // 统一的header或Footer 宽度
-    var itemHeaderWidth: CGFloat = 0
-    var itemFooterWidth: CGFloat = 0
+    public var itemHeaderWidth: CGFloat = 0
+    public var itemFooterWidth: CGFloat = 0
 
-//    // 滑动翻页开关，根据每个item翻页
-//    var itemPageEnabled: Bool = false
-    // 最中间的item，是否屏幕居中显示
-    var itemCenterEnabled: Bool = false
-    // 循环滚动开关
-    var cycleScrollEnabled: Bool = false
+    public var numberOfItems: Int {
 
-    private(set) var numberOfItems: UInt = 0
-    // cached items, 还没有实现重用
-//    private var _cachedItems_: [String: [CycleBannerViewItem]]!
-    // 所有已显示的item
-    private(set) var visibleItems: [CycleBannerViewItem]!
+        return items?.count ?? 0
+    }
 
-    private var _visibleItemStartIndex_: UInt = 0
+    // select index
+    private(set) var currentIndex: Int = 0
 
-    override init(frame: CGRect) {
+    public func setCurrentIndex(_ index: Int, animated: Bool) {
+        currentIndex = index
+        _scrollToCurrentIndexItem_(animated)
+    }
+
+    override public init(frame: CGRect) {
         super.init(frame: frame)
 
         configureViews()
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
-    override func awakeFromNib() {
+    override open func awakeFromNib() {
         super.awakeFromNib()
 
         configureViews()
@@ -75,418 +63,200 @@ class CycleBannerView: UIView, UIScrollViewDelegate {
 
     private func configureViews() {
 
-//        _cachedItems_ = [String: [CycleBannerViewItem]]()
-        visibleItems = [CycleBannerViewItem]()
-
         scrollView = UIScrollView(frame: self.bounds)
+        scrollView.decelerationRate = UIScrollViewDecelerationRateFast
         scrollView.delegate = self
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(scrollView)
-
-        // 如果默认ItemSize为scrollView.frame.size
-        itemSize = scrollView.frame.size
     }
 
-    override func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews()
 
+        scrollView.frame = self.bounds
+        if itemSize.equalTo(.zero) {
+            itemSize = scrollView.frame.size
+        }
         reloadData()
     }
 
-    func reloadData() {
+    // get index or item
+    public func index(of item: CycleBannerViewItem) -> Int? {
 
-        guard let dataSource = self.dataSource else {
-
-            return
-        }
-        numberOfItems = dataSource.numberOfItems(in: self)
-        _reloadScrollViewContentSize_()
-        _reloadVisibleItems_()
-        _alignCenterItem_(animated: false)
+        return items?.index(of: item)
     }
 
-    // items
-    func index(forItem item: CycleBannerViewItem) -> Int? {
+    public func item(at index: Int) -> CycleBannerViewItem? {
 
-        if let index = visibleItems.index(of: item) {
+        if index < 0
+            || index >= numberOfItems {
 
-            var realIndex = index + Int(_visibleItemStartIndex_)
-            if realIndex >= Int(numberOfItems) {
-
-                return realIndex - Int(numberOfItems)
-            } else {
-
-                return realIndex
-            }
+            return nil
         } else {
+
+            return items?[index]
+        }
+    }
+
+    public func indexOfItem(at point: CGPoint) -> Int? {
+
+        if point.x < 0
+            || point.x > scrollView.contentSize.width
+            || point.y < 0
+            || point.y > scrollView.frame.height {
 
             return nil
         }
+
+        // 第一个item的x
+        let itemStartX = scrollView.frame.width / 2.0 - itemSize.width / 2.0 - itemHeaderWidth
+        let itemScopeWidth = (itemHeaderWidth + itemSize.width + itemFooterWidth)
+        let index = Int((point.x - itemStartX) / itemScopeWidth)
+        if index > 0
+            || index < numberOfItems {
+
+            return index
+        }
+        return nil
     }
 
-//    private func _index_(forItemAtPoint point: CGPoint) -> Int {
-//
-//        guard let dataSource = self.dataSource else {
-//
-//            return NSNotFound
-//        }
-//        
-//    }
+    // reload data
+    public func reloadData() {
 
-    // 重新设置scroll content size
+        _reloadScrollViewContentSize_()
+        _refreshItems_()
+    }
+
     private func _reloadScrollViewContentSize_() {
 
-        var contentSize = CGSize(width: 0, height: self.scrollView.frame.height)
-        for i in 0..<numberOfItems {
-
-            // item宽度
-            contentSize.width += _itemSize_(atIndex: i).width
-            // item header宽度
-            contentSize.width += _itemHeaderWidth_(atIndex: i)
-            // item footer 宽度
-            contentSize.width += _itemFooterWidth_(atIndex: i)
-        }
-        scrollView.contentSize = contentSize
-
-        if cycleScrollEnabled {
-            scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: scrollView.frame.width)
+        if numberOfItems == 0 {
+            scrollView.contentSize = .zero
+        } else {
+            let floatCount = CGFloat(numberOfItems)
+            var contentWidth = (itemHeaderWidth + itemFooterWidth + itemSize.width) * floatCount;
+            // 由于item需要居中显示，有可能item.width < scrollView.width，此时
+            // 第一个item居中时，由于item宽度比scrollView宽度小，无法占满第一屏，左边可能有一段空白
+            // 同理，最后面一个item居中显示时，右边可能多出一段空白
+            // 左边多出来的空白
+            contentWidth += (scrollView.frame.width / 2.0 - itemSize.width / 2.0 - itemHeaderWidth);
+            // 右边多出来的空白
+            contentWidth += (scrollView.frame.width / 2.0 - itemSize.width / 2.0 - itemFooterWidth);
+            scrollView.contentSize = CGSize(width: contentWidth,
+                                            height: scrollView.frame.height)
         }
     }
 
-    // 重新刷新所有视图
-    private func _reloadVisibleItems_() {
+    private func _refreshItems_() {
 
-        // 删除之前的所有视图
-        let subviews = scrollView.subviews
-        if subviews.count > 0 {
-            for view in subviews {
-
-                view.removeFromSuperview()
+        // 移除之前的所有item
+        for subview in scrollView.subviews {
+            if subview is CycleBannerViewItem {
+                subview.removeFromSuperview()
             }
         }
-        if visibleItems.count > 0 {
 
-            visibleItems.removeAll()
-        }
+        if let items = self.items {
 
-        guard let dataSource = self.dataSource else {
-
-            return
-        }
-
-        var nextX: CGFloat = 0.0
-        for i in 0..<numberOfItems {
-
-            let item = dataSource.cycleBannerView(cycleBannerView: self, itemAtIndex: i)
-            item.translatesAutoresizingMaskIntoConstraints = false
-            scrollView.addSubview(item)
-            visibleItems.append(item)
-
-            let tap = UITapGestureRecognizer(target: self, action: #selector(_itemTapped_(sender:)))
-            item.addGestureRecognizer(tap)
-
-            // calculate frame
-            nextX += _itemHeaderWidth_(atIndex: i)
-            let itemSize = _itemSize_(atIndex: i)
-            let itemY = (scrollView.frame.height - itemSize.height) / 2.0
-            item.frame = CGRect(x: CGFloat(nextX), y: itemY, width: itemSize.width, height: itemSize.height)
-
-            nextX = item.frame.maxX
-            nextX += _itemFooterWidth_(atIndex: i)
-
-//            // 如果item超过显示边界，则停止刷新
-//            if item.frame.minX >= scrollView.frame.maxX {
-//
-//                break
-//            }
-        }
-
-        if cycleScrollEnabled {
-
-            for i in 0..<numberOfItems {
-
-                let item = dataSource.cycleBannerView(cycleBannerView: self, itemAtIndex: i)
-                item.translatesAutoresizingMaskIntoConstraints = false
-//                item.backgroundColor = UIColor.brown
+            // 第一个item居于scrollView的中心位置
+            var centerX: CGFloat = scrollView.frame.width / 2.0
+            let centerY = scrollView.frame.height / 2.0
+            for item in items {
+                // 布局并添加item到scrollView中
+                item.frame.size = itemSize
+                item.center = CGPoint(x: centerX,
+                                      y: centerY)
                 scrollView.addSubview(item)
-                visibleItems.append(item)
 
-                let tap = UITapGestureRecognizer(target: self, action: #selector(_itemTapped_(sender:)))
-                item.addGestureRecognizer(tap)
-
-                // calculate frame
-                nextX += _itemHeaderWidth_(atIndex: i)
-                let itemSize = _itemSize_(atIndex: i)
-                let itemY = (scrollView.frame.height - itemSize.height) / 2.0
-                item.frame = CGRect(x: CGFloat(nextX), y: itemY, width: itemSize.width, height: itemSize.height)
-
-                nextX = item.frame.maxX
-                nextX += _itemFooterWidth_(atIndex: i)
-                if nextX > (scrollView.contentSize.width + scrollView.contentInset.right) {
-                    break
-                }
+                // 计算下一个item的centerX
+                centerX += itemFooterWidth
+                centerX += itemHeaderWidth
+                centerX += itemSize.width
             }
-        }
-
-        _visibleItemStartIndex_ = 0
-    }
-
-    private func _itemSize_(atIndex index: UInt) -> CGSize {
-
-        // 如果delegate实现了cycleBannerView(_:sizeForItemAtIndex:)，则调用此方法获取size
-        // 否则，使用self.itemSize
-        if let realSize = delegate?.cycleBannerView?(cycleBannerView: self, sizeForItemAtIndex: index) {
-
-            return realSize
-        } else {
-
-            return itemSize
-        }
-    }
-
-    private func _itemHeaderWidth_(atIndex index: UInt) -> CGFloat {
-
-        if let headerWidth = delegate?.cycleBannerView?(cycleBannerView: self, widthForHeaderAtIndex: index) {
-
-            return headerWidth
-        } else {
-
-            return itemHeaderWidth
-        }
-    }
-
-    private func _itemFooterWidth_(atIndex index: UInt) -> CGFloat {
-
-        if let footerWidth = delegate?.cycleBannerView?(cycleBannerView: self, widthForFooterAtIndex: index) {
-
-            return footerWidth
-        } else {
-
-            return itemFooterWidth
         }
     }
 
     // UIScrollViewDelegate
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
 
-        if visibleItems.count <= 1 {
+        delegate?.scrollViewWillEndDragging?(scrollView, withVelocity: velocity, targetContentOffset: targetContentOffset)
 
-            return
-        }
+        var currentIndex = 0
+        if let itemIndex = indexOfItem(at: CGPoint(x: scrollView.contentOffset.x + scrollView.frame.size.width / 2.0, y: 0)) {
 
-        let scrollViewOffset = scrollView.contentOffset
-        // 不做懒加载，上来item全部加载
-//        if scrollViewOffset.x < visibleItems[0].frame.maxX
-//            && scrollViewOffset.x > 0 {
-//
-//            // 加载前面的
-//            _addItemAtVisibleStart_()
-//        } else if (scrollViewOffset.x + scrollView.frame.width) > visibleItems.last!.frame.minX {
-//
-//            _addItemAtVisibleEnd_()
-//        }
+            currentIndex = itemIndex
+        } else if (scrollView.contentOffset.x < scrollView.frame.width) {
 
-        let scrollCenterX = scrollViewOffset.x + scrollView.frame.width / 2.0
-        for item in visibleItems {
-
-            if item.frame.maxX > scrollViewOffset.x
-                && item.frame.minX < (scrollViewOffset.x + scrollView.frame.width) {
-
-                delegate?.cycleBannerView?(cycleBannerView: self,
-                                           item: item,
-                                           willScrollToCenter: abs(scrollCenterX - item.center.x),
-                                           total: (scrollView.frame.width + item.frame.width) / 2.0)
-            }
-        }
-
-        if cycleScrollEnabled {
-            if scrollViewOffset.x < 0 {
-
-                // 滑到最左边
-                scrollView.contentOffset = CGPoint(x: scrollView.contentSize.width + scrollViewOffset.x, y: 0)
-            } else if scrollViewOffset.x > scrollView.contentSize.width {
-                // 滑到最右边
-                scrollView.contentOffset = CGPoint(x: scrollViewOffset.x - scrollView.contentSize.width, y: 0)
-            }
-        }
-    }
-
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if !decelerate {
-            _alignCenterItem_(animated: true)
-        }
-    }
-
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        _alignCenterItem_(animated: true)
-    }
-
-    private func _alignCenterItem_(animated: Bool) {
-
-        if !itemCenterEnabled {
-
-            return
-        }
-
-        let scrollViewOffset = scrollView.contentOffset
-        let scrollViewCenterPoint = CGPoint(x: scrollViewOffset.x + scrollView.frame.width / 2.0, y: scrollView.frame.height / 2.0)
-        for (index, item)  in visibleItems.enumerated() {
-
-            let itemHeaderWidth = _itemHeaderWidth_(atIndex: (UInt(index) + _visibleItemStartIndex_))
-            let itemFooterWidth = _itemFooterWidth_(atIndex: (UInt(index) + _visibleItemStartIndex_))
-            // 在此item的范围内，则此item滑到屏幕中央
-            if scrollViewCenterPoint.x < (item.center.x + item.bounds.width / 2.0 + itemFooterWidth)
-                && scrollViewCenterPoint.x >= (item.center.x - item.bounds.width / 2.0 - itemHeaderWidth) {
-
-                let scrollNewOffset = CGPoint(x: scrollViewOffset.x + (item.center.x - scrollViewCenterPoint.x), y: 0)
-                scrollView.setContentOffset(scrollNewOffset, animated: animated)
-                break
-            }
-        }
-    }
-
-    private func _addItemAtVisibleStart_() {
-
-//        if _visibleItemStartIndex_ > 0 {
-            guard let dataSource = self.dataSource else {
-
-                return
-            }
-
-        var index: UInt = 0
-        if _visibleItemStartIndex_ > 0 {
-            index = _visibleItemStartIndex_ - 1
+            currentIndex = 0
         } else {
-            // 不支持循环滚动
-            if !cycleScrollEnabled {
-                return
-            }
-            index = numberOfItems - 1
+
+            currentIndex = numberOfItems - 1
         }
-            let item = dataSource.cycleBannerView(cycleBannerView: self, itemAtIndex: index)
-            item.translatesAutoresizingMaskIntoConstraints = false
-            scrollView.addSubview(item)
+        if (velocity.x > 0.5) {
 
-            let nextItemHeaderWidth = _itemHeaderWidth_(atIndex: _visibleItemStartIndex_)
-            let itemFooterWidth = _itemFooterWidth_(atIndex: index)
-            let nextItemFrame = visibleItems[Int(_visibleItemStartIndex_)].frame
+            currentIndex += 1
+        } else if (velocity.x < -0.5) {
 
-            let itemSize = _itemSize_(atIndex: index)
-            let itemX = nextItemFrame.minX - nextItemHeaderWidth - itemFooterWidth - itemSize.width
-            let itemY = (scrollView.frame.height - itemSize.height) / 2.0
-            item.frame = CGRect(x: itemX,
-                                y: itemY,
-                                width: itemSize.width,
-                                height: itemSize.height)
+            currentIndex -= 1
+        }
+        if currentIndex < 0 {
+            currentIndex = 0
+        } else if currentIndex >= numberOfItems {
+            currentIndex = numberOfItems - 1
+        }
+        self.currentIndex = currentIndex
 
-            visibleItems.insert(item, at: 0)
-            _visibleItemStartIndex_ = index
-//        }
+        if let item = item(at: currentIndex) {
+
+            targetContentOffset.pointee = CGPoint(x: item.center.x - scrollView.frame.width / 2.0,
+                                                  y: 0)
+        }
+
+
     }
 
-    private func _addItemAtVisibleEnd_() {
+    // scroll items
+    private func _scrollToCurrentIndexItem_(_ animated: Bool) {
 
-        var index = _visibleItemStartIndex_ + UInt(visibleItems.count)
-        if index >= numberOfItems {
-            // 不支持循环滚动
-            if !cycleScrollEnabled {
-                return
-            }
-            index -= numberOfItems
+        // 当前index 的item
+        if let item = item(at: currentIndex) {
+
+            let offsetX = item.center.x - scrollView.frame.width / 2.0
+            scrollView.setContentOffset(CGPoint(x: offsetX, y: 0), animated: animated)
         }
-
-        var previousIndex: UInt = 0
-        if index == 0 {
-            previousIndex = numberOfItems - 1
-        } else {
-            previousIndex = index - 1
-        }
-
-//        if index < numberOfItems {
-            guard let dataSource = self.dataSource else {
-
-                return
-            }
-
-            let item = dataSource.cycleBannerView(cycleBannerView: self, itemAtIndex: index)
-            item.translatesAutoresizingMaskIntoConstraints = false
-            scrollView.addSubview(item)
-
-            let previousItemFooterWidth = _itemFooterWidth_(atIndex: previousIndex)
-            let previousItemFrame = visibleItems[Int(previousIndex)].frame
-            let itemHeaderWidth = _itemHeaderWidth_(atIndex: index)
-
-            let itemSize = _itemSize_(atIndex: index)
-            let itemX = previousItemFrame.maxX + previousItemFooterWidth + itemHeaderWidth
-            let itemY = (scrollView.frame.height - itemSize.height) / 2.0
-            item.frame = CGRect(x: itemX,
-                                y: itemY,
-                                width: itemSize.width,
-                                height: itemSize.height)
-
-            visibleItems.append(item)
-//        }
-    }
-
-    private func _removeUnVisibleItemIfNeeded_() {
-
-        // TODO 删除不在显示的item
     }
 
     // event
     @objc private func _itemTapped_(sender: UITapGestureRecognizer?) {
 
-        if let item = sender?.view as? CycleBannerViewItem {
+        if let item = sender?.view as? CycleBannerViewItem,
+            let index = index(of: item) {
 
-            if let index = index(forItem: item) {
-
-                delegate?.cycleBannerView?(cycleBannerView: self, didSelectItemAt: UInt(index))
-            }
+            delegate?.cycleBannerView?(self, didSelectItemAt: index)
         }
     }
+}
 
-//    private func _refreshItem_(atIndex index: UInt) {
-//        guard let dataSource = self.dataSource else {
-//            return
-//        }
-//        if index >= numberOfItems {
-//
-//            return
-//        }
-//        if index >= _visibleItemStartIndex_
-//            && index < UInt(visibleItems.count) {
-//
-//            let itemIndexInVisible: Int = Int(index - _visibleItemStartIndex_)
-//            visibleItems[Int(itemIndexInVisible)].removeFromSuperview()
-//
-//            let item = dataSource.cycleBannerView(cycleBannerView: self, itemAtIndex: index)
-//            scrollView.addSubview(item)
-//
-//
-//
-//            visibleItems[itemIndexInVisible]
-//        } else if index == (_visibleItemStartIndex_ - 1) {
-//
-//            // 屏幕第一个之前的item
-//            let item = dataSource.cycleBannerView(cycleBannerView: self, itemAtIndex: index)
-//
-//        } else if index == (_visibleItemStartIndex_ + UInt(visibleItems.count)) {
-//
-//            // 屏幕的最后一个之后的item
-//            let item = dataSource.cycleBannerView(cycleBannerView: self, itemAtIndex: index)
-//
-//        } else {
-//
-//            // 不在屏幕内的item, 不刷新
-//        }
-//    }
-//
-//    private func _removeItem_(atIndex index: UInt) {
-//
-//        if index >= _visibleItemStartIndex_
-//            && index < UInt(visibleItems.count) {
-//
-//
-//        }
-//    }
+extension CycleBannerView {
+
+    // method forwarding
+    override open func responds(to aSelector: Selector!) -> Bool {
+
+        if let delegate = self.delegate {
+            return (super.responds(to: aSelector) || delegate.responds(to: aSelector))
+        }
+        return super.responds(to: aSelector)
+    }
+
+    override open func forwardingTarget(for aSelector: Selector!) -> Any? {
+
+        if let target = super.forwardingTarget(for: aSelector) {
+
+            return target
+        } else if delegate?.responds(to: aSelector) ?? false {
+
+            return delegate
+        } else {
+            return nil
+        }
+    }
 }

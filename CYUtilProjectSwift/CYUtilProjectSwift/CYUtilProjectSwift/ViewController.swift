@@ -153,6 +153,9 @@ class ViewController: UITableViewController {
                 self.navigationController?.pushViewController(CycleBannerTestViewController(), animated: true)
             } else if indexPath.row == 2 {
                 self.navigationController?.pushViewController(RedPacketViewController(), animated: true)
+            } else if indexPath.row == 3 {
+
+                navigationController?.pushViewController(HerizontalTableViewTestViewController(), animated: true)
             }
         }
     }
