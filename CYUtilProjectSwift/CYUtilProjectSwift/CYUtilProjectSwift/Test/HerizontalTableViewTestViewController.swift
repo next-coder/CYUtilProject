@@ -2,8 +2,8 @@
 //  HerizontalTableViewTestViewController.swift
 //  CYUtilProjectSwift
 //
-//  Created by xn011644 on 20/06/2017.
-//  Copyright © 2017 Jasper. All rights reserved.
+//  Created by Conner on 20/06/2017.
+//  Copyright © 2017 Conner. All rights reserved.
 //
 
 import UIKit

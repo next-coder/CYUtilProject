@@ -2,8 +2,8 @@
 //  ViewController.swift
 //  CYUtilProjectSwift
 //
-//  Created by HuangQiSheng on 5/5/16.
-//  Copyright © 2016 Jasper. All rights reserved.
+//  Created by Conner on 5/5/16.
+//  Copyright © 2016 Conner. All rights reserved.
 //
 
 import UIKit
@@ -156,6 +156,8 @@ class ViewController: UITableViewController {
             } else if indexPath.row == 3 {
 
                 navigationController?.pushViewController(HerizontalTableViewTestViewController(), animated: true)
+            } else if indexPath.row == 4 {
+                navigationController?.pushViewController(FloatingViewTestViewController(), animated: true)
             }
         }
     }

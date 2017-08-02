@@ -2,8 +2,8 @@
 //  UIWindow+CYRedPacket.swift
 //  CYUtilProjectSwift
 //
-//  Created by xn011644 on 21/05/2017.
-//  Copyright © 2017 Jasper. All rights reserved.
+//  Created by Conner on 21/05/2017.
+//  Copyright © 2017 Conner. All rights reserved.
 //
 
 import UIKit

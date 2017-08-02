@@ -2,8 +2,8 @@
 //  CYProgressWebView.swift
 //  CYUtilProjectSwift
 //
-//  Created by xn011644 on 03/01/2017.
-//  Copyright © 2017 Jasper. All rights reserved.
+//  Created by Conner on 03/01/2017.
+//  Copyright © 2017 Conner. All rights reserved.
 //
 
 import UIKit

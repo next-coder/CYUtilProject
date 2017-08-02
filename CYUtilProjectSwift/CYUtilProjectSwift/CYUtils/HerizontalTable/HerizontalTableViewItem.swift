@@ -2,8 +2,8 @@
 //  HerizontalTableViewItem.swift
 //  CYUtilProjectSwift
 //
-//  Created by xn011644 on 12/06/2017.
-//  Copyright © 2017 Jasper. All rights reserved.
+//  Created by Conner on 12/06/2017.
+//  Copyright © 2017 Conner. All rights reserved.
 //
 
 import UIKit

@@ -2,8 +2,8 @@
 //  ImageDownloader.swift
 //  CYUtilProjectSwift
 //
-//  Created by HuangQiSheng on 5/5/16.
-//  Copyright © 2016 Jasper. All rights reserved.
+//  Created by Conner on 5/5/16.
+//  Copyright © 2016 Conner. All rights reserved.
 //
 
 import UIKit
