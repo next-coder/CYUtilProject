@@ -11,6 +11,7 @@ import UIKit
 class FloatingViewTestViewController: UIViewController {
 
     var floatingView: FloatingView?
+    var test: Any?
 
     override func viewDidLoad() {
         super.viewDidLoad()

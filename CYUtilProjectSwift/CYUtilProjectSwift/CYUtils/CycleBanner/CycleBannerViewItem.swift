@@ -68,9 +68,4 @@ public class CycleBannerViewItem: UIView {
         }
     }
 
-    override public func layoutSubviews() {
-
-        super.layoutSubviews()
-    }
-
 }

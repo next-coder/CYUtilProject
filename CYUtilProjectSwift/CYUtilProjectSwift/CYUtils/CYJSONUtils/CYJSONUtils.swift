@@ -8,10 +8,10 @@
 
 import Foundation
 
-class CYJSONUtils {
+public class CYJSONUtils {
 
     // data from JSONObject, transfer object to json data
-    static func dataFromJSONObject(_ JSONObject: AnyObject) -> Data? {
+    public static func dataFromJSONObject(_ JSONObject: AnyObject) -> Data? {
 
         if JSONSerialization.isValidJSONObject(JSONObject) {
 
@@ -27,7 +27,7 @@ class CYJSONUtils {
         return nil
     }
 
-    static func stringFromJSONObject(_ JSONObject: AnyObject) -> String? {
+    public static func stringFromJSONObject(_ JSONObject: AnyObject) -> String? {
 
         if let JSONData = self.dataFromJSONObject(JSONObject) {
 
@@ -38,7 +38,7 @@ class CYJSONUtils {
 
 
     // JSON Object from data
-    static func JSONObjectFromData(_ data: Data) -> AnyObject? {
+    public static func JSONObjectFromData(_ data: Data) -> AnyObject? {
 
         do {
 
@@ -51,7 +51,7 @@ class CYJSONUtils {
         return nil
     }
 
-    static func dictionaryFromJSONData(_ data: Data) -> [String : AnyObject]? {
+    public static func dictionaryFromJSONData(_ data: Data) -> [String : AnyObject]? {
 
         if let JSONObject = self.JSONObjectFromData(data) {
 
@@ -60,7 +60,7 @@ class CYJSONUtils {
         return nil
     }
 
-    static func arrayFromJSONData(_ data: Data) -> [AnyObject]? {
+    public static func arrayFromJSONData(_ data: Data) -> [AnyObject]? {
 
         if let JSONObject = self.JSONObjectFromData(data) {
 
@@ -70,7 +70,7 @@ class CYJSONUtils {
     }
 
     // JSON Object from String, must UTF8 encoding string, otherwise use JSONObjectFromData
-    static func JSONObjectFromString(_ JSONString: String) -> AnyObject? {
+    public static func JSONObjectFromString(_ JSONString: String) -> AnyObject? {
 
         if let data = JSONString.data(using: String.Encoding.utf8) {
 
@@ -79,7 +79,7 @@ class CYJSONUtils {
         return nil
     }
 
-    static func dictionaryFromJSONString(_ JSONString: String) -> [String : AnyObject]? {
+    public static func dictionaryFromJSONString(_ JSONString: String) -> [String : AnyObject]? {
 
         if let data = JSONString.data(using: String.Encoding.utf8) {
 
@@ -88,7 +88,7 @@ class CYJSONUtils {
         return nil
     }
 
-    static func arrayFromJSONString(_ JSONString: String) -> [AnyObject]? {
+    public static func arrayFromJSONString(_ JSONString: String) -> [AnyObject]? {
 
         if let data = JSONString.data(using: String.Encoding.utf8) {
 

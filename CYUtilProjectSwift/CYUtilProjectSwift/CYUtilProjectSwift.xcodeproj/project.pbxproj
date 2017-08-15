@@ -31,6 +31,8 @@
 		A3636A9E1ED2C77800B0F8E9 /* CycleBannerTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3636A9D1ED2C77800B0F8E9 /* CycleBannerTestViewController.swift */; };
 		A3636AAC1ED31E7600B0F8E9 /* RedPacketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3636AAB1ED31E7600B0F8E9 /* RedPacketViewController.swift */; };
 		A3636B0B1ED52BAA00B0F8E9 /* RedPacketAssets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A3636B0A1ED52BAA00B0F8E9 /* RedPacketAssets.bundle */; };
+		A371504B1F385C020079E9C5 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A371504A1F385C020079E9C5 /* WebViewController.swift */; };
+		A371504D1F3875350079E9C5 /* WebViewProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = A371504C1F3875350079E9C5 /* WebViewProgress.swift */; };
 		A37D5B461ED7036200A63AB9 /* SendRedPacketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37D5B451ED7036200A63AB9 /* SendRedPacketViewController.swift */; };
 		A37D5B481ED7037500A63AB9 /* SendRedPacketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37D5B471ED7037500A63AB9 /* SendRedPacketView.swift */; };
 		A38580201DEFCFA800FF989F /* CYLineProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A385801F1DEFCFA800FF989F /* CYLineProgressBar.swift */; };
@@ -84,6 +86,8 @@
 		A3636A9D1ED2C77800B0F8E9 /* CycleBannerTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleBannerTestViewController.swift; sourceTree = "<group>"; };
 		A3636AAB1ED31E7600B0F8E9 /* RedPacketViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedPacketViewController.swift; sourceTree = "<group>"; };
 		A3636B0A1ED52BAA00B0F8E9 /* RedPacketAssets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = RedPacketAssets.bundle; sourceTree = "<group>"; };
+		A371504A1F385C020079E9C5 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		A371504C1F3875350079E9C5 /* WebViewProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewProgress.swift; sourceTree = "<group>"; };
 		A37D5B451ED7036200A63AB9 /* SendRedPacketViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendRedPacketViewController.swift; sourceTree = "<group>"; };
 		A37D5B471ED7037500A63AB9 /* SendRedPacketView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendRedPacketView.swift; sourceTree = "<group>"; };
 		A385801F1DEFCFA800FF989F /* CYLineProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYLineProgressBar.swift; sourceTree = "<group>"; };
@@ -161,6 +165,7 @@
 		61091D6F1CDAFCB0008B7EA3 /* CYUtils */ = {
 			isa = PBXGroup;
 			children = (
+				A37150491F385BF40079E9C5 /* WebViewController */,
 				A32F8C991F31C095003BA93B /* FloatingView */,
 				A3D086F91EEE3B17007752ED /* HerizontalTable */,
 				A3636A861ED28FA600B0F8E9 /* CycleBanner */,
@@ -257,6 +262,15 @@
 				A3636A891ED297D200B0F8E9 /* CycleBannerViewItem.swift */,
 			);
 			path = CycleBanner;
+			sourceTree = "<group>";
+		};
+		A37150491F385BF40079E9C5 /* WebViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A371504A1F385C020079E9C5 /* WebViewController.swift */,
+				A371504C1F3875350079E9C5 /* WebViewProgress.swift */,
+			);
+			path = WebViewController;
 			sourceTree = "<group>";
 		};
 		A385A69C1ED138810022C2EB /* CYRedPacketUI */ = {
@@ -431,6 +445,7 @@
 				A32F8C9F1F31CBC2003BA93B /* FloatingViewTestViewController.swift in Sources */,
 				A3CCAF331D17A57900A40969 /* CYJSParametersSerialization.swift in Sources */,
 				61091D5E1CDAF8E4008B7EA3 /* AppDelegate.swift in Sources */,
+				A371504B1F385C020079E9C5 /* WebViewController.swift in Sources */,
 				A306D5631CE330A8008341F3 /* CYAlertViewAction.swift in Sources */,
 				A385A6A31ED13C220022C2EB /* CYRedPacketOpenView.swift in Sources */,
 				A3D086FB1EEE3B30007752ED /* HerizontalTableView.swift in Sources */,
@@ -444,6 +459,7 @@
 				A385A6A51ED150C40022C2EB /* CYRedPacketDetailHeaderView.swift in Sources */,
 				A385A6AC1ED16A8E0022C2EB /* CYRedPacketViewModel.swift in Sources */,
 				A34F17F11EF8B78200538F20 /* HerizontalTableViewTestViewController.swift in Sources */,
+				A371504D1F3875350079E9C5 /* WebViewProgress.swift in Sources */,
 				A3636A8A1ED297D200B0F8E9 /* CycleBannerViewItem.swift in Sources */,
 				A33913CE1CF3EE4400C8C147 /* Dictionary+CYUtils.swift in Sources */,
 				A3B700981E1B449C00823B7B /* CYProgressWebView.swift in Sources */,

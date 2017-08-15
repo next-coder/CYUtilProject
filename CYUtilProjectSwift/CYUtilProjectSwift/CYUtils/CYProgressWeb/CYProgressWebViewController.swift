@@ -54,8 +54,8 @@ class CYProgressWebViewController: UIViewController, UIWebViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let barTextAttributesNormal = UIBarButtonItem.appearance().titleTextAttributes(for: .normal)
-        let barTextAttributesHighlighted = UIBarButtonItem.appearance().titleTextAttributes(for: .highlighted)
+//        let barTextAttributesNormal = UIBarButtonItem.appearance().titleTextAttributes(for: .normal)
+//        let barTextAttributesHighlighted = UIBarButtonItem.appearance().titleTextAttributes(for: .highlighted)
 //        let backColor
 
         // 返回按钮

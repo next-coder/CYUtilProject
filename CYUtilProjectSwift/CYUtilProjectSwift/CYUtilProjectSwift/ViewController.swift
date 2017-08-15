@@ -158,6 +158,10 @@ class ViewController: UITableViewController {
                 navigationController?.pushViewController(HerizontalTableViewTestViewController(), animated: true)
             } else if indexPath.row == 4 {
                 navigationController?.pushViewController(FloatingViewTestViewController(), animated: true)
+            } else if indexPath.row == 5 {
+                let web = WebViewController()
+                _ = web.load(URLRequest(url: URL(string: "http://www.qq.com")!))
+                navigationController?.pushViewController(web, animated: true)
             }
         }
     }
