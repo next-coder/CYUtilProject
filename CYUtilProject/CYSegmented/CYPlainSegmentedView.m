@@ -19,8 +19,6 @@
 
 @implementation CYPlainSegmentedView
 
-static const NSInteger badgeDefaultTag = 57363;
-
 static const NSInteger segmentedItemStartTag = 12313;
 
 - (instancetype)initWithFrame:(CGRect)frame {

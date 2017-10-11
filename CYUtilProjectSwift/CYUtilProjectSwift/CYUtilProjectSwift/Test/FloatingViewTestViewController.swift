@@ -44,7 +44,7 @@ class FloatingViewTestViewController: UIViewController {
     }
 
 
-    func tapFloating() {
+    @objc func tapFloating() {
         print("Floating tapped")
     }
 

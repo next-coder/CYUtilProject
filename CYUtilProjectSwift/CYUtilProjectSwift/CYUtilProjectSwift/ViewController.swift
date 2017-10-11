@@ -50,6 +50,11 @@ class ViewController: UITableViewController {
         self.view.addSubview(progress)
         progress.setProgress(progress: 0.3, animated: true)
         progressView = progress
+
+        if #available(iOS 11, *) {
+
+            navigationController?.navigationBar.prefersLargeTitles = true
+        }
     }
 
     @IBAction func recordOrPause(_ sender: AnyObject) {
@@ -162,6 +167,9 @@ class ViewController: UITableViewController {
                 let web = WebViewController()
                 _ = web.load(URLRequest(url: URL(string: "http://www.qq.com")!))
                 navigationController?.pushViewController(web, animated: true)
+            } else if indexPath.row == 6 {
+                let animation = AnimationTestTableViewController(style: .plain)
+                navigationController?.pushViewController(animation, animated: true)
             }
         }
     }

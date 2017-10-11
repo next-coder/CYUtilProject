@@ -75,12 +75,12 @@
 - (BOOL)cy_writeToFileAsJson:(NSString *)filePath automically:(BOOL)useAuxiliaryFile {
 
     return [self cy_writeToFileAsJson:filePath
-                           atomically:useAuxiliaryFile
+                          automically:useAuxiliaryFile
                                 error:nil];
 }
 
 - (BOOL)cy_writeToFileAsJson:(NSString *)filePath
-                  atomically:(BOOL)useAuxiliaryFile
+                 automically:(BOOL)useAuxiliaryFile
                        error:(NSError **)error {
 
     if (!filePath) {

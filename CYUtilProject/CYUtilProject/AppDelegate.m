@@ -37,6 +37,8 @@
     NSLog(@"aaa = %d", *p);
     NSLog(@"%d", *q);
     NSLog(@"%d", c);
+    NSLog(@"%.0f", 2.56);
+    NSLog(@"%.0f", 2.46);
 
     NSLog(@"IP Address : %@", [CYIPUtils IPAddress]);
     

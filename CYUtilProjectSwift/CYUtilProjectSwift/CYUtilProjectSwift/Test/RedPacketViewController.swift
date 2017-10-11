@@ -30,7 +30,7 @@ class RedPacketViewController: UIViewController, CYRedPacketOpenViewDelegate {
         self.view.addSubview(send)
     }
 
-    func openPacket(sender: Any) {
+    @objc func openPacket(sender: Any) {
         let view = CYRedPacketOpenView(frame: CGRect(x: 100, y: 100, width: 200, height: 350))
 //        view.backgroundColor = UIColor.green
 //        view.backgroundView.backgroundColor = UIColor.cyan
@@ -52,7 +52,7 @@ class RedPacketViewController: UIViewController, CYRedPacketOpenViewDelegate {
         window?.show_cyRedPacket()
     }
 
-    func sendPacket(sender: Any) {
+    @objc func sendPacket(sender: Any) {
 
         self.navigationController?.pushViewController(SendRedPacketViewController(), animated: true)
     }

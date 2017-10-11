@@ -8,7 +8,7 @@
 
 import UIKit
 
-@objc public protocol CycleBannerViewDelegate: NSObjectProtocol, UIScrollViewDelegate {
+@objc public protocol CycleBannerViewDelegate: UIScrollViewDelegate {
 
     @objc optional func cycleBannerView(_ cycleBannerView: CycleBannerView,
                                         didSelectItemAt index: Int)
@@ -173,6 +173,8 @@ open class CycleBannerView: UIView, UIScrollViewDelegate {
         var centerX: CGFloat = scrollView.frame.width / 2.0
         let centerY = scrollView.frame.height / 2.0
         for item in items {
+
+            item.transform = .identity
 
             // 布局并添加item到scrollView中
             item.frame.size = itemSize

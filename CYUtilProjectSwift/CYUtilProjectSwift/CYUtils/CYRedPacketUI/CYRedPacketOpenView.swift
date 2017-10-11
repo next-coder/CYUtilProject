@@ -468,22 +468,22 @@ class CYRedPacketOpenView: UIView {
         addConstraints([detailCenterX, detailBottom])
     }
 
-    func closeTapped(sender: Any) {
+    @objc func closeTapped(sender: Any) {
 
         delegate?.redPacketOpenViewShouldDismiss(redPacketView: self)
     }
 
-    func headImageTapped(sender: Any) {
+    @objc func headImageTapped(sender: Any) {
 
         delegate?.redPacketOpenViewTapHeadImage?(redPacketView: self)
     }
 
-    func nicknameTapped(sender: Any) {
+    @objc func nicknameTapped(sender: Any) {
         
         delegate?.redPacketOpenViewTapNickname?(redPacketView: self)
     }
     
-    func openTapped(sender: Any) {
+    @objc func openTapped(sender: Any) {
 
         if let delegate = self.delegate {
 
@@ -502,7 +502,7 @@ class CYRedPacketOpenView: UIView {
         self.openButton.isHidden = false
     }
     
-    func detailTapped(sender: Any) {
+    @objc func detailTapped(sender: Any) {
         
         delegate?.redPacketOpenViewShowDetail?(redPacketView: self)
     }

@@ -141,9 +141,31 @@
 		A369041D1E6D6224005F7697 /* UIImage+CYScale.m in Sources */ = {isa = PBXBuildFile; fileRef = A369041C1E6D6224005F7697 /* UIImage+CYScale.m */; };
 		A369041F1E6D6746005F7697 /* tab_origin.png in Resources */ = {isa = PBXBuildFile; fileRef = A369041E1E6D6746005F7697 /* tab_origin.png */; };
 		A36904211E6D6765005F7697 /* tab_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A36904201E6D6765005F7697 /* tab_1@2x.png */; };
+		A36B94351F4C396900F14AAB /* UIView+Animatable.m in Sources */ = {isa = PBXBuildFile; fileRef = A36B94341F4C396900F14AAB /* UIView+Animatable.m */; };
 		A36F4C591EBB1312009C0704 /* CYAlertView+AdditionalView.m in Sources */ = {isa = PBXBuildFile; fileRef = A36F4C581EBB1312009C0704 /* CYAlertView+AdditionalView.m */; };
+		A37AEA661F46BD9A007B3C23 /* CYFoundationUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A37AEA651F46BD9A007B3C23 /* CYFoundationUtilsTests.m */; };
+		A37AEA681F46D628007B3C23 /* CYGroupContentsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A37AEA671F46D628007B3C23 /* CYGroupContentsTests.m */; };
+		A37AEA6B1F46D88E007B3C23 /* CYCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A37AEA6A1F46D88E007B3C23 /* CYCacheTests.m */; };
+		A37AEA731F46ED57007B3C23 /* CYUtilProjectUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A37AEA721F46ED57007B3C23 /* CYUtilProjectUITests.m */; };
 		A3BA5F291E6814F100B31B8C /* CYWebListener.m in Sources */ = {isa = PBXBuildFile; fileRef = A3BA5F281E6814F100B31B8C /* CYWebListener.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A37AEA5F1F468AD4007B3C23 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 61851EB31BCD0964005340C8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 61851EBA1BCD0964005340C8;
+			remoteInfo = CYUtilProject;
+		};
+		A37AEA751F46ED57007B3C23 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 61851EB31BCD0964005340C8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 61851EBA1BCD0964005340C8;
+			remoteInfo = CYUtilProject;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		560DD24FE4038A3D8BB79B6C /* Pods-CYUtilProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CYUtilProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CYUtilProject/Pods-CYUtilProject.debug.xcconfig"; sourceTree = "<group>"; };
@@ -400,8 +422,18 @@
 		A369041C1E6D6224005F7697 /* UIImage+CYScale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CYScale.m"; sourceTree = "<group>"; };
 		A369041E1E6D6746005F7697 /* tab_origin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_origin.png; sourceTree = "<group>"; };
 		A36904201E6D6765005F7697 /* tab_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_1@2x.png"; sourceTree = "<group>"; };
+		A36B94331F4C396900F14AAB /* UIView+Animatable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Animatable.h"; sourceTree = "<group>"; };
+		A36B94341F4C396900F14AAB /* UIView+Animatable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Animatable.m"; sourceTree = "<group>"; };
 		A36F4C571EBB1312009C0704 /* CYAlertView+AdditionalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CYAlertView+AdditionalView.h"; sourceTree = "<group>"; };
 		A36F4C581EBB1312009C0704 /* CYAlertView+AdditionalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CYAlertView+AdditionalView.m"; sourceTree = "<group>"; };
+		A37AEA5A1F468AD4007B3C23 /* CYUtilProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CYUtilProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A37AEA5E1F468AD4007B3C23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A37AEA651F46BD9A007B3C23 /* CYFoundationUtilsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYFoundationUtilsTests.m; sourceTree = "<group>"; };
+		A37AEA671F46D628007B3C23 /* CYGroupContentsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYGroupContentsTests.m; sourceTree = "<group>"; };
+		A37AEA6A1F46D88E007B3C23 /* CYCacheTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYCacheTests.m; sourceTree = "<group>"; };
+		A37AEA701F46ED57007B3C23 /* CYUtilProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CYUtilProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A37AEA721F46ED57007B3C23 /* CYUtilProjectUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYUtilProjectUITests.m; sourceTree = "<group>"; };
+		A37AEA741F46ED57007B3C23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3BA5F271E6814F100B31B8C /* CYWebListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYWebListener.h; sourceTree = "<group>"; };
 		A3BA5F281E6814F100B31B8C /* CYWebListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYWebListener.m; sourceTree = "<group>"; };
 		E44A7E629213891F907F2C63 /* Pods-CYUtilProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CYUtilProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-CYUtilProject/Pods-CYUtilProject.release.xcconfig"; sourceTree = "<group>"; };
@@ -428,6 +460,20 @@
 				61F711AF1BF1C4D600881E3B /* libz.tbd in Frameworks */,
 				61F711AD1BF1C4B500881E3B /* Security.framework in Frameworks */,
 				61F711AC1BF1C3CE00881E3B /* TencentOpenAPI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A37AEA571F468AD4007B3C23 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A37AEA6D1F46ED57007B3C23 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -802,6 +848,8 @@
 			children = (
 				61091CD21CDAF563008B7EA3 /* CYAnimatedTextLabel.h */,
 				61091CD31CDAF563008B7EA3 /* CYAnimatedTextLabel.m */,
+				A36B94331F4C396900F14AAB /* UIView+Animatable.h */,
+				A36B94341F4C396900F14AAB /* UIView+Animatable.m */,
 				61091CD41CDAF563008B7EA3 /* CYCustomUILabel.h */,
 				61091CD51CDAF563008B7EA3 /* CYCustomUILabel.m */,
 				61091CD61CDAF563008B7EA3 /* UIScrollView+CYUtils.h */,
@@ -835,6 +883,8 @@
 			isa = PBXGroup;
 			children = (
 				61851EBD1BCD0964005340C8 /* CYUtilProject */,
+				A37AEA5B1F468AD4007B3C23 /* CYUtilProjectTests */,
+				A37AEA711F46ED57007B3C23 /* CYUtilProjectUITests */,
 				61851EBC1BCD0964005340C8 /* Products */,
 				727051A8762199EC648BF785 /* Pods */,
 				E299DF45F885184B4A142853 /* Frameworks */,
@@ -845,6 +895,8 @@
 			isa = PBXGroup;
 			children = (
 				61851EBB1BCD0964005340C8 /* CYUtilProject.app */,
+				A37AEA5A1F468AD4007B3C23 /* CYUtilProjectTests.xctest */,
+				A37AEA701F46ED57007B3C23 /* CYUtilProjectUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1054,6 +1106,42 @@
 			path = CYImage;
 			sourceTree = SOURCE_ROOT;
 		};
+		A37AEA5B1F468AD4007B3C23 /* CYUtilProjectTests */ = {
+			isa = PBXGroup;
+			children = (
+				A37AEA691F46D866007B3C23 /* CYCache */,
+				A37AEA631F46BD69007B3C23 /* CYFoundationUtils */,
+				A37AEA5E1F468AD4007B3C23 /* Info.plist */,
+			);
+			path = CYUtilProjectTests;
+			sourceTree = "<group>";
+		};
+		A37AEA631F46BD69007B3C23 /* CYFoundationUtils */ = {
+			isa = PBXGroup;
+			children = (
+				A37AEA671F46D628007B3C23 /* CYGroupContentsTests.m */,
+				A37AEA651F46BD9A007B3C23 /* CYFoundationUtilsTests.m */,
+			);
+			path = CYFoundationUtils;
+			sourceTree = "<group>";
+		};
+		A37AEA691F46D866007B3C23 /* CYCache */ = {
+			isa = PBXGroup;
+			children = (
+				A37AEA6A1F46D88E007B3C23 /* CYCacheTests.m */,
+			);
+			path = CYCache;
+			sourceTree = "<group>";
+		};
+		A37AEA711F46ED57007B3C23 /* CYUtilProjectUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A37AEA721F46ED57007B3C23 /* CYUtilProjectUITests.m */,
+				A37AEA741F46ED57007B3C23 /* Info.plist */,
+			);
+			path = CYUtilProjectUITests;
+			sourceTree = "<group>";
+		};
 		A3BA5F241E6814C900B31B8C /* CYWebListener */ = {
 			isa = PBXGroup;
 			children = (
@@ -1103,6 +1191,42 @@
 			productReference = 61851EBB1BCD0964005340C8 /* CYUtilProject.app */;
 			productType = "com.apple.product-type.application";
 		};
+		A37AEA591F468AD4007B3C23 /* CYUtilProjectTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A37AEA621F468AD4007B3C23 /* Build configuration list for PBXNativeTarget "CYUtilProjectTests" */;
+			buildPhases = (
+				A37AEA561F468AD4007B3C23 /* Sources */,
+				A37AEA571F468AD4007B3C23 /* Frameworks */,
+				A37AEA581F468AD4007B3C23 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A37AEA601F468AD4007B3C23 /* PBXTargetDependency */,
+			);
+			name = CYUtilProjectTests;
+			productName = CYUtilProjectTests;
+			productReference = A37AEA5A1F468AD4007B3C23 /* CYUtilProjectTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A37AEA6F1F46ED57007B3C23 /* CYUtilProjectUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A37AEA771F46ED57007B3C23 /* Build configuration list for PBXNativeTarget "CYUtilProjectUITests" */;
+			buildPhases = (
+				A37AEA6C1F46ED57007B3C23 /* Sources */,
+				A37AEA6D1F46ED57007B3C23 /* Frameworks */,
+				A37AEA6E1F46ED57007B3C23 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A37AEA761F46ED57007B3C23 /* PBXTargetDependency */,
+			);
+			name = CYUtilProjectUITests;
+			productName = CYUtilProjectUITests;
+			productReference = A37AEA701F46ED57007B3C23 /* CYUtilProjectUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1116,6 +1240,18 @@
 					61851EBA1BCD0964005340C8 = {
 						CreatedOnToolsVersion = 7.0.1;
 						DevelopmentTeam = BQN58WSC57;
+					};
+					A37AEA591F468AD4007B3C23 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = BQN58WSC57;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 61851EBA1BCD0964005340C8;
+					};
+					A37AEA6F1F46ED57007B3C23 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = BQN58WSC57;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 61851EBA1BCD0964005340C8;
 					};
 				};
 			};
@@ -1133,6 +1269,8 @@
 			projectRoot = "";
 			targets = (
 				61851EBA1BCD0964005340C8 /* CYUtilProject */,
+				A37AEA591F468AD4007B3C23 /* CYUtilProjectTests */,
+				A37AEA6F1F46ED57007B3C23 /* CYUtilProjectUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -1164,6 +1302,20 @@
 				61091CEE1CDAF563008B7EA3 /* CYChat.bundle in Resources */,
 				61F9586E1CA6765C00B7BB50 /* common_navigation_background@3x.png in Resources */,
 				61F9586D1CA6765C00B7BB50 /* common_navigation_background@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A37AEA581F468AD4007B3C23 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A37AEA6E1F46ED57007B3C23 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1248,6 +1400,7 @@
 				61091D0B1CDAF563008B7EA3 /* NSDictionary+CYJson.m in Sources */,
 				61091CE91CDAF563008B7EA3 /* CYPersistenceCache.m in Sources */,
 				61091D031CDAF563008B7EA3 /* CYChatView.m in Sources */,
+				A36B94351F4C396900F14AAB /* UIView+Animatable.m in Sources */,
 				61091CE41CDAF563008B7EA3 /* CYBaseTableWithPullRefreshViewController.m in Sources */,
 				61091CEF1CDAF563008B7EA3 /* CYChatBaseCell.m in Sources */,
 				A307B64C1D08103F00DE9B9E /* CYVerticalMultiPageScrollView.m in Sources */,
@@ -1275,7 +1428,38 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A37AEA561F468AD4007B3C23 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A37AEA661F46BD9A007B3C23 /* CYFoundationUtilsTests.m in Sources */,
+				A37AEA6B1F46D88E007B3C23 /* CYCacheTests.m in Sources */,
+				A37AEA681F46D628007B3C23 /* CYGroupContentsTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A37AEA6C1F46ED57007B3C23 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A37AEA731F46ED57007B3C23 /* CYUtilProjectUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A37AEA601F468AD4007B3C23 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 61851EBA1BCD0964005340C8 /* CYUtilProject */;
+			targetProxy = A37AEA5F1F468AD4007B3C23 /* PBXContainerItemProxy */;
+		};
+		A37AEA761F46ED57007B3C23 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 61851EBA1BCD0964005340C8 /* CYUtilProject */;
+			targetProxy = A37AEA751F46ED57007B3C23 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		61851EC71BCD0964005340C8 /* Main.storyboard */ = {
@@ -1375,6 +1559,44 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "CYUtilProject/CYUtilProject-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A37AEA611F468AD4007B3C23 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				DEVELOPMENT_TEAM = BQN58WSC57;
+				INFOPLIST_FILE = CYUtilProjectTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.-qguanzi.CYUtilProjectTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CYUtilProject.app/CYUtilProject";
+			};
+			name = Debug;
+		};
+		A37AEA781F46ED57007B3C23 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				DEVELOPMENT_TEAM = BQN58WSC57;
+				INFOPLIST_FILE = CYUtilProjectUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.-qguanzi.CYUtilProjectUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = CYUtilProject;
 			};
 			name = Debug;
 		};
@@ -1393,6 +1615,22 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				61851ED31BCD0964005340C8 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A37AEA621F468AD4007B3C23 /* Build configuration list for PBXNativeTarget "CYUtilProjectTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A37AEA611F468AD4007B3C23 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A37AEA771F46ED57007B3C23 /* Build configuration list for PBXNativeTarget "CYUtilProjectUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A37AEA781F46ED57007B3C23 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

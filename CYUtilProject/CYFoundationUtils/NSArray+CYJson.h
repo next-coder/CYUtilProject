@@ -23,7 +23,7 @@
                  automically:(BOOL)useAuxiliaryFile;
 
 - (BOOL)cy_writeToFileAsJson:(NSString *)filePath
-                  atomically:(BOOL)useAuxiliaryFile
+                 automically:(BOOL)useAuxiliaryFile
                        error:(NSError **)error;
 
 @end

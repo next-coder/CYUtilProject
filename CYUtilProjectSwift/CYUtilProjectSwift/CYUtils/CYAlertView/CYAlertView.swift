@@ -294,7 +294,7 @@ class CYAlertView: UIView {
                                              attribute: .centerX,
                                              multiplier: 1,
                                              constant: 0)
-            centerX.priority = UILayoutPriorityDefaultLow
+            centerX.priority = UILayoutPriority.defaultLow
 
             let height = NSLayoutConstraint(item: customView,
                                             attribute: .height,
@@ -303,7 +303,7 @@ class CYAlertView: UIView {
                                             attribute: .notAnAttribute,
                                             multiplier: 1,
                                             constant: customView.frame.size.height)
-            height.priority = UILayoutPriorityDefaultLow
+            height.priority = UILayoutPriority.defaultLow
 
             let width = NSLayoutConstraint(item: customView,
                                            attribute: .width,
@@ -312,7 +312,7 @@ class CYAlertView: UIView {
                                            attribute: .notAnAttribute,
                                            multiplier: 1,
                                            constant: customView.frame.size.width)
-            width.priority = UILayoutPriorityDefaultLow
+            width.priority = UILayoutPriority.defaultLow
 
             var top: NSLayoutConstraint
             if let previous = internalPreviousView {

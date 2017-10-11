@@ -14,7 +14,7 @@ import UIKit
     func herizontalTableView(_ herizontalTableView: HerizontalTableView, itemAt index: Int) -> HerizontalTableViewItem
 }
 
-@objc public protocol HerizontalTableViewDelegate: NSObjectProtocol, UIScrollViewDelegate {
+@objc public protocol HerizontalTableViewDelegate: UIScrollViewDelegate {
 
     @objc optional func herizontalTableView(_ herizontalTableView: HerizontalTableView,
                                         didSelectItemAt index: Int)

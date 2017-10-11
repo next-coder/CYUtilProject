@@ -50,12 +50,12 @@ class SendRedPacketViewController: UIViewController, UITextFieldDelegate {
     }
 
     // event
-    func dismissKeyboard(_ sender: Any?) {
+    @objc func dismissKeyboard(_ sender: Any?) {
 
         self.view.endEditing(true)
     }
 
-    func sendRedPacket(_ sender: Any?) {
+    @objc func sendRedPacket(_ sender: Any?) {
 
         // send red packet
     }

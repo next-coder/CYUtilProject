@@ -96,7 +96,7 @@ class CycleBannerTestViewController: UIViewController, CycleBannerViewDelegate, 
         }
     }
 
-    func buttonTapped() {
+    @objc func buttonTapped() {
         var index = cycleBannerView.currentIndex + 2
         if index > cycleBannerView.numberOfItems {
 
@@ -105,7 +105,7 @@ class CycleBannerTestViewController: UIViewController, CycleBannerViewDelegate, 
         cycleBannerView.setCurrentIndex(index, animated: true)
     }
 
-    func button1Tapped() {
+    @objc func button1Tapped() {
 
 
         let item1 = CycleBannerViewItem(frame: self.view.bounds)

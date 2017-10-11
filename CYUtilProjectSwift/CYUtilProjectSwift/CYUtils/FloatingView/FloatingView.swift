@@ -76,7 +76,7 @@ public class FloatingView: UIView {
     }
 
     // MARK: pan event
-    func pan(_ sender: Any?) {
+    @objc func pan(_ sender: Any?) {
 
         guard let panGesture = (sender as? UIPanGestureRecognizer) else {
 

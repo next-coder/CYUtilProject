@@ -97,7 +97,7 @@ class CYArcProgressBar: CYBaseProgressBar {
 
     override convenience init(barWidth: Double, frame: CGRect) {
         self.init(startAngle: 0,
-                  endAngle: M_PI * 1.5,
+                  endAngle: .pi * 1.5,
                   arcRadius: Double(min(frame.width, frame.height)) / 2 - barWidth / 2,
                   arcCenter: CGPoint(x: frame.width / 2.0, y: frame.height / 2.0),
                   barWidth: barWidth,

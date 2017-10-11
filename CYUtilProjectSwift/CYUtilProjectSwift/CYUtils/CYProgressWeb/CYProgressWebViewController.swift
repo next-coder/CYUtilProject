@@ -83,7 +83,7 @@ class CYProgressWebViewController: UIViewController, UIWebViewDelegate {
         }
     }
 
-    func backToPrevious() {
+    @objc func backToPrevious() {
         if progressWebView.canGoBack {
             progressWebView.goBack()
             progressWebView.reload()
@@ -92,7 +92,7 @@ class CYProgressWebViewController: UIViewController, UIWebViewDelegate {
         }
     }
 
-    func closeWeb() {
+    @objc func closeWeb() {
         _ = navigationController?.popViewController(animated: true)
     }
 

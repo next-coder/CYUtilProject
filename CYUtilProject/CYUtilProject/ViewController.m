@@ -125,7 +125,7 @@
                                              toMobile:@"15810542983"
                                        withCompletion:^(CYSendSMSCompletionStatus status, CYSendSMSUtils * _Nonnull sendSMSUtils) {
                                            
-                                           NSLog(@"message send status : %ld", (NSInteger)status);
+                                           NSLog(@"message send status : %ld", (long)status);
                                        }
                                           presentFrom:self];
     } else if (indexPath.row == 2) {
