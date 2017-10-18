@@ -72,12 +72,7 @@
 		61091D191CDAF563008B7EA3 /* CYPullRefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61091CAE1CDAF563008B7EA3 /* CYPullRefreshHeaderView.m */; };
 		61091D1A1CDAF563008B7EA3 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 61091CAF1CDAF563008B7EA3 /* README */; };
 		61091D1B1CDAF563008B7EA3 /* CYSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61091CB21CDAF563008B7EA3 /* CYSearchController.m */; };
-		61091D1C1CDAF563008B7EA3 /* CYQQUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 61091CB61CDAF563008B7EA3 /* CYQQUtil.m */; };
 		61091D1D1CDAF563008B7EA3 /* CYShare.m in Sources */ = {isa = PBXBuildFile; fileRef = 61091CB81CDAF563008B7EA3 /* CYShare.m */; };
-		61091D1E1CDAF563008B7EA3 /* CYShareBaseUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 61091CBB1CDAF563008B7EA3 /* CYShareBaseUtil.m */; };
-		61091D1F1CDAF563008B7EA3 /* CYSinaWeiboUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 61091CBE1CDAF563008B7EA3 /* CYSinaWeiboUtil.m */; };
-		61091D201CDAF563008B7EA3 /* CYShareBySMSUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 61091CC11CDAF563008B7EA3 /* CYShareBySMSUtil.m */; };
-		61091D211CDAF563008B7EA3 /* CYWechatUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 61091CC41CDAF563008B7EA3 /* CYWechatUtil.m */; };
 		61091D221CDAF563008B7EA3 /* Readme in Resources */ = {isa = PBXBuildFile; fileRef = 61091CC51CDAF563008B7EA3 /* Readme */; };
 		61091D231CDAF563008B7EA3 /* CYSendSMSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 61091CC81CDAF563008B7EA3 /* CYSendSMSUtils.m */; };
 		61091D241CDAF563008B7EA3 /* CYDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 61091CCB1CDAF563008B7EA3 /* CYDatabase.m */; };
@@ -143,6 +138,11 @@
 		A36904211E6D6765005F7697 /* tab_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A36904201E6D6765005F7697 /* tab_1@2x.png */; };
 		A36B94351F4C396900F14AAB /* UIView+Animatable.m in Sources */ = {isa = PBXBuildFile; fileRef = A36B94341F4C396900F14AAB /* UIView+Animatable.m */; };
 		A36F4C591EBB1312009C0704 /* CYAlertView+AdditionalView.m in Sources */ = {isa = PBXBuildFile; fileRef = A36F4C581EBB1312009C0704 /* CYAlertView+AdditionalView.m */; };
+		A36F4F081F90910800E7F4B6 /* CYBaseShare.m in Sources */ = {isa = PBXBuildFile; fileRef = A36F4EFE1F90910800E7F4B6 /* CYBaseShare.m */; };
+		A36F4F091F90910800E7F4B6 /* CYWechat.m in Sources */ = {isa = PBXBuildFile; fileRef = A36F4F021F90910800E7F4B6 /* CYWechat.m */; };
+		A36F4F0A1F90910800E7F4B6 /* CYSinaWeibo.m in Sources */ = {isa = PBXBuildFile; fileRef = A36F4F031F90910800E7F4B6 /* CYSinaWeibo.m */; };
+		A36F4F0C1F90910800E7F4B6 /* CYQQ.m in Sources */ = {isa = PBXBuildFile; fileRef = A36F4F061F90910800E7F4B6 /* CYQQ.m */; };
+		A36F4F111F9091D100E7F4B6 /* CYShareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A36F4F101F9091D100E7F4B6 /* CYShareModel.m */; };
 		A37AEA661F46BD9A007B3C23 /* CYFoundationUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A37AEA651F46BD9A007B3C23 /* CYFoundationUtilsTests.m */; };
 		A37AEA681F46D628007B3C23 /* CYGroupContentsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A37AEA671F46D628007B3C23 /* CYGroupContentsTests.m */; };
 		A37AEA6B1F46D88E007B3C23 /* CYCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A37AEA6A1F46D88E007B3C23 /* CYCacheTests.m */; };
@@ -298,18 +298,8 @@
 		61091CAF1CDAF563008B7EA3 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		61091CB11CDAF563008B7EA3 /* CYSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYSearchController.h; sourceTree = "<group>"; };
 		61091CB21CDAF563008B7EA3 /* CYSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYSearchController.m; sourceTree = "<group>"; };
-		61091CB51CDAF563008B7EA3 /* CYQQUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYQQUtil.h; sourceTree = "<group>"; };
-		61091CB61CDAF563008B7EA3 /* CYQQUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYQQUtil.m; sourceTree = "<group>"; };
 		61091CB71CDAF563008B7EA3 /* CYShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYShare.h; sourceTree = "<group>"; };
 		61091CB81CDAF563008B7EA3 /* CYShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYShare.m; sourceTree = "<group>"; };
-		61091CBA1CDAF563008B7EA3 /* CYShareBaseUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYShareBaseUtil.h; sourceTree = "<group>"; };
-		61091CBB1CDAF563008B7EA3 /* CYShareBaseUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYShareBaseUtil.m; sourceTree = "<group>"; };
-		61091CBD1CDAF563008B7EA3 /* CYSinaWeiboUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYSinaWeiboUtil.h; sourceTree = "<group>"; };
-		61091CBE1CDAF563008B7EA3 /* CYSinaWeiboUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYSinaWeiboUtil.m; sourceTree = "<group>"; };
-		61091CC01CDAF563008B7EA3 /* CYShareBySMSUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYShareBySMSUtil.h; sourceTree = "<group>"; };
-		61091CC11CDAF563008B7EA3 /* CYShareBySMSUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYShareBySMSUtil.m; sourceTree = "<group>"; };
-		61091CC31CDAF563008B7EA3 /* CYWechatUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYWechatUtil.h; sourceTree = "<group>"; };
-		61091CC41CDAF563008B7EA3 /* CYWechatUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYWechatUtil.m; sourceTree = "<group>"; };
 		61091CC51CDAF563008B7EA3 /* Readme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme; sourceTree = "<group>"; };
 		61091CC71CDAF563008B7EA3 /* CYSendSMSUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYSendSMSUtils.h; sourceTree = "<group>"; };
 		61091CC81CDAF563008B7EA3 /* CYSendSMSUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYSendSMSUtils.m; sourceTree = "<group>"; };
@@ -426,6 +416,16 @@
 		A36B94341F4C396900F14AAB /* UIView+Animatable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Animatable.m"; sourceTree = "<group>"; };
 		A36F4C571EBB1312009C0704 /* CYAlertView+AdditionalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CYAlertView+AdditionalView.h"; sourceTree = "<group>"; };
 		A36F4C581EBB1312009C0704 /* CYAlertView+AdditionalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CYAlertView+AdditionalView.m"; sourceTree = "<group>"; };
+		A36F4EFE1F90910800E7F4B6 /* CYBaseShare.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYBaseShare.m; sourceTree = "<group>"; };
+		A36F4EFF1F90910800E7F4B6 /* CYSinaWeibo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYSinaWeibo.h; sourceTree = "<group>"; };
+		A36F4F001F90910800E7F4B6 /* CYQQ.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYQQ.h; sourceTree = "<group>"; };
+		A36F4F011F90910800E7F4B6 /* CYBaseShare.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYBaseShare.h; sourceTree = "<group>"; };
+		A36F4F021F90910800E7F4B6 /* CYWechat.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYWechat.m; sourceTree = "<group>"; };
+		A36F4F031F90910800E7F4B6 /* CYSinaWeibo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYSinaWeibo.m; sourceTree = "<group>"; };
+		A36F4F061F90910800E7F4B6 /* CYQQ.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYQQ.m; sourceTree = "<group>"; };
+		A36F4F071F90910800E7F4B6 /* CYWechat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYWechat.h; sourceTree = "<group>"; };
+		A36F4F0F1F9091D100E7F4B6 /* CYShareModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYShareModel.h; sourceTree = "<group>"; };
+		A36F4F101F9091D100E7F4B6 /* CYShareModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYShareModel.m; sourceTree = "<group>"; };
 		A37AEA5A1F468AD4007B3C23 /* CYUtilProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CYUtilProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A37AEA5E1F468AD4007B3C23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A37AEA651F46BD9A007B3C23 /* CYFoundationUtilsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYFoundationUtilsTests.m; sourceTree = "<group>"; };
@@ -434,6 +434,7 @@
 		A37AEA701F46ED57007B3C23 /* CYUtilProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CYUtilProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A37AEA721F46ED57007B3C23 /* CYUtilProjectUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYUtilProjectUITests.m; sourceTree = "<group>"; };
 		A37AEA741F46ED57007B3C23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A3A81D591F95EDAA00C26475 /* CYShareCtrlFlag.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYShareCtrlFlag.h; sourceTree = "<group>"; };
 		A3BA5F271E6814F100B31B8C /* CYWebListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYWebListener.h; sourceTree = "<group>"; };
 		A3BA5F281E6814F100B31B8C /* CYWebListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYWebListener.m; sourceTree = "<group>"; };
 		E44A7E629213891F907F2C63 /* Pods-CYUtilProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CYUtilProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-CYUtilProject/Pods-CYUtilProject.release.xcconfig"; sourceTree = "<group>"; };
@@ -762,62 +763,23 @@
 		61091CB31CDAF563008B7EA3 /* CYShareSDK */ = {
 			isa = PBXGroup;
 			children = (
-				61091CB41CDAF563008B7EA3 /* CYQQ */,
 				61091CB71CDAF563008B7EA3 /* CYShare.h */,
 				61091CB81CDAF563008B7EA3 /* CYShare.m */,
-				61091CB91CDAF563008B7EA3 /* CYShareBase */,
-				61091CBC1CDAF563008B7EA3 /* CYSinaWeibo */,
-				61091CBF1CDAF563008B7EA3 /* CYSMS */,
-				61091CC21CDAF563008B7EA3 /* CYWechat */,
+				A36F4F011F90910800E7F4B6 /* CYBaseShare.h */,
+				A36F4EFE1F90910800E7F4B6 /* CYBaseShare.m */,
+				A36F4F071F90910800E7F4B6 /* CYWechat.h */,
+				A36F4F021F90910800E7F4B6 /* CYWechat.m */,
+				A36F4F001F90910800E7F4B6 /* CYQQ.h */,
+				A36F4F061F90910800E7F4B6 /* CYQQ.m */,
+				A36F4EFF1F90910800E7F4B6 /* CYSinaWeibo.h */,
+				A36F4F031F90910800E7F4B6 /* CYSinaWeibo.m */,
+				A36F4F0F1F9091D100E7F4B6 /* CYShareModel.h */,
+				A36F4F101F9091D100E7F4B6 /* CYShareModel.m */,
+				A3A81D591F95EDAA00C26475 /* CYShareCtrlFlag.h */,
 				61091CC51CDAF563008B7EA3 /* Readme */,
 			);
 			path = CYShareSDK;
 			sourceTree = SOURCE_ROOT;
-		};
-		61091CB41CDAF563008B7EA3 /* CYQQ */ = {
-			isa = PBXGroup;
-			children = (
-				61091CB51CDAF563008B7EA3 /* CYQQUtil.h */,
-				61091CB61CDAF563008B7EA3 /* CYQQUtil.m */,
-			);
-			path = CYQQ;
-			sourceTree = "<group>";
-		};
-		61091CB91CDAF563008B7EA3 /* CYShareBase */ = {
-			isa = PBXGroup;
-			children = (
-				61091CBA1CDAF563008B7EA3 /* CYShareBaseUtil.h */,
-				61091CBB1CDAF563008B7EA3 /* CYShareBaseUtil.m */,
-			);
-			path = CYShareBase;
-			sourceTree = "<group>";
-		};
-		61091CBC1CDAF563008B7EA3 /* CYSinaWeibo */ = {
-			isa = PBXGroup;
-			children = (
-				61091CBD1CDAF563008B7EA3 /* CYSinaWeiboUtil.h */,
-				61091CBE1CDAF563008B7EA3 /* CYSinaWeiboUtil.m */,
-			);
-			path = CYSinaWeibo;
-			sourceTree = "<group>";
-		};
-		61091CBF1CDAF563008B7EA3 /* CYSMS */ = {
-			isa = PBXGroup;
-			children = (
-				61091CC01CDAF563008B7EA3 /* CYShareBySMSUtil.h */,
-				61091CC11CDAF563008B7EA3 /* CYShareBySMSUtil.m */,
-			);
-			path = CYSMS;
-			sourceTree = "<group>";
-		};
-		61091CC21CDAF563008B7EA3 /* CYWechat */ = {
-			isa = PBXGroup;
-			children = (
-				61091CC31CDAF563008B7EA3 /* CYWechatUtil.h */,
-				61091CC41CDAF563008B7EA3 /* CYWechatUtil.m */,
-			);
-			path = CYWechat;
-			sourceTree = "<group>";
 		};
 		61091CC61CDAF563008B7EA3 /* CYSMS */ = {
 			isa = PBXGroup;
@@ -1234,7 +1196,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = Charry;
 				TargetAttributes = {
 					61851EBA1BCD0964005340C8 = {
@@ -1343,7 +1305,6 @@
 				61091D151CDAF563008B7EA3 /* CYIAPUtils.m in Sources */,
 				611B483C1C98095F00AD2772 /* CYContactsListTestViewController.m in Sources */,
 				61091D061CDAF563008B7EA3 /* CYContactsSearchInNavigationViewController.m in Sources */,
-				61091D1E1CDAF563008B7EA3 /* CYShareBaseUtil.m in Sources */,
 				61091D251CDAF563008B7EA3 /* CYPrepareStatement.m in Sources */,
 				A3271D541CE585F7005DE1A1 /* CYExceptionUtils.m in Sources */,
 				61091D1B1CDAF563008B7EA3 /* CYSearchController.m in Sources */,
@@ -1369,13 +1330,13 @@
 				61091CF21CDAF563008B7EA3 /* CYChatImageRightArrowCell.m in Sources */,
 				61091CDE1CDAF563008B7EA3 /* CYAlertView.m in Sources */,
 				A3BA5F291E6814F100B31B8C /* CYWebListener.m in Sources */,
-				61091D211CDAF563008B7EA3 /* CYWechatUtil.m in Sources */,
 				61091CE51CDAF563008B7EA3 /* CYBaseView.m in Sources */,
 				A36F4C591EBB1312009C0704 /* CYAlertView+AdditionalView.m in Sources */,
 				61091CF31CDAF563008B7EA3 /* CYChatTextCell.m in Sources */,
 				61091CFF1CDAF563008B7EA3 /* CYChatInputContentView.m in Sources */,
 				61091D121CDAF563008B7EA3 /* pinyin.m in Sources */,
 				61091CFB1CDAF563008B7EA3 /* CYChatBaseModel.m in Sources */,
+				A36F4F0C1F90910800E7F4B6 /* CYQQ.m in Sources */,
 				61091D011CDAF563008B7EA3 /* CYChatInputMorePadItem.m in Sources */,
 				61091D271CDAF563008B7EA3 /* CYAnimatedTextLabel.m in Sources */,
 				61091CE21CDAF563008B7EA3 /* CYBaseService.m in Sources */,
@@ -1390,15 +1351,14 @@
 				61091D161CDAF563008B7EA3 /* CYPullRefreshBaseView.m in Sources */,
 				61091CE11CDAF563008B7EA3 /* CYBaseModel.m in Sources */,
 				61091D191CDAF563008B7EA3 /* CYPullRefreshHeaderView.m in Sources */,
-				61091D201CDAF563008B7EA3 /* CYShareBySMSUtil.m in Sources */,
 				61091CF81CDAF563008B7EA3 /* CYChatVoiceRightArrowCell.m in Sources */,
+				A36F4F091F90910800E7F4B6 /* CYWechat.m in Sources */,
 				61091D281CDAF563008B7EA3 /* CYCustomUILabel.m in Sources */,
 				61091D041CDAF563008B7EA3 /* CYChatViewController.m in Sources */,
 				61FD03051BE9A58900237EA3 /* CYCycleBannerViewController.m in Sources */,
-				61091D1F1CDAF563008B7EA3 /* CYSinaWeiboUtil.m in Sources */,
-				61091D1C1CDAF563008B7EA3 /* CYQQUtil.m in Sources */,
 				61091D0B1CDAF563008B7EA3 /* NSDictionary+CYJson.m in Sources */,
 				61091CE91CDAF563008B7EA3 /* CYPersistenceCache.m in Sources */,
+				A36F4F0A1F90910800E7F4B6 /* CYSinaWeibo.m in Sources */,
 				61091D031CDAF563008B7EA3 /* CYChatView.m in Sources */,
 				A36B94351F4C396900F14AAB /* UIView+Animatable.m in Sources */,
 				61091CE41CDAF563008B7EA3 /* CYBaseTableWithPullRefreshViewController.m in Sources */,
@@ -1407,6 +1367,8 @@
 				61091CF61CDAF563008B7EA3 /* CYChatVoiceCell.m in Sources */,
 				61091CF91CDAF563008B7EA3 /* CYChatDataSource.m in Sources */,
 				61091CDF1CDAF563008B7EA3 /* CYAlertViewAction.m in Sources */,
+				A36F4F081F90910800E7F4B6 /* CYBaseShare.m in Sources */,
+				A36F4F111F9091D100E7F4B6 /* CYShareModel.m in Sources */,
 				61091D071CDAF563008B7EA3 /* CYCycleBannerView.m in Sources */,
 				61FEF34D1CA13D8500BE87D9 /* CYShareSDKTestViewController.m in Sources */,
 				61091D261CDAF563008B7EA3 /* CYResultSet.m in Sources */,
@@ -1489,13 +1451,21 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1517,7 +1487,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1540,7 +1510,7 @@
 				);
 				GCC_PREFIX_HEADER = CYUtilProject/Prefix.pch;
 				INFOPLIST_FILE = CYUtilProject/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

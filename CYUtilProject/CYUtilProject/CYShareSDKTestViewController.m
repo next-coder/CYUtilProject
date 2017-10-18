@@ -8,9 +8,7 @@
 
 #import "CYShareSDKTestViewController.h"
 
-#import "CYWechatUtil.h"
-#import "CYQQUtil.h"
-#import "CYSinaWeiboUtil.h"
+#import "CYShare.h"
 
 @implementation CYShareSDKTestViewController
 
@@ -21,7 +19,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 10;
+    return 14;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -29,39 +27,51 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
     if (!cell) {
         
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"UITableViewCell"];
     }
     
     if (indexPath.row == 0) {
         
-        cell.textLabel.text = @"Wechat web session";
+        cell.textLabel.text = @"Wechat web session \u26b2";
     } else if (indexPath.row == 1) {
         
-        cell.textLabel.text = @"Wechat web timeline";
+        cell.textLabel.text = @"Wechat web timeline \u26b2";
     } else if (indexPath.row == 2) {
         
-        cell.textLabel.text = @"Wechat image session";
+        cell.textLabel.text = @"Wechat image session \u26b2";
     } else if (indexPath.row == 3) {
         
-        cell.textLabel.text = @"Wechat image timeline";
+        cell.textLabel.text = @"Wechat image timeline \u26b2";
     } else if (indexPath.row == 4) {
-        
-        cell.textLabel.text = @"qq web session";
+
+        cell.textLabel.text = @"Wechat web user selected \u26b2";
     } else if (indexPath.row == 5) {
-        
-        cell.textLabel.text = @"qq web qzone";
+
+        cell.textLabel.text = @"Wechat image user selected \u26b2";
     } else if (indexPath.row == 6) {
         
-        cell.textLabel.text = @"qq image session";
+        cell.textLabel.text = @"qq web session \u26b2";
     } else if (indexPath.row == 7) {
         
-        cell.textLabel.text = @"qq image qzone";
+        cell.textLabel.text = @"qq web qzone \u26b2";
     } else if (indexPath.row == 8) {
         
-        cell.textLabel.text = @"sina weibo web";
+        cell.textLabel.text = @"qq image session \u26b2";
     } else if (indexPath.row == 9) {
         
-        cell.textLabel.text = @"sina weibo image";
+        cell.textLabel.text = @"qq image qzone \u26b2";
+    } else if (indexPath.row == 10) {
+
+        cell.textLabel.text = @"qq web user select \u26b2";
+    } else if (indexPath.row == 11) {
+
+        cell.textLabel.text = @"qq image user select  \u26b2";
+    } else if (indexPath.row == 12) {
+        
+        cell.textLabel.text = @"sina weibo web \u26b2";
+    } else if (indexPath.row == 13) {
+        
+        cell.textLabel.text = @"sina weibo image \u26b2";
     }
     return cell;
 }
@@ -73,75 +83,153 @@
     if (indexPath.row == 0) {
         
     // Wechat web session";
-        
-//        [[CYWechatUtil sharedInstance] shareWebToSessionWithTitle:@"小牛钱罐子" description:@"小牛钱罐子官网" thumbImage:[UIImage imageNamed:@"share_message.png"] URLString:@"http://www.xiaoniuapp.com" callback:^(NSInteger code, NSString *msg) {
-//            
-//            NSLog(@"CYWechatUtil message code = %ld, message = %@", (long)code, msg);
-//        }];
+        [CYShare shareToWechat:[CYShareModel urlModelWithTitle:@"小牛钱罐子"
+                                                       content:@"小牛钱罐子官网"
+                                                     thumbnail:[NSData dataWithContentsOfFile:@"share_message.png"]
+                                                           url:@"http://www.xiaoniuapp.com"]
+                         scene:CYWechatSceneSession
+                      callback:^(NSInteger code, NSString *msg) {
+                          NSLog(@"Wechat session message code = %ld, message = %@", (long)code, msg);
+                      }];
     } else if (indexPath.row == 1) {
         // wechat web timeline
-//        [[CYWechatUtil sharedInstance] shareWebToTimelineWithTitle:@"小牛钱罐子" description:@"小牛钱罐子官网" thumbImage:[UIImage imageNamed:@"share_message.png"] URLString:@"http://www.xiaoniuapp.com" callback:^(NSInteger code, NSString *msg) {
-//            
-//            NSLog(@"CYWechatUtil message code = %ld, message = %@", (long)code, msg);
-//        }];
+        [CYShare shareToWechat:[CYShareModel urlModelWithTitle:@"小牛钱罐子"
+                                                       content:@"小牛钱罐子官网"
+                                                     thumbnail:[NSData dataWithContentsOfFile:@"share_message.png"]
+                                                           url:@"http://www.xiaoniuapp.com"]
+                         scene:CYWechatSceneTimeline
+                      callback:^(NSInteger code, NSString *msg) {
+                          NSLog(@"Wechat timeline message code = %ld, message = %@", (long)code, msg);
+                      }];
     } else if (indexPath.row == 2) {
         
         // Wechat image session";
-//        [[CYWechatUtil sharedInstance] shareImageToSessionWithTitle:@"小牛钱罐子" description:@"小牛钱罐子宣传图" thumbImage:[UIImage imageNamed:@"share_message.png"] imageUrl:nil
-//                                                                imageData:UIImagePNGRepresentation([UIImage imageNamed:@"share_message.png"]) callback:^(NSInteger code, NSString *msg) {
-//            
-//            NSLog(@"CYWechatUtil message code = %ld, message = %@", (long)code, msg);
-//        }];
+        [CYShare shareToWechat:[CYShareModel imageModelWithTitle:@"小牛钱罐子"
+                                                         content:@"小牛钱罐子"
+                                                       thumbnail:[NSData dataWithContentsOfFile:@"share_message.png"]
+                                                            data:[NSData dataWithContentsOfFile:@"share_message.png"]]
+                         scene:CYWechatSceneSession
+                      callback:^(NSInteger code, NSString *msg) {
+                          NSLog(@"Wechat timeline message code = %ld, message = %@", (long)code, msg);
+                      }];
     } else if (indexPath.row == 3) {
         
         // Wechat image timeline";
-//        [[CYWechatUtil sharedInstance] shareImageToTimelineWithTitle:@"小牛钱罐子" description:@"小牛钱罐子宣传图" thumbImage:[UIImage imageNamed:@"share_message.png"] imageUrl:nil
-//                                                                 imageData:UIImagePNGRepresentation([UIImage imageNamed:@"share_message.png"])  callback:^(NSInteger code, NSString *msg) {
-//            
-//            NSLog(@"CYWechatUtil message code = %ld, message = %@", (long)code, msg);
-//        }];
+        [CYShare shareToWechat:[CYShareModel imageModelWithTitle:@"小牛钱罐子"
+                                                         content:@"小牛钱罐子"
+                                                       thumbnail:[NSData dataWithContentsOfFile:@"share_message.png"]
+                                                            data:[NSData dataWithContentsOfFile:@"share_message.png"]]
+                         scene:CYWechatSceneTimeline
+                      callback:^(NSInteger code, NSString *msg) {
+                          NSLog(@"Wechat timeline message code = %ld, message = %@", (long)code, msg);
+                      }];
     } else if (indexPath.row == 4) {
+
+        // Wechat web user select";
+        [CYShare shareToWechat:[CYShareModel urlModelWithTitle:@"小牛钱罐子"
+                                                       content:@"小牛钱罐子官网"
+                                                     thumbnail:[NSData dataWithContentsOfFile:@"share_message.png"]
+                                                           url:@"http://www.xiaoniuapp.com"]
+        presentActionSheetFrom:self
+                      callback:^(NSInteger code, NSString *msg) {
+
+                          NSLog(@"Wechat user select message code = %ld, message = %@", (long)code, msg);
+                      }];
+    }  else if (indexPath.row == 5) {
+
+        // Wechat image user select";
+        [CYShare shareToWechat:[CYShareModel imageModelWithTitle:@"小牛钱罐子"
+                                                         content:@"小牛钱罐子"
+                                                       thumbnail:[NSData dataWithContentsOfFile:@"share_message.png"]
+                                                            data:[NSData dataWithContentsOfFile:@"share_message.png"]]
+        presentActionSheetFrom:self
+                      callback:^(NSInteger code, NSString *msg) {
+                          NSLog(@"Wechat user select message code = %ld, message = %@", (long)code, msg);
+                      }];
+    }  else if (indexPath.row == 6) {
         
-        
-        [[CYQQUtil sharedInstance] shareWebToQQWithTitle:@"小牛钱罐子" description:@"小牛钱罐子官网" thumbImageData:UIImagePNGRepresentation([UIImage imageNamed:@"share_message.png"]) urlString:@"http://www.xiaoniuapp.com" callback:^(NSInteger code, NSString *msg) {
-            
-            NSLog(@"CYQQUtils message code = %ld, message = %@", (long)code, msg);
-        }];
-    } else if (indexPath.row == 5) {
-        
-        // qq web qzone";
-        [[CYQQUtil sharedInstance] shareWebToQZoneWithTitle:@"小牛钱罐子" description:@"小牛钱罐子官网" thumbImageData:UIImagePNGRepresentation([UIImage imageNamed:@"share_message.png"]) urlString:@"http://www.xiaoniuapp.com" callback:^(NSInteger code, NSString *msg) {
-            
-            NSLog(@"CYQQUtils message code = %ld, message = %@", (long)code, msg);
-        }];
-    } else if (indexPath.row == 6) {
-        
-        // qq image session";
-        [[CYQQUtil sharedInstance] shareImageToQQWithTitle:@"小牛钱罐子" description:@"小牛钱罐子官网" thumbImageData:UIImagePNGRepresentation([UIImage imageNamed:@"share_message.png"]) imageData:UIImagePNGRepresentation([UIImage imageNamed:@"share_message.png"]) callback:^(NSInteger code, NSString *msg) {
-            
-            NSLog(@"CYQQUtils message code = %ld, message = %@", (long)code, msg);
-        }];
+        // qq web
+        [CYShare shareToQQ:[CYShareModel urlModelWithTitle:@"小牛钱罐子"
+                                                   content:@"小牛钱罐子官网"
+                                                 thumbnail:[NSData dataWithContentsOfFile:@"share_message.png"]
+                                                       url:@"http://www.xiaoniuapp.com"]
+                  ctrlFlag:CYQQAPICtrlFlagQQShare
+                  callback:^(NSInteger code, NSString *msg) {
+                      NSLog(@"qq web message code = %ld, message = %@", (long)code, msg);
+                  }];
     } else if (indexPath.row == 7) {
         
-        // qq image qzone";
-        [[CYQQUtil sharedInstance] shareImageToQZoneWithTitle:@"小牛钱罐子" description:@"小牛钱罐子官网" thumbImageData:UIImagePNGRepresentation([UIImage imageNamed:@"share_message.png"]) imageData:UIImagePNGRepresentation([UIImage imageNamed:@"share_message.png"]) callback:^(NSInteger code, NSString *msg) {
-            
-            NSLog(@"CYQQUtils message code = %ld, message = %@", (long)code, msg);
-        }];
+        // qq web qzone";
+        [CYShare shareToQQ:[CYShareModel urlModelWithTitle:@"小牛钱罐子"
+                                                   content:@"小牛钱罐子官网"
+                                                 thumbnail:[NSData dataWithContentsOfFile:@"share_message.png"]
+                                                       url:@"http://www.xiaoniuapp.com"]
+                  ctrlFlag:CYQQAPICtrlFlagQZoneShareOnStart
+                  callback:^(NSInteger code, NSString *msg) {
+                      NSLog(@"qzone web message code = %ld, message = %@", (long)code, msg);
+                  }];
     } else if (indexPath.row == 8) {
         
-//        [[CYSinaWeiboUtil sharedInstance] shareWebWithDescription:@"小牛钱罐子官网" urlString:@"http://www.xiaoniuapp.com" callback:^(NSInteger code, NSString *msg) {
-//            
-//            NSLog(@"CYSinaWeiboUtil message code = %ld, message = %@", (long)code, msg);
-//        }];
-        [[CYSinaWeiboUtil sharedInstance] shareWebWithTitle:@"小牛钱罐子官网"  description:@"小牛钱罐子官网"  thumbImageData:nil urlString:@"http://www.xiaoniuapp.com" callback:^(NSInteger code, NSString *msg) {
-            NSLog(@"CYSinaWeiboUtil message code = %ld, message = %@", (long)code, msg);
-        }];
+        // qq image session";
+        [CYShare shareToQQ:[CYShareModel imageModelWithTitle:@"小牛钱罐子"
+                                                     content:@"小牛钱罐子"
+                                                   thumbnail:[NSData dataWithContentsOfFile:@"share_message.png"]
+                                                        data:[NSData dataWithContentsOfFile:@"share_message.png"]]
+                  ctrlFlag:CYQQAPICtrlFlagQQShare
+                  callback:^(NSInteger code, NSString *msg) {
+                      NSLog(@"qq image message code = %ld, message = %@", (long)code, msg);
+                  }];
     } else if (indexPath.row == 9) {
         
-        [[CYSinaWeiboUtil sharedInstance] shareImageWithDescription:@"小牛钱罐子宣传图" imageData:UIImagePNGRepresentation([UIImage imageNamed:@"share_message.png"]) callback:^(NSInteger code, NSString *msg) {
-            NSLog(@"CYSinaWeiboUtil message code = %ld, message = %@", (long)code, msg);
+        // qq image qzone";
+        [CYShare shareToQQ:[CYShareModel imageModelWithTitle:@"小牛钱罐子"
+                                                     content:@"小牛钱罐子"
+                                                   thumbnail:[NSData dataWithContentsOfFile:@"share_message.png"]
+                                                        data:[NSData dataWithContentsOfFile:@"share_message.png"]]
+                  ctrlFlag:CYQQAPICtrlFlagQZoneShareOnStart
+                  callback:^(NSInteger code, NSString *msg) {
+                      NSLog(@"qzone image message code = %ld, message = %@", (long)code, msg);
+                  }];
+    } else if (indexPath.row == 10) {
+
+        // qq web userselect";
+        [CYShare shareToQQ:[CYShareModel urlModelWithTitle:@"小牛钱罐子"
+                                                   content:@"小牛钱罐子官网"
+                                                 thumbnail:[NSData dataWithContentsOfFile:@"share_message.png"]
+                                                       url:@"http://www.xiaoniuapp.com"]
+    presentActionSheetFrom:self
+                  callback:^(NSInteger code, NSString *msg) {
+                      NSLog(@"qq web user select message code = %ld, message = %@", (long)code, msg);
+                  }];
+    } else if (indexPath.row == 11) {
+
+        // qq image user select";
+        [CYShare shareToQQ:[CYShareModel imageModelWithTitle:@"小牛钱罐子"
+                                                     content:@"小牛钱罐子"
+                                                   thumbnail:[NSData dataWithContentsOfFile:@"share_message.png"]
+                                                        data:[NSData dataWithContentsOfFile:@"share_message.png"]]
+    presentActionSheetFrom:self
+                  callback:^(NSInteger code, NSString *msg) {
+                      NSLog(@"qq image userselect message code = %ld, message = %@", (long)code, msg);
+                  }];
+    } else if (indexPath.row == 12) {
+
+        [CYShare shareToWeibo:[CYShareModel urlModelWithTitle:@"小牛钱罐子"
+                                                      content:@"小牛钱罐子官网"
+                                                    thumbnail:[NSData dataWithContentsOfFile:@"share_message.png"]
+                                                          url:@"http://www.xiaoniuapp.com"]
+                     callback:^(NSInteger code, NSString *msg) {
+                         NSLog(@"Weibo web message code = %ld, message = %@", (long)code, msg);
         }];
+    } else if (indexPath.row == 13) {
+
+        [CYShare shareToWeibo:[CYShareModel imageModelWithTitle:@"小牛钱罐子"
+                                                        content:@"小牛钱罐子"
+                                                      thumbnail:[NSData dataWithContentsOfFile:@"share_message.png"]
+                                                           data:[NSData dataWithContentsOfFile:@"share_message.png"]]
+                     callback:^(NSInteger code, NSString *msg) {
+                         NSLog(@"Weibo image message code = %ld, message = %@", (long)code, msg);
+                     }];
     }
 }
 

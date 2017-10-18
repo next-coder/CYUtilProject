@@ -79,6 +79,19 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		A36F4EFD1F906D6600E7F4B6 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		61091D5A1CDAF8E4008B7EA3 /* CYUtilProjectSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CYUtilProjectSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61091D5D1CDAF8E4008B7EA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -448,6 +461,7 @@
 				61091D561CDAF8E4008B7EA3 /* Sources */,
 				61091D571CDAF8E4008B7EA3 /* Frameworks */,
 				61091D581CDAF8E4008B7EA3 /* Resources */,
+				A36F4EFD1F906D6600E7F4B6 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -750,6 +764,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = BQN58WSC57;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CYUtils/ShareUtils/SDK/QQ",
+				);
 				INFOPLIST_FILE = CYUtilProjectSwift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -769,6 +787,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				DEVELOPMENT_TEAM = BQN58WSC57;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CYUtils/ShareUtils/SDK/QQ",
+				);
 				INFOPLIST_FILE = CYUtilProjectSwift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

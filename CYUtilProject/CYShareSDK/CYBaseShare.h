@@ -8,22 +8,26 @@
 
 #import <Foundation/Foundation.h>
 
+@class CYShareModel;
+
 typedef void (^CYThirdPartyLoginCallback)(NSInteger code, NSString *msg, NSDictionary *resultDic);
 typedef void (^CYShareCallback)(NSInteger code, NSString *msg);
 
-@interface CYShareBaseUtil : NSObject
+@interface CYBaseShare : NSObject
 
 @property (nonatomic, strong, readonly) NSString *appId;
-@property (nonatomic, strong, readonly) NSString *appKey;
+//@property (nonatomic, strong, readonly) NSString *appKey;
+
+@property (nonatomic, copy) CYShareCallback shareCallback;
+
+#pragma mark - share
+// Subclass should implements this method to implement the share action
+- (void)share:(CYShareModel *)model
+     callback:(CYShareCallback)callback;
 
 #pragma mark - app info
 // 注册appid和appKey
-+ (void)registerWithAppId:(NSString *)appId
-                   appKey:(NSString *)appKey;
-
-// 获取注册后的appId和appKey
-+ (NSString *)appId;
-+ (NSString *)appKey;
+- (void)registerWithAppId:(NSString *)appId;
 
 #pragma mark - api
 /**

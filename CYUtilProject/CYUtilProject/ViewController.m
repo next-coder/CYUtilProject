@@ -16,7 +16,7 @@
 #import "CYAlertView.h"
 #import "CYActionSheet.h"
 
-#import "CYQQUtil.h"
+#import "CYQQ.h"
 
 #import "CYContactsListTestViewController.h"
 #import "CYShareSDKTestViewController.h"
@@ -66,34 +66,34 @@
     cell.imageView.image = [[UIImage imageNamed:@"share_message"] cy_roundCornerimageWithCornerRadius:5];
     if (indexPath.row == 0) {
         
-        cell.textLabel.text = @"CYChatViewController";
+        cell.textLabel.text = @"CYChatViewController \u26b2";
     } else if (indexPath.row == 1) {
         
-        cell.textLabel.text = @"CYSendSMSUtils";
+        cell.textLabel.text = @"CYSendSMSUtils \u26b2";
     } else if (indexPath.row == 2) {
         
-        cell.textLabel.text = @"CYAnimatedTextLabel";
+        cell.textLabel.text = @"CYAnimatedTextLabel \u26b2";
     } else if (indexPath.row == 3) {
         
-        cell.textLabel.text = @"CYCycleBannerView";
+        cell.textLabel.text = @"CYCycleBannerView \u26b2";
     } else if (indexPath.row == 4) {
         
-        cell.textLabel.text = @"CYBannerImageBrowserView";
+        cell.textLabel.text = @"CYBannerImageBrowserView \u26b2";
     } else if (indexPath.row == 5) {
         
-        cell.textLabel.text = @"CYAlertView";
+        cell.textLabel.text = @"CYAlertView \u26b2";
     } else if (indexPath.row == 6) {
         
-        cell.textLabel.text = @"CYIAPUtils";
+        cell.textLabel.text = @"CYIAPUtils  \u26b2";
     } else if (indexPath.row == 7) {
         
         cell.textLabel.text = @"CYContacts \u26b2";
     } else if (indexPath.row == 8) {
         
-        cell.textLabel.text = @"CYActionSheet";
+        cell.textLabel.text = @"CYActionSheet \u26b2";
     } else if (indexPath.row == 9) {
         
-        cell.textLabel.text = @"CYShareSDK";
+        cell.textLabel.text = @"CYShareSDK \u26b2";
     }
     return cell;
 }
