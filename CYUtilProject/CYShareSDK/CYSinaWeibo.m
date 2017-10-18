@@ -15,10 +15,6 @@
 
 @interface CYSinaWeibo () <WeiboSDKDelegate>
 
-@property (nonatomic, copy) CYShareCallback shareCallback;
-
-@property (nonatomic, strong, readonly) NSString *appBackUrl;
-
 @end
 
 @implementation CYSinaWeibo
