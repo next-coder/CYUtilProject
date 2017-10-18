@@ -21,6 +21,10 @@
 #import "CYSinaWeibo.h"
 #endif
 
+#if CY_SHARE_APPLE_ACTIVITY_ENABLED
+#import "CYAppleActivity.h"
+#endif
+
 #import "CYShareModel.h"
 
 @interface CYShare : NSObject
@@ -33,7 +37,7 @@
              callback:(CYShareCallback)callback;
 
 + (void)shareToWechat:(CYShareModel *)model
- presentActionSheetFrom:(UIViewController *)viewController
+presentActionSheetFrom:(UIViewController *)viewController
              callback:(CYShareCallback)callback;
 #endif
 
@@ -54,6 +58,14 @@ presentActionSheetFrom:(UIViewController *)viewController
 
 + (void)shareToWeibo:(CYShareModel *)model
             callback:(CYShareCallback)callback;
+#endif
+
+#if CY_SHARE_APPLE_ACTIVITY_ENABLED
+
++ (void)shareByAppleActivity:(CYShareModel *)model
+            presentShareFrom:(UIViewController *)viewController
+                    callback:(CYShareCallback)callback;
+
 #endif
 
 /**

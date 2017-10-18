@@ -29,7 +29,7 @@
 }
 
 + (void)shareToWechat:(CYShareModel *)model
- presentActionSheetFrom:(UIViewController *)viewController
+presentActionSheetFrom:(UIViewController *)viewController
              callback:(CYShareCallback)callback {
 
     [[CYWechat sharedInstance] share:model
@@ -71,6 +71,18 @@ presentActionSheetFrom:(UIViewController *)viewController
     [[CYSinaWeibo sharedInstance] share:model
                                callback:callback];
 }
+#endif
+
+#if CY_SHARE_APPLE_ACTIVITY_ENABLED
+
++ (void)shareByAppleActivity:(CYShareModel *)model
+            presentShareFrom:(UIViewController *)viewController
+                    callback:(CYShareCallback)callback {
+    [[CYAppleActivity sharedInstance] share:model
+                           presentShareFrom:viewController
+                                   callback:callback];
+}
+
 #endif
 
 + (BOOL)handleOpenURL:(NSURL *)URL {
