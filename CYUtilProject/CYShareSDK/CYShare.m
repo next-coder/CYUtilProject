@@ -76,11 +76,25 @@ presentActionSheetFrom:(UIViewController *)viewController
 #if CY_SHARE_APPLE_ACTIVITY_ENABLED
 
 + (void)shareByAppleActivity:(CYShareModel *)model
-            presentShareFrom:(UIViewController *)viewController
+                 presentFrom:(UIViewController *)viewController
                     callback:(CYShareCallback)callback {
     [[CYAppleActivity sharedInstance] share:model
-                           presentShareFrom:viewController
+                                presentFrom:viewController
                                    callback:callback];
+}
+
+#endif
+
+#if CY_SHARE_SMS_ENABLED
+
++ (void)shareBySMS:(CYShareModel *)model
+                to:(NSArray *)mobiles
+       presentFrom:(UIViewController *)viewController
+          callback:(CYShareCallback)callback {
+    [[CYSMS sharedInstance] share:model
+                          toUsers:mobiles
+                      presentFrom:viewController
+                         callback:callback];
 }
 
 #endif

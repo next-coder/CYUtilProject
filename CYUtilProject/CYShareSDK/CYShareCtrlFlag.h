@@ -16,8 +16,10 @@
 #define CY_SHARE_QQ_ENABLED 1
 // 是否需要微博分享，如果不需要，则将此置为0，并且也无需集成微博SDK
 #define CY_SHARE_SINA_WEIBO_ENABLED 1
-// 是否需要Apple官方提供的分享(UIActivityViewController)，如果不需要，则将此置为0，并且也无需集成微博SDK
+// 是否需要Apple官方提供的分享(UIActivityViewController)，默认关闭，如果需要打开，则将此置为1
 #define CY_SHARE_APPLE_ACTIVITY_ENABLED 1
+// 是否需要信息分享(短信，imessage)，如果不需要，则将此置为0，
+#define CY_SHARE_SMS_ENABLED 1
 
 
 #endif /* CYShareCtrlFlag_h */

@@ -1,5 +1,5 @@
 //
-//  XNWechatUtil.m
+//  CYWechatUtil.m
 //  MoneyJar2
 //
 //  Created by XNKJ on 6/4/15.
@@ -209,13 +209,13 @@ presentActionSheetFrom:(UIViewController *)viewController
     SendMessageToWXReq *request = [[SendMessageToWXReq alloc] init];
     request.scene = (int)scene;
     switch (model.type) {
-        case XNShareContenTypeText: {
+        case CYShareContenTypeText: {
             request.bText = YES;
             request.text = model.content;
             break;
         }
 
-        case XNShareContenTypeImage: {
+        case CYShareContenTypeImage: {
             request.bText = NO;
 
             WXImageObject *imageObject = [WXImageObject object];
@@ -235,7 +235,7 @@ presentActionSheetFrom:(UIViewController *)viewController
             break;
         }
 
-        case XNShareContenTypeURL: {
+        case CYShareContenTypeURL: {
             request.bText = NO;
 
             WXWebpageObject *webpageObject = [WXWebpageObject object];

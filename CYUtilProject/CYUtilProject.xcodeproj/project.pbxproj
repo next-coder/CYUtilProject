@@ -148,6 +148,7 @@
 		A3A81D6B1F972B6A00C26475 /* CYQQ.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A81D641F972AD100C26475 /* CYQQ.m */; };
 		A3A81D6C1F972B6A00C26475 /* CYSinaWeibo.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A81D661F972AD100C26475 /* CYSinaWeibo.m */; };
 		A3A81D6D1F972B6A00C26475 /* CYAppleActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A81D601F972AD100C26475 /* CYAppleActivity.m */; };
+		A3A81D701F974AAD00C26475 /* CYSMS.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A81D6F1F974AAD00C26475 /* CYSMS.m */; };
 		A3BA5F291E6814F100B31B8C /* CYWebListener.m in Sources */ = {isa = PBXBuildFile; fileRef = A3BA5F281E6814F100B31B8C /* CYWebListener.m */; };
 /* End PBXBuildFile section */
 
@@ -438,6 +439,8 @@
 		A3A81D661F972AD100C26475 /* CYSinaWeibo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYSinaWeibo.m; sourceTree = "<group>"; };
 		A3A81D671F972AD100C26475 /* CYWechat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYWechat.h; sourceTree = "<group>"; };
 		A3A81D681F972AD100C26475 /* CYWechat.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYWechat.m; sourceTree = "<group>"; };
+		A3A81D6E1F974AAD00C26475 /* CYSMS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYSMS.h; sourceTree = "<group>"; };
+		A3A81D6F1F974AAD00C26475 /* CYSMS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYSMS.m; sourceTree = "<group>"; };
 		A3BA5F271E6814F100B31B8C /* CYWebListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYWebListener.h; sourceTree = "<group>"; };
 		A3BA5F281E6814F100B31B8C /* CYWebListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYWebListener.m; sourceTree = "<group>"; };
 		E44A7E629213891F907F2C63 /* Pods-CYUtilProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CYUtilProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-CYUtilProject/Pods-CYUtilProject.release.xcconfig"; sourceTree = "<group>"; };
@@ -1113,6 +1116,8 @@
 				A3A81D661F972AD100C26475 /* CYSinaWeibo.m */,
 				A3A81D5F1F972AD100C26475 /* CYAppleActivity.h */,
 				A3A81D601F972AD100C26475 /* CYAppleActivity.m */,
+				A3A81D6E1F974AAD00C26475 /* CYSMS.h */,
+				A3A81D6F1F974AAD00C26475 /* CYSMS.m */,
 			);
 			path = CustomShare;
 			sourceTree = "<group>";
@@ -1401,6 +1406,7 @@
 				6120958D1C51FC210035FD2D /* CYIAPTestViewController.m in Sources */,
 				61DF52CA1BE209C30015CDF2 /* CYAnimatedTextLabelViewController.m in Sources */,
 				61091D0E1CDAF563008B7EA3 /* CYFullScreenImageView.m in Sources */,
+				A3A81D701F974AAD00C26475 /* CYSMS.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1537,7 +1543,7 @@
 					"-Objc",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.xiaoniuapp.CYUtilProject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.meetrendCom.moneyJarXiaoniu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "CYUtilProject/CYUtilProject-Bridging-Header.h";

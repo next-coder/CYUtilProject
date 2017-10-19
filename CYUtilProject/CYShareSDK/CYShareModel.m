@@ -15,7 +15,7 @@
                     thumbnail:(NSData *)thumbnail
                           url:(NSString *)url
                          data:(NSData *)data
-                         type:(XNShareContenType)type {
+                         type:(CYShareContenType)type {
     if (self = [super init]) {
 
         _title = title;
@@ -30,15 +30,15 @@
 
 - (BOOL)isValid {
     switch (_type) {
-        case XNShareContenTypeText:
+        case CYShareContenTypeText:
             return self.content != nil;
             break;
 
-        case XNShareContenTypeURL:
+        case CYShareContenTypeURL:
             return self.url != nil;
             break;
 
-        case XNShareContenTypeImage:
+        case CYShareContenTypeImage:
             return (self.url != nil || self.data != nil);
             break;
     }
@@ -49,7 +49,7 @@
                                      thumbnail:nil
                                            url:nil
                                           data:nil
-                                          type:XNShareContenTypeText];
+                                          type:CYShareContenTypeText];
 }
 
 + (instancetype)urlModelWithTitle:(NSString *)title
@@ -62,7 +62,7 @@
                                      thumbnail:thumbnail
                                            url:url
                                           data:nil
-                                          type:XNShareContenTypeURL];
+                                          type:CYShareContenTypeURL];
 }
 
 + (instancetype)imageModelWithTitle:(NSString *)title
@@ -75,7 +75,7 @@
                                      thumbnail:thumbnail
                                            url:url
                                           data:nil
-                                          type:XNShareContenTypeImage];
+                                          type:CYShareContenTypeImage];
 }
 
 + (instancetype)imageModelWithTitle:(NSString *)title
@@ -88,7 +88,7 @@
                                      thumbnail:thumbnail
                                            url:nil
                                           data:data
-                                          type:XNShareContenTypeImage];
+                                          type:CYShareContenTypeImage];
 
 }
 

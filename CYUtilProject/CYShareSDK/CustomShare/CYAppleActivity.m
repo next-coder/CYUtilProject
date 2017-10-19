@@ -17,12 +17,12 @@
 
 - (void)share:(CYShareModel *)model callback:(CYShareCallback)callback {
     [self share:model
-presentShareFrom:[[[UIApplication sharedApplication] keyWindow] rootViewController]
+    presentFrom:[[[UIApplication sharedApplication] keyWindow] rootViewController]
        callback:callback];
 }
 
 - (void)share:(CYShareModel *)model
-presentShareFrom:(UIViewController *)viewController
+  presentFrom:(UIViewController *)viewController
      callback:(CYShareCallback)callback {
 
     if (!model.isValid) {
@@ -37,11 +37,11 @@ presentShareFrom:(UIViewController *)viewController
         [activityItems addObject:model.content];
     }
     switch (model.type) {
-        case XNShareContenTypeText: {
+        case CYShareContenTypeText: {
             break;
         }
 
-        case XNShareContenTypeURL: {
+        case CYShareContenTypeURL: {
             NSURL *url = [NSURL URLWithString:model.url];
             if (url) {
                 [activityItems addObject:url];
@@ -49,7 +49,7 @@ presentShareFrom:(UIViewController *)viewController
             break;
         }
 
-        case XNShareContenTypeImage: {
+        case CYShareContenTypeImage: {
             UIImage *image = [UIImage imageWithData:model.data];
             if (image) {
                 [activityItems addObject:image];

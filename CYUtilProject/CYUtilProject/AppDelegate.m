@@ -42,7 +42,7 @@
 
     [CYShare registerWechatAppId:@"wx891f8f3380cba5e9"];
     [CYShare registerQQAppId:@"1104237169"];
-    [CYShare registerWeiboAppKey:@"972580554"];
+    [CYShare registerWeiboAppKey:@"3180958896"];
     
     UIImage *bg = [[UIImage imageNamed:@"common_navigation_background.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(2, 0, 2, 0)];
     [[UINavigationBar appearance] setBackgroundImage:bg

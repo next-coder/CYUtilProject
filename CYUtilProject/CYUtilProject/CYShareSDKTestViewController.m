@@ -19,7 +19,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 16;
+    return 18;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -76,6 +76,10 @@
         cell.textLabel.text = @"Apple Social Web \u26b2";
     } else if (indexPath.row == 15) {
         cell.textLabel.text = @"Apple Social Image \u26b2";
+    } else if (indexPath.row == 16) {
+        cell.textLabel.text = @"SMS Web \u26b2";
+    } else if (indexPath.row == 17) {
+        cell.textLabel.text = @"SMS Image \u26b2";
     }
     return cell;
 }
@@ -240,7 +244,7 @@
                                                             content:@"小牛钱罐子官网"
                                                           thumbnail:UIImagePNGRepresentation([UIImage imageNamed:@"share_message.png"])
                                                                 url:@"http://www.xiaoniuapp.com"]
-                   presentShareFrom:self
+                   presentFrom:self
                            callback:^(NSInteger code, NSString *msg) {
                                NSLog(@"Apple social web message code = %ld, message = %@", (long)code, msg);
                            }];
@@ -250,10 +254,31 @@
                                                               content:@"小牛钱罐子"
                                                             thumbnail:UIImagePNGRepresentation([UIImage imageNamed:@"share_message.png"])
                                                                  data:UIImagePNGRepresentation([UIImage imageNamed:@"share_message.png"])]
-                   presentShareFrom:self
+                   presentFrom:self
                            callback:^(NSInteger code, NSString *msg) {
                                NSLog(@"Apple social image message code = %ld, message = %@", (long)code, msg);
                            }];
+    } else if (indexPath.row == 16) {
+        [CYShare shareBySMS:[CYShareModel urlModelWithTitle:@"小牛钱罐子"
+                                                    content:@"小牛钱罐子官网"
+                                                  thumbnail:UIImagePNGRepresentation([UIImage imageNamed:@"share_message.png"])
+                                                        url:@"http://www.xiaoniuapp.com"]
+                         to:nil presentFrom:self
+                   callback:^(NSInteger code, NSString *msg) {
+                       NSLog(@"sms web message code = %ld, message = %@", (long)code, msg);
+                   }];
+    } else if (indexPath.row == 17) {
+
+        // 暂不支持图片分享
+//        [CYShare shareBySMS:[CYShareModel imageModelWithTitle:@"小牛钱罐子"
+//                                                      content:@"小牛钱罐子图片"
+//                                                    thumbnail:UIImagePNGRepresentation([UIImage imageNamed:@"share_message.png"])
+//                                                         data:UIImagePNGRepresentation([UIImage imageNamed:@"tab_origin"])]
+//                         to:nil
+//                presentFrom:self
+//                   callback:^(NSInteger code, NSString *msg) {
+//                       NSLog(@"sms image message code = %ld, message = %@", (long)code, msg);
+//                   }];
     }
 }
 

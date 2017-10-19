@@ -17,7 +17,7 @@
 @interface CYAppleActivity : CYBaseShare
 
 - (void)share:(CYShareModel *)model
-presentShareFrom:(UIViewController *)viewController
+  presentFrom:(UIViewController *)viewController
      callback:(CYShareCallback)callback;
 
 #pragma mark - sharedInstance

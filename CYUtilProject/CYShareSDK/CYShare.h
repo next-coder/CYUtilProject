@@ -25,6 +25,10 @@
 #import "CYAppleActivity.h"
 #endif
 
+#if CY_SHARE_SMS_ENABLED
+#import "CYSMS.h"
+#endif
+
 #import "CYShareModel.h"
 
 @interface CYShare : NSObject
@@ -63,8 +67,23 @@ presentActionSheetFrom:(UIViewController *)viewController
 #if CY_SHARE_APPLE_ACTIVITY_ENABLED
 
 + (void)shareByAppleActivity:(CYShareModel *)model
-            presentShareFrom:(UIViewController *)viewController
+                 presentFrom:(UIViewController *)viewController
                     callback:(CYShareCallback)callback;
+
+#endif
+
+#if CY_SHARE_SMS_ENABLED
+
+/**
+ 短信分享，可以发送文本和链接，链接会拼接在文本最后面发送
+
+ 目前暂不支持图片分享
+
+ */
++ (void)shareBySMS:(CYShareModel *)model
+                to:(NSArray *)mobiles
+       presentFrom:(UIViewController *)viewController
+          callback:(CYShareCallback)callback;
 
 #endif
 

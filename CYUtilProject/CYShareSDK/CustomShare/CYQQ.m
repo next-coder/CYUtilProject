@@ -133,23 +133,25 @@ presentActionSheetFrom:(UIViewController *)viewController
 
     QQApiObject *object = nil;
     switch (model.type) {
-        case XNShareContenTypeText: {
+        case CYShareContenTypeText: {
             object = [QQApiTextObject objectWithText:model.content];
             break;
         }
 
-        case XNShareContenTypeURL: {
+        case CYShareContenTypeURL: {
             object = [QQApiNewsObject objectWithURL:[NSURL URLWithString:model.url]
                                               title:model.title
                                         description:model.content
                                    previewImageData:model.thumbnail];
+            break;
         }
 
-        case XNShareContenTypeImage: {
+        case CYShareContenTypeImage: {
             object = [QQApiImageObject objectWithData:model.data
                                      previewImageData:model.thumbnail
                                                 title:model.title
                                           description:model.content];
+            break;
         }
 
         default:

@@ -11,15 +11,15 @@
 /**
  * 分享内容的类型，目前支持文本、链接和图片分享
  */
-typedef NS_ENUM(NSInteger, XNShareContenType) {
-    XNShareContenTypeText,
-    XNShareContenTypeURL,
-    XNShareContenTypeImage
+typedef NS_ENUM(NSInteger, CYShareContenType) {
+    CYShareContenTypeText,
+    CYShareContenTypeURL,
+    CYShareContenTypeImage
 };
 
 @interface CYShareModel : NSObject
 
-@property (nonatomic, assign, readonly) XNShareContenType type;
+@property (nonatomic, assign, readonly) CYShareContenType type;
 
 // share title
 @property (nonatomic, strong) NSString *title;
@@ -30,12 +30,12 @@ typedef NS_ENUM(NSInteger, XNShareContenType) {
 @property (nonatomic, strong) NSData *thumbnail;
 
 // shared url, or image url
-// 当type == XNShareContenTypeURL时，此属性不能为空
-// 当type == XNShareContenTypeImage时，此属性和data属性不能同时为空，两个都有值时，使用data中的数据
+// 当type == CYShareContenTypeURL时，此属性不能为空
+// 当type == CYShareContenTypeImage时，此属性和data属性不能同时为空，两个都有值时，使用data中的数据
 @property (nonatomic, strong) NSString *url;
 
 // Image data
-// 当type == XNShareContenTypeImage时，此属性和url属性不能同时为空，两个都有值时，使用data中的数据
+// 当type == CYShareContenTypeImage时，此属性和url属性不能同时为空，两个都有值时，使用data中的数据
 @property (nonatomic, strong) NSData *data;
 
 // custom user info
@@ -52,7 +52,7 @@ typedef NS_ENUM(NSInteger, XNShareContenType) {
                     thumbnail:(NSData *)thumbnail
                           url:(NSString *)url
                          data:(NSData *)data
-                         type:(XNShareContenType)type;
+                         type:(CYShareContenType)type;
 
 /**
  * 创建文本分享Model

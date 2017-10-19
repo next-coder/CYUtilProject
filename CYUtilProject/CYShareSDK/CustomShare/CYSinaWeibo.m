@@ -52,11 +52,11 @@
     WBMessageObject *message = [[WBMessageObject alloc] init];
     message.text = model.content;
     switch (model.type) {
-        case XNShareContenTypeText: {
+        case CYShareContenTypeText: {
             break;
         }
 
-        case XNShareContenTypeURL: {
+        case CYShareContenTypeURL: {
             WBWebpageObject *webpageObject = [WBWebpageObject object];
             webpageObject.webpageUrl = model.url;
             webpageObject.title = model.title;
@@ -68,7 +68,7 @@
             break;
         }
 
-        case XNShareContenTypeImage: {
+        case CYShareContenTypeImage: {
             WBImageObject *imageObject = [WBImageObject object];
             imageObject.imageData = model.data;
 
