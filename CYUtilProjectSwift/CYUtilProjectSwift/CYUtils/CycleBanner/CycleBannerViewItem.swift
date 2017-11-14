@@ -2,8 +2,8 @@
 //  CycleBannerViewCell.swift
 //  CYUtilProjectSwift
 //
-//  Created by Conner on 22/05/2017.
-//  Copyright © 2017 Conner. All rights reserved.
+//  Created by xn011644 on 22/05/2017.
+//  Copyright © 2017 Jasper. All rights reserved.
 //
 
 import UIKit
@@ -11,6 +11,7 @@ import UIKit
 public class CycleBannerViewItem: UIView {
 
     @IBOutlet private(set) var contentView: UIView!
+    @IBOutlet private(set) var imageView: UIImageView!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -66,6 +67,47 @@ public class CycleBannerViewItem: UIView {
                                                    constant: 0)
             addConstraints([contentLeft,contentRight, contentTop, contentBottom])
         }
+
+        if imageView == nil {
+            imageView = UIImageView()
+            imageView.translatesAutoresizingMaskIntoConstraints = false
+            contentView.addSubview(imageView)
+
+            let imageLeft = NSLayoutConstraint(item: imageView,
+                                                 attribute: .left,
+                                                 relatedBy: .equal,
+                                                 toItem: contentView,
+                                                 attribute: .left,
+                                                 multiplier: 1,
+                                                 constant: 0)
+            let imageRight = NSLayoutConstraint(item: imageView,
+                                                  attribute: .right,
+                                                  relatedBy: .equal,
+                                                  toItem: contentView,
+                                                  attribute: .right,
+                                                  multiplier: 1,
+                                                  constant: 0)
+            let imageTop = NSLayoutConstraint(item: imageView,
+                                                attribute: .top,
+                                                relatedBy: .equal,
+                                                toItem: contentView,
+                                                attribute: .top,
+                                                multiplier: 1,
+                                                constant: 0)
+            let imageBottom = NSLayoutConstraint(item: imageView,
+                                                   attribute: .bottom,
+                                                   relatedBy: .equal,
+                                                   toItem: contentView,
+                                                   attribute: .bottom,
+                                                   multiplier: 1,
+                                                   constant: 0)
+            addConstraints([imageLeft,imageRight, imageTop, imageBottom])
+        }
+    }
+
+    override public func layoutSubviews() {
+
+        super.layoutSubviews()
     }
 
 }

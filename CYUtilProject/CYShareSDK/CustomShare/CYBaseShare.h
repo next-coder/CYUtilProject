@@ -10,13 +10,13 @@
 
 @class CYShareModel;
 
-typedef void (^CYThirdPartyLoginCallback)(NSInteger code, NSString *msg, NSDictionary *resultDic);
+typedef void (^CYLoginCallback)(NSInteger code, NSString *msg, NSDictionary *resultDic);
 typedef void (^CYShareCallback)(NSInteger code, NSString *msg);
 
 @interface CYBaseShare : NSObject
 
 @property (nonatomic, strong, readonly) NSString *appId;
-//@property (nonatomic, strong, readonly) NSString *appKey;
+@property (nonatomic, strong, readonly) NSString *appKey;
 
 @property (nonatomic, copy) CYShareCallback shareCallback;
 
@@ -27,7 +27,9 @@ typedef void (^CYShareCallback)(NSInteger code, NSString *msg);
 
 #pragma mark - app info
 // 注册appid和appKey
-- (void)registerWithAppId:(NSString *)appId;
+// 微信和QQ必须注册Appid，微博必须注册AppKey
+- (void)registerAppId:(NSString *)appId;
+- (void)registerAppKey:(NSString *)appKey;
 
 #pragma mark - api
 /**

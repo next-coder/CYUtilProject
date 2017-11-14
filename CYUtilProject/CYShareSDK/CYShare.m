@@ -16,7 +16,11 @@
 
 #if CY_SHARE_WECHAT_ENABLED
 + (void)registerWechatAppId:(NSString *)appId {
-    [[CYWechat sharedInstance] registerWithAppId:appId];
+    [[CYWechat sharedInstance] registerAppId:appId];
+}
+
++ (void)registerWechatAppKey:(NSString *)appKey {
+    [[CYWechat sharedInstance] registerAppKey:appKey];
 }
 
 + (void)shareToWechat:(CYShareModel *)model
@@ -40,7 +44,11 @@ presentActionSheetFrom:(UIViewController *)viewController
 
 #if CY_SHARE_QQ_ENABLED
 + (void)registerQQAppId:(NSString *)appId {
-    [[CYQQ sharedInstance] registerWithAppId:appId];
+    [[CYQQ sharedInstance] registerAppId:appId];
+}
+
++ (void)registerQQAppKey:(NSString *)appKey {
+    [[CYQQ sharedInstance] registerAppKey:appKey];
 }
 
 + (void)shareToQQ:(CYShareModel *)model
@@ -63,7 +71,7 @@ presentActionSheetFrom:(UIViewController *)viewController
 
 #if CY_SHARE_SINA_WEIBO_ENABLED
 + (void)registerWeiboAppKey:(NSString *)appKey {
-    [[CYSinaWeibo sharedInstance] registerWithAppId:appKey];
+    [[CYSinaWeibo sharedInstance] registerAppKey:appKey];
 }
 
 + (void)shareToWeibo:(CYShareModel *)model

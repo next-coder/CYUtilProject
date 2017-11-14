@@ -26,8 +26,6 @@
 		A33E4B3D1D06ABDC001B0AB1 /* CYJSCommonActionRequestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33E4B3C1D06ABDC001B0AB1 /* CYJSCommonActionRequestUtils.swift */; };
 		A345C5FC1DEBDE2F0094AF5A /* CYBaseProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A345C5FB1DEBDE2F0094AF5A /* CYBaseProgressBar.swift */; };
 		A34F17F11EF8B78200538F20 /* HerizontalTableViewTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34F17F01EF8B78200538F20 /* HerizontalTableViewTestViewController.swift */; };
-		A3636A881ED28FA600B0F8E9 /* CycleBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3636A871ED28FA600B0F8E9 /* CycleBannerView.swift */; };
-		A3636A8A1ED297D200B0F8E9 /* CycleBannerViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3636A891ED297D200B0F8E9 /* CycleBannerViewItem.swift */; };
 		A3636A9E1ED2C77800B0F8E9 /* CycleBannerTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3636A9D1ED2C77800B0F8E9 /* CycleBannerTestViewController.swift */; };
 		A3636AAC1ED31E7600B0F8E9 /* RedPacketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3636AAB1ED31E7600B0F8E9 /* RedPacketViewController.swift */; };
 		A3636B0B1ED52BAA00B0F8E9 /* RedPacketAssets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A3636B0A1ED52BAA00B0F8E9 /* RedPacketAssets.bundle */; };
@@ -54,6 +52,7 @@
 		A385A6A91ED168BE0022C2EB /* CYRedPacketDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A385A6A81ED168BE0022C2EB /* CYRedPacketDetailViewController.swift */; };
 		A385A6AC1ED16A8E0022C2EB /* CYRedPacketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A385A6AB1ED16A8E0022C2EB /* CYRedPacketViewModel.swift */; };
 		A385A6AE1ED16C240022C2EB /* CYRedPacketDrawViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A385A6AD1ED16C240022C2EB /* CYRedPacketDrawViewModel.swift */; };
+		A39A31651FB03BCF00CAC143 /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39A31641FB03BCF00CAC143 /* BaseModel.swift */; };
 		A3B700981E1B449C00823B7B /* CYProgressWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B700971E1B449C00823B7B /* CYProgressWebView.swift */; };
 		A3B7009B1E1B500B00823B7B /* ProgressWebTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B7009A1E1B500B00823B7B /* ProgressWebTestViewController.swift */; };
 		A3BA5F1C1E67ED8200B31B8C /* CYProgressWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BA5F1B1E67ED8200B31B8C /* CYProgressWebViewController.swift */; };
@@ -65,6 +64,8 @@
 		A3D086FD1EEE3B47007752ED /* HerizontalTableViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D086FC1EEE3B47007752ED /* HerizontalTableViewItem.swift */; };
 		A3DEB59E1E66C89F000B6001 /* CYWebViewProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DEB59D1E66C89F000B6001 /* CYWebViewProgress.swift */; };
 		A3E2530A1CFD976F002F8E18 /* ObjectiveCTestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E253091CFD976F002F8E18 /* ObjectiveCTestObject.m */; };
+		A3EB573A1FA1D41D00A58278 /* CycleBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EB57381FA1D41D00A58278 /* CycleBannerView.swift */; };
+		A3EB573B1FA1D41D00A58278 /* CycleBannerViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EB57391FA1D41D00A58278 /* CycleBannerViewItem.swift */; };
 		A3FDF5BD1F8B2432009E5F68 /* DeviceAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FDF5BC1F8B2432009E5F68 /* DeviceAuthentication.swift */; };
 		A3FDF5BF1F8CA2AB009E5F68 /* DeviceAuthenticationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FDF5BE1F8CA2AB009E5F68 /* DeviceAuthenticationTests.swift */; };
 /* End PBXBuildFile section */
@@ -114,8 +115,6 @@
 		A33E4B3C1D06ABDC001B0AB1 /* CYJSCommonActionRequestUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYJSCommonActionRequestUtils.swift; sourceTree = "<group>"; };
 		A345C5FB1DEBDE2F0094AF5A /* CYBaseProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYBaseProgressBar.swift; sourceTree = "<group>"; };
 		A34F17F01EF8B78200538F20 /* HerizontalTableViewTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HerizontalTableViewTestViewController.swift; sourceTree = "<group>"; };
-		A3636A871ED28FA600B0F8E9 /* CycleBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleBannerView.swift; sourceTree = "<group>"; };
-		A3636A891ED297D200B0F8E9 /* CycleBannerViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleBannerViewItem.swift; sourceTree = "<group>"; };
 		A3636A9D1ED2C77800B0F8E9 /* CycleBannerTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleBannerTestViewController.swift; sourceTree = "<group>"; };
 		A3636AAB1ED31E7600B0F8E9 /* RedPacketViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedPacketViewController.swift; sourceTree = "<group>"; };
 		A3636B0A1ED52BAA00B0F8E9 /* RedPacketAssets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = RedPacketAssets.bundle; sourceTree = "<group>"; };
@@ -144,6 +143,7 @@
 		A385A6A81ED168BE0022C2EB /* CYRedPacketDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYRedPacketDetailViewController.swift; sourceTree = "<group>"; };
 		A385A6AB1ED16A8E0022C2EB /* CYRedPacketViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYRedPacketViewModel.swift; sourceTree = "<group>"; };
 		A385A6AD1ED16C240022C2EB /* CYRedPacketDrawViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYRedPacketDrawViewModel.swift; sourceTree = "<group>"; };
+		A39A31641FB03BCF00CAC143 /* BaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
 		A3B700971E1B449C00823B7B /* CYProgressWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYProgressWebView.swift; sourceTree = "<group>"; };
 		A3B7009A1E1B500B00823B7B /* ProgressWebTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressWebTestViewController.swift; sourceTree = "<group>"; };
 		A3BA5F1B1E67ED8200B31B8C /* CYProgressWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYProgressWebViewController.swift; sourceTree = "<group>"; };
@@ -157,6 +157,8 @@
 		A3E253071CFD976F002F8E18 /* CYUtilProjectSwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CYUtilProjectSwift-Bridging-Header.h"; sourceTree = "<group>"; };
 		A3E253081CFD976F002F8E18 /* ObjectiveCTestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveCTestObject.h; sourceTree = "<group>"; };
 		A3E253091CFD976F002F8E18 /* ObjectiveCTestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectiveCTestObject.m; sourceTree = "<group>"; };
+		A3EB57381FA1D41D00A58278 /* CycleBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleBannerView.swift; sourceTree = "<group>"; };
+		A3EB57391FA1D41D00A58278 /* CycleBannerViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleBannerViewItem.swift; sourceTree = "<group>"; };
 		A3FDF5BC1F8B2432009E5F68 /* DeviceAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceAuthentication.swift; sourceTree = "<group>"; };
 		A3FDF5BE1F8CA2AB009E5F68 /* DeviceAuthenticationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceAuthenticationTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -219,13 +221,14 @@
 		61091D6F1CDAFCB0008B7EA3 /* CYUtils */ = {
 			isa = PBXGroup;
 			children = (
+				A39A31631FB03B9800CAC143 /* Model */,
+				A3EB57371FA1D41D00A58278 /* CycleBanner */,
 				A3FDF5BB1F8B2420009E5F68 /* DeviceAuth */,
 				A36B94361F4E7F4F00F14AAB /* CYAnimation */,
 				A36B942D1F4ABBE600F14AAB /* EventListener */,
 				A37150491F385BF40079E9C5 /* WebViewController */,
 				A32F8C991F31C095003BA93B /* FloatingView */,
 				A3D086F91EEE3B17007752ED /* HerizontalTable */,
-				A3636A861ED28FA600B0F8E9 /* CycleBanner */,
 				A385A69D1ED138CE0022C2EB /* CYAlertWindow */,
 				A385A69C1ED138810022C2EB /* CYRedPacketUI */,
 				A3B700961E1B446900823B7B /* CYProgressWeb */,
@@ -312,15 +315,6 @@
 			path = CYProgressUtils;
 			sourceTree = "<group>";
 		};
-		A3636A861ED28FA600B0F8E9 /* CycleBanner */ = {
-			isa = PBXGroup;
-			children = (
-				A3636A871ED28FA600B0F8E9 /* CycleBannerView.swift */,
-				A3636A891ED297D200B0F8E9 /* CycleBannerViewItem.swift */,
-			);
-			path = CycleBanner;
-			sourceTree = "<group>";
-		};
 		A36B942D1F4ABBE600F14AAB /* EventListener */ = {
 			isa = PBXGroup;
 			children = (
@@ -400,6 +394,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		A39A31631FB03B9800CAC143 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A39A31641FB03BCF00CAC143 /* BaseModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		A3B700961E1B446900823B7B /* CYProgressWeb */ = {
 			isa = PBXGroup;
 			children = (
@@ -441,6 +443,15 @@
 				A3D086FC1EEE3B47007752ED /* HerizontalTableViewItem.swift */,
 			);
 			path = HerizontalTable;
+			sourceTree = "<group>";
+		};
+		A3EB57371FA1D41D00A58278 /* CycleBanner */ = {
+			isa = PBXGroup;
+			children = (
+				A3EB57381FA1D41D00A58278 /* CycleBannerView.swift */,
+				A3EB57391FA1D41D00A58278 /* CycleBannerViewItem.swift */,
+			);
+			path = CycleBanner;
 			sourceTree = "<group>";
 		};
 		A3FDF5BB1F8B2420009E5F68 /* DeviceAuth */ = {
@@ -563,7 +574,6 @@
 				A30EA3D21CFED40F006FEF23 /* CYAudioPlayUtils.swift in Sources */,
 				A36B94401F4E815D00F14AAB /* AnimatedImageTestViewController.swift in Sources */,
 				A36B943B1F4E7F8900F14AAB /* CYAnimatedImageView.swift in Sources */,
-				A3636A881ED28FA600B0F8E9 /* CycleBannerView.swift in Sources */,
 				A345C5FC1DEBDE2F0094AF5A /* CYBaseProgressBar.swift in Sources */,
 				A385A6AE1ED16C240022C2EB /* CYRedPacketDrawViewModel.swift in Sources */,
 				A33E4B3B1D069B0C001B0AB1 /* CYJSLocalRequestUtils.swift in Sources */,
@@ -579,7 +589,9 @@
 				A38580241DEFF6E100FF989F /* CYCycleProgressBar.swift in Sources */,
 				A3CCAF311D17A56000A40969 /* CYJSJSONParametersSerialization.swift in Sources */,
 				A37D5B481ED7037500A63AB9 /* SendRedPacketView.swift in Sources */,
+				A39A31651FB03BCF00CAC143 /* BaseModel.swift in Sources */,
 				A37D5B461ED7036200A63AB9 /* SendRedPacketViewController.swift in Sources */,
+				A3EB573B1FA1D41D00A58278 /* CycleBannerViewItem.swift in Sources */,
 				A3B7009B1E1B500B00823B7B /* ProgressWebTestViewController.swift in Sources */,
 				A32F8C9B1F31C0AA003BA93B /* FloatingView.swift in Sources */,
 				A33913D11CF4236800C8C147 /* CYJSONUtils.swift in Sources */,
@@ -606,11 +618,11 @@
 				A34F17F11EF8B78200538F20 /* HerizontalTableViewTestViewController.swift in Sources */,
 				A371504D1F3875350079E9C5 /* WebViewProgress.swift in Sources */,
 				A36B943D1F4E80A200F14AAB /* AnimationTestTableViewController.swift in Sources */,
-				A3636A8A1ED297D200B0F8E9 /* CycleBannerViewItem.swift in Sources */,
 				A33913CE1CF3EE4400C8C147 /* Dictionary+CYUtils.swift in Sources */,
 				A3B700981E1B449C00823B7B /* CYProgressWebView.swift in Sources */,
 				A385A6A71ED1585B0022C2EB /* CYRedPacketDetailCell.swift in Sources */,
 				A3BA5F1C1E67ED8200B31B8C /* CYProgressWebViewController.swift in Sources */,
+				A3EB573A1FA1D41D00A58278 /* CycleBannerView.swift in Sources */,
 				A33E4B3D1D06ABDC001B0AB1 /* CYJSCommonActionRequestUtils.swift in Sources */,
 				A385A69F1ED138EA0022C2EB /* UIWindow+CYAlertWindow.swift in Sources */,
 			);

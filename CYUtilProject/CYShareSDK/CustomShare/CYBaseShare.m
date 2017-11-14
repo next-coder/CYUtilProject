@@ -11,8 +11,12 @@
 @implementation CYBaseShare
 
 #pragma mark - app info
-- (void)registerWithAppId:(NSString *)appId {
+- (void)registerAppId:(NSString *)appId {
     _appId = appId;
+}
+
+- (void)registerAppKey:(NSString *)appKey {
+    _appKey = appKey;
 }
 
 #pragma mark - share

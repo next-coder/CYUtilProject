@@ -12,6 +12,8 @@
 #import "CYBaseShare.h"
 
 @class CYShareModel;
+@class CYQQLoginInfo;
+@class CYQQUserInfo;
 @class UIViewController;
 
 typedef NS_ENUM(uint64_t, CYQQAPICtrlFlag) {
@@ -78,4 +80,96 @@ presentActionSheetFrom:(UIViewController *)viewController
 + (instancetype)sharedInstance;
 
 @end
+
+#pragma mark - qq login
+
+typedef void (^CYQQLoginCallback)(NSInteger errorCode, NSString *msg, CYQQLoginInfo *loginInfo);
+typedef void (^CYQQUserInfoCallback)(NSInteger errorCode, NSString *msg, CYQQUserInfo *userInfo);
+
+@interface CYQQ (Login)
+
+// 缓存登录信息，未登录情况下为空
+@property (nonatomic, strong, readonly) CYQQLoginInfo *loginInfo;
+// 缓存用户信息，第一次成功获取到用户信息之前为空，之后则为最新一次获取到的用户信息
+@property (nonatomic, strong, readonly) CYQQUserInfo *userInfo;
+
+/**
+ *  qq登录
+ *  @param permissions 需要的权限列表，参考QQ SDK中的sdkdef.h
+ *  @param callback 登录完成回调
+ */
+- (void)loginWithPermissions:(NSArray *)permissions
+                    callback:(CYQQLoginCallback)callback;
+
+/**
+ *  qq登录，采用kOPEN_PERMISSION_GET_SIMPLE_USER_INFO权限进行登录
+ *  @param callback 登录完成回调
+ */
+- (void)loginWithCallback:(CYQQLoginCallback)callback;
+
+@end
+
+
+
+#pragma mark - logininfo model
+/**
+ *  qq登录信息model
+ *
+ *  qq登录成功之后，回调中包含此model，用来标识用户登录相关信息
+ *
+ */
+@interface CYQQLoginInfo: NSObject
+
+/** Access Token凭证，用于后续访问各开放接口 */
+@property(nonatomic, copy) NSString* accessToken;
+
+/** Access Token的失效期 */
+@property(nonatomic, copy) NSDate* expirationDate;
+
+/** 用户授权登录后对该用户的唯一标识 */
+@property(nonatomic, copy) NSString* openId;
+
++ (instancetype)instanceFromCurrentQQOAuth;
+
+@end
+
+
+
+#pragma mark - userinfo model
+/**
+ *  qq用户信息model
+ *
+ *  调用获取用户信息接口时，如果调用成功，则回调block中的参数包含此对象
+ *
+ */
+@interface CYQQUserInfo: NSObject
+
+// 用户在QQ空间的昵称。
+@property (nonatomic, copy) NSString *nickname;
+// 大小为30×30像素的QQ空间头像URL。
+@property (nonatomic, copy) NSString *figureurl;
+// 大小为50×50像素的QQ空间头像URL。
+@property (nonatomic, copy) NSString *figureurl_1;
+// 大小为100×100像素的QQ空间头像URL。
+@property (nonatomic, copy) NSString *figureurl_2;
+// 大小为40×40像素的QQ头像URL。
+@property (nonatomic, copy) NSString *figureurl_qq_1;
+// 大小为100×100像素的QQ头像URL。需要注意，不是所有的用户都拥有QQ的100x100的头像，但40x40像素则是一定会有。
+@property (nonatomic, copy) NSString *figureurl_qq_2;
+// 性别。 如果获取不到则默认返回"男"
+@property (nonatomic, copy) NSString *gender;
+// 标识用户是否为黄钻用户（0：不是；1：是）。
+@property (nonatomic, copy) NSString *isYellowVip;
+// 标识用户是否为黄钻用户（0：不是；1：是）
+@property (nonatomic, copy) NSString *vip;
+// 黄钻等级
+@property (nonatomic, copy) NSString *yellowVipLevel;
+// 黄钻等级
+@property (nonatomic, copy) NSString *level;
+// 标识是否为年费黄钻用户（0：不是； 1：是）
+@property (nonatomic, copy) NSString *isYellowYearVip;
+
+
+@end
+
 #endif

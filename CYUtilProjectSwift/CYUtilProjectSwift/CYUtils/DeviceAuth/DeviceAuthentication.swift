@@ -51,8 +51,12 @@ public class DeviceAuthentication: NSObject {
     public class func authByBiometrics(localizedReason: String, completion:@escaping (Bool, Error?) -> Void) {
 
         LAContext().evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics,
-                                   localizedReason: localizedReason,
-                                   reply: completion)
+                                   localizedReason: localizedReason) {
+                                    result, error in
+                                    DispatchQueue.main.async {
+                                        completion(result, error)
+                                    }
+        }
     }
 
     // this method auth by biometrics(touchid, faceid)
@@ -74,8 +78,12 @@ public class DeviceAuthentication: NSObject {
             context.localizedCancelTitle = localizedCancelTitle
         }
         context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics,
-                               localizedReason: localizedReason,
-                               reply: completion)
+                               localizedReason: localizedReason) {
+                                result, error in
+                                DispatchQueue.main.async {
+                                    completion(result, error)
+                                }
+        }
     }
 
     // this method tests the passcode or biometrics(touchid, faceid) authentication availability on the device
@@ -126,8 +134,12 @@ public class DeviceAuthentication: NSObject {
                 context.localizedCancelTitle = localizedCancelTitle
             }
             context.evaluatePolicy(.deviceOwnerAuthentication,
-                                   localizedReason: localizedReason,
-                                   reply: completion)
+                                   localizedReason: localizedReason) {
+                                    result, error in
+                                    DispatchQueue.main.async {
+                                        completion(result, error)
+                                    }
+            }
         } else {
             self.authByBiometrics(localizedReason: localizedReason,
                                   localizedCancelTitle: localizedCancelTitle,

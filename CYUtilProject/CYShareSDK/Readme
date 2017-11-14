@@ -3,6 +3,7 @@
     1、本SDK包含分享网页和图片功能。
     2、使用本SDK需要开发者自己下载第三方SDK，并包含在项目中。
     3、如果使用AppleSocial分享，需要添加Social.framework(iOS系统提供)到项目
+    4、CYShareCtrlFlag.h提供分享的开关功能，开发者可以自行控制需要哪些分享功能
 
 二、各个平台分享SDK导入
     1、QQSDK请参考  http://wiki.connect.qq.com/ios_sdk环境搭建

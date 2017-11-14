@@ -2,8 +2,8 @@
 //  CycleBannerView.swift
 //  CYUtilProjectSwift
 //
-//  Created by Conner on 22/05/2017.
-//  Copyright © 2017 Conner. All rights reserved.
+//  Created by xn011644 on 22/05/2017.
+//  Copyright © 2017 Jasper. All rights reserved.
 //
 
 import UIKit
@@ -15,7 +15,7 @@ import UIKit
     @objc optional func cycleBannerViewDidLayoutItems(_ cycleBannerView: CycleBannerView)
 }
 
-open class CycleBannerView: UIView, UIScrollViewDelegate {
+open class CycleBannerView: UIView, UIScrollViewDelegate, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var delegate: CycleBannerViewDelegate?
 
@@ -23,21 +23,6 @@ open class CycleBannerView: UIView, UIScrollViewDelegate {
     private(set) var scrollView: UIScrollView!
 
     private(set) var pageControl: UIPageControl!
-    var isHidePageControl: Bool = false {
-        didSet {
-            pageControl.isHidden = isHidePageControl
-            if isHidePageControl {
-
-                scrollView.frame = self.bounds
-            } else {
-
-                scrollView.frame = CGRect(x: 0,
-                                          y: 0,
-                                          width: self.frame.width,
-                                          height: self.frame.height - 20)
-            }
-        }
-    }
 
     // 所有已显示的item
     public var items: [CycleBannerViewItem] = [] {
@@ -54,8 +39,21 @@ open class CycleBannerView: UIView, UIScrollViewDelegate {
 
                 _refreshItems_()
                 setNeedsLayout()
+
+                if autoplayDuration > 0 {
+                    startAutoplay()
+                }
             }
         }
+    }
+//    // 所有显示的Items，
+//    // 如果cycleScrolling=false，则此属性与items值相同
+//    // 否则，此属性值比Items多两个，其中internalItems[0] == items.last，internalItems.last == items[0]，中间的都一样
+//    private var internalItems: [CycleBannerViewItem] = []
+    // items count
+    public var numberOfItems: Int {
+
+        return items.count
     }
 
     // 默认item大小，开发者可以通过设置这个，来统一指定所有的item大小
@@ -66,27 +64,47 @@ open class CycleBannerView: UIView, UIScrollViewDelegate {
     public var itemHeaderWidth: CGFloat = 0
     public var itemFooterWidth: CGFloat = 0
 
-    public var numberOfItems: Int {
+    // 自动滚动，小于0表示不自动滚动，否则每次按时间滚动一页，默认为0
+    public var autoplayDuration: Double = 0 {
+        didSet {
+            if autoplayDuration > 0
+                && numberOfItems > 0 {
+                startAutoplay()
+            } else {
+                stopAutoplay()
+            }
+        }
+    }
 
-        return items.count
+    // 是否循环滚动, 默认false
+    public var cycleScrolling: Bool = false {
+        didSet {
+
+        }
     }
 
     // select index
     private(set) var currentIndex: Int = 0
 
     public func setCurrentIndex(_ index: Int, animated: Bool) {
+        if index < 0
+            || index >= numberOfItems
+            || index == currentIndex {
+            return
+        }
+
         currentIndex = index
         pageControl.currentPage = currentIndex
-
-        if self.window != nil {
-            _scrollToCurrentIndexItem_(animated)
-        }
+        _scrollToCurrentIndexItem_(animated)
     }
 
     // scroll items
     private func _scrollToCurrentIndexItem_(_ animated: Bool) {
 
-        // 当前index 的item
+//        if currentIndex == 0 {
+//
+//            scrollView.setContentOffset(.zero, animated: animated)
+//        } else
         if let item = item(at: currentIndex) {
 
             let offsetX = item.center.x - scrollView.frame.width / 2.0
@@ -115,7 +133,7 @@ open class CycleBannerView: UIView, UIScrollViewDelegate {
         scrollView = UIScrollView(frame: CGRect(x: 0,
                                                 y: 0,
                                                 width: self.frame.width,
-                                                height: self.frame.height - 20))
+                                                height: self.frame.height))
         scrollView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
@@ -129,6 +147,7 @@ open class CycleBannerView: UIView, UIScrollViewDelegate {
                                                   height: 20))
         pageControl.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
         pageControl.backgroundColor = UIColor.clear
+        pageControl.isUserInteractionEnabled = false
         addSubview(pageControl)
     }
 
@@ -137,6 +156,9 @@ open class CycleBannerView: UIView, UIScrollViewDelegate {
 
         if itemSize.equalTo(.zero) {
             itemSize = scrollView.frame.size
+        }
+        if itemSize.width == scrollView.frame.width {
+            scrollView.isPagingEnabled = true
         }
 
         _reloadScrollViewContentSize_()
@@ -197,12 +219,16 @@ open class CycleBannerView: UIView, UIScrollViewDelegate {
             }
         }
 
+        if numberOfItems == 0 {
+            return
+        }
+
         for item in items {
             item.autoresizingMask = [.flexibleTopMargin, .flexibleLeftMargin, .flexibleRightMargin, .flexibleBottomMargin]
-            item.transform = .identity
             scrollView.addSubview(item)
 
             let tap = UITapGestureRecognizer(target: self, action: #selector(_itemTapped_(sender:)))
+            tap.delegate = self
             item.addGestureRecognizer(tap)
         }
     }
@@ -227,53 +253,45 @@ open class CycleBannerView: UIView, UIScrollViewDelegate {
 
     public func indexOfItem(at point: CGPoint) -> Int? {
 
-        if point.x < 0
-            || point.x > scrollView.contentSize.width
-            || point.y < 0
-            || point.y > scrollView.frame.height {
-
-            return nil
-        }
-
-        // 第一个item的x
-        let itemStartX = scrollView.frame.width / 2.0 - itemSize.width / 2.0 - itemHeaderWidth
-        let itemScopeWidth = (itemHeaderWidth + itemSize.width + itemFooterWidth)
-        let index = Int((point.x - itemStartX) / itemScopeWidth)
-        if index > 0
-            || index < numberOfItems {
-
-            return index
+//        // 第一个item的x
+//        var enumertatedItems: [CycleBannerViewItem] = items
+//        if (point.x < scrollView.contentSize.width - (scrollView.frame.width - itemSize.width) / 2.0 - itemFooterWidth
+//            && point.x > scrollView.contentSize.width / 2.0)
+//            || (point.x < (scrollView.frame.width - itemSize.width) / 2.0 - itemHeaderWidth){
+//            // 从最后一个开始遍历
+//            enumertatedItems = items.reversed()
+//        }
+        for (index, item) in items.enumerated() {
+            if point.x < item.frame.maxX + itemFooterWidth
+                && point.x > item.frame.minX - itemHeaderWidth {
+                return index
+            }
         }
         return nil
     }
 
     // UIScrollViewDelegate
+    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        stopAutoplay()
+        delegate?.scrollViewWillBeginDragging?(scrollView)
+    }
+
     public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
 
-        delegate?.scrollViewWillEndDragging?(scrollView, withVelocity: velocity, targetContentOffset: targetContentOffset)
-
-        var currentIndex = 0
+        var currentIndex = self.currentIndex
         if let itemIndex = indexOfItem(at: CGPoint(x: scrollView.contentOffset.x + scrollView.frame.size.width / 2.0, y: 0)) {
 
             currentIndex = itemIndex
-        } else if (scrollView.contentOffset.x < scrollView.frame.width) {
-
-            currentIndex = 0
-        } else {
-
-            currentIndex = numberOfItems - 1
         }
-        if (velocity.x > 0.5) {
+        if currentIndex == self.currentIndex {
 
-            currentIndex += 1
-        } else if (velocity.x < -0.5) {
+            if velocity.x > 0.5 {
 
-            currentIndex -= 1
-        }
-        if currentIndex < 0 {
-            currentIndex = 0
-        } else if currentIndex >= numberOfItems {
-            currentIndex = numberOfItems - 1
+                currentIndex += 1
+            } else if velocity.x < -0.5 {
+
+                currentIndex -= 1
+            }
         }
 
         if let item = item(at: currentIndex) {
@@ -283,11 +301,31 @@ open class CycleBannerView: UIView, UIScrollViewDelegate {
             targetContentOffset.pointee = CGPoint(x: item.center.x - scrollView.frame.width / 2.0,
                                                   y: 0)
         }
+
+        delegate?.scrollViewWillEndDragging?(scrollView, withVelocity: velocity, targetContentOffset: targetContentOffset)
+    }
+
+    public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if !decelerate {
+            startAutoplay()
+        }
+        delegate?.scrollViewDidEndDragging?(scrollView, willDecelerate: decelerate)
+    }
+
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        startAutoplay()
+        delegate?.scrollViewDidEndDecelerating?(scrollView)
     }
 
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
 
+        refreshCycleScrollingIfNeeded()
         delegate?.scrollViewDidScroll?(scrollView)
+    }
+
+    // MARK: UIGestureRecognizerDelegate
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 
     // event
@@ -297,6 +335,75 @@ open class CycleBannerView: UIView, UIScrollViewDelegate {
             let index = index(of: item) {
 
             delegate?.cycleBannerView?(self, didSelectItemAt: index)
+        }
+    }
+}
+
+// MARK: autoplay
+extension CycleBannerView {
+    // 开始
+    fileprivate func startAutoplay() {
+        // 开始之前，先停止之前的操作
+        stopAutoplay()
+        // 时间小于0，不自动滚动
+        if autoplayDuration <= 0 {
+            return
+        }
+        perform(#selector(autoplayBanner),
+                with: nil,
+                afterDelay: autoplayDuration)
+    }
+
+    fileprivate func stopAutoplay() {
+        NSObject.cancelPreviousPerformRequests(withTarget: self,
+                                               selector: #selector(autoplayBanner),
+                                               object: nil)
+    }
+
+    @objc fileprivate func autoplayBanner() {
+        var nextItemIndex = currentIndex + 1
+        if cycleScrolling
+            && nextItemIndex >= numberOfItems {
+            nextItemIndex = 0
+        }
+        setCurrentIndex(nextItemIndex, animated: true)
+        startAutoplay()
+    }
+}
+
+// MARK: Cycle scroll 循环滚动
+extension CycleBannerView {
+    fileprivate func refreshCycleScrollingIfNeeded() {
+        if cycleScrolling
+            && numberOfItems >= 2{
+
+            scrollView.contentInset = UIEdgeInsets(top: 0,
+                                                   left: itemHeaderWidth + itemFooterWidth + itemSize.width,
+                                                   bottom: 0,
+                                                   right: itemHeaderWidth + itemFooterWidth + itemSize.width)
+
+            let contentMinX = (scrollView.frame.width - itemSize.width) / 2.0 - itemHeaderWidth
+            let contentMaxX = scrollView.contentSize.width - (scrollView.frame.width - itemSize.width) / 2.0 + itemFooterWidth
+            if scrollView.contentOffset.x < contentMinX {
+                // 滑到了最左边，把最右边的item挪到最左边
+                items[0].center.x = scrollView.frame.width / 2.0
+                items[numberOfItems - 1].center.x = contentMinX - itemFooterWidth - itemSize.width / 2.0
+            } else if scrollView.contentOffset.x > contentMaxX - scrollView.frame.width {
+                // 滑到最右边，把最左边的item挪到最右边
+                items[numberOfItems - 1].center.x = scrollView.contentSize.width - scrollView.frame.width / 2.0
+                items[0].center.x = contentMaxX + itemHeaderWidth + itemSize.width / 2.0
+            } else {
+                items[0].center.x = scrollView.frame.width / 2.0
+                items[numberOfItems - 1].center.x = scrollView.contentSize.width - scrollView.frame.width / 2.0
+            }
+
+            if scrollView.contentOffset.x <= -itemSize.width - itemHeaderWidth - itemFooterWidth {
+                // 循环滚动的时候，滑到最后一个item（此时最后一个item在第一个item的左边），则调回开头
+                scrollView.setContentOffset(CGPoint(x: scrollView.contentSize.width - scrollView.frame.width, y: 0), animated: false)
+            } else if scrollView.contentOffset.x >= scrollView.contentSize.width - scrollView.frame.width + itemSize.width + itemFooterWidth + itemHeaderWidth {
+                // 循环滚动的时候，滑到第一个item（此时第一个item在最后一个item的右边），则调回开头
+                scrollView.setContentOffset(.zero, animated: false)
+            }
         }
     }
 }

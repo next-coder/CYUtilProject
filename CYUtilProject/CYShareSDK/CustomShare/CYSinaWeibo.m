@@ -13,18 +13,34 @@
 
 #import "WeiboSDK.h"
 
+@interface CYSinaWeiboLoginInfo()
+
++ (instancetype)loginInfoWithResponse:(WBAuthorizeResponse *)response;
+
+@end
+
 @interface CYSinaWeibo () <WeiboSDKDelegate>
+
+@property (nonatomic, copy) CYSinaWeiboLoginCallback loginCallback;
+
+@property (nonatomic, strong, readwrite) CYSinaWeiboLoginInfo *loginInfo;
 
 @end
 
 @implementation CYSinaWeibo
 
 #pragma mark - register
-// 微博的appId是微博开放平台第三方应用appKey
-- (void)registerWithAppId:(NSString *)appId {
-    [super registerWithAppId:appId];
+//// 微博的appId是微博开放平台第三方应用appKey
+//- (void)registerAppId:(NSString *)appId {
+//    [super registerAppId:appId];
+//
+//    [WeiboSDK registerApp:appId];
+//}
 
-    [WeiboSDK registerApp:appId];
+- (void)registerAppKey:(NSString *)appKey {
+    [super registerAppKey:appKey];
+
+    [WeiboSDK registerApp:appKey];
 }
 
 #pragma mark - login
@@ -106,7 +122,12 @@
         self.shareCallback = nil;
     } else if ([response isKindOfClass:[WBAuthorizeResponse class]]) {
         // 登录完成
-        
+        CYSinaWeiboLoginInfo *loginInfo = [CYSinaWeiboLoginInfo loginInfoWithResponse:(WBAuthorizeResponse *)response];
+        self.loginInfo = loginInfo;
+        if (self.loginCallback) {
+            self.loginCallback(response.statusCode, nil, loginInfo);
+            self.loginCallback = nil;
+        }
     }
 }
 
@@ -136,6 +157,50 @@
 + (BOOL)openApp {
     
     return [WeiboSDK openWeiboApp];
+}
+
+@end
+
+#pragma mark - login
+@implementation CYSinaWeibo (Login)
+
+@dynamic loginInfo;
+
+- (void)loginWithScope:(NSString *)scope
+           redirectURI:(NSString *)redirectURI
+              callback:(CYSinaWeiboLoginCallback)callback {
+
+    self.loginCallback = callback;
+
+    WBAuthorizeRequest *request = [[WBAuthorizeRequest alloc] init];
+    request.scope = scope;
+    request.redirectURI = redirectURI;
+    request.shouldOpenWeiboAppInstallPageIfNotInstalled = NO;
+    [WeiboSDK sendRequest:request];
+}
+
+//- (void)loginCompleteWithResponse:(WBAuthorizeResponse *)response {
+//
+//}
+
+@end
+
+
+
+@implementation CYSinaWeiboLoginInfo
+
++ (instancetype)loginInfoWithResponse:(WBAuthorizeResponse *)response {
+    if (response
+        && response.statusCode == WeiboSDKResponseStatusCodeSuccess) {
+
+        CYSinaWeiboLoginInfo *loginInfo = [[CYSinaWeiboLoginInfo alloc] init];
+        loginInfo.userId = response.userID;
+        loginInfo.accessToken = response.accessToken;
+        loginInfo.expirationDate = response.expirationDate;
+        loginInfo.refreshToken = response.refreshToken;
+        return loginInfo;
+    }
+    return nil;
 }
 
 @end

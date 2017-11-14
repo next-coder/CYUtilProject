@@ -14,8 +14,28 @@
 
 @class UIViewController;
 
+/**
+ *  通过iOS系统提供的UIActivityViewController来分享
+ *
+ */
 @interface CYAppleActivity : CYBaseShare
 
+/**
+ *  通过iOS系统提供的UIActivityViewController来分享
+ *
+ *  通过调用- (void)share:presentFrom:callback:来实现
+ *  其中presentFrom使用[[[UIApplication sharedApplication] keyWindow] rootViewController]
+ *
+ */
+- (void)share:(CYShareModel *)model
+     callback:(CYShareCallback)callback;
+
+/**
+ *  通过iOS系统提供的UIActivityViewController来分享
+ *
+ *  弹出ActionSheet选择分享到哪个网站
+ *
+ */
 - (void)share:(CYShareModel *)model
   presentFrom:(UIViewController *)viewController
      callback:(CYShareCallback)callback;
