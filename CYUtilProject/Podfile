@@ -5,7 +5,7 @@
 
 target 'CYUtilProject' do
 
-pod 'Masonry'
+pod 'AFNetworking'
 
 end
 

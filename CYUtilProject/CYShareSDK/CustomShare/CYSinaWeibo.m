@@ -13,47 +13,20 @@
 
 #import "WeiboSDK.h"
 
-@interface CYSinaWeiboLoginInfo()
-
-+ (instancetype)loginInfoWithResponse:(WBAuthorizeResponse *)response;
-
-@end
+#import <objc/runtime.h>
 
 @interface CYSinaWeibo () <WeiboSDKDelegate>
-
-@property (nonatomic, copy) CYSinaWeiboLoginCallback loginCallback;
-
-@property (nonatomic, strong, readwrite) CYSinaWeiboLoginInfo *loginInfo;
 
 @end
 
 @implementation CYSinaWeibo
 
 #pragma mark - register
-//// 微博的appId是微博开放平台第三方应用appKey
-//- (void)registerAppId:(NSString *)appId {
-//    [super registerAppId:appId];
-//
-//    [WeiboSDK registerApp:appId];
-//}
-
 - (void)registerAppKey:(NSString *)appKey {
     [super registerAppKey:appKey];
 
     [WeiboSDK registerApp:appKey];
 }
-
-#pragma mark - login
-//- (void)loginFrom:(UIViewController *)viewController
-//         callback:(CYThirdPartyLoginCallback)callback {
-//
-//    WBAuthorizeRequest *request = [[WBAuthorizeRequest alloc] init];
-//    request.redirectURI = @"http://";
-//    request.scope = @"";
-//    request.shouldShowWebViewForAuthIfCannotSSO = YES;
-//
-//    [WeiboSDK sendRequest:request];
-//}
 
 #pragma mark - SinaWeibo share
 - (void)share:(CYShareModel *)model
@@ -102,7 +75,7 @@
     self.shareCallback = callback;
     if (!result
         && self.shareCallback) {
-        self.shareCallback(-1, NSLocalizedString(@"分享失败", nil));
+        self.shareCallback(-1, NSLocalizedString(@"Failed", nil));
         self.shareCallback = nil;
     }
 }
@@ -122,10 +95,13 @@
         self.shareCallback = nil;
     } else if ([response isKindOfClass:[WBAuthorizeResponse class]]) {
         // 登录完成
-        CYSinaWeiboLoginInfo *loginInfo = [CYSinaWeiboLoginInfo loginInfoWithResponse:(WBAuthorizeResponse *)response];
+        CYLoginInfo *loginInfo = [[CYLoginInfo alloc] init];
+        loginInfo.sinaWeiboAuthorizeResponse = (WBAuthorizeResponse *)response;
         self.loginInfo = loginInfo;
         if (self.loginCallback) {
-            self.loginCallback(response.statusCode, nil, loginInfo);
+            self.loginCallback(response.statusCode,
+                               nil,
+                               loginInfo);
             self.loginCallback = nil;
         }
     }
@@ -164,11 +140,9 @@
 #pragma mark - login
 @implementation CYSinaWeibo (Login)
 
-@dynamic loginInfo;
-
 - (void)loginWithScope:(NSString *)scope
            redirectURI:(NSString *)redirectURI
-              callback:(CYSinaWeiboLoginCallback)callback {
+              callback:(CYLoginCallback)callback {
 
     self.loginCallback = callback;
 
@@ -179,28 +153,28 @@
     [WeiboSDK sendRequest:request];
 }
 
-//- (void)loginCompleteWithResponse:(WBAuthorizeResponse *)response {
-//
-//}
-
 @end
 
+@implementation CYLoginInfo (SinaWeibo)
 
+static char CYShareSDK_CYLoginInfo_sinaWeiboAuthorizeResponseKey;
 
-@implementation CYSinaWeiboLoginInfo
+@dynamic sinaWeiboAuthorizeResponse;
 
-+ (instancetype)loginInfoWithResponse:(WBAuthorizeResponse *)response {
-    if (response
-        && response.statusCode == WeiboSDKResponseStatusCodeSuccess) {
+- (void)setSinaWeiboAuthorizeResponse:(WBAuthorizeResponse *)sinaWeiboAuthorizeResponse {
+    objc_setAssociatedObject(self,
+                             &CYShareSDK_CYLoginInfo_sinaWeiboAuthorizeResponseKey,
+                             sinaWeiboAuthorizeResponse,
+                             OBJC_ASSOCIATION_RETAIN);
 
-        CYSinaWeiboLoginInfo *loginInfo = [[CYSinaWeiboLoginInfo alloc] init];
-        loginInfo.userId = response.userID;
-        loginInfo.accessToken = response.accessToken;
-        loginInfo.expirationDate = response.expirationDate;
-        loginInfo.refreshToken = response.refreshToken;
-        return loginInfo;
-    }
-    return nil;
+    self.accessToken = sinaWeiboAuthorizeResponse.accessToken;
+    self.expirationDate = sinaWeiboAuthorizeResponse.expirationDate;
+    self.userId = sinaWeiboAuthorizeResponse.userID;
+    self.refreshToken = sinaWeiboAuthorizeResponse.refreshToken;
+}
+
+- (WBAuthorizeResponse *)sinaWeiboAuthorizeResponse {
+    return objc_getAssociatedObject(self, &CYShareSDK_CYLoginInfo_sinaWeiboAuthorizeResponseKey);
 }
 
 @end

@@ -11,6 +11,7 @@
 #if CY_SHARE_WECHAT_ENABLED
 
 #import <UIKit/UIKit.h>
+#import <objc/runtime.h>
 #import "CYShareModel.h"
 
 #import "WXApi.h"
@@ -19,12 +20,12 @@
 
 @interface CYWechat() <WXApiDelegate>
 
-@property (nonatomic, copy) CYWechatLoginCallback loginCallback;
+//@property (nonatomic, copy) CYWechatLoginCallback loginCallback;
 @property (nonatomic, copy) CYWechatPayCallback payCallback;
 //@property (nonatomic, copy) CYWechatAccessTokenCallback accessTokenCallback;
 //@property (nonatomic, copy) CYWechatUserInfoCallback userInfoCallback;
 
-@property (nonatomic, strong, readwrite) CYWechatAccessToken *accessToken;
+//@property (nonatomic, strong, readwrite) CYWechatAccessToken *accessToken;
 @property (nonatomic, strong, readwrite) CYWechatUserInfo *userInfo;
 
 @end
@@ -193,10 +194,17 @@ presentActionSheetFrom:(UIViewController *)viewController
         // 登录回调
         SendAuthResp *response = (SendAuthResp *)resp;
         NSString *wechatCode = response.code;
-        NSInteger errorCode = response.errCode;
-
-        self.loginCallback(errorCode, response.errStr, wechatCode);
-        self.loginCallback = nil;
+        if (wechatCode
+            && wechatCode.length > 0) {
+            // 登录成功，获取accessToken
+            [self getAccessTokenWithCode:wechatCode
+                                callback:self.loginCallback];
+        } else if (self.loginCallback) {
+            // 登录失败
+            self.loginCallback(response.errCode,
+                               response.errStr,
+                               nil);
+        }
     } else if ([resp isKindOfClass:[SendMessageToWXResp class]]) {
         // 分享回调
         if (self.shareCallback) {
@@ -246,11 +254,11 @@ presentActionSheetFrom:(UIViewController *)viewController
 @end
 
 #pragma mark - wechat login
-@interface CYWechatAccessToken()
-
-- (instancetype)initWithDictionary:(NSDictionary *)dic;
-
-@end
+//@interface CYWechatAccessToken()
+//
+//- (instancetype)initWithDictionary:(NSDictionary *)dic;
+//
+//@end
 
 @interface CYWechatUserInfo()
 
@@ -264,7 +272,7 @@ presentActionSheetFrom:(UIViewController *)viewController
 #define CY_WECHAT_REFRESH_ACCESS_TOKEN_URL @"https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=%@&grant_type=refresh_token&refresh_token=%@"
 #define CY_WECHAT_GET_USER_INFO_URL @"https://api.weixin.qq.com/sns/userinfo?access_token=%@&openid=%@"
 
-@dynamic accessToken;
+//@dynamic accessToken;
 @dynamic userInfo;
 
 /**
@@ -274,7 +282,7 @@ presentActionSheetFrom:(UIViewController *)viewController
  *  @param callback 登陆回调
  */
 - (void)loginFrom:(UIViewController *)from
-         callback:(CYWechatLoginCallback)callback {
+         callback:(CYLoginCallback)callback {
 
     //构造SendAuthReq结构体
     SendAuthReq* request =[[SendAuthReq alloc ] init];
@@ -287,57 +295,24 @@ presentActionSheetFrom:(UIViewController *)viewController
 }
 
 // 获取微信access token
-- (void)getAccessTokenWithCode:(NSString *)code callback:(CYWechatAccessTokenCallback)callback {
+- (void)getAccessTokenWithCode:(NSString *)code callback:(CYLoginCallback)callback {
 
     NSString *urlString = [NSString stringWithFormat:CY_WECHAT_GET_ACCESS_TOKEN_URL, self.appId, self.appKey, code];
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]
-                                             cachePolicy:NSURLRequestReloadIgnoringCacheData
-                                         timeoutInterval:30.f];
-
-    NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request
-                                                                 completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                                                                     // 回到主线程，这个是通过子线程回调的
-                                                                     dispatch_async(dispatch_get_main_queue(), ^{
-
-                                                                         NSInteger errorCode = error.code;
-                                                                         NSString *msg = [error.userInfo objectForKey:@"msg"];
-                                                                         CYWechatAccessToken *accessToken = nil;
-                                                                         if (data) {
-                                                                             NSError *error = nil;
-                                                                             NSDictionary *wechatResponse = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-                                                                             if (!error
-                                                                                 && wechatResponse
-                                                                                 && [wechatResponse isKindOfClass:[NSDictionary class]]) {
-
-                                                                                 errorCode = [wechatResponse[@"errcode"] integerValue];
-                                                                                 msg = wechatResponse[@"errmsg"];
-                                                                                 if (errorCode == 0) {
-                                                                                     accessToken = [[CYWechatAccessToken alloc] initWithDictionary:wechatResponse];
-                                                                                     accessToken.originData = data;
-                                                                                     self.accessToken = accessToken;
-                                                                                 }
-                                                                             } else {
-
-                                                                                 errorCode = error.code;
-                                                                                 msg = [error.userInfo objectForKey:@"msg"];
-                                                                             }
-                                                                         }
-                                                                         if (callback) {
-                                                                             callback(errorCode, msg, accessToken);
-                                                                         }
-                                                                     });
-                                                                 }];
-    [task resume];
+    [self accessTokenWithURL:urlString callback:callback];
 }
 
 - (void)refreshAccessTokenWithRefreshToken:(NSString *)refreshToken
-                                  callback:(CYWechatAccessTokenCallback)callback {
+                                  callback:(CYLoginCallback)callback {
 
     NSString *urlString = [NSString stringWithFormat:CY_WECHAT_REFRESH_ACCESS_TOKEN_URL, self.appId, refreshToken];
+    [self accessTokenWithURL:urlString callback:callback];
+}
+
+- (void)accessTokenWithURL:(NSString *)urlString callback:(CYLoginCallback)callback {
+
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]
                                              cachePolicy:NSURLRequestReloadIgnoringCacheData
                                          timeoutInterval:30.f];
-
     NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request
                                                                  completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                                                                      // 回到主线程，这个是通过子线程回调的
@@ -345,7 +320,7 @@ presentActionSheetFrom:(UIViewController *)viewController
 
                                                                          NSInteger errorCode = error.code;
                                                                          NSString *msg = [error.userInfo objectForKey:@"msg"];
-                                                                         CYWechatAccessToken *accessToken = nil;
+                                                                         CYLoginInfo *loginInfo = nil;
                                                                          if (data) {
                                                                              NSError *error = nil;
                                                                              NSDictionary *wechatResponse = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
@@ -356,9 +331,9 @@ presentActionSheetFrom:(UIViewController *)viewController
                                                                                  errorCode = [wechatResponse[@"errcode"] integerValue];
                                                                                  msg = wechatResponse[@"errmsg"];
                                                                                  if (errorCode == 0) {
-                                                                                     accessToken = [[CYWechatAccessToken alloc] initWithDictionary:wechatResponse];
-                                                                                     accessToken.originData = data;
-                                                                                     self.accessToken = accessToken;
+                                                                                     loginInfo = [[CYLoginInfo alloc] init];
+                                                                                     loginInfo.wechatAccessTokenInfo = wechatResponse;
+                                                                                     self.loginInfo = loginInfo;
                                                                                  }
                                                                              } else {
 
@@ -367,7 +342,7 @@ presentActionSheetFrom:(UIViewController *)viewController
                                                                              }
                                                                          }
                                                                          if (callback) {
-                                                                             callback(errorCode, msg, accessToken);
+                                                                             callback(errorCode, msg, loginInfo);
                                                                          }
                                                                      });
                                                                  }];
@@ -421,24 +396,48 @@ presentActionSheetFrom:(UIViewController *)viewController
 
 @end
 
-#pragma mark - wechat access token data
-@implementation CYWechatAccessToken
+//#pragma mark - wechat access token data
+//@implementation CYWechatAccessToken
+//
+//- (instancetype)initWithDictionary:(NSDictionary *)dic {
+//    if (self = [super init]) {
+//
+//        if (dic
+//            && [dic isKindOfClass:[NSDictionary class]]
+//            && dic.count > 0) {
+//            self.accessToken = dic[@"access_token"];
+//            self.expiresIn = [dic[@"expires_in"] doubleValue];
+//            self.refreshToken = dic[@"refresh_token"];
+//            self.openid = dic[@"openid"];
+//            self.scope = dic[@"scope"];
+//            self.unionid = dic[@"unionid"];
+//        }
+//    }
+//    return self;
+//}
+//
+//@end
 
-- (instancetype)initWithDictionary:(NSDictionary *)dic {
-    if (self = [super init]) {
+@implementation CYLoginInfo (Wechat)
 
-        if (dic
-            && [dic isKindOfClass:[NSDictionary class]]
-            && dic.count > 0) {
-            self.accessToken = dic[@"access_token"];
-            self.expiresIn = [dic[@"expires_in"] doubleValue];
-            self.refreshToken = dic[@"refresh_token"];
-            self.openid = dic[@"openid"];
-            self.scope = dic[@"scope"];
-            self.unionid = dic[@"unionid"];
-        }
-    }
-    return self;
+static char CYShareSDK_CYLoginInfo_wechatAccessTokenInfoKey;
+
+@dynamic wechatAccessTokenInfo;
+
+- (void)setWechatAccessTokenInfo:(NSDictionary *)wechatAccessTokenInfo {
+    objc_setAssociatedObject(self,
+                             &CYShareSDK_CYLoginInfo_wechatAccessTokenInfoKey,
+                             wechatAccessTokenInfo,
+                             OBJC_ASSOCIATION_RETAIN);
+
+    self.accessToken = wechatAccessTokenInfo[@"access_token"];
+    self.expirationDate = [NSDate dateWithTimeIntervalSinceNow:[wechatAccessTokenInfo[@"expires_in"] doubleValue]];
+    self.refreshToken = wechatAccessTokenInfo[@"refresh_token"];
+    self.userId = wechatAccessTokenInfo[@"openid"];
+}
+
+- (NSDictionary *)wechatAccessTokenInfo {
+    return objc_getAssociatedObject(self, &CYShareSDK_CYLoginInfo_wechatAccessTokenInfoKey);
 }
 
 @end

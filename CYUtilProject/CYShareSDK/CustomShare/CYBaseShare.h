@@ -7,11 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CYLoginInfo.h"
 
 @class CYShareModel;
 
-typedef void (^CYLoginCallback)(NSInteger code, NSString *msg, NSDictionary *resultDic);
-typedef void (^CYShareCallback)(NSInteger code, NSString *msg);
+typedef void (^CYShareCallback)(NSInteger code,
+                                NSString *msg);
+typedef void (^CYLoginCallback)(NSInteger code,
+                                NSString *msg,
+                                CYLoginInfo *loginInfo);
 
 @interface CYBaseShare : NSObject
 
@@ -19,13 +23,16 @@ typedef void (^CYShareCallback)(NSInteger code, NSString *msg);
 @property (nonatomic, strong, readonly) NSString *appKey;
 
 @property (nonatomic, copy) CYShareCallback shareCallback;
+@property (nonatomic, copy) CYLoginCallback loginCallback;
+
+@property (nonatomic, strong) CYLoginInfo *loginInfo;
 
 #pragma mark - share
 // Subclass should implements this method to implement the share action
 - (void)share:(CYShareModel *)model
      callback:(CYShareCallback)callback;
 
-#pragma mark - app info
+#pragma mark - register app info
 // 注册appid和appKey
 // 微信和QQ必须注册Appid，微博必须注册AppKey
 - (void)registerAppId:(NSString *)appId;

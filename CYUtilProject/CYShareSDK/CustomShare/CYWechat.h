@@ -14,7 +14,7 @@
 #import "CYBaseShare.h"
 
 @class CYShareModel;
-@class CYWechatAccessToken;
+//@class CYWechatAccessToken;
 @class CYWechatUserInfo;
 @class CYWechatPayInfo;
 
@@ -96,14 +96,14 @@ presentActionSheetFrom:(UIViewController *)viewController
 @end
 
 #pragma mark - wechat login
-// 微信登陆回调
-typedef void (^CYWechatLoginCallback)(NSInteger errorCode,
-                                      NSString *msg,
-                                      NSString *wechatCode);
-// 微信获取access token 回调
-typedef void (^CYWechatAccessTokenCallback)(NSInteger errorCode,
-                                            NSString *msg,
-                                            CYWechatAccessToken *wechatToken);
+//// 微信登陆回调
+//typedef void (^CYWechatLoginCallback)(NSInteger errorCode,
+//                                      NSString *msg,
+//                                      NSString *wechatCode);
+//// 微信获取access token 回调
+//typedef void (^CYWechatAccessTokenCallback)(NSInteger errorCode,
+//                                            NSString *msg,
+//                                            CYWechatAccessToken *wechatToken);
 // 微信获取用户信息回调
 typedef void (^CYWechatUserInfoCallback)(NSInteger errorCode,
                                          NSString *msg,
@@ -111,10 +111,10 @@ typedef void (^CYWechatUserInfoCallback)(NSInteger errorCode,
 
 @interface CYWechat (Login)
 
-// 最新获取的微信accessToken缓存，
-// 在第一次调用获取accessToken或者刷新accessToken之前为空
-// 如果调用获取accessToken或者刷新accessToken成功获取到新的accessToken，则此属性值为最近一次调用成功的缓存
-@property (nonatomic, strong, readonly) CYWechatAccessToken *accessToken;
+//// 最新获取的微信accessToken缓存，
+//// 在第一次调用获取accessToken或者刷新accessToken之前为空
+//// 如果调用获取accessToken或者刷新accessToken成功获取到新的accessToken，则此属性值为最近一次调用成功的缓存
+//@property (nonatomic, strong, readonly) CYWechatAccessToken *accessToken;
 // 最新获取的微信userInfo缓存
 // 在第一次调用获取userInfo之前为空
 // 如果调用获取userInfo成功获取到新的userInfo，则此属性值为最近一次调用成功的缓存
@@ -127,7 +127,7 @@ typedef void (^CYWechatUserInfoCallback)(NSInteger errorCode,
  *  @param callback 登陆回调
  */
 - (void)loginFrom:(UIViewController *)from
-         callback:(CYWechatLoginCallback)callback;
+         callback:(CYLoginCallback)callback;
 
 /**
  *  微信获取access token
@@ -136,7 +136,7 @@ typedef void (^CYWechatUserInfoCallback)(NSInteger errorCode,
  *  @param callback 获取access token 完成后回调
  */
 - (void)getAccessTokenWithCode:(NSString *)code
-                      callback:(CYWechatAccessTokenCallback)callback;
+                      callback:(CYLoginCallback)callback;
 
 /**
  *  微信刷新access token
@@ -145,7 +145,7 @@ typedef void (^CYWechatUserInfoCallback)(NSInteger errorCode,
  *  @param callback 获取access token 完成后回调
  */
 - (void)refreshAccessTokenWithRefreshToken:(NSString *)refreshToken
-                                  callback:(CYWechatAccessTokenCallback)callback;
+                                  callback:(CYLoginCallback)callback;
 
 /**
  *  获取微信用户信息
@@ -160,27 +160,34 @@ typedef void (^CYWechatUserInfoCallback)(NSInteger errorCode,
 
 @end
 
-#pragma mark - wechat access token data
-/**
- *  微信获取和刷新access token的返回数据
- */
-@interface CYWechatAccessToken : NSObject
+//#pragma mark - wechat access token data
+///**
+// *  微信获取和刷新access token的返回数据
+// */
+//@interface CYWechatAccessToken : NSObject
+//
+//// 接口调用凭证
+//@property (nonatomic, copy) NSString *accessToken;
+//// access_token接口调用凭证超时时间，单位（秒）
+//@property (nonatomic, assign) NSTimeInterval expiresIn;
+//// 用户刷新access_token
+//@property (nonatomic, copy) NSString *refreshToken;
+//// 授权用户唯一标识
+//@property (nonatomic, copy) NSString *openid;
+//// 用户授权的作用域，使用逗号（,）分隔
+//@property (nonatomic, copy) NSString *scope;
+//// 当且仅当该移动应用已获得该用户的userinfo授权时，才会出现该字段
+//@property (nonatomic, copy) NSString *unionid;
+//
+//// 获取accesstoken接口，微信返回的原始数据
+//@property (nonatomic, strong) NSData *originData;
+//
+//@end
 
-// 接口调用凭证
-@property (nonatomic, copy) NSString *accessToken;
-// access_token接口调用凭证超时时间，单位（秒）
-@property (nonatomic, assign) NSTimeInterval expiresIn;
-// 用户刷新access_token
-@property (nonatomic, copy) NSString *refreshToken;
-// 授权用户唯一标识
-@property (nonatomic, copy) NSString *openid;
-// 用户授权的作用域，使用逗号（,）分隔
-@property (nonatomic, copy) NSString *scope;
-// 当且仅当该移动应用已获得该用户的userinfo授权时，才会出现该字段
-@property (nonatomic, copy) NSString *unionid;
+@interface CYLoginInfo (Wechat)
 
 // 获取accesstoken接口，微信返回的原始数据
-@property (nonatomic, strong) NSData *originData;
+@property (nonatomic, strong) NSDictionary *wechatAccessTokenInfo;
 
 @end
 

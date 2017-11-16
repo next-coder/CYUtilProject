@@ -132,10 +132,17 @@
 		A3274A041FBAD1FD00315E1E /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A3274A021FBAD1FD00315E1E /* AlipaySDK.bundle */; };
 		A3274A051FBAD1FD00315E1E /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3274A031FBAD1FD00315E1E /* AlipaySDK.framework */; };
 		A3274A071FBAD2E500315E1E /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3274A061FBAD24A00315E1E /* CoreMotion.framework */; };
+		A3274A0B1FBAD34600315E1E /* CYAlipay.m in Sources */ = {isa = PBXBuildFile; fileRef = A3274A0A1FBAD34600315E1E /* CYAlipay.m */; };
 		A330B09F1CF6ACCE00C8639D /* UIDevice+CYUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A330B09E1CF6ACCE00C8639D /* UIDevice+CYUtils.m */; };
 		A330B0A21CF6ADC400C8639D /* UIScreen+CYUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A330B0A11CF6ADC400C8639D /* UIScreen+CYUtils.m */; };
 		A330B0AE1CF6F53F00C8639D /* CYSecurityUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A330B0AD1CF6F53F00C8639D /* CYSecurityUtils.m */; };
 		A341ECB11CF54E6000D37D32 /* NSDate+CYUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A341ECB01CF54E6000D37D32 /* NSDate+CYUtils.m */; };
+		A34F784F1FBD3D6900A3D895 /* CYFacebook.m in Sources */ = {isa = PBXBuildFile; fileRef = A34F784E1FBD3D6900A3D895 /* CYFacebook.m */; };
+		A34F78541FBD3FFA00A3D895 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A34F78501FBD3FF900A3D895 /* FBSDKShareKit.framework */; };
+		A34F78551FBD3FFA00A3D895 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A34F78511FBD3FF900A3D895 /* FBSDKLoginKit.framework */; };
+		A34F78561FBD3FFA00A3D895 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A34F78521FBD3FF900A3D895 /* Bolts.framework */; };
+		A34F78571FBD3FFA00A3D895 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A34F78531FBD3FFA00A3D895 /* FBSDKCoreKit.framework */; };
+		A34F785A1FBD854B00A3D895 /* CYLoginInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A34F78591FBD854B00A3D895 /* CYLoginInfo.m */; };
 		A369041D1E6D6224005F7697 /* UIImage+CYScale.m in Sources */ = {isa = PBXBuildFile; fileRef = A369041C1E6D6224005F7697 /* UIImage+CYScale.m */; };
 		A369041F1E6D6746005F7697 /* tab_origin.png in Resources */ = {isa = PBXBuildFile; fileRef = A369041E1E6D6746005F7697 /* tab_origin.png */; };
 		A36904211E6D6765005F7697 /* tab_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A36904201E6D6765005F7697 /* tab_1@2x.png */; };
@@ -153,6 +160,7 @@
 		A3A81D6D1F972B6A00C26475 /* CYAppleActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A81D601F972AD100C26475 /* CYAppleActivity.m */; };
 		A3A81D701F974AAD00C26475 /* CYSMS.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A81D6F1F974AAD00C26475 /* CYSMS.m */; };
 		A3BA5F291E6814F100B31B8C /* CYWebListener.m in Sources */ = {isa = PBXBuildFile; fileRef = A3BA5F281E6814F100B31B8C /* CYWebListener.m */; };
+		C071DD02C6E38C583C568616 /* libPods-CYUtilProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF24914467ED2B4EC0F2DF57 /* libPods-CYUtilProject.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -408,6 +416,8 @@
 		A3274A021FBAD1FD00315E1E /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
 		A3274A031FBAD1FD00315E1E /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
 		A3274A061FBAD24A00315E1E /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		A3274A091FBAD34600315E1E /* CYAlipay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYAlipay.h; sourceTree = "<group>"; };
+		A3274A0A1FBAD34600315E1E /* CYAlipay.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYAlipay.m; sourceTree = "<group>"; };
 		A330B09D1CF6ACCE00C8639D /* UIDevice+CYUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+CYUtils.h"; sourceTree = "<group>"; };
 		A330B09E1CF6ACCE00C8639D /* UIDevice+CYUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+CYUtils.m"; sourceTree = "<group>"; };
 		A330B0A01CF6ADC400C8639D /* UIScreen+CYUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScreen+CYUtils.h"; sourceTree = "<group>"; };
@@ -416,6 +426,14 @@
 		A330B0AD1CF6F53F00C8639D /* CYSecurityUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYSecurityUtils.m; sourceTree = "<group>"; };
 		A341ECAF1CF54E6000D37D32 /* NSDate+CYUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+CYUtils.h"; sourceTree = "<group>"; };
 		A341ECB01CF54E6000D37D32 /* NSDate+CYUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+CYUtils.m"; sourceTree = "<group>"; };
+		A34F784D1FBD3D6900A3D895 /* CYFacebook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYFacebook.h; sourceTree = "<group>"; };
+		A34F784E1FBD3D6900A3D895 /* CYFacebook.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYFacebook.m; sourceTree = "<group>"; };
+		A34F78501FBD3FF900A3D895 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		A34F78511FBD3FF900A3D895 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		A34F78521FBD3FF900A3D895 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		A34F78531FBD3FFA00A3D895 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		A34F78581FBD854B00A3D895 /* CYLoginInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYLoginInfo.h; sourceTree = "<group>"; };
+		A34F78591FBD854B00A3D895 /* CYLoginInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYLoginInfo.m; sourceTree = "<group>"; };
 		A369041B1E6D6224005F7697 /* UIImage+CYScale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CYScale.h"; sourceTree = "<group>"; };
 		A369041C1E6D6224005F7697 /* UIImage+CYScale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CYScale.m"; sourceTree = "<group>"; };
 		A369041E1E6D6746005F7697 /* tab_origin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_origin.png; sourceTree = "<group>"; };
@@ -450,6 +468,7 @@
 		A3BA5F271E6814F100B31B8C /* CYWebListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYWebListener.h; sourceTree = "<group>"; };
 		A3BA5F281E6814F100B31B8C /* CYWebListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYWebListener.m; sourceTree = "<group>"; };
 		E44A7E629213891F907F2C63 /* Pods-CYUtilProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CYUtilProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-CYUtilProject/Pods-CYUtilProject.release.xcconfig"; sourceTree = "<group>"; };
+		FF24914467ED2B4EC0F2DF57 /* libPods-CYUtilProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CYUtilProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -468,13 +487,18 @@
 				61F783681CA0F3FC004DE856 /* libc++.tbd in Frameworks */,
 				61F711AE1BF1C4BE00881E3B /* SystemConfiguration.framework in Frameworks */,
 				61F711B41BF1C50900881E3B /* libiconv.tbd in Frameworks */,
+				A34F78551FBD3FFA00A3D895 /* FBSDKLoginKit.framework in Frameworks */,
 				61F711B21BF1C4F400881E3B /* libsqlite3.tbd in Frameworks */,
+				A34F78541FBD3FFA00A3D895 /* FBSDKShareKit.framework in Frameworks */,
 				61F783751CA0F5B9004DE856 /* libWeChatSDK.a in Frameworks */,
 				61A316B21CA390C90079C13B /* libWeiboSDK.a in Frameworks */,
 				61F711B01BF1C4DF00881E3B /* libstdc++.tbd in Frameworks */,
 				61F711AF1BF1C4D600881E3B /* libz.tbd in Frameworks */,
 				61F711AD1BF1C4B500881E3B /* Security.framework in Frameworks */,
+				A34F78561FBD3FFA00A3D895 /* Bolts.framework in Frameworks */,
+				A34F78571FBD3FFA00A3D895 /* FBSDKCoreKit.framework in Frameworks */,
 				61F711AC1BF1C3CE00881E3B /* TencentOpenAPI.framework in Frameworks */,
+				C071DD02C6E38C583C568616 /* libPods-CYUtilProject.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -873,6 +897,7 @@
 		61851EBD1BCD0964005340C8 /* CYUtilProject */ = {
 			isa = PBXGroup;
 			children = (
+				A3274A081FBAD33200315E1E /* CYAlipay */,
 				A369041A1E6D61DF005F7697 /* CYImage */,
 				A3BA5F241E6814C900B31B8C /* CYWebListener */,
 				A307B6431D080FD900DE9B9E /* CYSegmented */,
@@ -1066,6 +1091,15 @@
 			path = AlipaySDK;
 			sourceTree = "<group>";
 		};
+		A3274A081FBAD33200315E1E /* CYAlipay */ = {
+			isa = PBXGroup;
+			children = (
+				A3274A091FBAD34600315E1E /* CYAlipay.h */,
+				A3274A0A1FBAD34600315E1E /* CYAlipay.m */,
+			);
+			path = CYAlipay;
+			sourceTree = SOURCE_ROOT;
+		};
 		A330B0AB1CF6F53000C8639D /* CYSecurity */ = {
 			isa = PBXGroup;
 			children = (
@@ -1124,6 +1158,8 @@
 		A3A81D5E1F972AD100C26475 /* CustomShare */ = {
 			isa = PBXGroup;
 			children = (
+				A34F78581FBD854B00A3D895 /* CYLoginInfo.h */,
+				A34F78591FBD854B00A3D895 /* CYLoginInfo.m */,
 				A3A81D611F972AD100C26475 /* CYBaseShare.h */,
 				A3A81D621F972AD100C26475 /* CYBaseShare.m */,
 				A3A81D671F972AD100C26475 /* CYWechat.h */,
@@ -1132,6 +1168,8 @@
 				A3A81D641F972AD100C26475 /* CYQQ.m */,
 				A3A81D651F972AD100C26475 /* CYSinaWeibo.h */,
 				A3A81D661F972AD100C26475 /* CYSinaWeibo.m */,
+				A34F784D1FBD3D6900A3D895 /* CYFacebook.h */,
+				A34F784E1FBD3D6900A3D895 /* CYFacebook.m */,
 				A3A81D5F1F972AD100C26475 /* CYAppleActivity.h */,
 				A3A81D601F972AD100C26475 /* CYAppleActivity.m */,
 				A3A81D6E1F974AAD00C26475 /* CYSMS.h */,
@@ -1152,6 +1190,10 @@
 		E299DF45F885184B4A142853 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A34F78521FBD3FF900A3D895 /* Bolts.framework */,
+				A34F78531FBD3FFA00A3D895 /* FBSDKCoreKit.framework */,
+				A34F78511FBD3FF900A3D895 /* FBSDKLoginKit.framework */,
+				A34F78501FBD3FF900A3D895 /* FBSDKShareKit.framework */,
 				A3274A061FBAD24A00315E1E /* CoreMotion.framework */,
 				61A316BA1CA39AE40079C13B /* CoreText.framework */,
 				61A316B81CA39ACD0079C13B /* ImageIO.framework */,
@@ -1166,6 +1208,7 @@
 				61F711931BF1BD5400881E3B /* SystemConfiguration.framework */,
 				61F711911BF1BD4800881E3B /* libiconv.tbd */,
 				61F711751BF1983F00881E3B /* Security.framework */,
+				FF24914467ED2B4EC0F2DF57 /* libPods-CYUtilProject.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1177,9 +1220,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 61851ED21BCD0964005340C8 /* Build configuration list for PBXNativeTarget "CYUtilProject" */;
 			buildPhases = (
+				872D42946A24FD10161DDAF3 /* [CP] Check Pods Manifest.lock */,
 				61851EB71BCD0964005340C8 /* Sources */,
 				61851EB81BCD0964005340C8 /* Frameworks */,
 				61851EB91BCD0964005340C8 /* Resources */,
+				4C713314D79DD307AAC06270 /* [CP] Embed Pods Frameworks */,
+				4BBB4C4774E73FF29A0A19D5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1321,6 +1367,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4BBB4C4774E73FF29A0A19D5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CYUtilProject/Pods-CYUtilProject-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4C713314D79DD307AAC06270 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CYUtilProject/Pods-CYUtilProject-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		872D42946A24FD10161DDAF3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		61851EB71BCD0964005340C8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -1328,6 +1422,7 @@
 			files = (
 				A3A81D691F972B6A00C26475 /* CYBaseShare.m in Sources */,
 				A3A81D6A1F972B6A00C26475 /* CYWechat.m in Sources */,
+				A34F784F1FBD3D6900A3D895 /* CYFacebook.m in Sources */,
 				A3A81D6B1F972B6A00C26475 /* CYQQ.m in Sources */,
 				A3A81D6C1F972B6A00C26475 /* CYSinaWeibo.m in Sources */,
 				A3A81D6D1F972B6A00C26475 /* CYAppleActivity.m in Sources */,
@@ -1350,6 +1445,7 @@
 				61091D061CDAF563008B7EA3 /* CYContactsSearchInNavigationViewController.m in Sources */,
 				61091D251CDAF563008B7EA3 /* CYPrepareStatement.m in Sources */,
 				A3271D541CE585F7005DE1A1 /* CYExceptionUtils.m in Sources */,
+				A34F785A1FBD854B00A3D895 /* CYLoginInfo.m in Sources */,
 				61091D1B1CDAF563008B7EA3 /* CYSearchController.m in Sources */,
 				61091D2A1CDAF563008B7EA3 /* UIView+CYAnimationUtil.m in Sources */,
 				61091D051CDAF563008B7EA3 /* CYContactsListViewController.m in Sources */,
@@ -1403,6 +1499,7 @@
 				A36B94351F4C396900F14AAB /* UIView+Animatable.m in Sources */,
 				61091CE41CDAF563008B7EA3 /* CYBaseTableWithPullRefreshViewController.m in Sources */,
 				61091CEF1CDAF563008B7EA3 /* CYChatBaseCell.m in Sources */,
+				A3274A0B1FBAD34600315E1E /* CYAlipay.m in Sources */,
 				A307B64C1D08103F00DE9B9E /* CYVerticalMultiPageScrollView.m in Sources */,
 				61091CF61CDAF563008B7EA3 /* CYChatVoiceCell.m in Sources */,
 				61091CF91CDAF563008B7EA3 /* CYChatDataSource.m in Sources */,
@@ -1536,6 +1633,7 @@
 		};
 		61851ED31BCD0964005340C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 560DD24FE4038A3D8BB79B6C /* Pods-CYUtilProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

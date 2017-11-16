@@ -10,6 +10,7 @@
 
 #if CY_SHARE_QQ_ENABLED
 #import <UIKit/UIKit.h>
+#import <objc/runtime.h>
 #import "CYShareModel.h"
 
 #import "TencentOpenApi/TencentOAuth.h"
@@ -18,10 +19,10 @@
 @interface CYQQ() <TencentSessionDelegate, QQApiInterfaceDelegate>
 
 @property (nonatomic, strong) TencentOAuth *oauth;
-@property (nonatomic, copy) CYQQLoginCallback loginCallback;
+//@property (nonatomic, copy) CYQQLoginCallback loginCallback;
 @property (nonatomic, copy) CYQQUserInfoCallback userInfoCallback;
 
-@property (nonatomic, strong, readwrite) CYQQLoginInfo *loginInfo;
+//@property (nonatomic, strong, readwrite) CYQQLoginInfo *loginInfo;
 // 缓存用户信息，第一次成功获取到用户信息之前为空，之后则为最新一次获取到的用户信息
 @property (nonatomic, strong, readwrite) CYQQUserInfo *userInfo;
 
@@ -41,10 +42,11 @@ NSString *const CYQQAPICtrlFlagKey = @"CYUtil.CYQQAPICtrlFlagKey";
 
 #pragma mark - login delegate
 - (void)tencentDidLogin {
-    self.loginInfo = [CYQQLoginInfo instanceFromCurrentQQOAuth];
+    self.loginInfo = [[CYLoginInfo alloc] init];
+    self.loginInfo.qqOAuth = self.oauth;
     if (self.loginCallback) {
         self.loginCallback(0,
-                           NSLocalizedString(@"success", nil),
+                           NSLocalizedString(@"Success", nil),
                            self.loginInfo);
         self.loginCallback = nil;
     }
@@ -53,8 +55,8 @@ NSString *const CYQQAPICtrlFlagKey = @"CYUtil.CYQQAPICtrlFlagKey";
 - (void)tencentDidNotLogin:(BOOL)cancelled {
     if (self.loginCallback) {
         self.loginCallback(-1,
-                           NSLocalizedString(@"user cancelled", nil),
-                           [CYQQLoginInfo instanceFromCurrentQQOAuth]);
+                           NSLocalizedString(@"Cancelled", nil),
+                           nil);
         self.loginCallback = nil;
     }
     self.loginInfo = nil;
@@ -64,7 +66,7 @@ NSString *const CYQQAPICtrlFlagKey = @"CYUtil.CYQQAPICtrlFlagKey";
     if (self.loginCallback) {
         self.loginCallback(-2,
                            NSLocalizedString(@"network error", nil),
-                           [CYQQLoginInfo instanceFromCurrentQQOAuth]);
+                           nil);
         self.loginCallback = nil;
     }
     self.loginInfo = nil;
@@ -256,15 +258,8 @@ presentActionSheetFrom:(UIViewController *)viewController
     return util;
 }
 
-//+ (void)registerWithAppId:(NSString *)appId appKey:(NSString *)appKey {
-//    [super registerWithAppId:appId appKey:appKey];
-//
-////    QQApiInterface
-//}
-
 @end
 
-#pragma mark - qq login
 @interface CYQQUserInfo()
 
 - (instancetype)initWithDictionary:(NSDictionary *)dic;
@@ -274,12 +269,12 @@ presentActionSheetFrom:(UIViewController *)viewController
 @implementation CYQQ (Login)
 
 - (void)loginWithPermissions:(NSArray *)permissions
-                    callback:(CYQQLoginCallback)callback {
+                    callback:(CYLoginCallback)callback {
     self.loginCallback = callback;
     [self.oauth authorize:permissions];
 }
 
-- (void)loginWithCallback:(CYQQLoginCallback)callback {
+- (void)loginWithCallback:(CYLoginCallback)callback {
     [self loginWithPermissions:@[ kOPEN_PERMISSION_GET_SIMPLE_USER_INFO ]
                       callback:callback];
 }
@@ -288,7 +283,7 @@ presentActionSheetFrom:(UIViewController *)viewController
     self.userInfoCallback = callback;
     BOOL result = [self.oauth getUserInfo];
     if (!result) {
-        callback(-1, NSLocalizedString(@"Call failed", nil), nil);
+        callback(-1, NSLocalizedString(@"Failed", nil), nil);
         self.userInfoCallback = nil;
     }
 }
@@ -309,18 +304,26 @@ presentActionSheetFrom:(UIViewController *)viewController
 
 @end
 
-#pragma mark - logininfo model
-@implementation CYQQLoginInfo
+#pragma mark - qq login
+@implementation CYLoginInfo (QQ)
 
-+ (instancetype)instanceFromCurrentQQOAuth {
+static char CYShareSDK_CYLoginInfo_qqOAuthKey;
 
-    TencentOAuth *oauth = [[CYQQ sharedInstance] oauth];
+@dynamic qqOAuth;
 
-    CYQQLoginInfo *info = [[CYQQLoginInfo alloc] init];
-    info.accessToken = oauth.accessToken;
-    info.expirationDate = oauth.expirationDate;
-    info.openId = oauth.openId;
-    return info;
+- (void)setQqOAuth:(TencentOAuth *)qqOAuth {
+    objc_setAssociatedObject(self,
+                             &CYShareSDK_CYLoginInfo_qqOAuthKey,
+                             qqOAuth,
+                             OBJC_ASSOCIATION_RETAIN);
+
+    self.accessToken = qqOAuth.accessToken;
+    self.expirationDate = qqOAuth.expirationDate;
+    self.userId = qqOAuth.openId;
+}
+
+- (TencentOAuth *)qqOAuth {
+    return objc_getAssociatedObject(self, &CYShareSDK_CYLoginInfo_qqOAuthKey);
 }
 
 @end

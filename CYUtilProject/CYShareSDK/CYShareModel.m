@@ -41,6 +41,10 @@
         case CYShareContenTypeImage:
             return (self.url != nil || self.data != nil);
             break;
+
+        default:
+            return NO;
+            break;
     }
 }
 

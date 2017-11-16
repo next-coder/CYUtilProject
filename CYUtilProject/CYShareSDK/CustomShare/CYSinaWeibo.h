@@ -41,25 +41,36 @@
 
 #pragma mark - login
 
-typedef void (^CYSinaWeiboLoginCallback)(NSInteger errorCode, NSString *msg, CYSinaWeiboLoginInfo *loginInfo);
+//typedef void (^CYSinaWeiboLoginCallback)(NSInteger errorCode, NSString *msg, CYSinaWeiboLoginInfo *loginInfo);
 
 @interface CYSinaWeibo (Login)
 
-@property (nonatomic, strong, readonly) CYSinaWeiboLoginInfo *loginInfo;
+- (void)loginWithScope:(NSString *)scope
+           redirectURI:(NSString *)redirectURI
+              callback:(CYLoginCallback)callback;
+
+//@property (nonatomic, strong, readonly) CYSinaWeiboLoginInfo *loginInfo;
 
 @end
 
-@interface CYSinaWeiboLoginInfo: NSObject
+@class WBAuthorizeResponse;
+@interface CYLoginInfo (SinaWeibo)
 
-// 用户ID
-@property (nonatomic, copy) NSString *userId;
-// 认证口令
-@property (nonatomic, copy) NSString *accessToken;
-// 认证过期时间
-@property (nonatomic, strong) NSDate *expirationDate;
-// 当认证口令过期时用于换取认证口令的更新口令
-@property (nonatomic, strong) NSString *refreshToken;
+@property (nonatomic, strong) WBAuthorizeResponse *sinaWeiboAuthorizeResponse;
 
 @end
+
+//@interface CYSinaWeiboLoginInfo: NSObject
+//
+//// 用户ID
+//@property (nonatomic, copy) NSString *userId;
+//// 认证口令
+//@property (nonatomic, copy) NSString *accessToken;
+//// 认证过期时间
+//@property (nonatomic, strong) NSDate *expirationDate;
+//// 当认证口令过期时用于换取认证口令的更新口令
+//@property (nonatomic, strong) NSString *refreshToken;
+//
+//@end
 
 #endif

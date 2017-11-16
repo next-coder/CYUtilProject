@@ -12,7 +12,7 @@
 #import "CYBaseShare.h"
 
 @class CYShareModel;
-@class CYQQLoginInfo;
+//@class CYQQLoginInfo;
 @class CYQQUserInfo;
 @class UIViewController;
 
@@ -31,7 +31,7 @@ extern NSString *const CYQQAPICtrlFlagKey;
 
 #pragma mark - share url
 /**
- * 如果使用此方法分享，model的userInfo属性可以包含key 为CYWechatSceneKey，值为CYWechatScene中的一个，
+ * 如果使用此方法分享，model的userInfo属性可以包含key 为CYQQAPICtrlFlagKey，值为CYQQAPICtrlFlag中的一个，
  * 用于标识分享的目标，如果未包含，则调用share:presentActionSheetFrom:callback:进行分享
  */
 - (void)share:(CYShareModel *)model
@@ -83,13 +83,13 @@ presentActionSheetFrom:(UIViewController *)viewController
 
 #pragma mark - qq login
 
-typedef void (^CYQQLoginCallback)(NSInteger errorCode, NSString *msg, CYQQLoginInfo *loginInfo);
+//typedef void (^CYQQLoginCallback)(NSInteger errorCode, NSString *msg, CYQQLoginInfo *loginInfo);
 typedef void (^CYQQUserInfoCallback)(NSInteger errorCode, NSString *msg, CYQQUserInfo *userInfo);
 
 @interface CYQQ (Login)
 
-// 缓存登录信息，未登录情况下为空
-@property (nonatomic, strong, readonly) CYQQLoginInfo *loginInfo;
+//// 缓存登录信息，未登录情况下为空
+//@property (nonatomic, strong, readonly) CYQQLoginInfo *loginInfo;
 // 缓存用户信息，第一次成功获取到用户信息之前为空，之后则为最新一次获取到的用户信息
 @property (nonatomic, strong, readonly) CYQQUserInfo *userInfo;
 
@@ -99,37 +99,44 @@ typedef void (^CYQQUserInfoCallback)(NSInteger errorCode, NSString *msg, CYQQUse
  *  @param callback 登录完成回调
  */
 - (void)loginWithPermissions:(NSArray *)permissions
-                    callback:(CYQQLoginCallback)callback;
+                    callback:(CYLoginCallback)callback;
 
 /**
  *  qq登录，采用kOPEN_PERMISSION_GET_SIMPLE_USER_INFO权限进行登录
  *  @param callback 登录完成回调
  */
-- (void)loginWithCallback:(CYQQLoginCallback)callback;
+- (void)loginWithCallback:(CYLoginCallback)callback;
 
 @end
 
 
 
-#pragma mark - logininfo model
-/**
- *  qq登录信息model
- *
- *  qq登录成功之后，回调中包含此model，用来标识用户登录相关信息
- *
- */
-@interface CYQQLoginInfo: NSObject
+//#pragma mark - logininfo model
+///**
+// *  qq登录信息model
+// *
+// *  qq登录成功之后，回调中包含此model，用来标识用户登录相关信息
+// *
+// */
+//@interface CYQQLoginInfo: NSObject
+//
+///** Access Token凭证，用于后续访问各开放接口 */
+//@property(nonatomic, copy) NSString* accessToken;
+//
+///** Access Token的失效期 */
+//@property(nonatomic, copy) NSDate* expirationDate;
+//
+///** 用户授权登录后对该用户的唯一标识 */
+//@property(nonatomic, copy) NSString* openId;
+//
+//+ (instancetype)instanceFromCurrentQQOAuth;
+//
+//@end
 
-/** Access Token凭证，用于后续访问各开放接口 */
-@property(nonatomic, copy) NSString* accessToken;
+@class TencentOAuth;
+@interface CYLoginInfo (QQ)
 
-/** Access Token的失效期 */
-@property(nonatomic, copy) NSDate* expirationDate;
-
-/** 用户授权登录后对该用户的唯一标识 */
-@property(nonatomic, copy) NSString* openId;
-
-+ (instancetype)instanceFromCurrentQQOAuth;
+@property (nonatomic, strong) TencentOAuth *qqOAuth;
 
 @end
 
