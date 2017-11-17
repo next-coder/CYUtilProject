@@ -143,6 +143,16 @@
 		A34F78561FBD3FFA00A3D895 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A34F78521FBD3FF900A3D895 /* Bolts.framework */; };
 		A34F78571FBD3FFA00A3D895 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A34F78531FBD3FFA00A3D895 /* FBSDKCoreKit.framework */; };
 		A34F785A1FBD854B00A3D895 /* CYLoginInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A34F78591FBD854B00A3D895 /* CYLoginInfo.m */; };
+		A34F785D1FBE70CC00A3D895 /* CYBaseShare+Login.m in Sources */ = {isa = PBXBuildFile; fileRef = A34F785C1FBE70CC00A3D895 /* CYBaseShare+Login.m */; };
+		A34F78601FBE74DC00A3D895 /* CYWechat+Login.m in Sources */ = {isa = PBXBuildFile; fileRef = A34F785F1FBE74DC00A3D895 /* CYWechat+Login.m */; };
+		A34F78631FBE79CC00A3D895 /* CYQQ+Login.m in Sources */ = {isa = PBXBuildFile; fileRef = A34F78621FBE79CC00A3D895 /* CYQQ+Login.m */; };
+		A34F78661FBE813500A3D895 /* CYSinaWeibo+Login.m in Sources */ = {isa = PBXBuildFile; fileRef = A34F78651FBE813500A3D895 /* CYSinaWeibo+Login.m */; };
+		A34F78691FBE826B00A3D895 /* CYFacebook+Login.m in Sources */ = {isa = PBXBuildFile; fileRef = A34F78681FBE826B00A3D895 /* CYFacebook+Login.m */; };
+		A34F786C1FBE86E500A3D895 /* CYUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A34F786B1FBE86E500A3D895 /* CYUserInfo.m */; };
+		A34F78721FBED10500A3D895 /* CYWechatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A34F78711FBED10500A3D895 /* CYWechatTests.m */; };
+		A34F78741FBED45700A3D895 /* logo40.png in Resources */ = {isa = PBXBuildFile; fileRef = A34F78731FBED45700A3D895 /* logo40.png */; };
+		A34F78761FBED47300A3D895 /* share_image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A34F78751FBED47300A3D895 /* share_image.jpg */; };
+		A34F78791FBEDAD700A3D895 /* CYShare+Login.m in Sources */ = {isa = PBXBuildFile; fileRef = A34F78781FBEDAD700A3D895 /* CYShare+Login.m */; };
 		A369041D1E6D6224005F7697 /* UIImage+CYScale.m in Sources */ = {isa = PBXBuildFile; fileRef = A369041C1E6D6224005F7697 /* UIImage+CYScale.m */; };
 		A369041F1E6D6746005F7697 /* tab_origin.png in Resources */ = {isa = PBXBuildFile; fileRef = A369041E1E6D6746005F7697 /* tab_origin.png */; };
 		A36904211E6D6765005F7697 /* tab_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A36904201E6D6765005F7697 /* tab_1@2x.png */; };
@@ -434,6 +444,23 @@
 		A34F78531FBD3FFA00A3D895 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		A34F78581FBD854B00A3D895 /* CYLoginInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYLoginInfo.h; sourceTree = "<group>"; };
 		A34F78591FBD854B00A3D895 /* CYLoginInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYLoginInfo.m; sourceTree = "<group>"; };
+		A34F785B1FBE70CC00A3D895 /* CYBaseShare+Login.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CYBaseShare+Login.h"; sourceTree = "<group>"; };
+		A34F785C1FBE70CC00A3D895 /* CYBaseShare+Login.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CYBaseShare+Login.m"; sourceTree = "<group>"; };
+		A34F785E1FBE74DC00A3D895 /* CYWechat+Login.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CYWechat+Login.h"; sourceTree = "<group>"; };
+		A34F785F1FBE74DC00A3D895 /* CYWechat+Login.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CYWechat+Login.m"; sourceTree = "<group>"; };
+		A34F78611FBE79CC00A3D895 /* CYQQ+Login.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CYQQ+Login.h"; sourceTree = "<group>"; };
+		A34F78621FBE79CC00A3D895 /* CYQQ+Login.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CYQQ+Login.m"; sourceTree = "<group>"; };
+		A34F78641FBE813500A3D895 /* CYSinaWeibo+Login.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CYSinaWeibo+Login.h"; sourceTree = "<group>"; };
+		A34F78651FBE813500A3D895 /* CYSinaWeibo+Login.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CYSinaWeibo+Login.m"; sourceTree = "<group>"; };
+		A34F78671FBE826B00A3D895 /* CYFacebook+Login.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CYFacebook+Login.h"; sourceTree = "<group>"; };
+		A34F78681FBE826B00A3D895 /* CYFacebook+Login.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CYFacebook+Login.m"; sourceTree = "<group>"; };
+		A34F786A1FBE86E500A3D895 /* CYUserInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYUserInfo.h; sourceTree = "<group>"; };
+		A34F786B1FBE86E500A3D895 /* CYUserInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYUserInfo.m; sourceTree = "<group>"; };
+		A34F78711FBED10500A3D895 /* CYWechatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYWechatTests.m; sourceTree = "<group>"; };
+		A34F78731FBED45700A3D895 /* logo40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo40.png; sourceTree = "<group>"; };
+		A34F78751FBED47300A3D895 /* share_image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = share_image.jpg; sourceTree = "<group>"; };
+		A34F78771FBEDAD700A3D895 /* CYShare+Login.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CYShare+Login.h"; sourceTree = "<group>"; };
+		A34F78781FBEDAD700A3D895 /* CYShare+Login.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CYShare+Login.m"; sourceTree = "<group>"; };
 		A369041B1E6D6224005F7697 /* UIImage+CYScale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CYScale.h"; sourceTree = "<group>"; };
 		A369041C1E6D6224005F7697 /* UIImage+CYScale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CYScale.m"; sourceTree = "<group>"; };
 		A369041E1E6D6746005F7697 /* tab_origin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_origin.png; sourceTree = "<group>"; };
@@ -804,6 +831,8 @@
 				A3A81D5E1F972AD100C26475 /* CustomShare */,
 				61091CB71CDAF563008B7EA3 /* CYShare.h */,
 				61091CB81CDAF563008B7EA3 /* CYShare.m */,
+				A34F78771FBEDAD700A3D895 /* CYShare+Login.h */,
+				A34F78781FBEDAD700A3D895 /* CYShare+Login.m */,
 				A36F4F0F1F9091D100E7F4B6 /* CYShareModel.h */,
 				A36F4F101F9091D100E7F4B6 /* CYShareModel.m */,
 				A3A81D591F95EDAA00C26475 /* CYShareCtrlFlag.h */,
@@ -1110,6 +1139,14 @@
 			path = CYSecurity;
 			sourceTree = SOURCE_ROOT;
 		};
+		A34F786D1FBED0C600A3D895 /* CYShareSDK */ = {
+			isa = PBXGroup;
+			children = (
+				A34F78711FBED10500A3D895 /* CYWechatTests.m */,
+			);
+			path = CYShareSDK;
+			sourceTree = "<group>";
+		};
 		A369041A1E6D61DF005F7697 /* CYImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -1122,9 +1159,12 @@
 		A37AEA5B1F468AD4007B3C23 /* CYUtilProjectTests */ = {
 			isa = PBXGroup;
 			children = (
+				A34F786D1FBED0C600A3D895 /* CYShareSDK */,
 				A37AEA691F46D866007B3C23 /* CYCache */,
 				A37AEA631F46BD69007B3C23 /* CYFoundationUtils */,
 				A37AEA5E1F468AD4007B3C23 /* Info.plist */,
+				A34F78731FBED45700A3D895 /* logo40.png */,
+				A34F78751FBED47300A3D895 /* share_image.jpg */,
 			);
 			path = CYUtilProjectTests;
 			sourceTree = "<group>";
@@ -1160,16 +1200,28 @@
 			children = (
 				A34F78581FBD854B00A3D895 /* CYLoginInfo.h */,
 				A34F78591FBD854B00A3D895 /* CYLoginInfo.m */,
+				A34F786A1FBE86E500A3D895 /* CYUserInfo.h */,
+				A34F786B1FBE86E500A3D895 /* CYUserInfo.m */,
 				A3A81D611F972AD100C26475 /* CYBaseShare.h */,
 				A3A81D621F972AD100C26475 /* CYBaseShare.m */,
+				A34F785B1FBE70CC00A3D895 /* CYBaseShare+Login.h */,
+				A34F785C1FBE70CC00A3D895 /* CYBaseShare+Login.m */,
 				A3A81D671F972AD100C26475 /* CYWechat.h */,
 				A3A81D681F972AD100C26475 /* CYWechat.m */,
+				A34F785E1FBE74DC00A3D895 /* CYWechat+Login.h */,
+				A34F785F1FBE74DC00A3D895 /* CYWechat+Login.m */,
 				A3A81D631F972AD100C26475 /* CYQQ.h */,
 				A3A81D641F972AD100C26475 /* CYQQ.m */,
+				A34F78611FBE79CC00A3D895 /* CYQQ+Login.h */,
+				A34F78621FBE79CC00A3D895 /* CYQQ+Login.m */,
 				A3A81D651F972AD100C26475 /* CYSinaWeibo.h */,
 				A3A81D661F972AD100C26475 /* CYSinaWeibo.m */,
+				A34F78641FBE813500A3D895 /* CYSinaWeibo+Login.h */,
+				A34F78651FBE813500A3D895 /* CYSinaWeibo+Login.m */,
 				A34F784D1FBD3D6900A3D895 /* CYFacebook.h */,
 				A34F784E1FBD3D6900A3D895 /* CYFacebook.m */,
+				A34F78671FBE826B00A3D895 /* CYFacebook+Login.h */,
+				A34F78681FBE826B00A3D895 /* CYFacebook+Login.m */,
 				A3A81D5F1F972AD100C26475 /* CYAppleActivity.h */,
 				A3A81D601F972AD100C26475 /* CYAppleActivity.m */,
 				A3A81D6E1F974AAD00C26475 /* CYSMS.h */,
@@ -1355,6 +1407,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A34F78741FBED45700A3D895 /* logo40.png in Resources */,
+				A34F78761FBED47300A3D895 /* share_image.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1425,6 +1479,7 @@
 				A34F784F1FBD3D6900A3D895 /* CYFacebook.m in Sources */,
 				A3A81D6B1F972B6A00C26475 /* CYQQ.m in Sources */,
 				A3A81D6C1F972B6A00C26475 /* CYSinaWeibo.m in Sources */,
+				A34F78791FBEDAD700A3D895 /* CYShare+Login.m in Sources */,
 				A3A81D6D1F972B6A00C26475 /* CYAppleActivity.m in Sources */,
 				61091CE61CDAF563008B7EA3 /* CYBaseViewController.m in Sources */,
 				61091D101CDAF563008B7EA3 /* CYBaseContentsGroup.m in Sources */,
@@ -1440,16 +1495,19 @@
 				61091D0C1CDAF563008B7EA3 /* NSDictionary+CYSecureValue.m in Sources */,
 				61091D0D1CDAF563008B7EA3 /* NSString+CYUtils.m in Sources */,
 				61091CEA1CDAF563008B7EA3 /* CYWebImageCache.m in Sources */,
+				A34F786C1FBE86E500A3D895 /* CYUserInfo.m in Sources */,
 				61091D151CDAF563008B7EA3 /* CYIAPUtils.m in Sources */,
 				611B483C1C98095F00AD2772 /* CYContactsListTestViewController.m in Sources */,
 				61091D061CDAF563008B7EA3 /* CYContactsSearchInNavigationViewController.m in Sources */,
 				61091D251CDAF563008B7EA3 /* CYPrepareStatement.m in Sources */,
+				A34F78691FBE826B00A3D895 /* CYFacebook+Login.m in Sources */,
 				A3271D541CE585F7005DE1A1 /* CYExceptionUtils.m in Sources */,
 				A34F785A1FBD854B00A3D895 /* CYLoginInfo.m in Sources */,
 				61091D1B1CDAF563008B7EA3 /* CYSearchController.m in Sources */,
 				61091D2A1CDAF563008B7EA3 /* UIView+CYAnimationUtil.m in Sources */,
 				61091D051CDAF563008B7EA3 /* CYContactsListViewController.m in Sources */,
 				61FD03161BE9D76F00237EA3 /* CYFullScreenImageViewController.m in Sources */,
+				A34F785D1FBE70CC00A3D895 /* CYBaseShare+Login.m in Sources */,
 				61851EC61BCD0964005340C8 /* ViewController.m in Sources */,
 				61091CDC1CDAF563008B7EA3 /* CYActionSheetSection.m in Sources */,
 				61091D0A1CDAF563008B7EA3 /* NSArray+CYJson.m in Sources */,
@@ -1468,11 +1526,13 @@
 				61091CEC1CDAF563008B7EA3 /* UIButton+CYWebImageCache.m in Sources */,
 				61091CF21CDAF563008B7EA3 /* CYChatImageRightArrowCell.m in Sources */,
 				61091CDE1CDAF563008B7EA3 /* CYAlertView.m in Sources */,
+				A34F78631FBE79CC00A3D895 /* CYQQ+Login.m in Sources */,
 				A3BA5F291E6814F100B31B8C /* CYWebListener.m in Sources */,
 				61091CE51CDAF563008B7EA3 /* CYBaseView.m in Sources */,
 				A36F4C591EBB1312009C0704 /* CYAlertView+AdditionalView.m in Sources */,
 				61091CF31CDAF563008B7EA3 /* CYChatTextCell.m in Sources */,
 				61091CFF1CDAF563008B7EA3 /* CYChatInputContentView.m in Sources */,
+				A34F78661FBE813500A3D895 /* CYSinaWeibo+Login.m in Sources */,
 				61091D121CDAF563008B7EA3 /* pinyin.m in Sources */,
 				61091CFB1CDAF563008B7EA3 /* CYChatBaseModel.m in Sources */,
 				61091D011CDAF563008B7EA3 /* CYChatInputMorePadItem.m in Sources */,
@@ -1498,6 +1558,7 @@
 				61091D031CDAF563008B7EA3 /* CYChatView.m in Sources */,
 				A36B94351F4C396900F14AAB /* UIView+Animatable.m in Sources */,
 				61091CE41CDAF563008B7EA3 /* CYBaseTableWithPullRefreshViewController.m in Sources */,
+				A34F78601FBE74DC00A3D895 /* CYWechat+Login.m in Sources */,
 				61091CEF1CDAF563008B7EA3 /* CYChatBaseCell.m in Sources */,
 				A3274A0B1FBAD34600315E1E /* CYAlipay.m in Sources */,
 				A307B64C1D08103F00DE9B9E /* CYVerticalMultiPageScrollView.m in Sources */,
@@ -1532,6 +1593,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A37AEA661F46BD9A007B3C23 /* CYFoundationUtilsTests.m in Sources */,
+				A34F78721FBED10500A3D895 /* CYWechatTests.m in Sources */,
 				A37AEA6B1F46D88E007B3C23 /* CYCacheTests.m in Sources */,
 				A37AEA681F46D628007B3C23 /* CYGroupContentsTests.m in Sources */,
 			);

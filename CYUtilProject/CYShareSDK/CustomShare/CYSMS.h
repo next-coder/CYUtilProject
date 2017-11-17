@@ -25,15 +25,11 @@ extern NSString *const CYSMSToUsersKey;
 - (void)share:(CYShareModel *)model
      callback:(CYShareCallback)callback;
 
-- (void)share:(CYShareModel *)model
-           to:(NSString *)mobile
-  presentFrom:(UIViewController *)viewController
-     callback:(CYShareCallback)callback;
+- (void)share:(CYShareModel *)model fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback;
 
-- (void)share:(CYShareModel *)model
-      toUsers:(NSArray *)mobiles
-  presentFrom:(UIViewController *)viewController
-     callback:(CYShareCallback)callback;
+- (void)share:(CYShareModel *)model to:(NSString *)mobile fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback;
+
+- (void)share:(CYShareModel *)model toMobiles:(NSArray *)mobiles fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback;
 
 #pragma mark - sharedInstance
 + (instancetype)sharedInstance;

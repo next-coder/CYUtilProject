@@ -36,9 +36,7 @@
  *  弹出ActionSheet选择分享到哪个网站
  *
  */
-- (void)share:(CYShareModel *)model
-  presentFrom:(UIViewController *)viewController
-     callback:(CYShareCallback)callback;
+- (void)share:(CYShareModel *)model fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback;
 
 #pragma mark - sharedInstance
 + (instancetype)sharedInstance;

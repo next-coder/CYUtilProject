@@ -138,7 +138,7 @@
                                                        content:@"小牛钱罐子官网"
                                                      thumbnail:UIImagePNGRepresentation([UIImage imageNamed:@"share_message.png"])
                                                            url:@"http://www.xiaoniuapp.com"]
-        presentActionSheetFrom:self
+            fromViewController:self
                       callback:^(NSInteger code, NSString *msg) {
 
                           NSLog(@"Wechat user select message code = %ld, message = %@", (long)code, msg);
@@ -150,7 +150,7 @@
                                                          content:@"小牛钱罐子"
                                                        thumbnail:UIImagePNGRepresentation([UIImage imageNamed:@"share_message.png"])
                                                             data:UIImagePNGRepresentation([UIImage imageNamed:@"share_message.png"])]
-        presentActionSheetFrom:self
+        fromViewController:self
                       callback:^(NSInteger code, NSString *msg) {
                           NSLog(@"Wechat user select message code = %ld, message = %@", (long)code, msg);
                       }];
@@ -205,7 +205,7 @@
                                                    content:@"小牛钱罐子官网"
                                                  thumbnail:UIImagePNGRepresentation([UIImage imageNamed:@"share_message.png"])
                                                        url:@"http://www.xiaoniuapp.com"]
-    presentActionSheetFrom:self
+    fromViewController:self
                   callback:^(NSInteger code, NSString *msg) {
                       NSLog(@"qq web user select message code = %ld, message = %@", (long)code, msg);
                   }];
@@ -216,7 +216,7 @@
                                                      content:@"小牛钱罐子"
                                                    thumbnail:UIImagePNGRepresentation([UIImage imageNamed:@"share_message.png"])
                                                         data:UIImagePNGRepresentation([UIImage imageNamed:@"share_message.png"])]
-    presentActionSheetFrom:self
+    fromViewController:self
                   callback:^(NSInteger code, NSString *msg) {
                       NSLog(@"qq image userselect message code = %ld, message = %@", (long)code, msg);
                   }];
@@ -244,7 +244,7 @@
                                                             content:@"小牛钱罐子官网"
                                                           thumbnail:UIImagePNGRepresentation([UIImage imageNamed:@"share_message.png"])
                                                                 url:@"http://www.xiaoniuapp.com"]
-                   presentFrom:self
+                   fromViewController:self
                            callback:^(NSInteger code, NSString *msg) {
                                NSLog(@"Apple social web message code = %ld, message = %@", (long)code, msg);
                            }];
@@ -254,7 +254,7 @@
                                                               content:@"小牛钱罐子"
                                                             thumbnail:UIImagePNGRepresentation([UIImage imageNamed:@"share_message.png"])
                                                                  data:UIImagePNGRepresentation([UIImage imageNamed:@"share_message.png"])]
-                   presentFrom:self
+                   fromViewController:self
                            callback:^(NSInteger code, NSString *msg) {
                                NSLog(@"Apple social image message code = %ld, message = %@", (long)code, msg);
                            }];
@@ -263,7 +263,8 @@
                                                     content:@"小牛钱罐子官网"
                                                   thumbnail:UIImagePNGRepresentation([UIImage imageNamed:@"share_message.png"])
                                                         url:@"http://www.xiaoniuapp.com"]
-                         to:nil presentFrom:self
+                         to:nil
+         fromViewController:self
                    callback:^(NSInteger code, NSString *msg) {
                        NSLog(@"sms web message code = %ld, message = %@", (long)code, msg);
                    }];

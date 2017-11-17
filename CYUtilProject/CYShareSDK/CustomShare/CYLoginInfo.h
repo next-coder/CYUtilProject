@@ -22,7 +22,4 @@
 // 由于accessToken有一定的有效期，如果accessToken过期，可使用refreshToken来获取新的accessToken
 @property (nonatomic, copy) NSString *refreshToken;
 
-//// 此次登录获取到的权限，多个权限使用','分隔
-//@property (nonatomic, copy) NSString *permissions;
-
 @end

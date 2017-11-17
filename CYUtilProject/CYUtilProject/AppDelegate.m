@@ -43,6 +43,7 @@
     [CYShare registerWechatAppId:@"wx891f8f3380cba5e9"];
     [CYShare registerQQAppId:@"1104237169"];
     [CYShare registerWeiboAppKey:@"3180958896"];
+    [CYShare application:application didFinishLaunchingWithOptions:launchOptions];
     
     UIImage *bg = [[UIImage imageNamed:@"common_navigation_background.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(2, 0, 2, 0)];
     [[UINavigationBar appearance] setBackgroundImage:bg
@@ -57,7 +58,7 @@
     NSLog(@"%zu", CGImageGetWidth(image.CGImage));
     tabBar.viewControllers[0].tabBarItem = [[UITabBarItem alloc] initWithTitle:@"首页" image:[image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]  tag:0];
     tabBar.viewControllers[1].tabBarItem = [[UITabBarItem alloc] initWithTitle:@"首页" image:[[UIImage imageNamed:@"tab_1"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] tag:1];
-    
+
     return YES;
 }
 
@@ -85,7 +86,7 @@
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     
-    return [CYShare handleOpenURL:url];
+    return [CYShare application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 
 @end

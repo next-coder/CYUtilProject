@@ -9,15 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "CYShareCtrlFlag.h"
 
-#if CY_SHARE_WECHAT_ENABLED
+#if CY_WECHAT_ENABLED
 #import "CYWechat.h"
 #endif
 
-#if CY_SHARE_QQ_ENABLED
+#if CY_QQ_ENABLED
 #import "CYQQ.h"
 #endif
 
-#if CY_SHARE_SINA_WEIBO_ENABLED
+#if CY_SINA_WEIBO_ENABLED
 #import "CYSinaWeibo.h"
 #endif
 
@@ -29,11 +29,15 @@
 #import "CYSMS.h"
 #endif
 
+#if CY_FACEBOOK_ENABLED
+#import "CYFacebook.h"
+#endif
+
 #import "CYShareModel.h"
 
 @interface CYShare : NSObject
 
-#if CY_SHARE_WECHAT_ENABLED
+#if CY_WECHAT_ENABLED
 /**
  *  微信注册，appId和appKey为微信开放平台注册之后，微信分配给第三方的appId和appKey
  */
@@ -43,19 +47,15 @@
 /**
  *  微信分享，由开发者指定分享给好友或者分享到朋友圈
  */
-+ (void)shareToWechat:(CYShareModel *)model
-                scene:(CYWechatScene)scene
-             callback:(CYShareCallback)callback;
++ (void)shareToWechat:(CYShareModel *)model scene:(CYWechatScene)scene callback:(CYShareCallback)callback;
 
 /**
  *  微信分享，弹出ActionSheet，由用户选择分享给好友或者分享到朋友圈
  */
-+ (void)shareToWechat:(CYShareModel *)model
-presentActionSheetFrom:(UIViewController *)viewController
-             callback:(CYShareCallback)callback;
++ (void)shareToWechat:(CYShareModel *)model fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback;
 #endif
 
-#if CY_SHARE_QQ_ENABLED
+#if CY_QQ_ENABLED
 /**
  *  qq注册，appId和appKey为qq互联平台注册之后，qq分配给第三方的appId和appKey
  */
@@ -65,19 +65,15 @@ presentActionSheetFrom:(UIViewController *)viewController
 /**
  *  qq分享，由开发者指定分享给好友或者分享到qq空间
  */
-+ (void)shareToQQ:(CYShareModel *)model
-         ctrlFlag:(CYQQAPICtrlFlag)flag
-         callback:(CYShareCallback)callback;
++ (void)shareToQQ:(CYShareModel *)model ctrlFlag:(CYQQAPICtrlFlag)flag callback:(CYShareCallback)callback;
 
 /**
  *  qq分享，弹出ActionSheet，由用户选择分享给好友或者分享到qq空间
  */
-+ (void)shareToQQ:(CYShareModel *)model
-presentActionSheetFrom:(UIViewController *)viewController
-         callback:(CYShareCallback)callback;
++ (void)shareToQQ:(CYShareModel *)model fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback;
 #endif
 
-#if CY_SHARE_SINA_WEIBO_ENABLED
+#if CY_SINA_WEIBO_ENABLED
 /**
  *  新浪微博注册，appKey为微博开放平台注册之后，微博分配给第三方的AppKey
  */
@@ -100,9 +96,7 @@ presentActionSheetFrom:(UIViewController *)viewController
  包含文字时，请设置model.content属性
 
  */
-+ (void)shareByAppleActivity:(CYShareModel *)model
-                 presentFrom:(UIViewController *)viewController
-                    callback:(CYShareCallback)callback;
++ (void)shareByAppleActivity:(CYShareModel *)model fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback;
 
 #endif
 
@@ -114,16 +108,22 @@ presentActionSheetFrom:(UIViewController *)viewController
  目前暂不支持图片分享
 
  */
-+ (void)shareBySMS:(CYShareModel *)model
-                to:(NSArray *)mobiles
-       presentFrom:(UIViewController *)viewController
-          callback:(CYShareCallback)callback;
++ (void)shareBySMS:(CYShareModel *)model to:(NSArray *)mobiles fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback;
 
 #endif
 
-/**
- * 需要在AppDelegate的- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation 方法中调用此方法，来处理结果
- */
-+ (BOOL)handleOpenURL:(NSURL *)URL;
+#if CY_FACEBOOK_ENABLED
+
++ (void)shareToFacebook:(CYShareModel *)model fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback;
+
+#endif
+
+#pragma mark - handle open url
+// 以下几个方法需要在AppDelegate对应的方法中进行调用，并且必须实现这些方法
++ (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions;
+
++ (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation;
+
++ (BOOL)application:(UIApplication *)application openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options;
 
 @end

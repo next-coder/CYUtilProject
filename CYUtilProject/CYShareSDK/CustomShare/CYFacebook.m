@@ -7,41 +7,30 @@
 //
 
 #import "CYFacebook.h"
+
+#if CY_FACEBOOK_ENABLED
+
 #import "CYShareModel.h"
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKShareKit/FBSDKShareKit.h>
 
-#import <objc/runtime.h>
-
 @interface CYFacebook () <FBSDKSharingDelegate>
-
 
 @end
 
 @implementation CYFacebook
-
-#pragma mark - register
-- (void)registerAppId:(NSString *)appId {
-    [super registerAppId:appId];
-
-//    Faceboo
-}
 
 #pragma mark - share
 // Subclass should implements this method to implement the share action
 - (void)share:(CYShareModel *)model
      callback:(CYShareCallback)callback {
 
-    [self share:model
-showFromViewController:[[[UIApplication sharedApplication] keyWindow] rootViewController]
-       callback:callback];
+    UIViewController *viewController = [[[UIApplication sharedApplication] keyWindow] rootViewController];
+    [self share:model fromViewController:viewController callback:callback];
 }
 
-- (void)share:(CYShareModel *)model
-showFromViewController:(UIViewController *)viewController
-     callback:(CYShareCallback)callback {
+- (void)share:(CYShareModel *)model fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback {
     if (!model.isValid) {
         if (callback) {
             callback(-1, @"The share model is invalid!!!");
@@ -91,9 +80,7 @@ showFromViewController:(UIViewController *)viewController
                                     delegate:self];
 }
 
-- (void)shareImages:(NSArray *)models
-showFromViewController:(UIViewController *)viewController
-     callback:(CYShareCallback)callback {
+- (void)shareImages:(NSArray *)models fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback {
     if (models.count == 0) {
         if (callback) {
             callback(-1, @"The models cannot be empty");
@@ -147,7 +134,8 @@ showFromViewController:(UIViewController *)viewController
     }
 }
 
-#pragma mark - application delegate
+#pragma mark - handle open url
+// 以下几个方法需要在AppDelegate对应的方法中进行调用，并且必须实现这些方法
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     return [[FBSDKApplicationDelegate sharedInstance] application:application
                                     didFinishLaunchingWithOptions:launchOptions];
@@ -163,62 +151,36 @@ showFromViewController:(UIViewController *)viewController
                                                        annotation:annotation];
 }
 
-@end
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+            options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+    return [[FBSDKApplicationDelegate sharedInstance] application:application openURL:url options:options];
+}
 
-@implementation CYFacebook (Login)
+#pragma mark - static
++ (instancetype)sharedInstance {
 
-- (void)loginWithPermissions:(NSArray *)permissions
-          fromViewController:(UIViewController *)viewController
-                    callback:(CYLoginCallback)callback {
-    FBSDKLoginManager *manager = [[FBSDKLoginManager alloc] init];
-    [manager logInWithReadPermissions:permissions
-                   fromViewController:viewController
-                              handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
-                                  dispatch_async(dispatch_get_main_queue(), ^{
+    static CYFacebook *util = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
 
-                                      NSInteger statusCode = 0;
-                                      NSString *msg = nil;
-                                      CYLoginInfo *loginInfo = nil;
-                                      if (error) {
-                                          statusCode = error.code;
-                                          msg = error.localizedDescription;
-                                      } else if (result.isCancelled) {
-                                          statusCode = -1;
-                                          msg = NSLocalizedString(@"Cancelled", nil);
-                                      } else {
-                                          statusCode = 0;
-                                          msg = NSLocalizedString(@"Success", nil);
-                                          loginInfo = [[CYLoginInfo alloc] init];
-                                          loginInfo.fbSDKAccessToken = result.token;
-                                          self.loginInfo = loginInfo;
-                                      }
-                                      if (callback) {
-                                          callback(statusCode, msg, loginInfo);
-                                      }
-                                  });
-                              }];
+        util = [[CYFacebook alloc] init];
+    });
+    return util;
+}
+
++ (BOOL)appInstalled {
+
+    return NO;
+}
+
++ (BOOL)openApp {
+
+    return NO;
 }
 
 @end
 
-@implementation CYLoginInfo (Facebook)
-
-static char CYShareSDK_CYLoginInfo_fbSDKAccessTokenKey;
-
-@dynamic fbSDKAccessToken;
-
-- (void)setFbSDKAccessToken:(FBSDKAccessToken *)fbSDKAccessToken {
-    objc_setAssociatedObject(self, &CYShareSDK_CYLoginInfo_fbSDKAccessTokenKey, fbSDKAccessToken, OBJC_ASSOCIATION_RETAIN);
-
-    self.accessToken = fbSDKAccessToken.tokenString;
-    self.expirationDate = fbSDKAccessToken.expirationDate;
-    self.userId = fbSDKAccessToken.userID;
-}
-
-- (FBSDKAccessToken *)fbSDKAccessToken {
-    return objc_getAssociatedObject(self, &CYShareSDK_CYLoginInfo_fbSDKAccessTokenKey);
-}
-
-@end
+#endif
 
 

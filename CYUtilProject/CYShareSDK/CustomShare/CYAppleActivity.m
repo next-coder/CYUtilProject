@@ -16,14 +16,11 @@
 @implementation CYAppleActivity
 
 - (void)share:(CYShareModel *)model callback:(CYShareCallback)callback {
-    [self share:model
-    presentFrom:[[[UIApplication sharedApplication] keyWindow] rootViewController]
-       callback:callback];
+    UIViewController *viewController = [[[UIApplication sharedApplication] keyWindow] rootViewController];
+    [self share:model fromViewController:viewController callback:callback];
 }
 
-- (void)share:(CYShareModel *)model
-  presentFrom:(UIViewController *)viewController
-     callback:(CYShareCallback)callback {
+- (void)share:(CYShareModel *)model fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback {
 
     if (!model.isValid) {
         if (callback) {

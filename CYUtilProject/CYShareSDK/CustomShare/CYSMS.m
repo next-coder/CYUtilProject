@@ -24,46 +24,36 @@ NSString *const CYSMSToUsersKey = @"CYUtil.CYShareSDK.CYSMSToUsersKey";
 - (void)share:(CYShareModel *)model
      callback:(CYShareCallback)callback {
 
-    id users = [model.userInfo objectForKey:CYSMSToUsersKey];
-    if ([users isKindOfClass:[NSString class]]) {
+    UIViewController *viewController = [[[UIApplication sharedApplication] keyWindow] rootViewController];
+    [self share:model fromViewController:viewController callback:callback];
+}
 
-        [self share:model
-            toUsers:@[ users ]
-        presentFrom:[[[UIApplication sharedApplication] keyWindow] rootViewController]
-           callback:callback];
-    } else if ([users isKindOfClass:[NSArray class]]) {
-        [self share:model
-            toUsers:users
-        presentFrom:[[[UIApplication sharedApplication] keyWindow] rootViewController]
-           callback:callback];
+- (void)share:(CYShareModel *)model fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback {
+
+    id mobiles = [model.userInfo objectForKey:CYSMSToUsersKey];
+    if ([mobiles isKindOfClass:[NSString class]]) {
+        // 分享给单个手机号
+        [self share:model to:mobiles fromViewController:viewController callback:callback];
+    } else if ([mobiles isKindOfClass:[NSArray class]]) {
+        // 分享给多个手机号
+        [self share:model toMobiles:mobiles fromViewController:viewController callback:callback];
     } else {
-        [self share:model
-            toUsers:nil
-        presentFrom:[[[UIApplication sharedApplication] keyWindow] rootViewController]
-           callback:callback];
+        // 没有指定分享的手机号码
+        [self share:model toMobiles:nil fromViewController:viewController callback:callback];
     }
 }
 
-- (void)share:(CYShareModel *)model
-           to:(NSString *)mobile
-  presentFrom:(UIViewController *)viewController
-     callback:(CYShareCallback)callback {
+- (void)share:(CYShareModel *)model to:(NSString *)mobile fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback {
 
     NSArray *users = nil;
     if (mobile) {
         users = @[ mobile ];
     }
 
-    [self share:model
-        toUsers:users
-    presentFrom:viewController
-       callback:callback];
+    [self share:model toMobiles:users fromViewController:viewController callback:callback];
 }
 
-- (void)share:(CYShareModel *)model
-      toUsers:(NSArray *)mobiles
-  presentFrom:(UIViewController *)viewController
-     callback:(CYShareCallback)callback {
+- (void)share:(CYShareModel *)model toMobiles:(NSArray *)mobiles fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback {
 
     if (!model.isValid) {
         if (callback) {

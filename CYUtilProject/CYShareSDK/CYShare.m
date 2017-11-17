@@ -14,7 +14,7 @@
 
 @implementation CYShare
 
-#if CY_SHARE_WECHAT_ENABLED
+#if CY_WECHAT_ENABLED
 + (void)registerWechatAppId:(NSString *)appId {
     [[CYWechat sharedInstance] registerAppId:appId];
 }
@@ -23,26 +23,20 @@
     [[CYWechat sharedInstance] registerAppKey:appKey];
 }
 
-+ (void)shareToWechat:(CYShareModel *)model
-                scene:(CYWechatScene)scene
-             callback:(CYShareCallback)callback {
++ (void)shareToWechat:(CYShareModel *)model scene:(CYWechatScene)scene callback:(CYShareCallback)callback {
 
     [[CYWechat sharedInstance] share:model
                                   to:scene
                             callback:callback];
 }
 
-+ (void)shareToWechat:(CYShareModel *)model
-presentActionSheetFrom:(UIViewController *)viewController
-             callback:(CYShareCallback)callback {
++ (void)shareToWechat:(CYShareModel *)model fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback {
 
-    [[CYWechat sharedInstance] share:model
-              presentActionSheetFrom:viewController
-                            callback:callback];
+    [[CYWechat sharedInstance] share:model fromViewController:viewController callback:callback];
 }
 #endif
 
-#if CY_SHARE_QQ_ENABLED
+#if CY_QQ_ENABLED
 + (void)registerQQAppId:(NSString *)appId {
     [[CYQQ sharedInstance] registerAppId:appId];
 }
@@ -51,25 +45,17 @@ presentActionSheetFrom:(UIViewController *)viewController
     [[CYQQ sharedInstance] registerAppKey:appKey];
 }
 
-+ (void)shareToQQ:(CYShareModel *)model
-         ctrlFlag:(CYQQAPICtrlFlag)flag
-         callback:(CYShareCallback)callback {
-    [[CYQQ sharedInstance] share:model
-                              to:flag
-                        callback:callback];
++ (void)shareToQQ:(CYShareModel *)model ctrlFlag:(CYQQAPICtrlFlag)flag callback:(CYShareCallback)callback {
+    [[CYQQ sharedInstance] share:model to:flag callback:callback];
 }
 
-+ (void)shareToQQ:(CYShareModel *)model
-presentActionSheetFrom:(UIViewController *)viewController
-         callback:(CYShareCallback)callback {
++ (void)shareToQQ:(CYShareModel *)model fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback {
 
-    [[CYQQ sharedInstance] share:model
-          presentActionSheetFrom:viewController
-                        callback:callback];
+    [[CYQQ sharedInstance] share:model fromViewController:viewController callback:callback];
 }
 #endif
 
-#if CY_SHARE_SINA_WEIBO_ENABLED
+#if CY_SINA_WEIBO_ENABLED
 + (void)registerWeiboAppKey:(NSString *)appKey {
     [[CYSinaWeibo sharedInstance] registerAppKey:appKey];
 }
@@ -83,40 +69,84 @@ presentActionSheetFrom:(UIViewController *)viewController
 
 #if CY_SHARE_APPLE_ACTIVITY_ENABLED
 
-+ (void)shareByAppleActivity:(CYShareModel *)model
-                 presentFrom:(UIViewController *)viewController
-                    callback:(CYShareCallback)callback {
-    [[CYAppleActivity sharedInstance] share:model
-                                presentFrom:viewController
-                                   callback:callback];
++ (void)shareByAppleActivity:(CYShareModel *)model fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback {
+    [[CYAppleActivity sharedInstance] share:model fromViewController:viewController callback:callback];
 }
 
 #endif
 
 #if CY_SHARE_SMS_ENABLED
 
-+ (void)shareBySMS:(CYShareModel *)model
-                to:(NSArray *)mobiles
-       presentFrom:(UIViewController *)viewController
-          callback:(CYShareCallback)callback {
-    [[CYSMS sharedInstance] share:model
-                          toUsers:mobiles
-                      presentFrom:viewController
-                         callback:callback];
++ (void)shareBySMS:(CYShareModel *)model to:(NSArray *)mobiles fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback {
+    [[CYSMS sharedInstance] share:model toMobiles:mobiles fromViewController:viewController callback:callback];
 }
 
 #endif
 
-+ (BOOL)handleOpenURL:(NSURL *)URL {
+#if CY_FACEBOOK_ENABLED
+
++ (void)shareToFacebook:(CYShareModel *)model fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback {
+    [[CYFacebook sharedInstance] share:model fromViewController:viewController callback:callback];
+}
+
+#endif
+
+#pragma mark - handle open url
+// 以下几个方法需要在AppDelegate对应的方法中进行调用，并且必须实现这些方法
++ (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     BOOL result = NO;
-#if CY_SHARE_WECHAT_ENABLED
-    result = [[CYWechat sharedInstance] handleOpenURL:URL];
+#if CY_WECHAT_ENABLED
+    result = [[CYWechat sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
 #endif
-#if CY_SHARE_QQ_ENABLED
-    result = (result || [[CYQQ sharedInstance] handleOpenURL:URL]);
+#if CY_QQ_ENABLED
+    result = (result || [[CYQQ sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions]);
 #endif
-#if CY_SHARE_SINA_WEIBO_ENABLED
-    result = (result || [[CYSinaWeibo sharedInstance] handleOpenURL:URL]);
+#if CY_SINA_WEIBO_ENABLED
+    result = (result || [[CYSinaWeibo sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions]);
+#endif
+#if CY_FACEBOOK_ENABLED
+    result = (result || [[CYFacebook sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions]);
+#endif
+    return result;
+}
+
++ (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+
+    BOOL result = NO;
+#if CY_WECHAT_ENABLED
+    result = [[CYWechat sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+#endif
+#if CY_QQ_ENABLED
+    result = (result || [[CYQQ sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation]);
+#endif
+#if CY_SINA_WEIBO_ENABLED
+    result = (result || [[CYSinaWeibo sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation]);
+#endif
+#if CY_FACEBOOK_ENABLED
+    result = (result || [[CYFacebook sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation]);
+#endif
+    return result;
+}
+
++ (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+            options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+
+    BOOL result = NO;
+#if CY_WECHAT_ENABLED
+    result = [[CYWechat sharedInstance] application:application openURL:url options:options];
+#endif
+#if CY_QQ_ENABLED
+    result = (result || [[CYQQ sharedInstance] application:application openURL:url options:options]);
+#endif
+#if CY_SINA_WEIBO_ENABLED
+    result = (result || [[CYSinaWeibo sharedInstance] application:application openURL:url options:options]);
+#endif
+#if CY_FACEBOOK_ENABLED
+    result = (result || [[CYFacebook sharedInstance] application:application openURL:url options:options]);
 #endif
     return result;
 }

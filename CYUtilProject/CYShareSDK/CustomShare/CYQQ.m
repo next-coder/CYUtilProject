@@ -8,7 +8,9 @@
 
 #import "CYQQ.h"
 
-#if CY_SHARE_QQ_ENABLED
+#if CY_QQ_ENABLED
+#import "CYQQ+Login.h"
+
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
 #import "CYShareModel.h"
@@ -18,13 +20,7 @@
 
 @interface CYQQ() <TencentSessionDelegate, QQApiInterfaceDelegate>
 
-@property (nonatomic, strong) TencentOAuth *oauth;
-//@property (nonatomic, copy) CYQQLoginCallback loginCallback;
-@property (nonatomic, copy) CYQQUserInfoCallback userInfoCallback;
-
-//@property (nonatomic, strong, readwrite) CYQQLoginInfo *loginInfo;
-// 缓存用户信息，第一次成功获取到用户信息之前为空，之后则为最新一次获取到的用户信息
-@property (nonatomic, strong, readwrite) CYQQUserInfo *userInfo;
+@property (nonatomic, strong, readwrite) TencentOAuth *oauth;
 
 @end
 
@@ -42,6 +38,8 @@ NSString *const CYQQAPICtrlFlagKey = @"CYUtil.CYQQAPICtrlFlagKey";
 
 #pragma mark - login delegate
 - (void)tencentDidLogin {
+
+#if CY_QQ_LOGIN_ENABLED
     self.loginInfo = [[CYLoginInfo alloc] init];
     self.loginInfo.qqOAuth = self.oauth;
     if (self.loginCallback) {
@@ -50,9 +48,12 @@ NSString *const CYQQAPICtrlFlagKey = @"CYUtil.CYQQAPICtrlFlagKey";
                            self.loginInfo);
         self.loginCallback = nil;
     }
+#endif
 }
 
 - (void)tencentDidNotLogin:(BOOL)cancelled {
+
+#if CY_QQ_LOGIN_ENABLED
     if (self.loginCallback) {
         self.loginCallback(-1,
                            NSLocalizedString(@"Cancelled", nil),
@@ -60,9 +61,12 @@ NSString *const CYQQAPICtrlFlagKey = @"CYUtil.CYQQAPICtrlFlagKey";
         self.loginCallback = nil;
     }
     self.loginInfo = nil;
+#endif
 }
 
 - (void)tencentDidNotNetWork {
+
+#if CY_QQ_LOGIN_ENABLED
     if (self.loginCallback) {
         self.loginCallback(-2,
                            NSLocalizedString(@"network error", nil),
@@ -70,66 +74,67 @@ NSString *const CYQQAPICtrlFlagKey = @"CYUtil.CYQQAPICtrlFlagKey";
         self.loginCallback = nil;
     }
     self.loginInfo = nil;
+#endif
 }
 
 - (void)tencentDidLogout {
+
+#if CY_QQ_LOGIN_ENABLED
     self.loginInfo = nil;
+#endif
 }
 
 #pragma mark - share
 - (void)share:(CYShareModel *)model
      callback:(CYShareCallback)callback {
 
+    UIViewController *viewController = [[[UIApplication sharedApplication] keyWindow] rootViewController];
+    [self share:model fromViewController:viewController callback:callback];
+}
+
+- (void)share:(CYShareModel *)model fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback {
+
+    // 获取model中指定的分享方式
     id flag = [model.userInfo objectForKey:CYQQAPICtrlFlagKey];
     if (flag && [flag isKindOfClass:[NSNumber class]]) {
 
+        // 按userInfo中指定的分享方式分享
         [self share:model
                  to:[flag unsignedLongLongValue]
            callback:callback];
     } else {
+        // 未指定分享方式，则让用户选择分享给好友，或者分享到朋友圈
+        UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil
+                                                                             message:nil
+                                                                      preferredStyle:UIAlertControllerStyleActionSheet];
 
-        [self share:model
-presentActionSheetFrom:[[[UIApplication sharedApplication] keyWindow] rootViewController]
-           callback:callback];
-    }
-}
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:NSLocalizedString(@"取消", nil)
+                                                         style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
 
-- (void)share:(CYShareModel *)model
-presentActionSheetFrom:(UIViewController *)viewController
-     callback:(CYShareCallback)callback {
+                                                             if (callback) {
+                                                                 callback(-1, @"User cancel");
+                                                             }
+                                                         }];
+        [actionSheet addAction:cancel];
 
-
-    // 未指定分享方式，则让用户选择分享给好友，或者分享到朋友圈
-    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil
-                                                                         message:nil
-                                                                  preferredStyle:UIAlertControllerStyleActionSheet];
-
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:NSLocalizedString(@"取消", nil)
-                                                     style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-
-                                                         if (callback) {
-                                                             callback(-1, @"User cancel");
-                                                         }
-                                                     }];
-    [actionSheet addAction:cancel];
-
-    UIAlertAction *session = [UIAlertAction actionWithTitle:NSLocalizedString(@"分享给QQ好友", nil)
-                                                      style:UIAlertActionStyleDefault
-                                                    handler:^(UIAlertAction * _Nonnull action) {
-                                                        [self shareToQQ:model
-                                                               callback:callback];
-                                                    }];
-    [actionSheet addAction:session];
-
-    UIAlertAction *timeline = [UIAlertAction actionWithTitle:NSLocalizedString(@"分享到QQ空间", nil)
-                                                       style:UIAlertActionStyleDefault
-                                                     handler:^(UIAlertAction * _Nonnull action) {
-                                                         [self shareToQZone:model
+        UIAlertAction *session = [UIAlertAction actionWithTitle:NSLocalizedString(@"分享给QQ好友", nil)
+                                                          style:UIAlertActionStyleDefault
+                                                        handler:^(UIAlertAction * _Nonnull action) {
+                                                            [self shareToQQ:model
                                                                    callback:callback];
-                                                     }];
-    [actionSheet addAction:timeline];
+                                                        }];
+        [actionSheet addAction:session];
 
-    [viewController presentViewController:actionSheet animated:YES completion:nil];
+        UIAlertAction *timeline = [UIAlertAction actionWithTitle:NSLocalizedString(@"分享到QQ空间", nil)
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction * _Nonnull action) {
+                                                             [self shareToQZone:model
+                                                                       callback:callback];
+                                                         }];
+        [actionSheet addAction:timeline];
+
+        [viewController presentViewController:actionSheet animated:YES completion:nil];
+    }
 }
 
 - (void)shareToQQ:(CYShareModel *)model
@@ -229,9 +234,19 @@ presentActionSheetFrom:(UIViewController *)viewController
     
 }
 
-#pragma mark - handle open
-- (BOOL)handleOpenURL:(NSURL *)url {
-    
+#pragma mark - handle open url
+// 以下几个方法需要在AppDelegate对应的方法中进行调用，并且必须实现这些方法
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    return [QQApiInterface handleOpenURL:url delegate:self];
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+            options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
     return [QQApiInterface handleOpenURL:url delegate:self];
 }
 
@@ -256,103 +271,6 @@ presentActionSheetFrom:(UIViewController *)viewController
         util = [[CYQQ alloc] init];
     });
     return util;
-}
-
-@end
-
-@interface CYQQUserInfo()
-
-- (instancetype)initWithDictionary:(NSDictionary *)dic;
-
-@end
-
-@implementation CYQQ (Login)
-
-- (void)loginWithPermissions:(NSArray *)permissions
-                    callback:(CYLoginCallback)callback {
-    self.loginCallback = callback;
-    [self.oauth authorize:permissions];
-}
-
-- (void)loginWithCallback:(CYLoginCallback)callback {
-    [self loginWithPermissions:@[ kOPEN_PERMISSION_GET_SIMPLE_USER_INFO ]
-                      callback:callback];
-}
-
-- (void)getUserInfoWithCallback:(CYQQUserInfoCallback)callback {
-    self.userInfoCallback = callback;
-    BOOL result = [self.oauth getUserInfo];
-    if (!result) {
-        callback(-1, NSLocalizedString(@"Failed", nil), nil);
-        self.userInfoCallback = nil;
-    }
-}
-
-- (void)getUserInfoResponse:(APIResponse *)response {
-    NSInteger code = response.retCode;
-    NSString *msg = response.errorMsg;
-    CYQQUserInfo *userInfo = nil;
-    if (code == URLREQUEST_SUCCEED) {
-        userInfo = [[CYQQUserInfo alloc] initWithDictionary:response.jsonResponse];
-        self.userInfo = userInfo;
-    }
-    if (self.userInfoCallback) {
-        self.userInfoCallback(code, msg, userInfo);
-        self.userInfoCallback = nil;
-    }
-}
-
-@end
-
-#pragma mark - qq login
-@implementation CYLoginInfo (QQ)
-
-static char CYShareSDK_CYLoginInfo_qqOAuthKey;
-
-@dynamic qqOAuth;
-
-- (void)setQqOAuth:(TencentOAuth *)qqOAuth {
-    objc_setAssociatedObject(self,
-                             &CYShareSDK_CYLoginInfo_qqOAuthKey,
-                             qqOAuth,
-                             OBJC_ASSOCIATION_RETAIN);
-
-    self.accessToken = qqOAuth.accessToken;
-    self.expirationDate = qqOAuth.expirationDate;
-    self.userId = qqOAuth.openId;
-}
-
-- (TencentOAuth *)qqOAuth {
-    return objc_getAssociatedObject(self, &CYShareSDK_CYLoginInfo_qqOAuthKey);
-}
-
-@end
-
-#pragma mark - userinfo model
-@implementation CYQQUserInfo
-
-- (instancetype)initWithDictionary:(NSDictionary *)dic {
-    if (self = [super init]) {
-
-        if (dic
-            && [dic isKindOfClass:[NSDictionary class]]
-            && dic.count > 0) {
-
-            _nickname = dic[@"nickname"];
-            _figureurl = dic[@"figureurl"];
-            _figureurl_1 = dic[@"figureurl_1"];
-            _figureurl_2 = dic[@"figureurl_2"];
-            _figureurl_qq_1 = dic[@"figureurl_qq_1"];
-            _figureurl_qq_2 = dic[@"figureurl_qq_2"];
-            _gender = dic[@"gender"];
-            _isYellowVip = dic[@"is_yellow_vip"];
-            _vip = dic[@"vip"];
-            _yellowVipLevel = dic[@"yellow_vip_level"];
-            _level = dic[@"level"];
-            _isYellowYearVip = dic[@"is_yellow_year_vip"];
-        }
-    }
-    return self;
 }
 
 @end

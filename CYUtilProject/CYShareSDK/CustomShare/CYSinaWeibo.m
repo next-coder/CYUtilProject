@@ -8,12 +8,12 @@
 
 #import "CYSinaWeibo.h"
 
-#if CY_SHARE_SINA_WEIBO_ENABLED
+#if CY_SINA_WEIBO_ENABLED
+
+#import "CYSinaWeibo+Login.h"
 #import "CYShareModel.h"
 
 #import "WeiboSDK.h"
-
-#import <objc/runtime.h>
 
 @interface CYSinaWeibo () <WeiboSDKDelegate>
 
@@ -29,8 +29,7 @@
 }
 
 #pragma mark - SinaWeibo share
-- (void)share:(CYShareModel *)model
-     callback:(CYShareCallback)callback {
+- (void)share:(CYShareModel *)model callback:(CYShareCallback)callback {
     if (!model.isValid) {
         if (callback) {
             callback(-1, @"The share model is invalid!!!");
@@ -80,6 +79,10 @@
     }
 }
 
+- (void)share:(CYShareModel *)model fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback {
+    [self share:model callback:callback];
+}
+
 #pragma mark - WeiboSDKDelegate
 - (void)didReceiveWeiboRequest:(WBBaseRequest *)request {
     
@@ -94,6 +97,8 @@
         self.shareCallback(response.statusCode, nil);
         self.shareCallback = nil;
     } else if ([response isKindOfClass:[WBAuthorizeResponse class]]) {
+
+#if CY_SINA_WEIBO_LOGIN_ENABLED
         // 登录完成
         CYLoginInfo *loginInfo = [[CYLoginInfo alloc] init];
         loginInfo.sinaWeiboAuthorizeResponse = (WBAuthorizeResponse *)response;
@@ -104,12 +109,22 @@
                                loginInfo);
             self.loginCallback = nil;
         }
+#endif
     }
 }
 
-#pragma mark - handle open
-- (BOOL)handleOpenURL:(NSURL *)url {
-    
+#pragma mark - handle open url
+// 以下几个方法需要在AppDelegate对应的方法中进行调用，并且必须实现这些方法
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    return [WeiboSDK handleOpenURL:url delegate:self];
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+            options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
     return [WeiboSDK handleOpenURL:url delegate:self];
 }
 
@@ -121,6 +136,8 @@
     dispatch_once(&onceToken, ^{
         
         util = [[CYSinaWeibo alloc] init];
+        // set default redirect uri
+        [util registerRedirectURI:@"http://"];
     });
     return util;
 }
@@ -133,48 +150,6 @@
 + (BOOL)openApp {
     
     return [WeiboSDK openWeiboApp];
-}
-
-@end
-
-#pragma mark - login
-@implementation CYSinaWeibo (Login)
-
-- (void)loginWithScope:(NSString *)scope
-           redirectURI:(NSString *)redirectURI
-              callback:(CYLoginCallback)callback {
-
-    self.loginCallback = callback;
-
-    WBAuthorizeRequest *request = [[WBAuthorizeRequest alloc] init];
-    request.scope = scope;
-    request.redirectURI = redirectURI;
-    request.shouldOpenWeiboAppInstallPageIfNotInstalled = NO;
-    [WeiboSDK sendRequest:request];
-}
-
-@end
-
-@implementation CYLoginInfo (SinaWeibo)
-
-static char CYShareSDK_CYLoginInfo_sinaWeiboAuthorizeResponseKey;
-
-@dynamic sinaWeiboAuthorizeResponse;
-
-- (void)setSinaWeiboAuthorizeResponse:(WBAuthorizeResponse *)sinaWeiboAuthorizeResponse {
-    objc_setAssociatedObject(self,
-                             &CYShareSDK_CYLoginInfo_sinaWeiboAuthorizeResponseKey,
-                             sinaWeiboAuthorizeResponse,
-                             OBJC_ASSOCIATION_RETAIN);
-
-    self.accessToken = sinaWeiboAuthorizeResponse.accessToken;
-    self.expirationDate = sinaWeiboAuthorizeResponse.expirationDate;
-    self.userId = sinaWeiboAuthorizeResponse.userID;
-    self.refreshToken = sinaWeiboAuthorizeResponse.refreshToken;
-}
-
-- (WBAuthorizeResponse *)sinaWeiboAuthorizeResponse {
-    return objc_getAssociatedObject(self, &CYShareSDK_CYLoginInfo_sinaWeiboAuthorizeResponseKey);
 }
 
 @end
