@@ -2,8 +2,8 @@
 //  CYCycleProgressBar.swift
 //  CYUtilProjectSwift
 //
-//  Created by xn011644 on 01/12/2016.
-//  Copyright © 2016 Jasper. All rights reserved.
+//  Created by Conner on 01/12/2016.
+//  Copyright © 2016 Conner. All rights reserved.
 //
 
 import UIKit
@@ -75,8 +75,8 @@ class CYCycleProgressBar: CYBaseProgressBar {
 
     private func refreshHeaderPosition() {
 
-        let endFactorW = cos(progress * 2 * M_PI + startAngle)
-        let endFactorH = sin(progress * 2 * M_PI + startAngle)
+        let endFactorW = cos(progress * 2 * .pi + startAngle)
+        let endFactorH = sin(progress * 2 * .pi + startAngle)
         progressHeaderView?.center = CGPoint(x: endFactorW * cycleRadius + Double(cycleCenter.x),
                                              y: endFactorH * cycleRadius + Double(cycleCenter.y))
     }
@@ -95,7 +95,7 @@ class CYCycleProgressBar: CYBaseProgressBar {
         let path = UIBezierPath(arcCenter: cycleCenter,
                                 radius: CGFloat(cycleRadius),
                                 startAngle: CGFloat(startAngle),
-                                endAngle: CGFloat(progress * 2 * M_PI + startAngle),
+                                endAngle: CGFloat(progress * 2 * .pi + startAngle),
                                 clockwise: true)
         completionLayer?.path = path.cgPath
         completedPath = path.cgPath

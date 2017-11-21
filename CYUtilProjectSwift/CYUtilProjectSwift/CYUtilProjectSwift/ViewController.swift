@@ -2,8 +2,8 @@
 //  ViewController.swift
 //  CYUtilProjectSwift
 //
-//  Created by HuangQiSheng on 5/5/16.
-//  Copyright © 2016 Jasper. All rights reserved.
+//  Created by Conner on 5/5/16.
+//  Copyright © 2016 Conner. All rights reserved.
 //
 
 import UIKit
@@ -50,6 +50,11 @@ class ViewController: UITableViewController {
         self.view.addSubview(progress)
         progress.setProgress(progress: 0.3, animated: true)
         progressView = progress
+
+        if #available(iOS 11, *) {
+
+            navigationController?.navigationBar.prefersLargeTitles = true
+        }
     }
 
     @IBAction func recordOrPause(_ sender: AnyObject) {
@@ -147,7 +152,24 @@ class ViewController: UITableViewController {
         if indexPath.section == 0 {
             if indexPath.row == 0 {
 //                self.present(ProgressWebTestViewController(), animated: true, completion: nil)
-                self.navigationController?.pushViewController(ProgressWebTestViewController(), animated: true)
+                self.navigationController?.pushViewController(CYProgressWebViewController(rootUrl: URL(string: "https://m.baidu.com")!), animated: true)
+            } else if indexPath.row == 1 {
+
+                self.navigationController?.pushViewController(CycleBannerTestViewController(), animated: true)
+            } else if indexPath.row == 2 {
+                self.navigationController?.pushViewController(RedPacketViewController(), animated: true)
+            } else if indexPath.row == 3 {
+
+                navigationController?.pushViewController(HerizontalTableViewTestViewController(), animated: true)
+            } else if indexPath.row == 4 {
+                navigationController?.pushViewController(FloatingViewTestViewController(), animated: true)
+            } else if indexPath.row == 5 {
+                let web = WebViewController()
+                _ = web.load(URLRequest(url: URL(string: "http://www.qq.com")!))
+                navigationController?.pushViewController(web, animated: true)
+            } else if indexPath.row == 6 {
+                let animation = AnimationTestTableViewController(style: .plain)
+                navigationController?.pushViewController(animation, animated: true)
             }
         }
     }

@@ -16,9 +16,14 @@
 
 @implementation CYExceptionUtils
 
+static NSUncaughtExceptionHandler *_originUncaughtExceptionHandler;
+
 void CYUncaughtExceptionHandler(NSException *exception) {
 
     CYUncaughtExceptionsHandler handler = [CYExceptionUtils sharedInstance].uncaughtExceptionHandler;
+    if (_originUncaughtExceptionHandler) {
+        _originUncaughtExceptionHandler(exception);
+    }
     if (handler) {
 
         handler(exception);
@@ -31,6 +36,7 @@ void CYUncaughtExceptionHandler(NSException *exception) {
 
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
+        _originUncaughtExceptionHandler = NSGetUncaughtExceptionHandler();
 
         NSSetUncaughtExceptionHandler(&CYUncaughtExceptionHandler);
     });

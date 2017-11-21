@@ -2,8 +2,8 @@
 //  CYArcProgressBar.swift
 //  CYUtilProjectSwift
 //
-//  Created by xn011644 on 01/12/2016.
-//  Copyright © 2016 Jasper. All rights reserved.
+//  Created by Conner on 01/12/2016.
+//  Copyright © 2016 Conner. All rights reserved.
 //
 
 import UIKit
@@ -45,7 +45,7 @@ class CYArcProgressBar: CYBaseProgressBar {
         // compute total Angle
         totalAngle = endAngle - calculateStartAngle
         if totalAngle < 0 {
-            totalAngle += 2 * M_PI
+            totalAngle += 2 * .pi
         }
         super.init(barWidth: barWidth, frame: frame)
     }
@@ -97,7 +97,7 @@ class CYArcProgressBar: CYBaseProgressBar {
 
     override convenience init(barWidth: Double, frame: CGRect) {
         self.init(startAngle: 0,
-                  endAngle: M_PI * 1.5,
+                  endAngle: .pi * 1.5,
                   arcRadius: Double(min(frame.width, frame.height)) / 2 - barWidth / 2,
                   arcCenter: CGPoint(x: frame.width / 2.0, y: frame.height / 2.0),
                   barWidth: barWidth,

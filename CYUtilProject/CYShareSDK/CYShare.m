@@ -8,300 +8,147 @@
 
 #import "CYShare.h"
 
-@interface CYShare () <UIActionSheetDelegate>
-
-// 分享的title
-@property (nonatomic, copy) NSString *shareTitle;
-// 分享的描述，文本分享时，为待分享文本
-@property (nonatomic, copy) NSString *shareDescription;
-// 网页分享的url
-@property (nonatomic, copy) NSString *shareURLString;
-// 分享的thumb图片，不能超过32k
-@property (nonatomic, strong) NSData *shareThumbImage;
-// 图片分享时，图片的Data
-@property (nonatomic, strong) NSData *shareImageData;
-// 图片分享时，图片的url，与shareImageData只能存在一个。仅微信支持
-@property (nonatomic, copy) NSString *shareImageUrl;
-
-// callback after share
-@property (nonatomic, copy) CYShareCallback shareCallback;
+@interface CYShare ()
 
 @end
 
 @implementation CYShare
 
-static const NSInteger wechatWebShareActionSheetTag = 58723;
-static const NSInteger wechatImageShareActionSheetTag = 58724;
-static const NSInteger wechatTextShareActionSheetTag = 58725;
-static const NSInteger qqWebShareActionSheetTag = 58726;
-static const NSInteger qqImageShareActionSheetTag = 58727;
-static const NSInteger qqTextShareActionSheetTag = 58728;
-
-#pragma mark - getter
-- (CYWechatUtil *)wechatUtil {
-    
-    return [CYWechatUtil sharedInstance];
+#if CY_WECHAT_ENABLED
++ (void)registerWechatAppId:(NSString *)appId {
+    [[CYWechat sharedInstance] registerAppId:appId];
 }
 
-- (CYQQUtil *)qqUtil {
-    
-    return [CYQQUtil sharedInstance];
++ (void)registerWechatAppKey:(NSString *)appKey {
+    [[CYWechat sharedInstance] registerAppKey:appKey];
 }
 
-- (CYSinaWeiboUtil *)sinaWeiboUtil {
-    
-    return [CYSinaWeiboUtil sharedInstance];
++ (void)shareToWechat:(CYShareModel *)model scene:(CYWechatScene)scene callback:(CYShareCallback)callback {
+
+    [[CYWechat sharedInstance] share:model
+                                  to:scene
+                            callback:callback];
 }
 
-- (CYShareBySMSUtil *)shareBySMSUtil {
-    
-    return [CYShareBySMSUtil sharedInstance];
++ (void)shareToWechat:(CYShareModel *)model fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback {
+
+    [[CYWechat sharedInstance] share:model fromViewController:viewController callback:callback];
+}
+#endif
+
+#if CY_QQ_ENABLED
++ (void)registerQQAppId:(NSString *)appId {
+    [[CYQQ sharedInstance] registerAppId:appId];
 }
 
-#pragma mark - share to wechat
-- (void)shareWebToWechatWithTitle:(NSString *)title
-                      description:(NSString *)description
-                       thumbImage:(NSData *)thumbImage
-                        urlString:(NSString *)urlString
-              showSelectionInView:(UIView *)view
-                         callback:(CYShareCallback)callback {
-    
-    self.shareTitle = title;
-    self.shareDescription = description;
-    self.shareThumbImage = thumbImage;
-    self.shareURLString = urlString;
-    self.shareCallback = callback;
-    
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                             delegate:self
-                                                    cancelButtonTitle:@"取消"
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"分享到微信朋友圈", @"分享给微信好友", nil];
-    actionSheet.tag = wechatWebShareActionSheetTag;
-    [actionSheet showInView:view];
-    
++ (void)registerQQAppKey:(NSString *)appKey {
+    [[CYQQ sharedInstance] registerAppKey:appKey];
 }
 
-- (void)shareImageToWechatWithTitle:(NSString *)title
-                        description:(NSString *)description
-                         thumbImage:(NSData *)thumbImage
-                          imageData:(NSData *)imageData
-                           imageUrl:(NSString *)imageUrl
-                showSelectionInView:(UIView *)view
-                           callback:(CYShareCallback)callback {
-    
-    self.shareTitle = title;
-    self.shareDescription = description;
-    self.shareThumbImage = thumbImage;
-    self.shareImageData = imageData;
-    self.shareImageUrl = imageUrl;
-    self.shareCallback = callback;
-    
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                             delegate:self
-                                                    cancelButtonTitle:@"取消"
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"分享到微信朋友圈", @"分享给微信好友", nil];
-    actionSheet.tag = wechatImageShareActionSheetTag;
-    [actionSheet showInView:view];
++ (void)shareToQQ:(CYShareModel *)model ctrlFlag:(CYQQAPICtrlFlag)flag callback:(CYShareCallback)callback {
+    [[CYQQ sharedInstance] share:model to:flag callback:callback];
 }
 
-- (void)shareTextToWechat:(NSString *)text
-      showSelectionInView:(UIView *)view
-                 callback:(CYShareCallback)callback {
-    
-    self.shareDescription = text;
-    self.shareCallback = callback;
-    
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                             delegate:self
-                                                    cancelButtonTitle:@"取消"
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"分享到微信朋友圈", @"分享给微信好友", nil];
-    actionSheet.tag = wechatTextShareActionSheetTag;
-    [actionSheet showInView:view];
++ (void)shareToQQ:(CYShareModel *)model fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback {
+
+    [[CYQQ sharedInstance] share:model fromViewController:viewController callback:callback];
+}
+#endif
+
+#if CY_SINA_WEIBO_ENABLED
++ (void)registerWeiboAppKey:(NSString *)appKey {
+    [[CYSinaWeibo sharedInstance] registerAppKey:appKey];
 }
 
-#pragma mark - share to qq
-- (void)shareWebToQQWithTitle:(NSString *)title
-                  description:(NSString *)description
-                   thumbImage:(NSData *)thumbImage
-                    urlString:(NSString *)urlString
-          showSelectionInView:(UIView *)view
-                     callback:(CYShareCallback)callback {
-    
-    self.shareTitle = title;
-    self.shareDescription = description;
-    self.shareThumbImage = thumbImage;
-    self.shareURLString = urlString;
-    self.shareCallback = callback;
-    
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                             delegate:self
-                                                    cancelButtonTitle:@"取消"
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"分享到QZone", @"分享给QQ好友", nil];
-    actionSheet.tag = qqWebShareActionSheetTag;
-    [actionSheet showInView:view];
-    
++ (void)shareToWeibo:(CYShareModel *)model
+            callback:(CYShareCallback)callback {
+    [[CYSinaWeibo sharedInstance] share:model
+                               callback:callback];
+}
+#endif
+
+#if CY_SHARE_APPLE_ACTIVITY_ENABLED
+
++ (void)shareByAppleActivity:(CYShareModel *)model fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback {
+    [[CYAppleActivity sharedInstance] share:model fromViewController:viewController callback:callback];
 }
 
-- (void)shareImageToQQWithTitle:(NSString *)title
-                    description:(NSString *)description
-                     thumbImage:(NSData *)thumbImage
-                      imageData:(NSData *)imageData
-            showSelectionInView:(UIView *)view
-                       callback:(CYShareCallback)callback {
-    
-    self.shareTitle = title;
-    self.shareDescription = description;
-    self.shareThumbImage = thumbImage;
-    self.shareImageData = imageData;
-    self.shareCallback = callback;
-    
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                             delegate:self
-                                                    cancelButtonTitle:@"取消"
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"分享到QZone", @"分享给QQ好友", nil];
-    actionSheet.tag = qqImageShareActionSheetTag;
-    [actionSheet showInView:view];
+#endif
+
+#if CY_SHARE_SMS_ENABLED
+
++ (void)shareBySMS:(CYShareModel *)model to:(NSArray *)mobiles fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback {
+    [[CYSMS sharedInstance] share:model toMobiles:mobiles fromViewController:viewController callback:callback];
 }
 
-- (void)shareTextToQQ:(NSString *)text
-  showSelectionInView:(UIView *)view
-             callback:(CYShareCallback)callback {
-    
-    self.shareDescription = text;
-    self.shareCallback = callback;
-    
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                             delegate:self
-                                                    cancelButtonTitle:@"取消"
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"分享到QZone", @"分享给QQ好友", nil];
-    actionSheet.tag = qqTextShareActionSheetTag;
-    [actionSheet showInView:view];
+#endif
+
+#if CY_FACEBOOK_ENABLED
+
++ (void)shareToFacebook:(CYShareModel *)model fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback {
+    [[CYFacebook sharedInstance] share:model fromViewController:viewController callback:callback];
 }
 
-#pragma mark - UIActionSheetDelegate
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    
-    [actionSheet dismissWithClickedButtonIndex:buttonIndex animated:YES];
-    
-    if (buttonIndex == 0) {
-        
-        if (actionSheet.tag == wechatWebShareActionSheetTag) {
-            
-            // 微信朋友圈网页分享
-            [self.wechatUtil shareWebToTimelineWithTitle:self.shareTitle
-                                             description:self.shareDescription
-                                               thumbData:self.shareThumbImage
-                                               urlString:self.shareURLString
-                                                callback:self.shareCallback];
-        } else if (actionSheet.tag == wechatImageShareActionSheetTag) {
-            
-            // 微信朋友圈图片分享
-            [self.wechatUtil shareImageToTimelineWithTitle:self.shareTitle
-                                               description:self.shareDescription
-                                                 thumbData:self.shareThumbImage
-                                                  imageUrl:self.shareImageUrl
-                                                 imageData:self.shareImageData
-                                                  callback:self.shareCallback];
-        } else if (actionSheet.tag == wechatTextShareActionSheetTag) {
-            
-            // 微信朋友圈文本分享
-            [self.wechatUtil shareTextToTimeline:self.shareDescription
-                                        callback:self.shareCallback];
-        } else if (actionSheet.tag == qqWebShareActionSheetTag) {
-            
-            // qzone网页分享
-            [self.qqUtil shareWebToQZoneWithTitle:self.shareTitle
-                                      description:self.shareDescription
-                                   thumbImageData:self.shareThumbImage
-                                        urlString:self.shareURLString
-                                         callback:self.shareCallback];
-        } else if (actionSheet.tag == qqImageShareActionSheetTag) {
-            
-            // qzone图片分享
-            [self.qqUtil shareImageToQZoneWithTitle:self.shareTitle
-                                        description:self.shareDescription
-                                     thumbImageData:self.shareThumbImage
-                                          imageData:self.shareImageData
-                                           callback:self.shareCallback];
-        } else if (actionSheet.tag == qqTextShareActionSheetTag) {
-            
-            // qzone文本分享
-            [self.qqUtil shareTextToQZone:self.shareDescription
-                                 callback:self.shareCallback];
-        }
-        
-    } else if (buttonIndex == 1) {
-        
-        if (actionSheet.tag == wechatWebShareActionSheetTag) {
-            
-            // 微信会话网页分享
-            [self.wechatUtil shareWebToSessionWithTitle:self.shareTitle
-                                            description:self.shareDescription
-                                              thumbData:self.shareThumbImage
-                                              urlString:self.shareURLString
-                                               callback:self.shareCallback];
-        } else if (actionSheet.tag == wechatImageShareActionSheetTag) {
-            
-            // 微信会话图片分享
-            [self.wechatUtil shareImageToSessionWithTitle:self.shareTitle
-                                              description:self.shareDescription
-                                                thumbData:self.shareThumbImage
-                                                 imageUrl:self.shareImageUrl
-                                                imageData:self.shareImageData
-                                                 callback:self.shareCallback];
-        } else if (actionSheet.tag == wechatTextShareActionSheetTag) {
-            
-            // 微信会话文本分享
-            [self.wechatUtil shareTextToSession:self.shareDescription
-                                       callback:self.shareCallback];
-        } else if (actionSheet.tag == qqWebShareActionSheetTag) {
-            
-            // qq会话网页分享
-            [self.qqUtil shareWebToQQWithTitle:self.shareTitle
-                                   description:self.shareDescription
-                                thumbImageData:self.shareThumbImage
-                                     urlString:self.shareURLString
-                                      callback:self.shareCallback];
-        } else if (actionSheet.tag == qqImageShareActionSheetTag) {
-            
-            // qq会话图片分享
-            [self.qqUtil shareImageToQQWithTitle:self.shareTitle
-                                     description:self.shareDescription
-                                  thumbImageData:self.shareThumbImage
-                                       imageData:self.shareImageData
-                                        callback:self.shareCallback];
-        } else if (actionSheet.tag == qqTextShareActionSheetTag) {
-            
-            // qq会话文本分享
-            [self.qqUtil shareTextToQQ:self.shareDescription
-                              callback:self.shareCallback];
-        }
-    }
+#endif
+
+#pragma mark - handle open url
+// 以下几个方法需要在AppDelegate对应的方法中进行调用，并且必须实现这些方法
++ (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    BOOL result = NO;
+#if CY_WECHAT_ENABLED
+    result = [[CYWechat sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
+#endif
+#if CY_QQ_ENABLED
+    result = (result || [[CYQQ sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions]);
+#endif
+#if CY_SINA_WEIBO_ENABLED
+    result = (result || [[CYSinaWeibo sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions]);
+#endif
+#if CY_FACEBOOK_ENABLED
+    result = (result || [[CYFacebook sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions]);
+#endif
+    return result;
 }
 
-#pragma mark - handle open
-- (BOOL)handleOpenURL:(NSURL *)url {
-    
-    return ([self.wechatUtil handleOpenURL:url] || [self.qqUtil handleOpenURL:url] || [self.sinaWeiboUtil handleOpenURL:url]);
++ (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+
+    BOOL result = NO;
+#if CY_WECHAT_ENABLED
+    result = [[CYWechat sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+#endif
+#if CY_QQ_ENABLED
+    result = (result || [[CYQQ sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation]);
+#endif
+#if CY_SINA_WEIBO_ENABLED
+    result = (result || [[CYSinaWeibo sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation]);
+#endif
+#if CY_FACEBOOK_ENABLED
+    result = (result || [[CYFacebook sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation]);
+#endif
+    return result;
 }
 
-#pragma mark - static
-+ (instancetype)sharedInstance {
-    
-    static CYShare *sharedInstance = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        
-        sharedInstance = [[CYShare alloc] init];
-    });
-    return sharedInstance;
-}
++ (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+            options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
 
+    BOOL result = NO;
+#if CY_WECHAT_ENABLED
+    result = [[CYWechat sharedInstance] application:application openURL:url options:options];
+#endif
+#if CY_QQ_ENABLED
+    result = (result || [[CYQQ sharedInstance] application:application openURL:url options:options]);
+#endif
+#if CY_SINA_WEIBO_ENABLED
+    result = (result || [[CYSinaWeibo sharedInstance] application:application openURL:url options:options]);
+#endif
+#if CY_FACEBOOK_ENABLED
+    result = (result || [[CYFacebook sharedInstance] application:application openURL:url options:options]);
+#endif
+    return result;
+}
 
 @end

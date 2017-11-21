@@ -136,7 +136,7 @@ static NSString *voiceRightArrowCellIdentifier = @"CYChatVoiceRightArrowCell";
             
         case CYChatMessageTypeVoice: {
             
-            cell.voiceLengthLabel.text = [NSString stringWithFormat:@"%ld\"", message.voiceLength];
+            cell.voiceLengthLabel.text = [NSString stringWithFormat:@"%ld\"", (unsigned long)message.voiceLength];
             cell.unreadImageView.hidden = !(message.unread);
             break;
         }

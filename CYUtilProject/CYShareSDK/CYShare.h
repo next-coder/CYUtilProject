@@ -7,119 +7,123 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CYShareCtrlFlag.h"
 
-#import "CYWechatUtil.h"
-#import "CYQQUtil.h"
-#import "CYSinaWeiboUtil.h"
-#import "CYShareBySMSUtil.h"
+#if CY_WECHAT_ENABLED
+#import "CYWechat.h"
+#endif
+
+#if CY_QQ_ENABLED
+#import "CYQQ.h"
+#endif
+
+#if CY_SINA_WEIBO_ENABLED
+#import "CYSinaWeibo.h"
+#endif
+
+#if CY_SHARE_APPLE_ACTIVITY_ENABLED
+#import "CYAppleActivity.h"
+#endif
+
+#if CY_SHARE_SMS_ENABLED
+#import "CYSMS.h"
+#endif
+
+#if CY_FACEBOOK_ENABLED
+#import "CYFacebook.h"
+#endif
+
+#import "CYShareModel.h"
 
 @interface CYShare : NSObject
 
-@property (nonatomic, weak, readonly) CYWechatUtil *wechatUtil;
-@property (nonatomic, weak, readonly) CYQQUtil *qqUtil;
-@property (nonatomic, weak, readonly) CYSinaWeiboUtil *sinaWeiboUtil;
-@property (nonatomic, weak, readonly) CYShareBySMSUtil *shareBySMSUtil;
-
-#pragma mark - share to wechat
+#if CY_WECHAT_ENABLED
 /**
- *  分享网页到微信
- *  弹出ActionSheet让用户选择分享到朋友圈或会话
- *
- *  @param title       标题
- *  @param description 描述
- *  @param thumbImage  缩略图
- *  @param URLString   网页url
- *  @param view        ActionSheet显示的View
+ *  微信注册，appId和appKey为微信开放平台注册之后，微信分配给第三方的appId和appKey
  */
-- (void)shareWebToWechatWithTitle:(NSString *)title
-                      description:(NSString *)description
-                       thumbImage:(NSData *)thumbImage
-                        urlString:(NSString *)urlString
-              showSelectionInView:(UIView *)view
-                         callback:(CYShareCallback)callback;
++ (void)registerWechatAppId:(NSString *)appId;
++ (void)registerWechatAppKey:(NSString *)appKey;
 
 /**
- *  分享图片到微信
- *  弹出ActionSheet让用户选择分享到朋友圈或会话，
- *  其中imageData和imageUrl只能有一个值
- *
- *  @param title       标题
- *  @param description 描述
- *  @param thumbImage  缩略图
- *  @param imageData   图片Data
- *  @param imageUrl    图片url
- *  @param view        ActionSheet显示的View
+ *  微信分享，由开发者指定分享给好友或者分享到朋友圈
  */
-- (void)shareImageToWechatWithTitle:(NSString *)title
-                        description:(NSString *)description
-                         thumbImage:(NSData *)thumbImage
-                          imageData:(NSData *)imageData
-                           imageUrl:(NSString *)imageUrl
-                showSelectionInView:(UIView *)view
-                           callback:(CYShareCallback)callback;
++ (void)shareToWechat:(CYShareModel *)model scene:(CYWechatScene)scene callback:(CYShareCallback)callback;
 
 /**
- *  分享文本到微信
- *  弹出ActionSheet让用户选择分享到朋友圈或会话
- *
- *  @param text       文本内容
- *  @param view       ActionSheet显示的View
+ *  微信分享，弹出ActionSheet，由用户选择分享给好友或者分享到朋友圈
  */
-- (void)shareTextToWechat:(NSString *)text
-      showSelectionInView:(UIView *)view
-                 callback:(CYShareCallback)callback;
++ (void)shareToWechat:(CYShareModel *)model fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback;
+#endif
 
-#pragma mark - share to qq
+#if CY_QQ_ENABLED
 /**
- *  分享网页到QQ
- *  弹出ActionSheet让用户选择分享到QZone或会话
- *
- *  @param title       标题
- *  @param description 描述
- *  @param thumbImage  缩略图
- *  @param URLString   网页url
- *  @param view        ActionSheet显示的View
+ *  qq注册，appId和appKey为qq互联平台注册之后，qq分配给第三方的appId和appKey
  */
-- (void)shareWebToQQWithTitle:(NSString *)title
-                  description:(NSString *)description
-                   thumbImage:(NSData *)thumbImage
-                    urlString:(NSString *)urlString
-          showSelectionInView:(UIView *)view
-                     callback:(CYShareCallback)callback;
++ (void)registerQQAppId:(NSString *)appId;
++ (void)registerQQAppKey:(NSString *)appKey;
 
 /**
- *  分享图片到QQ
- *  弹出ActionSheet让用户选择分享到QZone或会话，
- *  其中imageData和imageUrl只能有一个值
- *
- *  @param title       标题
- *  @param description 描述
- *  @param thumbImage  缩略图
- *  @param imageData   图片Data
- *  @param view        ActionSheet显示的View
+ *  qq分享，由开发者指定分享给好友或者分享到qq空间
  */
-- (void)shareImageToQQWithTitle:(NSString *)title
-                    description:(NSString *)description
-                     thumbImage:(NSData *)thumbImage
-                      imageData:(NSData *)imageData
-            showSelectionInView:(UIView *)view
-                       callback:(CYShareCallback)callback;
++ (void)shareToQQ:(CYShareModel *)model ctrlFlag:(CYQQAPICtrlFlag)flag callback:(CYShareCallback)callback;
 
 /**
- *  分享文本到QQ
- *  弹出ActionSheet让用户选择分享到QZone或会话
- *
- *  @param text       文本内容
- *  @param view       ActionSheet显示的View
+ *  qq分享，弹出ActionSheet，由用户选择分享给好友或者分享到qq空间
  */
-- (void)shareTextToQQ:(NSString *)text
-  showSelectionInView:(UIView *)view
-             callback:(CYShareCallback)callback;
++ (void)shareToQQ:(CYShareModel *)model fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback;
+#endif
 
-#pragma mark - handle open
-- (BOOL)handleOpenURL:(NSURL *)url;
+#if CY_SINA_WEIBO_ENABLED
+/**
+ *  新浪微博注册，appKey为微博开放平台注册之后，微博分配给第三方的AppKey
+ */
++ (void)registerWeiboAppKey:(NSString *)appKey;
 
-#pragma mark - static
-+ (instancetype)sharedInstance;
+/**
+ * 分享到微博
+ * 分享网页时，建议以文本的形式分享，把网页链接拼接到文本中
+ */
++ (void)shareToWeibo:(CYShareModel *)model
+            callback:(CYShareCallback)callback;
+#endif
+
+#if CY_SHARE_APPLE_ACTIVITY_ENABLED
+
+/**
+ 通过iOS系统提供的UIActivityViewController来分享
+
+ 可以分享文字、链接和图片
+ 包含文字时，请设置model.content属性
+
+ */
++ (void)shareByAppleActivity:(CYShareModel *)model fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback;
+
+#endif
+
+#if CY_SHARE_SMS_ENABLED
+
+/**
+ 短信分享，可以发送文本和链接，链接会拼接在文本最后面发送
+
+ 目前暂不支持图片分享
+
+ */
++ (void)shareBySMS:(CYShareModel *)model to:(NSArray *)mobiles fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback;
+
+#endif
+
+#if CY_FACEBOOK_ENABLED
+
++ (void)shareToFacebook:(CYShareModel *)model fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback;
+
+#endif
+
+#pragma mark - handle open url
+// 以下几个方法需要在AppDelegate对应的方法中进行调用，并且必须实现这些方法
++ (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions;
+
++ (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation;
+
++ (BOOL)application:(UIApplication *)application openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options;
 
 @end

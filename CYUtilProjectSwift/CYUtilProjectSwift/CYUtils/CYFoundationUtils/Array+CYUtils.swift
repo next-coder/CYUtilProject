@@ -2,8 +2,8 @@
 //  Array+CYUtils.swift
 //  CYUtilProjectSwift
 //
-//  Created by xn011644 on 5/24/16.
-//  Copyright © 2016 Jasper. All rights reserved.
+//  Created by Conner on 5/24/16.
+//  Copyright © 2016 Conner. All rights reserved.
 //
 
 import Foundation

@@ -2,8 +2,8 @@
 //  CYProgressBar.swift
 //  CYUtilProjectSwift
 //
-//  Created by xn011644 on 28/11/2016.
-//  Copyright © 2016 Jasper. All rights reserved.
+//  Created by Conner on 28/11/2016.
+//  Copyright © 2016 Conner. All rights reserved.
 //
 
 import UIKit
@@ -132,7 +132,7 @@ class CYBaseProgressBar: UIView {
     func addAnimation() {
 
         let animation = CABasicAnimation(keyPath: "strokeEnd")
-        animation.fromValue = 0
+        animation.fromValue = 0.5
         animation.toValue = 1
         animation.duration = 2.0
         completionLayer?.add(animation, forKey: nil)
