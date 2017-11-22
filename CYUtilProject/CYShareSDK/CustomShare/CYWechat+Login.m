@@ -77,7 +77,14 @@ static char CYShareSDK_CYUserInfo_wechatUserInfoKey;
 
 #define CY_WECHAT_STATE         @"CYUtil.CYWechatState"
 
+NSString *const CYWechatLoginPermissionSNSApiBase = @"snsapi_userinfo";
+NSString *const CYWechatLoginPermissionSNSApiUserInfo = @"snsapi_userinfo";
+
 #pragma mark - login actions
+- (BOOL)loginWithCallback:(CYLoginCallback)callback {
+    return [self loginWithPermissions:@[ CYWechatLoginPermissionSNSApiUserInfo ] callback:callback];
+}
+
 - (BOOL)loginWithPermissions:(NSArray<NSString *> *)permissions
                     callback:(CYLoginCallback)callback {
     return [self loginWithPermissions:permissions

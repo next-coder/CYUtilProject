@@ -22,11 +22,19 @@
 
 @end
 
+/**
+ *  增加facebook返回的用户详细信息
+ */
+@interface CYUserInfo (Facebook)
 
+@property (nonatomic, strong) NSDictionary *facebookUserInfo;
 
+@end
 
-
+@class FBSDKLoginManager;
 @interface CYFacebook (Login)
+
+@property (nonatomic, strong) FBSDKLoginManager *loginManager;
 
 /**
  *  facebook登录

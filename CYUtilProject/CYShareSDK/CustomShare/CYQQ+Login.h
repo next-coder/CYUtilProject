@@ -57,6 +57,8 @@
 
 @interface CYQQ (Login)
 
+- (BOOL)getUserInfoWithCallback:(CYGetUserInfoCallback)callback;
+
 @end
 
 #endif

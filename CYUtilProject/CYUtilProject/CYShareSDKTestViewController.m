@@ -9,6 +9,16 @@
 #import "CYShareSDKTestViewController.h"
 
 #import "CYShare.h"
+#import "CYShare+Login.h"
+
+@interface CYShareSDKTestViewController()
+
+@property (nonatomic, strong) CYLoginInfo *wechatLoginInfo;
+@property (nonatomic, strong) CYLoginInfo *sinaWeiboLoginInfo;
+@property (nonatomic, strong) CYLoginInfo *qqLoginInfo;
+@property (nonatomic, strong) CYLoginInfo *facebookLoginInfo;
+
+@end
 
 @implementation CYShareSDKTestViewController
 
@@ -19,7 +29,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 18;
+    return 29;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -80,6 +90,28 @@
         cell.textLabel.text = @"SMS Web \u26b2";
     } else if (indexPath.row == 17) {
         cell.textLabel.text = @"SMS Image \u26b2";
+    } else if (indexPath.row == 18) {
+        cell.textLabel.text = @"Facebook Web \u26b2";
+    } else if (indexPath.row == 19) {
+        cell.textLabel.text = @"Facebook Image \u26b2";
+    } else if (indexPath.row == 20) {
+        cell.textLabel.text = @"Facebook Login \u26b2";
+    } else if (indexPath.row == 21) {
+        cell.textLabel.text = @"Wechat Login \u26b2";
+    } else if (indexPath.row == 22) {
+        cell.textLabel.text = @"wechat userinfo \u26b2";
+    } else if (indexPath.row == 23) {
+        cell.textLabel.text = @"Weibo Login \u26b2";
+    } else if (indexPath.row == 24) {
+        cell.textLabel.text = @"weibo user info \u26b2";
+    } else if (indexPath.row == 25) {
+        cell.textLabel.text = @"QQ Login \u26b2";
+    } else if (indexPath.row == 26) {
+        cell.textLabel.text = @"qq user info \u26b2";
+    } else if (indexPath.row == 27) {
+        cell.textLabel.text = @"facebook Login \u26b2";
+    } else if (indexPath.row == 28) {
+        cell.textLabel.text = @"facebook user info \u26b2";
     }
     return cell;
 }
@@ -280,6 +312,84 @@
 //                   callback:^(NSInteger code, NSString *msg) {
 //                       NSLog(@"sms image message code = %ld, message = %@", (long)code, msg);
 //                   }];
+    } else if (indexPath.row == 18) {
+
+        [CYShare shareToFacebook:[CYShareModel urlModelWithTitle:@"小牛钱罐子"
+                                                         content:@"小牛钱罐子官网"
+                                                       thumbnail:UIImagePNGRepresentation([UIImage imageNamed:@"share_message.png"])
+                                                             url:@"http://www.xiaoniuapp.com"] fromViewController:self callback:^(NSInteger code, NSString *msg) {
+            NSLog(@"facebook web message code = %ld, message = %@", (long)code, msg);
+        }];
+
+    } else if (indexPath.row == 19) {
+
+        [CYShare shareToFacebook:[CYShareModel imageModelWithTitle:@"小牛钱罐子"
+                                                           content:@"小牛钱罐子"
+                                                         thumbnail:UIImagePNGRepresentation([UIImage imageNamed:@"share_message.png"])
+                                                              data:UIImagePNGRepresentation([UIImage imageNamed:@"share_message.png"])] fromViewController:self callback:^(NSInteger code, NSString *msg) {
+            NSLog(@"facebook image message code = %ld, message = %@", (long)code, msg);
+        }];
+
+    } else if (indexPath.row == 20) {
+        // facebook 登录
+        [CYShare loginByFacebook:^(NSInteger code, NSString *msg, CYLoginInfo *loginInfo) {
+            NSLog(@"facebook login message code = %ld, message = %@", (long)code, msg);
+            self.facebookLoginInfo = loginInfo;
+        }];
+    } else if (indexPath.row == 21) {
+        // 微信登陆
+        [CYShare loginByWechat:^(NSInteger code, NSString *msg, CYLoginInfo *loginInfo) {
+            NSLog(@"wechat login message code = %ld, message = %@", (long)code, msg);
+            self.wechatLoginInfo = loginInfo;
+        }];
+    } else if (indexPath.row == 22) {
+        // 微信个人信息
+        if (!self.wechatLoginInfo) {
+            NSLog(@"微信未登录，请先登录");
+            return;
+        }
+        [[CYWechat sharedInstance] getUserInfoWithAccessToken:self.wechatLoginInfo.accessToken openid:self.wechatLoginInfo.userId callback:^(NSInteger code, NSString *msg, CYUserInfo *userInfo) {
+            NSLog(@"wechat user info message code = %ld, message = %@", (long)code, msg);
+        }];
+    } else if (indexPath.row == 23) {
+        // 微博登录
+        [CYShare loginBySinaWeibo:^(NSInteger code, NSString *msg, CYLoginInfo *loginInfo) {
+            NSLog(@"sinaweibo login message code = %ld, message = %@", (long)code, msg);
+            self.sinaWeiboLoginInfo = loginInfo;
+        }];
+    } else if (indexPath.row == 24) {
+        // 微博个人信息
+        if (!self.sinaWeiboLoginInfo) {
+            NSLog(@"微博未登录，请先登录");
+            return;
+        }
+        [[CYSinaWeibo sharedInstance] getUserInfoWithAccessToken:self.sinaWeiboLoginInfo.accessToken userId:self.sinaWeiboLoginInfo.userId callback:^(NSInteger code, NSString *msg, CYUserInfo *userInfo) {
+            NSLog(@"weibo user info message code = %ld, message = %@", (long)code, msg);
+        }];
+    } else if (indexPath.row == 25) {
+
+        // qq登陆
+        [CYShare loginByQQ:^(NSInteger code, NSString *msg, CYLoginInfo *loginInfo) {
+            NSLog(@"qq login message code = %ld, message = %@", (long)code, msg);
+            self.qqLoginInfo = loginInfo;
+        }];
+    } else if (indexPath.row == 26) {
+        // qq个人信息
+        [[CYQQ sharedInstance] getUserInfoWithCallback:^(NSInteger code, NSString *msg, CYUserInfo *userInfo) {
+            NSLog(@"qq user info message code = %ld, message = %@", (long)code, msg);
+        }];
+    } else if (indexPath.row == 27) {
+        // facebook 登录
+        [CYShare loginByFacebook:^(NSInteger code, NSString *msg, CYLoginInfo *loginInfo) {
+            NSLog(@"facebook login message code = %ld, message = %@", (long)code, msg);
+            self.facebookLoginInfo = loginInfo;
+        }];
+    }  else if (indexPath.row == 28) {
+        // facebook user info
+        [[CYFacebook sharedInstance] getUserInfo:self.facebookLoginInfo.userId callback:^(NSInteger code, NSString *msg, CYUserInfo *userInfo) {
+
+            NSLog(@"facebook user info message code = %ld, message = %@", (long)code, msg);
+        }];
     }
 }
 
