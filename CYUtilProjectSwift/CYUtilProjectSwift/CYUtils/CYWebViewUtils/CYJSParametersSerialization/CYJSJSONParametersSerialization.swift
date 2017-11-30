@@ -10,11 +10,10 @@ import UIKit
 
 class CYJSJSONParametersSerialization: CYJSParametersSerialization {
 
-    override func serializeParameters( paramsString: String?) -> AnyObject? {
+    override func serializeParameters(_ paramsString: String?) -> AnyObject? {
 
         if let paramsStr = paramsString {
 
-            let jsonData = paramsStr.dataUsingEncoding(<#T##encoding: NSStringEncoding##NSStringEncoding#>)
             let jsonData = paramsStr.data(using: String.Encoding.utf8)
             if let data = jsonData {
 

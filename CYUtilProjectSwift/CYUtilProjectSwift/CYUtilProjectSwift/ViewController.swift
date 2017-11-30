@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import WebKit
 
-class ViewController: UITableViewController {
+class ViewController: UITableViewController, WKNavigationDelegate, WKUIDelegate {
 
     @IBOutlet weak var recordPauseButton: UIButton!
     @IBOutlet weak var recordStopButton: UIButton!
@@ -164,14 +165,39 @@ class ViewController: UITableViewController {
             } else if indexPath.row == 4 {
                 navigationController?.pushViewController(FloatingViewTestViewController(), animated: true)
             } else if indexPath.row == 5 {
-                let web = WebViewController()
-                _ = web.load(URLRequest(url: URL(string: "http://www.qq.com")!))
+
+                let webStyle = WebViewControllerStyle(closeBarButtonItemMode: .`default`, progressBarColor: UIColor.red)
+
+                let web = WebViewController(style: webStyle)
+                web.delegate = self
+                _ = web.load(URLRequest(url: URL(string: "http://www.qguanzi.com")!))
+
+                web.addNavigationRightItem(UIBarButtonItem(title: "更多", style: .plain, target: nil, action: nil)) { (item) in
+                    print("点击更多啦啦啦啦啦啦啦啦啦啦啦")
+                }
+                web.addNavigationRightItem(UIBarButtonItem(title: "Funy", style: .plain, target: nil, action: nil)) { (item) in
+                    print("点击Funy啦啦啦啦啦啦啦啦啦啦啦")
+                }
+
                 navigationController?.pushViewController(web, animated: true)
             } else if indexPath.row == 6 {
                 let animation = AnimationTestTableViewController(style: .plain)
                 navigationController?.pushViewController(animation, animated: true)
             }
         }
+    }
+
+    // MARK: WKNavigationDelegate
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if (navigationAction.request.url?.absoluteString.starts(with: "http://www.qq.com") ?? false) {
+            decisionHandler(.cancel)
+        } else {
+            decisionHandler(.allow)
+        }
+    }
+
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        print("didFinish 就是到这里啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦")
     }
 }
 

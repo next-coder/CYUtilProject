@@ -11,10 +11,10 @@ import Alamofire
 
 class HTTPClient: NSObject {
     func test() {
-        Alamofire.download("http://www.baidu.com").downloadProgress { (progress) in
-
-            }.response { (<#DefaultDownloadResponse#>) in
-                <#code#>
-        }
+//        Alamofire.download("http://www.baidu.com").downloadProgress { (progress) in
+//
+//            }.response { (<#DefaultDownloadResponse#>) in
+//                <#code#>
+//        }
     }
 }

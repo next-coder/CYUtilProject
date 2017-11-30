@@ -15,6 +15,7 @@
 		61091D721CDAFCDA008B7EA3 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61091D711CDAFCDA008B7EA3 /* ImageDownloader.swift */; };
 		83D7016B52B862258E58891D /* Pods_CYUtilProjectSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D53746AC48DAC068C766891 /* Pods_CYUtilProjectSwift.framework */; };
 		A306D5631CE330A8008341F3 /* CYAlertViewAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A306D5621CE330A8008341F3 /* CYAlertViewAction.swift */; };
+		A30D07D01FCBBFE800373F1C /* WebViewControllerStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30D07CF1FCBBFE800373F1C /* WebViewControllerStyle.swift */; };
 		A30EA3D21CFED40F006FEF23 /* CYAudioPlayUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30EA3D11CFED40F006FEF23 /* CYAudioPlayUtils.swift */; };
 		A30EA3D41CFEE023006FEF23 /* CYAudioRecordUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30EA3D31CFEE023006FEF23 /* CYAudioRecordUtils.swift */; };
 		A32F8C9B1F31C0AA003BA93B /* FloatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F8C9A1F31C0AA003BA93B /* FloatingView.swift */; };
@@ -111,6 +112,7 @@
 		7703B57890D7A5E3633F6303 /* Pods-CYUtilProjectSwiftTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CYUtilProjectSwiftTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CYUtilProjectSwiftTests/Pods-CYUtilProjectSwiftTests.release.xcconfig"; sourceTree = "<group>"; };
 		9213E6929DBD2C2D204EFCA7 /* Pods-CYUtilProjectSwiftTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CYUtilProjectSwiftTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CYUtilProjectSwiftTests/Pods-CYUtilProjectSwiftTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A306D5621CE330A8008341F3 /* CYAlertViewAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYAlertViewAction.swift; sourceTree = "<group>"; };
+		A30D07CF1FCBBFE800373F1C /* WebViewControllerStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewControllerStyle.swift; sourceTree = "<group>"; };
 		A30EA3D11CFED40F006FEF23 /* CYAudioPlayUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYAudioPlayUtils.swift; sourceTree = "<group>"; };
 		A30EA3D31CFEE023006FEF23 /* CYAudioRecordUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYAudioRecordUtils.swift; sourceTree = "<group>"; };
 		A32F8C9A1F31C0AA003BA93B /* FloatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingView.swift; sourceTree = "<group>"; };
@@ -390,6 +392,7 @@
 			children = (
 				A371504A1F385C020079E9C5 /* WebViewController.swift */,
 				A371504C1F3875350079E9C5 /* WebViewProgress.swift */,
+				A30D07CF1FCBBFE800373F1C /* WebViewControllerStyle.swift */,
 			);
 			path = WebViewController;
 			sourceTree = "<group>";
@@ -718,6 +721,7 @@
 				A36B943B1F4E7F8900F14AAB /* CYAnimatedImageView.swift in Sources */,
 				A345C5FC1DEBDE2F0094AF5A /* CYBaseProgressBar.swift in Sources */,
 				A385A6AE1ED16C240022C2EB /* CYRedPacketDrawViewModel.swift in Sources */,
+				A30D07D01FCBBFE800373F1C /* WebViewControllerStyle.swift in Sources */,
 				A33E4B3B1D069B0C001B0AB1 /* CYJSLocalRequestUtils.swift in Sources */,
 				A34F784A1FBC28C000A3D895 /* HTTPClient.swift in Sources */,
 				A385A6A91ED168BE0022C2EB /* CYRedPacketDetailViewController.swift in Sources */,
