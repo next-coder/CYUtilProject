@@ -68,7 +68,13 @@ static char CYShareSDK_CYUserInfo_qqUserInfoKey;
 @end
 
 @implementation CYQQ (Login)
+
 #pragma mark - login actions
+- (BOOL)loginWithCallback:(CYLoginCallback)callback {
+    return [self loginWithPermissions:@[ kOPEN_PERMISSION_GET_SIMPLE_USER_INFO ]
+                             callback:callback];
+}
+
 - (BOOL)loginWithPermissions:(NSArray<NSString *> *)permissions
                     callback:(CYLoginCallback)callback {
     BOOL result = [self.oauth authorize:permissions];
@@ -82,11 +88,6 @@ static char CYShareSDK_CYUserInfo_qqUserInfoKey;
           fromViewController:(UIViewController *)viewController
                     callback:(CYLoginCallback)callback {
     return [self loginWithPermissions:permissions
-                             callback:callback];
-}
-
-- (BOOL)loginWithCallback:(CYLoginCallback)callback {
-    return [self loginWithPermissions:@[ kOPEN_PERMISSION_GET_SIMPLE_USER_INFO ]
                              callback:callback];
 }
 

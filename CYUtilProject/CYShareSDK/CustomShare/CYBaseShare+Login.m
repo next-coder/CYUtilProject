@@ -71,6 +71,10 @@ static char CYShareSDK_CYBaseShare_userInfoKey;
 }
 
 #pragma mark - login action
+- (BOOL)loginWithCallback:(CYLoginCallback)callback {
+    return NO;
+}
+
 - (BOOL)loginWithPermissions:(NSArray<NSString *> *)permissions
                     callback:(CYLoginCallback)callback {
     return NO;

@@ -33,8 +33,17 @@ typedef void (^CYGetUserInfoCallback)(NSInteger code,
 
 /**
  *  登录接口，默认返回NO，标识登录接口调用失败
+ *  使用默认权限登录，微信默认权限snsapi_userinfo， qq默认权限kOPEN_PERMISSION_GET_SIMPLE_USER_INFO，微博默认权限all，facebook默认权限
  *
- *  @param permissions      登录需要获取的权限列表
+ *  @param callback         登录回调，当登录接口调用失败时，不会回调
+ *
+ */
+- (BOOL)loginWithCallback:(CYLoginCallback)callback;
+
+/**
+ *  登录接口，默认返回NO，标识登录接口调用失败
+ *
+ *  @param permissions      登录需要获取的权限列表，权限列表
  *  @param callback         登录回调，当登录接口调用失败时，不会回调
  *
  */

@@ -100,9 +100,12 @@
 
 #if CY_SINA_WEIBO_LOGIN_ENABLED
         // 登录完成
-        CYLoginInfo *loginInfo = [[CYLoginInfo alloc] init];
-        loginInfo.sinaWeiboAuthorizeResponse = (WBAuthorizeResponse *)response;
-        self.loginInfo = loginInfo;
+        CYLoginInfo *loginInfo = nil;
+        if (response.statusCode == WeiboSDKResponseStatusCodeSuccess) {
+            loginInfo = [[CYLoginInfo alloc] init];
+            loginInfo.sinaWeiboAuthorizeResponse = (WBAuthorizeResponse *)response;
+            self.loginInfo = loginInfo;
+        }
         if (self.loginCallback) {
             self.loginCallback(response.statusCode,
                                nil,

@@ -43,13 +43,13 @@ static char CYShareSDK_CYLoginInfo_sinaWeiboAuthorizeResponseKey;
 
 @implementation CYUserInfo (SinaWeibo)
 
-static char CYShareSDK_CYLoginInfo_sinaWeiboUserInfoKey;
+static char CYShareSDK_CYUserInfo_sinaWeiboUserInfoKey;
 
 @dynamic sinaWeiboUserInfo;
 
 - (void)setSinaWeiboUserInfo:(WeiboUser *)sinaWeiboUserInfo {
     objc_setAssociatedObject(self,
-                             &CYShareSDK_CYLoginInfo_sinaWeiboUserInfoKey,
+                             &CYShareSDK_CYUserInfo_sinaWeiboUserInfoKey,
                              sinaWeiboUserInfo,
                              OBJC_ASSOCIATION_RETAIN);
 
@@ -66,19 +66,22 @@ static char CYShareSDK_CYLoginInfo_sinaWeiboUserInfoKey;
 }
 
 - (WeiboUser *)sinaWeiboUserInfo {
-    return objc_getAssociatedObject(self, &CYShareSDK_CYLoginInfo_sinaWeiboUserInfoKey);
+    return objc_getAssociatedObject(self, &CYShareSDK_CYUserInfo_sinaWeiboUserInfoKey);
 }
 
 @end
 
 #pragma mark - login
 @implementation CYSinaWeibo (Login)
+- (BOOL)loginWithCallback:(CYLoginCallback)callback {
+    return [self loginWithPermissions:@[ @"all" ] callback:callback];
+}
 
 - (BOOL)loginWithPermissions:(NSArray<NSString *> *)permissions
                     callback:(CYLoginCallback)callback {
-    if (permissions.count == 0) {
-        return NO;
-    }
+//    if (permissions.count == 0) {
+//        return NO;
+//    }
 
     WBAuthorizeRequest *request = [[WBAuthorizeRequest alloc] init];
     request.scope = [permissions componentsJoinedByString:@","];

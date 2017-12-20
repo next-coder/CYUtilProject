@@ -41,6 +41,7 @@
     NSLog(@"IP Address : %@", [CYIPUtils IPAddress]);
 
     [CYShare registerWechatAppId:@"wx891f8f3380cba5e9"];
+    [CYShare registerWechatAppKey:@"bdd4ed515ecda1a82d98d3bbee192b20"];
     [CYShare registerQQAppId:@"1104237169"];
     [CYShare registerWeiboAppKey:@"3180958896"];
     [CYShare application:application didFinishLaunchingWithOptions:launchOptions];

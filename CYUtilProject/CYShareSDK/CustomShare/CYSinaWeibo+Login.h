@@ -37,6 +37,10 @@
 
 @interface CYSinaWeibo (Login)
 
+- (BOOL)getUserInfoWithAccessToken:(NSString *)accessToken
+                            userId:(NSString *)userId
+                          callback:(CYGetUserInfoCallback)callback;
+
 @end
 
 #endif

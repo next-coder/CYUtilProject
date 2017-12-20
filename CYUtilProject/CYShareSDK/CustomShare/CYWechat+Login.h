@@ -72,6 +72,15 @@
 @interface CYWechat (Login)
 
 /**
+ *  微信权限
+ */
+// 基础权限，调用/sns/oauth2/access_token、/sns/oauth2/refresh_token和/sns/auth需要此权限
+// 属于基础接口，若应用已拥有其它scope权限，则默认拥有CYWechatLoginPermissionSNSApiBase的权限
+FOUNDATION_EXTERN NSString *const CYWechatLoginPermissionSNSApiBase;
+// 获取用户个人信息权限，调用/sns/userinfo接口需要此权限
+FOUNDATION_EXTERN NSString *const CYWechatLoginPermissionSNSApiUserInfo;
+
+/**
  *  微信获取access token
  *
  *  @param code     微信登陆后返回的code
