@@ -68,6 +68,12 @@
 		A3EB573B1FA1D41D00A58278 /* CycleBannerViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EB57391FA1D41D00A58278 /* CycleBannerViewItem.swift */; };
 		A3FDF5BD1F8B2432009E5F68 /* DeviceAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FDF5BC1F8B2432009E5F68 /* DeviceAuthentication.swift */; };
 		A3FDF5BF1F8CA2AB009E5F68 /* DeviceAuthenticationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FDF5BE1F8CA2AB009E5F68 /* DeviceAuthenticationTests.swift */; };
+		A41FB26E1FE8E58F00A75434 /* QRCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41FB26D1FE8E58F00A75434 /* QRCodeGenerator.swift */; };
+		A41FB2701FE8EC9000A75434 /* QRCodeTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41FB26F1FE8EC9000A75434 /* QRCodeTestViewController.swift */; };
+		A4482EE11FE26BAB004B8771 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4482EE01FE26BAB004B8771 /* BaseViewModel.swift */; };
+		A4874DFF1FE2797B002C978F /* SimpleTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4874DFD1FE2797B002C978F /* SimpleTableView.swift */; };
+		A4874E001FE2797B002C978F /* SimpleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4874DFE1FE2797B002C978F /* SimpleTableViewCell.swift */; };
+		A4874E041FE3A829002C978F /* EventListenerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4874E031FE3A829002C978F /* EventListenerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -161,6 +167,12 @@
 		A3EB57391FA1D41D00A58278 /* CycleBannerViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleBannerViewItem.swift; sourceTree = "<group>"; };
 		A3FDF5BC1F8B2432009E5F68 /* DeviceAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceAuthentication.swift; sourceTree = "<group>"; };
 		A3FDF5BE1F8CA2AB009E5F68 /* DeviceAuthenticationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceAuthenticationTests.swift; sourceTree = "<group>"; };
+		A41FB26D1FE8E58F00A75434 /* QRCodeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeGenerator.swift; sourceTree = "<group>"; };
+		A41FB26F1FE8EC9000A75434 /* QRCodeTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeTestViewController.swift; sourceTree = "<group>"; };
+		A4482EE01FE26BAB004B8771 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		A4874DFD1FE2797B002C978F /* SimpleTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleTableView.swift; sourceTree = "<group>"; };
+		A4874DFE1FE2797B002C978F /* SimpleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleTableViewCell.swift; sourceTree = "<group>"; };
+		A4874E031FE3A829002C978F /* EventListenerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListenerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +233,9 @@
 		61091D6F1CDAFCB0008B7EA3 /* CYUtils */ = {
 			isa = PBXGroup;
 			children = (
+				A41FB26C1FE8E56400A75434 /* QRCode */,
+				A4874DFC1FE2793B002C978F /* SimpleTableView */,
+				A4482EDF1FE26B95004B8771 /* MVVM */,
 				A39A31631FB03B9800CAC143 /* Model */,
 				A3EB57371FA1D41D00A58278 /* CycleBanner */,
 				A3FDF5BB1F8B2420009E5F68 /* DeviceAuth */,
@@ -355,6 +370,7 @@
 			isa = PBXGroup;
 			children = (
 				A3FDF5BE1F8CA2AB009E5F68 /* DeviceAuthenticationTests.swift */,
+				A4874E031FE3A829002C978F /* EventListenerTests.swift */,
 				A37AEA4E1F468898007B3C23 /* CYUtilProjectSwiftTests.swift */,
 				A37AEA501F468898007B3C23 /* Info.plist */,
 			);
@@ -422,6 +438,7 @@
 				A32F8C9E1F31CBC2003BA93B /* FloatingViewTestViewController.swift */,
 				A36B943C1F4E80A200F14AAB /* AnimationTestTableViewController.swift */,
 				A36B943E1F4E813900F14AAB /* AnimationTest */,
+				A41FB26F1FE8EC9000A75434 /* QRCodeTestViewController.swift */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -460,6 +477,31 @@
 				A3FDF5BC1F8B2432009E5F68 /* DeviceAuthentication.swift */,
 			);
 			path = DeviceAuth;
+			sourceTree = "<group>";
+		};
+		A41FB26C1FE8E56400A75434 /* QRCode */ = {
+			isa = PBXGroup;
+			children = (
+				A41FB26D1FE8E58F00A75434 /* QRCodeGenerator.swift */,
+			);
+			path = QRCode;
+			sourceTree = "<group>";
+		};
+		A4482EDF1FE26B95004B8771 /* MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				A4482EE01FE26BAB004B8771 /* BaseViewModel.swift */,
+			);
+			path = MVVM;
+			sourceTree = "<group>";
+		};
+		A4874DFC1FE2793B002C978F /* SimpleTableView */ = {
+			isa = PBXGroup;
+			children = (
+				A4874DFD1FE2797B002C978F /* SimpleTableView.swift */,
+				A4874DFE1FE2797B002C978F /* SimpleTableViewCell.swift */,
+			);
+			path = SimpleTableView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -572,6 +614,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A30EA3D21CFED40F006FEF23 /* CYAudioPlayUtils.swift in Sources */,
+				A4482EE11FE26BAB004B8771 /* BaseViewModel.swift in Sources */,
 				A36B94401F4E815D00F14AAB /* AnimatedImageTestViewController.swift in Sources */,
 				A36B943B1F4E7F8900F14AAB /* CYAnimatedImageView.swift in Sources */,
 				A345C5FC1DEBDE2F0094AF5A /* CYBaseProgressBar.swift in Sources */,
@@ -590,6 +633,7 @@
 				A3CCAF311D17A56000A40969 /* CYJSJSONParametersSerialization.swift in Sources */,
 				A37D5B481ED7037500A63AB9 /* SendRedPacketView.swift in Sources */,
 				A39A31651FB03BCF00CAC143 /* BaseModel.swift in Sources */,
+				A4874E001FE2797B002C978F /* SimpleTableViewCell.swift in Sources */,
 				A37D5B461ED7036200A63AB9 /* SendRedPacketViewController.swift in Sources */,
 				A3EB573B1FA1D41D00A58278 /* CycleBannerViewItem.swift in Sources */,
 				A3B7009B1E1B500B00823B7B /* ProgressWebTestViewController.swift in Sources */,
@@ -614,15 +658,18 @@
 				A33913D31CF4282700C8C147 /* Array+CYUtils.swift in Sources */,
 				A3E2530A1CFD976F002F8E18 /* ObjectiveCTestObject.m in Sources */,
 				A385A6A51ED150C40022C2EB /* CYRedPacketDetailHeaderView.swift in Sources */,
+				A41FB2701FE8EC9000A75434 /* QRCodeTestViewController.swift in Sources */,
 				A385A6AC1ED16A8E0022C2EB /* CYRedPacketViewModel.swift in Sources */,
 				A34F17F11EF8B78200538F20 /* HerizontalTableViewTestViewController.swift in Sources */,
 				A371504D1F3875350079E9C5 /* WebViewProgress.swift in Sources */,
 				A36B943D1F4E80A200F14AAB /* AnimationTestTableViewController.swift in Sources */,
 				A33913CE1CF3EE4400C8C147 /* Dictionary+CYUtils.swift in Sources */,
 				A3B700981E1B449C00823B7B /* CYProgressWebView.swift in Sources */,
+				A41FB26E1FE8E58F00A75434 /* QRCodeGenerator.swift in Sources */,
 				A385A6A71ED1585B0022C2EB /* CYRedPacketDetailCell.swift in Sources */,
 				A3BA5F1C1E67ED8200B31B8C /* CYProgressWebViewController.swift in Sources */,
 				A3EB573A1FA1D41D00A58278 /* CycleBannerView.swift in Sources */,
+				A4874DFF1FE2797B002C978F /* SimpleTableView.swift in Sources */,
 				A33E4B3D1D06ABDC001B0AB1 /* CYJSCommonActionRequestUtils.swift in Sources */,
 				A385A69F1ED138EA0022C2EB /* UIWindow+CYAlertWindow.swift in Sources */,
 			);
@@ -632,6 +679,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4874E041FE3A829002C978F /* EventListenerTests.swift in Sources */,
 				A37AEA4F1F468898007B3C23 /* CYUtilProjectSwiftTests.swift in Sources */,
 				A3FDF5BF1F8CA2AB009E5F68 /* DeviceAuthenticationTests.swift in Sources */,
 			);

@@ -170,6 +170,9 @@ class ViewController: UITableViewController {
             } else if indexPath.row == 6 {
                 let animation = AnimationTestTableViewController(style: .plain)
                 navigationController?.pushViewController(animation, animated: true)
+            } else if indexPath.row == 7 {
+                let qrcode = QRCodeTestViewController()
+                navigationController?.pushViewController(qrcode, animated: true)
             }
         }
     }
