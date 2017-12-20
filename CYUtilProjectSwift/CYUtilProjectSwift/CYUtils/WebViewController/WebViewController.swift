@@ -151,9 +151,10 @@ open class WebViewController: UIViewController, WKNavigationDelegate, WKUIDelega
         }
         self.navigationController?.delegate = self
     }
-
-    override open func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
+    
+    override open func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        
         self.navigationController?.delegate = nil
     }
 

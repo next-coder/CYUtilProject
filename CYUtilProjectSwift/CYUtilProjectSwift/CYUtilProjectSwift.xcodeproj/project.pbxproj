@@ -13,7 +13,6 @@
 		61091D651CDAF8E4008B7EA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61091D641CDAF8E4008B7EA3 /* Assets.xcassets */; };
 		61091D681CDAF8E4008B7EA3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61091D661CDAF8E4008B7EA3 /* LaunchScreen.storyboard */; };
 		61091D721CDAFCDA008B7EA3 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61091D711CDAFCDA008B7EA3 /* ImageDownloader.swift */; };
-		83D7016B52B862258E58891D /* Pods_CYUtilProjectSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D53746AC48DAC068C766891 /* Pods_CYUtilProjectSwift.framework */; };
 		A306D5631CE330A8008341F3 /* CYAlertViewAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A306D5621CE330A8008341F3 /* CYAlertViewAction.swift */; };
 		A30D07D01FCBBFE800373F1C /* WebViewControllerStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30D07CF1FCBBFE800373F1C /* WebViewControllerStyle.swift */; };
 		A30EA3D21CFED40F006FEF23 /* CYAudioPlayUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30EA3D11CFED40F006FEF23 /* CYAudioPlayUtils.swift */; };
@@ -77,7 +76,6 @@
 		A4874DFF1FE2797B002C978F /* SimpleTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4874DFD1FE2797B002C978F /* SimpleTableView.swift */; };
 		A4874E001FE2797B002C978F /* SimpleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4874DFE1FE2797B002C978F /* SimpleTableViewCell.swift */; };
 		A4874E041FE3A829002C978F /* EventListenerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4874E031FE3A829002C978F /* EventListenerTests.swift */; };
-		B2A6FB253493B156AF5B4F72 /* Pods_CYUtilProjectSwiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FF914D00A31D6EDEA3F229 /* Pods_CYUtilProjectSwiftTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,9 +102,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0BD1B3062F4422604FC5D843 /* Pods-CYUtilProjectSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CYUtilProjectSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CYUtilProjectSwift/Pods-CYUtilProjectSwift.debug.xcconfig"; sourceTree = "<group>"; };
-		2D53746AC48DAC068C766891 /* Pods_CYUtilProjectSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CYUtilProjectSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4D6806CABC76D2FD033C6E90 /* Pods-CYUtilProjectSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CYUtilProjectSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-CYUtilProjectSwift/Pods-CYUtilProjectSwift.release.xcconfig"; sourceTree = "<group>"; };
 		61091D5A1CDAF8E4008B7EA3 /* CYUtilProjectSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CYUtilProjectSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61091D5D1CDAF8E4008B7EA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		61091D5F1CDAF8E4008B7EA3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -115,8 +110,6 @@
 		61091D671CDAF8E4008B7EA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		61091D691CDAF8E4008B7EA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61091D711CDAFCDA008B7EA3 /* ImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
-		7703B57890D7A5E3633F6303 /* Pods-CYUtilProjectSwiftTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CYUtilProjectSwiftTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CYUtilProjectSwiftTests/Pods-CYUtilProjectSwiftTests.release.xcconfig"; sourceTree = "<group>"; };
-		9213E6929DBD2C2D204EFCA7 /* Pods-CYUtilProjectSwiftTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CYUtilProjectSwiftTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CYUtilProjectSwiftTests/Pods-CYUtilProjectSwiftTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A306D5621CE330A8008341F3 /* CYAlertViewAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYAlertViewAction.swift; sourceTree = "<group>"; };
 		A30D07CF1FCBBFE800373F1C /* WebViewControllerStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewControllerStyle.swift; sourceTree = "<group>"; };
 		A30EA3D11CFED40F006FEF23 /* CYAudioPlayUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYAudioPlayUtils.swift; sourceTree = "<group>"; };
@@ -184,7 +177,6 @@
 		A4874DFD1FE2797B002C978F /* SimpleTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleTableView.swift; sourceTree = "<group>"; };
 		A4874DFE1FE2797B002C978F /* SimpleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleTableViewCell.swift; sourceTree = "<group>"; };
 		A4874E031FE3A829002C978F /* EventListenerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListenerTests.swift; sourceTree = "<group>"; };
-		E3FF914D00A31D6EDEA3F229 /* Pods_CYUtilProjectSwiftTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CYUtilProjectSwiftTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,7 +184,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83D7016B52B862258E58891D /* Pods_CYUtilProjectSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,7 +191,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2A6FB253493B156AF5B4F72 /* Pods_CYUtilProjectSwiftTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,8 +200,6 @@
 		47F7587AEA6B9A58E7F8FA3F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2D53746AC48DAC068C766891 /* Pods_CYUtilProjectSwift.framework */,
-				E3FF914D00A31D6EDEA3F229 /* Pods_CYUtilProjectSwiftTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -222,7 +210,6 @@
 				61091D5C1CDAF8E4008B7EA3 /* CYUtilProjectSwift */,
 				A37AEA4D1F468898007B3C23 /* CYUtilProjectSwiftTests */,
 				61091D5B1CDAF8E4008B7EA3 /* Products */,
-				88F1AE672F67B973BE29AC0D /* Pods */,
 				47F7587AEA6B9A58E7F8FA3F /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -290,17 +277,6 @@
 				61091D711CDAFCDA008B7EA3 /* ImageDownloader.swift */,
 			);
 			path = CYCache;
-			sourceTree = "<group>";
-		};
-		88F1AE672F67B973BE29AC0D /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				0BD1B3062F4422604FC5D843 /* Pods-CYUtilProjectSwift.debug.xcconfig */,
-				4D6806CABC76D2FD033C6E90 /* Pods-CYUtilProjectSwift.release.xcconfig */,
-				9213E6929DBD2C2D204EFCA7 /* Pods-CYUtilProjectSwiftTests.debug.xcconfig */,
-				7703B57890D7A5E3633F6303 /* Pods-CYUtilProjectSwiftTests.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		A306D5611CE33096008341F3 /* CYAlertView */ = {
@@ -557,13 +533,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 61091D6C1CDAF8E4008B7EA3 /* Build configuration list for PBXNativeTarget "CYUtilProjectSwift" */;
 			buildPhases = (
-				4F4B4F09F1C7D6182216F55A /* [CP] Check Pods Manifest.lock */,
 				61091D561CDAF8E4008B7EA3 /* Sources */,
 				61091D571CDAF8E4008B7EA3 /* Frameworks */,
 				61091D581CDAF8E4008B7EA3 /* Resources */,
 				A36F4EFD1F906D6600E7F4B6 /* Embed Frameworks */,
-				1EEAB98AC6DB01F8CE17C650 /* [CP] Embed Pods Frameworks */,
-				FA7149CE0B09130DAF7AEC5B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -661,36 +634,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1EEAB98AC6DB01F8CE17C650 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CYUtilProjectSwift/Pods-CYUtilProjectSwift-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4F4B4F09F1C7D6182216F55A /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 		5878A6C77DCD2EA663537C76 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -734,21 +677,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CYUtilProjectSwiftTests/Pods-CYUtilProjectSwiftTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FA7149CE0B09130DAF7AEC5B /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CYUtilProjectSwift/Pods-CYUtilProjectSwift-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -966,7 +894,6 @@
 		};
 		61091D6D1CDAF8E4008B7EA3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0BD1B3062F4422604FC5D843 /* Pods-CYUtilProjectSwift.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -983,14 +910,13 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CYUtilProjectSwift/CYUtilProjectSwift-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
 		61091D6E1CDAF8E4008B7EA3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4D6806CABC76D2FD033C6E90 /* Pods-CYUtilProjectSwift.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1006,14 +932,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Jasper.CYUtilProjectSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CYUtilProjectSwift/CYUtilProjectSwift-Bridging-Header.h";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
 		A37AEA531F468898007B3C23 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9213E6929DBD2C2D204EFCA7 /* Pods-CYUtilProjectSwiftTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1033,7 +958,6 @@
 		};
 		A37AEA541F468898007B3C23 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7703B57890D7A5E3633F6303 /* Pods-CYUtilProjectSwiftTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;

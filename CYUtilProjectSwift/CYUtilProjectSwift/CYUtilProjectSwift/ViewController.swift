@@ -57,6 +57,10 @@ class ViewController: UITableViewController, WKNavigationDelegate, WKUIDelegate 
             navigationController?.navigationBar.prefersLargeTitles = true
         }
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
 
     @IBAction func recordOrPause(_ sender: AnyObject) {
 
@@ -179,6 +183,7 @@ class ViewController: UITableViewController, WKNavigationDelegate, WKUIDelegate 
                     print("点击Funy啦啦啦啦啦啦啦啦啦啦啦")
                 }
 
+                print(navigationController?.viewControllers.description)
                 navigationController?.pushViewController(web, animated: true)
             } else if indexPath.row == 6 {
                 let animation = AnimationTestTableViewController(style: .plain)
