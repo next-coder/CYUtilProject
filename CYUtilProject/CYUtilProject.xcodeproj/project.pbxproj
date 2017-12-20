@@ -828,15 +828,6 @@
 		61091CB31CDAF563008B7EA3 /* CYShareSDK */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
-				61091CB71CDAF563008B7EA3 /* CYShare.h */,
-				61091CB81CDAF563008B7EA3 /* CYShare.m */,
-				61091CB41CDAF563008B7EA3 /* CYQQ */,
-				61091CB91CDAF563008B7EA3 /* CYShareBase */,
-				61091CBC1CDAF563008B7EA3 /* CYSinaWeibo */,
-				61091CBF1CDAF563008B7EA3 /* CYSMS */,
-				61091CC21CDAF563008B7EA3 /* CYWechat */,
-=======
 				A3A81D5E1F972AD100C26475 /* CustomShare */,
 				61091CB71CDAF563008B7EA3 /* CYShare.h */,
 				61091CB81CDAF563008B7EA3 /* CYShare.m */,
@@ -845,7 +836,6 @@
 				A36F4F0F1F9091D100E7F4B6 /* CYShareModel.h */,
 				A36F4F101F9091D100E7F4B6 /* CYShareModel.m */,
 				A3A81D591F95EDAA00C26475 /* CYShareCtrlFlag.h */,
->>>>>>> 36863ad57a8d49d4e07b6aae27803eff09653aad
 				61091CC51CDAF563008B7EA3 /* Readme */,
 			);
 			path = CYShareSDK;
@@ -942,7 +932,6 @@
 				A307B6431D080FD900DE9B9E /* CYSegmented */,
 				A307B6421D080FBA00DE9B9E /* CYPageView */,
 				A330B0AB1CF6F53000C8639D /* CYSecurity */,
-				A311A1611CEC3A13001C64C9 /* CYPath */,
 				A32601F31CE9B4A10032E21C /* CYIPUtils */,
 				A3271D511CE585F7005DE1A1 /* CYExceptionUtils */,
 				61091C1B1CDAF563008B7EA3 /* CYActionSheet */,
@@ -1093,13 +1082,6 @@
 				A307B6471D080FE700DE9B9E /* CYSegmentedScrollContentView.m */,
 			);
 			path = CYSegmented;
-			sourceTree = SOURCE_ROOT;
-		};
-		A311A1611CEC3A13001C64C9 /* CYPath */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CYPath;
 			sourceTree = SOURCE_ROOT;
 		};
 		A32601F31CE9B4A10032E21C /* CYIPUtils */ = {
@@ -1468,13 +1450,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CYUtilProject-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
