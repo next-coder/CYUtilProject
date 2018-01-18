@@ -129,8 +129,6 @@
 		A30EA3CF1CFE80B9006FEF23 /* README in Resources */ = {isa = PBXBuildFile; fileRef = A30EA3CE1CFE80B9006FEF23 /* README */; };
 		A32601F61CE9B4B00032E21C /* CYIPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A32601F51CE9B4B00032E21C /* CYIPUtils.m */; };
 		A3271D541CE585F7005DE1A1 /* CYExceptionUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A3271D531CE585F7005DE1A1 /* CYExceptionUtils.m */; };
-		A3274A041FBAD1FD00315E1E /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A3274A021FBAD1FD00315E1E /* AlipaySDK.bundle */; };
-		A3274A051FBAD1FD00315E1E /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3274A031FBAD1FD00315E1E /* AlipaySDK.framework */; };
 		A3274A071FBAD2E500315E1E /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3274A061FBAD24A00315E1E /* CoreMotion.framework */; };
 		A3274A0B1FBAD34600315E1E /* CYAlipay.m in Sources */ = {isa = PBXBuildFile; fileRef = A3274A0A1FBAD34600315E1E /* CYAlipay.m */; };
 		A330B09F1CF6ACCE00C8639D /* UIDevice+CYUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A330B09E1CF6ACCE00C8639D /* UIDevice+CYUtils.m */; };
@@ -170,6 +168,8 @@
 		A3A81D6D1F972B6A00C26475 /* CYAppleActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A81D601F972AD100C26475 /* CYAppleActivity.m */; };
 		A3A81D701F974AAD00C26475 /* CYSMS.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A81D6F1F974AAD00C26475 /* CYSMS.m */; };
 		A3BA5F291E6814F100B31B8C /* CYWebListener.m in Sources */ = {isa = PBXBuildFile; fileRef = A3BA5F281E6814F100B31B8C /* CYWebListener.m */; };
+		A4AC42E5200740AC00882600 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A4AC42E3200740AC00882600 /* AlipaySDK.bundle */; };
+		A4AC42E6200740AC00882600 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4AC42E4200740AC00882600 /* AlipaySDK.framework */; };
 		C071DD02C6E38C583C568616 /* libPods-CYUtilProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF24914467ED2B4EC0F2DF57 /* libPods-CYUtilProject.a */; };
 /* End PBXBuildFile section */
 
@@ -423,8 +423,6 @@
 		A32601F51CE9B4B00032E21C /* CYIPUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYIPUtils.m; sourceTree = "<group>"; };
 		A3271D521CE585F7005DE1A1 /* CYExceptionUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYExceptionUtils.h; sourceTree = "<group>"; };
 		A3271D531CE585F7005DE1A1 /* CYExceptionUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYExceptionUtils.m; sourceTree = "<group>"; };
-		A3274A021FBAD1FD00315E1E /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
-		A3274A031FBAD1FD00315E1E /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
 		A3274A061FBAD24A00315E1E /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		A3274A091FBAD34600315E1E /* CYAlipay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYAlipay.h; sourceTree = "<group>"; };
 		A3274A0A1FBAD34600315E1E /* CYAlipay.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYAlipay.m; sourceTree = "<group>"; };
@@ -494,6 +492,8 @@
 		A3A81D6F1F974AAD00C26475 /* CYSMS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYSMS.m; sourceTree = "<group>"; };
 		A3BA5F271E6814F100B31B8C /* CYWebListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYWebListener.h; sourceTree = "<group>"; };
 		A3BA5F281E6814F100B31B8C /* CYWebListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYWebListener.m; sourceTree = "<group>"; };
+		A4AC42E3200740AC00882600 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
+		A4AC42E4200740AC00882600 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
 		E44A7E629213891F907F2C63 /* Pods-CYUtilProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CYUtilProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-CYUtilProject/Pods-CYUtilProject.release.xcconfig"; sourceTree = "<group>"; };
 		FF24914467ED2B4EC0F2DF57 /* libPods-CYUtilProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CYUtilProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -505,8 +505,8 @@
 			files = (
 				A3274A071FBAD2E500315E1E /* CoreMotion.framework in Frameworks */,
 				61A316BB1CA39AE40079C13B /* CoreText.framework in Frameworks */,
+				A4AC42E6200740AC00882600 /* AlipaySDK.framework in Frameworks */,
 				61091D501CDAF68B008B7EA3 /* TencentOpenAPI.framework in Frameworks */,
-				A3274A051FBAD1FD00315E1E /* AlipaySDK.framework in Frameworks */,
 				61F711B11BF1C4E700881E3B /* CoreTelephony.framework in Frameworks */,
 				61A316B91CA39ACD0079C13B /* ImageIO.framework in Frameworks */,
 				61A316B71CA39AC50079C13B /* QuartzCore.framework in Frameworks */,
@@ -828,11 +828,6 @@
 		61091CB31CDAF563008B7EA3 /* CYShareSDK */ = {
 			isa = PBXGroup;
 			children = (
-				61091CB41CDAF563008B7EA3 /* CYQQ */,
-				61091CB91CDAF563008B7EA3 /* CYShareBase */,
-				61091CBC1CDAF563008B7EA3 /* CYSinaWeibo */,
-				61091CBF1CDAF563008B7EA3 /* CYSMS */,
-				61091CC21CDAF563008B7EA3 /* CYWechat */,
 				A3A81D5E1F972AD100C26475 /* CustomShare */,
 				61091CB71CDAF563008B7EA3 /* CYShare.h */,
 				61091CB81CDAF563008B7EA3 /* CYShare.m */,
@@ -1032,7 +1027,7 @@
 		61F7836A1CA0F4F2004DE856 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				A3274A011FBAD1FD00315E1E /* AlipaySDK */,
+				A4AC42E2200740AC00882600 /* Alipay */,
 				61A316A41CA390C90079C13B /* libWeiboSDK */,
 				61F783771CA0F731004DE856 /* QQSDK */,
 				61F783701CA0F5B9004DE856 /* WeiXin */,
@@ -1107,15 +1102,6 @@
 			);
 			path = CYExceptionUtils;
 			sourceTree = SOURCE_ROOT;
-		};
-		A3274A011FBAD1FD00315E1E /* AlipaySDK */ = {
-			isa = PBXGroup;
-			children = (
-				A3274A021FBAD1FD00315E1E /* AlipaySDK.bundle */,
-				A3274A031FBAD1FD00315E1E /* AlipaySDK.framework */,
-			);
-			path = AlipaySDK;
-			sourceTree = "<group>";
 		};
 		A3274A081FBAD33200315E1E /* CYAlipay */ = {
 			isa = PBXGroup;
@@ -1235,6 +1221,15 @@
 			);
 			path = CYWebListener;
 			sourceTree = SOURCE_ROOT;
+		};
+		A4AC42E2200740AC00882600 /* Alipay */ = {
+			isa = PBXGroup;
+			children = (
+				A4AC42E3200740AC00882600 /* AlipaySDK.bundle */,
+				A4AC42E4200740AC00882600 /* AlipaySDK.framework */,
+			);
+			path = Alipay;
+			sourceTree = "<group>";
 		};
 		E299DF45F885184B4A142853 /* Frameworks */ = {
 			isa = PBXGroup;
@@ -1389,7 +1384,7 @@
 				A36904211E6D6765005F7697 /* tab_1@2x.png in Resources */,
 				61851EC91BCD0964005340C8 /* Main.storyboard in Resources */,
 				61A316B31CA390C90079C13B /* WeiboSDK.bundle in Resources */,
-				A3274A041FBAD1FD00315E1E /* AlipaySDK.bundle in Resources */,
+				A4AC42E5200740AC00882600 /* AlipaySDK.bundle in Resources */,
 				A369041F1E6D6746005F7697 /* tab_origin.png in Resources */,
 				61F783761CA0F5B9004DE856 /* read_me.txt in Resources */,
 				A30EA3CD1CFE801C006FEF23 /* README in Resources */,
@@ -1708,6 +1703,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/CYUtilProject/QQSDK",
 					"$(PROJECT_DIR)/CYUtilProject/AlipaySDK",
+					"$(PROJECT_DIR)/CYUtilProject/Alipay",
 				);
 				GCC_PREFIX_HEADER = CYUtilProject/Prefix.pch;
 				INFOPLIST_FILE = CYUtilProject/Info.plist;

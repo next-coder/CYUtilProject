@@ -132,6 +132,19 @@ NSString *const CYSMSToUsersKey = @"CYUtil.CYShareSDK.CYSMSToUsersKey";
     return util;
 }
 
++ (BOOL)canSendText {
+    return [MFMessageComposeViewController canSendText];
+}
+
++ (BOOL)appInstalled {
+    return [self canSendText];
+}
+
++ (BOOL)openApp {
+    
+    return NO;
+}
+
 @end
 
 #endif

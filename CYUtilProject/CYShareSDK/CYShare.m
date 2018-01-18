@@ -15,6 +15,8 @@
 @implementation CYShare
 
 #if CY_WECHAT_ENABLED
+
+#pragma mark - wechat
 + (void)registerWechatAppId:(NSString *)appId {
     [[CYWechat sharedInstance] registerAppId:appId];
 }
@@ -34,9 +36,19 @@
 
     [[CYWechat sharedInstance] share:model fromViewController:viewController callback:callback];
 }
+
++ (BOOL)openWechat {
+    return [CYWechat openApp];
+}
+
++ (BOOL)isWechatInstalled {
+    return [CYWechat appInstalled];
+}
+
 #endif
 
 #if CY_QQ_ENABLED
+#pragma mark - qq
 + (void)registerQQAppId:(NSString *)appId {
     [[CYQQ sharedInstance] registerAppId:appId];
 }
@@ -53,9 +65,19 @@
 
     [[CYQQ sharedInstance] share:model fromViewController:viewController callback:callback];
 }
+
++ (BOOL)openQQ {
+    return [CYQQ openApp];
+}
+
++ (BOOL)isQQInstalled {
+    return [CYQQ appInstalled];
+}
+
 #endif
 
 #if CY_SINA_WEIBO_ENABLED
+#pragma mark - weibo
 + (void)registerWeiboAppKey:(NSString *)appKey {
     [[CYSinaWeibo sharedInstance] registerAppKey:appKey];
 }
@@ -65,6 +87,15 @@
     [[CYSinaWeibo sharedInstance] share:model
                                callback:callback];
 }
+
++ (BOOL)openSinaWeibo {
+    return [CYSinaWeibo openApp];
+}
+
++ (BOOL)isSinaWeiboInstalled {
+    return [CYSinaWeibo appInstalled];
+}
+
 #endif
 
 #if CY_SHARE_APPLE_ACTIVITY_ENABLED
@@ -79,6 +110,10 @@
 
 + (void)shareBySMS:(CYShareModel *)model to:(NSArray *)mobiles fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback {
     [[CYSMS sharedInstance] share:model toMobiles:mobiles fromViewController:viewController callback:callback];
+}
+
++ (BOOL)canSendText {
+    return [CYSMS canSendText];
 }
 
 #endif

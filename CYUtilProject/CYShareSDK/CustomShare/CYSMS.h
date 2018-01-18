@@ -34,6 +34,8 @@ extern NSString *const CYSMSToUsersKey;
 #pragma mark - sharedInstance
 + (instancetype)sharedInstance;
 
++ (BOOL)canSendText;
+
 @end
 
 #endif

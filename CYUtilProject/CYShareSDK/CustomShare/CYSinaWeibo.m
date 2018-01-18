@@ -94,8 +94,11 @@
     if ([response isKindOfClass:[WBSendMessageToWeiboResponse class]]) {
         
         // 分享完成
-        self.shareCallback(response.statusCode, nil);
-        self.shareCallback = nil;
+        if (self.shareCallback) {
+            
+            self.shareCallback(response.statusCode, nil);
+            self.shareCallback = nil;
+        }
     } else if ([response isKindOfClass:[WBAuthorizeResponse class]]) {
 
 #if CY_SINA_WEIBO_LOGIN_ENABLED

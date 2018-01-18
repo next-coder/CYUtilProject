@@ -53,6 +53,10 @@
  *  微信分享，弹出ActionSheet，由用户选择分享给好友或者分享到朋友圈
  */
 + (void)shareToWechat:(CYShareModel *)model fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback;
+
++ (BOOL)openWechat;
+
++ (BOOL)isWechatInstalled;
 #endif
 
 #if CY_QQ_ENABLED
@@ -71,6 +75,10 @@
  *  qq分享，弹出ActionSheet，由用户选择分享给好友或者分享到qq空间
  */
 + (void)shareToQQ:(CYShareModel *)model fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback;
+
++ (BOOL)openQQ;
+
++ (BOOL)isQQInstalled;
 #endif
 
 #if CY_SINA_WEIBO_ENABLED
@@ -85,16 +93,21 @@
  */
 + (void)shareToWeibo:(CYShareModel *)model
             callback:(CYShareCallback)callback;
+
++ (BOOL)openSinaWeibo;
+
++ (BOOL)isSinaWeiboInstalled;
+
 #endif
 
 #if CY_SHARE_APPLE_ACTIVITY_ENABLED
 
 /**
  通过iOS系统提供的UIActivityViewController来分享
-
+ 
  可以分享文字、链接和图片
  包含文字时，请设置model.content属性
-
+ 
  */
 + (void)shareByAppleActivity:(CYShareModel *)model fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback;
 
@@ -104,11 +117,13 @@
 
 /**
  短信分享，可以发送文本和链接，链接会拼接在文本最后面发送
-
+ 
  目前暂不支持图片分享
-
+ 
  */
 + (void)shareBySMS:(CYShareModel *)model to:(NSArray *)mobiles fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback;
+
++ (BOOL)canSendText;
 
 #endif
 
@@ -127,3 +142,4 @@
 + (BOOL)application:(UIApplication *)application openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options;
 
 @end
+
