@@ -33,12 +33,18 @@
 - (void)share:(CYShareModel *)model fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback {
     if (!model.isValid) {
         if (callback) {
-            callback(-1, @"The share model is invalid!!!");
+            NSError *error = [NSError errorWithDomain:CYShareErrorDomain
+                                                 code:CYShareErrorCodeInvalidParams
+                                             userInfo:@{ @"msg": NSLocalizedString(@"参数错误", nil) }];
+            callback(error);
         }
         return ;
     } else if (model.type == CYShareContenTypeText) {
         if (callback) {
-            callback(-2, @"Facebook cannot share text only!!!");
+            NSError *error = [NSError errorWithDomain:CYShareErrorDomain
+                                                 code:CYShareErrorCodeInvalidParams
+                                             userInfo:@{ @"msg": NSLocalizedString(@"Facebook不支持仅分享文本", nil) }];
+            callback(error);
         }
         return ;
     }
@@ -83,7 +89,10 @@
 - (void)shareImages:(NSArray *)models fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback {
     if (models.count == 0) {
         if (callback) {
-            callback(-1, @"The models cannot be empty");
+            NSError *error = [NSError errorWithDomain:CYShareErrorDomain
+                                                 code:CYShareErrorCodeInvalidParams
+                                             userInfo:@{ @"msg": NSLocalizedString(@"参数为空", nil) }];
+            callback(error);
         }
         return;
     }
@@ -115,21 +124,27 @@
 #pragma mark - FBSDKSharingDelegate
 - (void)sharer:(id<FBSDKSharing>)sharer didCompleteWithResults:(NSDictionary *)results {
     if (self.shareCallback) {
-        self.shareCallback(0, NSLocalizedString(@"Success", nil));
+        self.shareCallback(nil);
         self.shareCallback = nil;
     }
 }
 
 - (void)sharer:(id<FBSDKSharing>)sharer didFailWithError:(NSError *)error {
     if (self.shareCallback) {
-        self.shareCallback(error.code, error.localizedDescription);
+        NSError *error1 = [NSError errorWithDomain:CYShareErrorDomain
+                                              code:CYShareErrorCodeCommon
+                                          userInfo:@{ @"msg": NSLocalizedString(@"分享失败", nil), @"sourceError": error ? : @"" }];
+        self.shareCallback(error1);
         self.shareCallback = nil;
     }
 }
 
 - (void)sharerDidCancel:(id<FBSDKSharing>)sharer {
     if (self.shareCallback) {
-        self.shareCallback(-1, NSLocalizedString(@"Cancelled", nil));
+        NSError *error = [NSError errorWithDomain:CYShareErrorDomain
+                                             code:CYShareErrorCodeUserCancel
+                                         userInfo:@{ @"msg": NSLocalizedString(@"用户取消", nil) }];
+        self.shareCallback(error);
         self.shareCallback = nil;
     }
 }

@@ -29,11 +29,28 @@
 #if CY_WECHAT_ENABLED && CY_WECHAT_LOGIN_ENABLED
 
 /**
+ * 微信登陆，以snsapi_userinfo权限登录，不获取AccessToken，以登录成功的微信Code返回
+ */
++ (BOOL)loginByWechatWithCodeCallback:(CYWechatLoginCodeCallback)codeCallback;
+
+/**
+ * 微信登陆，开发者指定登录权限，具体权限请参考微信开放平台文档
+ * 可以指定是否获取AccessToken
+ */
++ (BOOL)loginByWechatWithPermissions:(NSArray<NSString *> *)permissions
+                  fromViewController:(UIViewController *)viewController
+                        codeCallback:(CYWechatLoginCodeCallback)codeCallback
+                shouldGetAccessToken:(BOOL)shouldGetAccessToken
+                 accessTokenCallback:(CYLoginCallback)accessTokenCallback;
+
+/**
  *  微信登陆，以snsapi_userinfo权限登录
+ *  获取AccessToken后回调
  */
 + (BOOL)loginByWechat:(CYLoginCallback)callback;
 /**
  *  微信登陆，开发者指定登录权限，具体权限请参考微信开放平台文档
+ *  获取AccessToken后回调
  */
 + (BOOL)loginByWechat:(NSArray<NSString *>*)permissions callback:(CYLoginCallback)callback;
 

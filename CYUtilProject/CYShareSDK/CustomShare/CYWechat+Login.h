@@ -12,6 +12,8 @@
 
 #import "CYBaseShare+Login.h"
 
+typedef void (^CYWechatLoginCodeCallback)(NSString *wechatCode, NSError *error);
+
 
 /**
  *  在LoginInfo中增加微信登录后的元数据
@@ -79,6 +81,73 @@
 FOUNDATION_EXTERN NSString *const CYWechatLoginPermissionSNSApiBase;
 // 获取用户个人信息权限，调用/sns/userinfo接口需要此权限
 FOUNDATION_EXTERN NSString *const CYWechatLoginPermissionSNSApiUserInfo;
+
+/**
+ * 微信登录成功后，是否去微信加载AccessToken
+ * 如果需要加载AccessToken，则在registerAppId之后，需要调用registerAppKey
+ */
+@property (nonatomic, readonly) BOOL shouldGetAccessToken;
+/**
+ * 微信登录后，未获取AccessToken之前的回调
+ */
+@property (nonatomic, copy, readonly) CYWechatLoginCodeCallback codeCallback;
+
+/**
+ *  登录接口，返回NO，标识登录接口调用失败
+ *  使用默认权限登录，微信默认权限snsapi_userinfo
+ *  登录成功后，不获取AccessToken，以微信返回的Code参数直接回调
+ *
+ *  @param callback         登录回调，当登录接口调用失败时，不会回调
+ *
+ */
+- (BOOL)loginWithCodeCallback:(CYWechatLoginCodeCallback)codeCallback;
+
+/**
+ *  登录接口，返回NO，标识登录接口调用失败
+ *
+ *  @param permissions      登录需要获取的权限列表
+ *  @param codeCallback     登录回调，登录成功后，获取到Code立即回调，当登录接口调用失败时，不会回调
+ *  @param fromViewController   当设备未安装第三方app时，如果第三方支持网页登录，则从fromViewController present一个浮层进行网页登录
+ *  @param shouldGetAccessToken 是否需要获取AccessToken，YES获取，NO不获取，
+ *  @param accessTokenCallback  登录回调，需要等获取到AccessToken之后才回调，当登录接口调用失败或shouldGetAccessToken==NO时，不会回调
+ *
+ */
+- (BOOL)loginWithPermissions:(NSArray<NSString *> *)permissions
+          fromViewController:(UIViewController *)viewController
+                codeCallback:(CYWechatLoginCodeCallback)codeCallback
+        shouldGetAccessToken:(BOOL)shouldGetAccessToken
+         accessTokenCallback:(CYLoginCallback)accessTokenCallback;
+
+/**
+ *  登录接口，返回NO，标识登录接口调用失败
+ *  使用默认权限登录，微信默认权限snsapi_userinfo
+ *  登录成功后，立即获取AccessToken，获取完AccessToken在回调
+ *
+ *  @param callback         登录回调，当登录接口调用失败时，不会回调
+ *
+ */
+- (BOOL)loginWithCallback:(CYLoginCallback)callback;
+
+/**
+ *  登录接口，返回NO，标识登录接口调用失败
+ *  登录成功后，立即获取AccessToken，获取完AccessToken在回调
+ *
+ *  @param permissions      登录需要获取的权限列表，权限列表
+ *  @param callback         登录回调，当登录接口调用失败时，不会回调
+ *
+ */
+- (BOOL)loginWithPermissions:(NSArray<NSString *> *)permissions callback:(CYLoginCallback)callback;
+
+/**
+ *  登录接口，返回NO，标识登录接口调用失败
+ *  登录成功后，立即获取AccessToken，获取完AccessToken在回调
+ *
+ *  @param permissions      登录需要获取的权限列表
+ *  @param fromViewController   当设备未安装第三方app时，如果第三方支持网页登录，则从fromViewController present一个浮层进行网页登录
+ *  @param callback         登录回调，当登录接口调用失败时，不会回调
+ *
+ */
+- (BOOL)loginWithPermissions:(NSArray<NSString *> *)permissions fromViewController:(UIViewController *)viewController callback:(CYLoginCallback)callback;
 
 /**
  *  微信获取access token

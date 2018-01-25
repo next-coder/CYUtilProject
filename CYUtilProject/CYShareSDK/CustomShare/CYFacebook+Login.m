@@ -110,24 +110,23 @@ static char CYShareSDK_CYFacebook_facebookLoginManagerKey;
                                         handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
                                             dispatch_async(dispatch_get_main_queue(), ^{
                                                 
-                                                NSInteger statusCode = 0;
-                                                NSString *msg = nil;
                                                 CYLoginInfo *loginInfo = nil;
+                                                NSError *error1 = nil;
                                                 if (error) {
-                                                    statusCode = error.code;
-                                                    msg = error.localizedDescription;
+                                                    error1 = [NSError errorWithDomain:CYShareErrorDomain
+                                                                                 code:CYShareErrorCodeCommon
+                                                                             userInfo:@{ @"msg": NSLocalizedString(@"登录失败", nil), @"sourceError": error ? : @"" }];
                                                 } else if (result.isCancelled) {
-                                                    statusCode = -1;
-                                                    msg = NSLocalizedString(@"Cancelled", nil);
+                                                    error1 = [NSError errorWithDomain:CYShareErrorDomain
+                                                                                 code:CYShareErrorCodeUserCancel
+                                                                             userInfo:@{ @"msg": NSLocalizedString(@"用户取消", nil), @"sourceError": error ? : @"" }];
                                                 } else {
-                                                    statusCode = 0;
-                                                    msg = NSLocalizedString(@"Success", nil);
                                                     loginInfo = [[CYLoginInfo alloc] init];
                                                     loginInfo.fbSDKAccessToken = result.token;
                                                     self.loginInfo = loginInfo;
                                                 }
                                                 if (callback) {
-                                                    callback(statusCode, msg, loginInfo);
+                                                    callback(loginInfo, error1);
                                                 }
                                             });
                                         }];
@@ -142,17 +141,19 @@ static char CYShareSDK_CYFacebook_facebookLoginManagerKey;
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:[NSString stringWithFormat:@"/%@?fields=id,name,email,first_name,last_name,short_name,gender", userId] parameters:nil HTTPMethod:@"GET"];
     [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
 
-        NSInteger statusCode = error.code;
-        NSString *msg = [error localizedDescription];
         CYUserInfo *userInfo = nil;
+        NSError *error1 = nil;
         if (result) {
-            statusCode = 0;
             userInfo = [[CYUserInfo alloc] init];
             userInfo.facebookUserInfo = result;
             self.userInfo = userInfo;
+        } else {
+            error1 = [NSError errorWithDomain:CYShareErrorDomain
+                                        code:CYShareErrorCodeCommon
+                                    userInfo:@{ @"msg": NSLocalizedString(@"获取用户信息失败", nil), @"sourceError": error ? : @"" }];
         }
         if (callback) {
-            callback(statusCode, msg, userInfo);
+            callback(userInfo, error1);
         }
     }];
     return YES;

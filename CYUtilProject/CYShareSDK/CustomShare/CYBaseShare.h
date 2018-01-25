@@ -12,8 +12,20 @@
 @class UIApplication;
 @class UIViewController;
 
-typedef void (^CYShareCallback)(NSInteger code,
-                                NSString *msg);
+typedef NS_ENUM(NSInteger, CYShareErrorCode) {
+    CYShareErrorCodeSuccess     = 0,    // 成功
+    CYShareErrorCodeCommon      = -1,   // 普通错误类型
+    CYShareErrorCodeUserCancel  = -2,   // 用户取消
+    CYShareErrorCodeSentFail    = -3,   // 发送失败
+    CYShareErrorCodeAuthDeny    = -4,   // 授权失败
+    CYShareErrorCodeUnsupport   = -5,   // 不支持
+    CYShareErrorCodeInvalidParams = -6, // 参数错误
+    CYShareErrorCodeOpenAppFailed = -7, // 打开第三方app失败
+};
+
+extern NSString *CYShareErrorDomain;
+
+typedef void (^CYShareCallback)(NSError *error);
 
 @interface CYBaseShare : NSObject
 

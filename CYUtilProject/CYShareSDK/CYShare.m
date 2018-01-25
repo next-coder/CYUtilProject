@@ -108,11 +108,15 @@
 
 #if CY_SHARE_SMS_ENABLED
 
-+ (void)shareBySMS:(CYShareModel *)model to:(NSArray *)mobiles fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback {
++ (void)shareBySMS:(CYShareModel *)model toMobiles:(NSArray *)mobiles fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback {
     [[CYSMS sharedInstance] share:model toMobiles:mobiles fromViewController:viewController callback:callback];
 }
 
-+ (BOOL)canSendText {
++ (void)shareBySMS:(CYShareModel *)model to:(NSString *)mobile fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback {
+    [[CYSMS sharedInstance] share:model to:mobile fromViewController:viewController callback:callback];
+}
+
++ (BOOL)canSendSMSText {
     return [CYSMS canSendText];
 }
 

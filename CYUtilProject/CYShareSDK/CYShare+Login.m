@@ -11,6 +11,22 @@
 @implementation CYShare (Login)
 
 #if CY_WECHAT_ENABLED && CY_WECHAT_LOGIN_ENABLED
++ (BOOL)loginByWechatWithCodeCallback:(CYWechatLoginCodeCallback)codeCallback {
+    return [[CYWechat sharedInstance] loginWithCodeCallback:codeCallback];
+}
+
++ (BOOL)loginByWechatWithPermissions:(NSArray<NSString *> *)permissions
+                  fromViewController:(UIViewController *)viewController
+                        codeCallback:(CYWechatLoginCodeCallback)codeCallback
+                shouldGetAccessToken:(BOOL)shouldGetAccessToken
+                 accessTokenCallback:(CYLoginCallback)accessTokenCallback {
+    return [[CYWechat sharedInstance] loginWithPermissions:permissions
+                                        fromViewController:viewController
+                                              codeCallback:codeCallback
+                                      shouldGetAccessToken:shouldGetAccessToken
+                                       accessTokenCallback:accessTokenCallback];
+}
+
 + (BOOL)loginByWechat:(CYLoginCallback)callback {
     return [[CYWechat sharedInstance] loginWithCallback:callback];
 }

@@ -9,6 +9,8 @@
 #import "CYBaseShare.h"
 #import <UIKit/UIKit.h>
 
+NSString *CYShareErrorDomain = @"CYShare.Error.CommonDomain";
+
 @implementation CYBaseShare
 
 #pragma mark - app info
@@ -27,12 +29,11 @@
 #pragma mark - share
 - (void)share:(CYShareModel *)model
      callback:(CYShareCallback)callback {
-
-    self.shareCallback = callback;
+    
 }
 
 - (void)share:(CYShareModel *)model fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback {
-    self.shareCallback = callback;
+    
 }
 
 #pragma mark - handle open url

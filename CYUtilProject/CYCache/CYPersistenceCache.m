@@ -165,7 +165,7 @@ static NSString *const fileLastReadDateAttributeKey = @"kCYLastReadDate";
     const char *attrName = [fileLastReadDateAttributeKey UTF8String];
 
     // get size of needed buffer
-    int bufferLength = getxattr(filePathC,
+    size_t bufferLength = getxattr(filePathC,
                                 attrName,
                                 NULL,
                                 0,

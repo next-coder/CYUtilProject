@@ -121,9 +121,11 @@
  目前暂不支持图片分享
  
  */
-+ (void)shareBySMS:(CYShareModel *)model to:(NSArray *)mobiles fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback;
++ (void)shareBySMS:(CYShareModel *)model toMobiles:(NSArray *)mobiles fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback;
 
-+ (BOOL)canSendText;
++ (void)shareBySMS:(CYShareModel *)model to:(NSString *)mobile fromViewController:(UIViewController *)viewController callback:(CYShareCallback)callback;
+
++ (BOOL)canSendSMSText;
 
 #endif
 

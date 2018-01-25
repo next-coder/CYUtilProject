@@ -57,14 +57,20 @@ NSString *const CYSMSToUsersKey = @"CYUtil.CYShareSDK.CYSMSToUsersKey";
 
     if (!model.isValid) {
         if (callback) {
-            callback(-1, NSLocalizedString(@"The share model is invalid!!!", nil));
+            NSError *error = [NSError errorWithDomain:CYShareErrorDomain
+                                                 code:CYShareErrorCodeInvalidParams
+                                             userInfo:@{ @"msg": NSLocalizedString(@"参数错误", nil) }];
+            callback(error);
         }
         return;
     }
 
     if (![MFMessageComposeViewController canSendText]) {
         if (callback) {
-            callback(-1, NSLocalizedString(@"Message is not supported on this device!!!", nil));
+            NSError *error = [NSError errorWithDomain:CYShareErrorDomain
+                                                 code:CYShareErrorCodeUnsupport
+                                             userInfo:@{ @"msg": NSLocalizedString(@"此设备不支持发送短信文本", nil) }];
+            callback(error);
         }
         return;
     }
@@ -115,8 +121,17 @@ NSString *const CYSMSToUsersKey = @"CYUtil.CYShareSDK.CYSMSToUsersKey";
     [controller dismissViewControllerAnimated:YES completion:nil];
     if (self.shareCallback) {
 
-        self.shareCallback(result == MessageComposeResultSent ? 0 : -1,
-                           nil);
+        NSError *error = nil;
+        if (result == MessageComposeResultCancelled) {
+            error = [NSError errorWithDomain:CYShareErrorDomain
+                                        code:CYShareErrorCodeUserCancel
+                                    userInfo:@{ @"msg": NSLocalizedString(@"用户取消", nil) }];
+        } else if (result == MessageComposeResultFailed) {
+            error = [NSError errorWithDomain:CYShareErrorDomain
+                                        code:CYShareErrorCodeSentFail
+                                    userInfo:@{ @"msg": NSLocalizedString(@"发送失败", nil) }];
+        }
+        self.shareCallback(error);
     }
 }
 

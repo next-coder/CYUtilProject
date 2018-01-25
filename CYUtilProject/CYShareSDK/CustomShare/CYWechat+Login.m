@@ -80,7 +80,71 @@ static char CYShareSDK_CYUserInfo_wechatUserInfoKey;
 NSString *const CYWechatLoginPermissionSNSApiBase = @"snsapi_userinfo";
 NSString *const CYWechatLoginPermissionSNSApiUserInfo = @"snsapi_userinfo";
 
+static char CYShareSDK_CYWechatLogin_ShouldGetAccessTokenKey;
+static char CYShareSDK_CYWechatLogin_CodeCallbackKey;
+
+@dynamic shouldGetAccessToken;
+@dynamic codeCallback;
+
+- (void)setShouldGetAccessToken:(BOOL)shouldGetAccessToken {
+    objc_setAssociatedObject(self,
+                             &CYShareSDK_CYWechatLogin_ShouldGetAccessTokenKey,
+                             [NSNumber numberWithBool:shouldGetAccessToken],
+                             OBJC_ASSOCIATION_RETAIN);
+}
+
+- (BOOL)shouldGetAccessToken {
+    return [objc_getAssociatedObject(self, &CYShareSDK_CYWechatLogin_ShouldGetAccessTokenKey) boolValue];
+}
+
+- (void)setCodeCallback:(CYWechatLoginCodeCallback)codeCallback {
+    objc_setAssociatedObject(self,
+                             &CYShareSDK_CYWechatLogin_CodeCallbackKey,
+                             codeCallback,
+                             OBJC_ASSOCIATION_COPY);
+}
+
+- (CYWechatLoginCodeCallback)codeCallback {
+    return objc_getAssociatedObject(self, &CYShareSDK_CYWechatLogin_CodeCallbackKey);
+}
+
 #pragma mark - login actions
+- (BOOL)loginWithCodeCallback:(CYWechatLoginCodeCallback)codeCallback {
+    return [self loginWithPermissions:@[ CYWechatLoginPermissionSNSApiUserInfo ]
+                   fromViewController:[[[UIApplication sharedApplication] keyWindow] rootViewController]
+                         codeCallback:codeCallback
+                 shouldGetAccessToken:NO
+                  accessTokenCallback:nil];
+}
+
+- (BOOL)loginWithPermissions:(NSArray<NSString *> *)permissions
+          fromViewController:(UIViewController *)viewController
+                codeCallback:(CYWechatLoginCodeCallback)codeCallback
+        shouldGetAccessToken:(BOOL)shouldGetAccessToken
+         accessTokenCallback:(CYLoginCallback)accessTokenCallback {
+    
+    if (permissions.count == 0) {
+        return NO;
+    }
+    
+    //构造SendAuthReq结构体
+    SendAuthReq* request =[[SendAuthReq alloc ] init];
+    request.scope = [permissions componentsJoinedByString:@","];
+    request.state = CY_WECHAT_STATE;
+    //第三方向微信终端发送一个SendAuthReq消息结构
+    BOOL result = [WXApi sendAuthReq:request
+                      viewController:viewController
+                            delegate:self];
+    
+    if (result) {
+        
+        [self setCodeCallback:codeCallback];
+        [self setShouldGetAccessToken:shouldGetAccessToken];
+        [self setLoginCallback:accessTokenCallback];
+    }
+    return result;
+}
+
 - (BOOL)loginWithCallback:(CYLoginCallback)callback {
     return [self loginWithPermissions:@[ CYWechatLoginPermissionSNSApiUserInfo ] callback:callback];
 }
@@ -96,24 +160,11 @@ NSString *const CYWechatLoginPermissionSNSApiUserInfo = @"snsapi_userinfo";
           fromViewController:(UIViewController *)viewController
                     callback:(CYLoginCallback)callback {
 
-    if (permissions.count == 0) {
-        return NO;
-    }
-
-    //构造SendAuthReq结构体
-    SendAuthReq* request =[[SendAuthReq alloc ] init];
-    request.scope = [permissions componentsJoinedByString:@","];
-    request.state = CY_WECHAT_STATE;
-    //第三方向微信终端发送一个SendAuthReq消息结构
-    BOOL result = [WXApi sendAuthReq:request
-                      viewController:viewController
-                            delegate:self];
-
-    if (result) {
-
-        self.loginCallback = callback;
-    }
-    return result;
+    return [self loginWithPermissions:permissions
+                   fromViewController:viewController
+                         codeCallback:nil
+                 shouldGetAccessToken:YES
+                  accessTokenCallback:callback];
 }
 
 // 获取微信access token
@@ -140,31 +191,43 @@ NSString *const CYWechatLoginPermissionSNSApiUserInfo = @"snsapi_userinfo";
                                                                      // 回到主线程，这个是通过子线程回调的
                                                                      dispatch_async(dispatch_get_main_queue(), ^{
 
-                                                                         NSInteger errorCode = error.code;
-                                                                         NSString *msg = [error.userInfo objectForKey:@"msg"];
+                                                                         NSError *error = nil;
                                                                          CYLoginInfo *loginInfo = nil;
-                                                                         if (data) {
-                                                                             NSError *error = nil;
-                                                                             NSDictionary *wechatResponse = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-                                                                             if (!error
-                                                                                 && wechatResponse
+                                                                         if (data
+                                                                             && data.length > 0) {
+                                                                             NSDictionary *wechatResponse = [NSJSONSerialization JSONObjectWithData:data
+                                                                                                                                            options:0
+                                                                                                                                              error:nil];
+                                                                             if (wechatResponse
                                                                                  && [wechatResponse isKindOfClass:[NSDictionary class]]) {
 
-                                                                                 errorCode = [wechatResponse[@"errcode"] integerValue];
-                                                                                 msg = wechatResponse[@"errmsg"];
+                                                                                 NSInteger errorCode = [wechatResponse[@"errcode"] integerValue];
+                                                                                 NSString *msg = wechatResponse[@"errmsg"];
                                                                                  if (errorCode == 0) {
+                                                                                     // 获取AccessToken成功
                                                                                      loginInfo = [[CYLoginInfo alloc] init];
                                                                                      loginInfo.wechatAccessTokenInfo = wechatResponse;
                                                                                      self.loginInfo = loginInfo;
+                                                                                 } else {
+                                                                                     // 微信返回错误
+                                                                                     error = [NSError errorWithDomain:CYShareErrorDomain
+                                                                                                                 code:errorCode
+                                                                                                             userInfo:@{ @"msg": msg ? : NSLocalizedString(@"获取用户token失败", nil) }];
                                                                                  }
                                                                              } else {
-
-                                                                                 errorCode = error.code;
-                                                                                 msg = [error.userInfo objectForKey:@"msg"];
+                                                                                 // 微信返回数据格式不对，无法解析
+                                                                                 error = [NSError errorWithDomain:CYShareErrorDomain
+                                                                                                             code:CYShareErrorCodeCommon
+                                                                                                         userInfo:@{ @"msg": NSLocalizedString(@"微信返回数据格式错误", nil) }];
                                                                              }
+                                                                         } else {
+                                                                             // 网络请求错误
+                                                                             error = [NSError errorWithDomain:CYShareErrorDomain
+                                                                                                         code:CYShareErrorCodeCommon
+                                                                                                     userInfo:@{ @"msg": NSLocalizedString(@"网络错误", nil) }];
                                                                          }
                                                                          if (callback) {
-                                                                             callback(errorCode, msg, loginInfo);
+                                                                             callback(loginInfo, error);
                                                                          }
                                                                      });
                                                                  }];
@@ -184,31 +247,41 @@ NSString *const CYWechatLoginPermissionSNSApiUserInfo = @"snsapi_userinfo";
                                                                      // 回到主线程，这个是通过子线程回调的
                                                                      dispatch_async(dispatch_get_main_queue(), ^{
 
-                                                                         NSInteger errorCode = error.code;
-                                                                         NSString *msg = [error.userInfo objectForKey:@"msg"];
+                                                                         NSError *error = nil;
                                                                          CYUserInfo *userInfo = nil;
-                                                                         if (data) {
-                                                                             NSError *error = nil;
-                                                                             NSDictionary *wechatResponse = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-                                                                             if (!error
-                                                                                 && wechatResponse
+                                                                         if (data
+                                                                             && data.length > 0) {
+                                                                             NSDictionary *wechatResponse = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+                                                                             if (wechatResponse
                                                                                  && [wechatResponse isKindOfClass:[NSDictionary class]]) {
 
-                                                                                 errorCode = [wechatResponse[@"errcode"] integerValue];
-                                                                                 msg = wechatResponse[@"errmsg"];
+                                                                                 NSInteger errorCode = [wechatResponse[@"errcode"] integerValue];
+                                                                                 NSString *msg = wechatResponse[@"errmsg"];
                                                                                  if (errorCode == 0) {
                                                                                      userInfo = [[CYUserInfo alloc] init];
                                                                                      userInfo.wechatUserInfo = wechatResponse;
                                                                                      self.userInfo = userInfo;
+                                                                                 } else {
+                                                                                     // 微信返回错误
+                                                                                     error = [NSError errorWithDomain:CYShareErrorDomain
+                                                                                                                 code:errorCode
+                                                                                                             userInfo:@{ @"msg": msg ? : NSLocalizedString(@"获取用户信息失败", nil) }];
                                                                                  }
                                                                              } else {
-                                                                                 errorCode = error.code;
-                                                                                 msg = [error.userInfo objectForKey:@"msg"];
+                                                                                 // 微信返回数据格式不对，无法解析
+                                                                                 error = [NSError errorWithDomain:CYShareErrorDomain
+                                                                                                             code:CYShareErrorCodeCommon
+                                                                                                         userInfo:@{ @"msg": NSLocalizedString(@"微信返回数据格式错误", nil) }];
                                                                              }
+                                                                         } else {
+                                                                             // 网络请求错误
+                                                                             error = [NSError errorWithDomain:CYShareErrorDomain
+                                                                                                         code:CYShareErrorCodeCommon
+                                                                                                     userInfo:@{ @"msg": NSLocalizedString(@"网络错误", nil) }];
                                                                          }
 
                                                                          if (callback) {
-                                                                             callback(errorCode, msg, userInfo);
+                                                                             callback(userInfo, nil);
                                                                          }
                                                                      });
                                                                  }];

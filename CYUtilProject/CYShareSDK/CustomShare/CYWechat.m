@@ -55,7 +55,10 @@ NSString *const CYWechatSceneKey = @"CYUtil.CYWechatSceneKey";
                                                          style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
 
                                                              if (callback) {
-                                                                 callback(-1, @"User cancel");
+                                                                 NSError *error = [NSError errorWithDomain:CYShareErrorDomain
+                                                                                                      code:CYShareErrorCodeUserCancel
+                                                                                                  userInfo:@{@"msg": NSLocalizedString(@"用户取消", nil)}];
+                                                                 callback(error);
                                                              }
                                                          }];
         [actionSheet addAction:cancel];
@@ -110,14 +113,20 @@ NSString *const CYWechatSceneKey = @"CYUtil.CYWechatSceneKey";
     if (![[self class] appInstalled]) {
 
         if (callback) {
-            callback(-1, @"Wechat App not installed!!!");
+            NSError *error = [NSError errorWithDomain:CYShareErrorDomain
+                                                 code:CYShareErrorCodeOpenAppFailed
+                                             userInfo:@{@"msg": NSLocalizedString(@"打开微信失败", nil)}];
+            callback(error);
         }
         return;
     }
     if (!model.isValid) {
 
         if (callback) {
-            callback(-1, @"The share model is invalid!!!");
+            NSError *error = [NSError errorWithDomain:CYShareErrorDomain
+                                                 code:CYShareErrorCodeInvalidParams
+                                             userInfo:@{@"msg": NSLocalizedString(@"参数错误", nil)}];
+            callback(error);
         }
         return;
     }
@@ -168,8 +177,15 @@ NSString *const CYWechatSceneKey = @"CYUtil.CYWechatSceneKey";
         }
     }
 
-    [WXApi sendReq:request];
     self.shareCallback = callback;
+    if (![WXApi sendReq:request]
+        && callback) {
+        NSError *error = [NSError errorWithDomain:CYShareErrorDomain
+                                             code:CYShareErrorCodeOpenAppFailed
+                                         userInfo:@{@"msg": NSLocalizedString(@"打开微信失败", nil)}];
+        callback(error);
+        self.shareCallback = nil;
+    }
 }
 
 #pragma mark - WXApiDelegate
@@ -188,21 +204,35 @@ NSString *const CYWechatSceneKey = @"CYUtil.CYWechatSceneKey";
         NSString *wechatCode = response.code;
         if (wechatCode
             && wechatCode.length > 0) {
-            // 登录成功，获取accessToken
-            [self getAccessTokenWithCode:wechatCode
-                                callback:self.loginCallback];
-        } else if (self.loginCallback) {
+            // 登录成功，以单独Code回调
+            if (self.codeCallback) {
+                self.codeCallback(wechatCode, nil);
+            }
+            if (self.shouldGetAccessToken) {
+                // 登录成功，需要获取accessToken
+                [self getAccessTokenWithCode:wechatCode
+                                    callback:self.loginCallback];
+            }
+        } else {
             // 登录失败
-            self.loginCallback(response.errCode,
-                               response.errStr,
-                               nil);
+            NSError *error = [NSError errorWithDomain:CYShareErrorDomain
+                                                 code:response.errCode
+                                             userInfo:@{@"msg": (response.errStr ? : NSLocalizedString(@"登录失败", nil))}];
+            if (self.codeCallback) {
+                self.codeCallback(nil, error);
+            } else if (self.loginCallback) {
+                self.loginCallback(nil, error);
+            }
         }
 #endif
     } else if ([resp isKindOfClass:[SendMessageToWXResp class]]) {
         // 分享回调
         if (self.shareCallback) {
 
-            self.shareCallback((NSInteger)resp.errCode, resp.errStr);
+            NSError *error = resp.errCode == 0 ? nil : [NSError errorWithDomain:CYShareErrorDomain
+                                                                           code:resp.errCode
+                                                                       userInfo:@{@"msg": (resp.errStr ? : NSLocalizedString(@"分享失败", nil))}];
+            self.shareCallback(error);
             self.shareCallback = nil;
         }
     } else if ([resp isKindOfClass:[PayResp class]]) {
@@ -212,7 +242,10 @@ NSString *const CYWechatSceneKey = @"CYUtil.CYWechatSceneKey";
         if (self.payCallback) {
 
             PayResp *response = (PayResp *)resp;
-            self.payCallback(response.errCode, response.errStr, response.returnKey);
+            NSError *error = response.errCode == 0 ? nil : [NSError errorWithDomain:CYShareErrorDomain
+                                                                               code:response.errCode
+                                                                           userInfo:@{@"msg": (response.errStr ? : NSLocalizedString(@"分享失败", nil))}];
+            self.payCallback(response.returnKey, error);
             self.payCallback = nil;
         }
     }

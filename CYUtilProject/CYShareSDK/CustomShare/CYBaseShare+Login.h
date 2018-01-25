@@ -12,12 +12,8 @@
 
 @class UIViewController;
 
-typedef void (^CYLoginCallback)(NSInteger code,
-                                NSString *msg,
-                                CYLoginInfo *loginInfo);
-typedef void (^CYGetUserInfoCallback)(NSInteger code,
-                                      NSString *msg,
-                                      CYUserInfo *userInfo);
+typedef void (^CYLoginCallback)(CYLoginInfo *loginInfo, NSError *error);
+typedef void (^CYGetUserInfoCallback)(CYUserInfo *userInfo, NSError *error);
 
 @interface CYBaseShare (Login)
 

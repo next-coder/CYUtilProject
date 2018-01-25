@@ -101,15 +101,19 @@ static char CYShareSDK_CYUserInfo_qqUserInfoKey;
 
 - (void)getUserInfoResponse:(APIResponse *)response {
     NSInteger code = response.retCode;
-    NSString *msg = response.errorMsg;
     CYUserInfo *userInfo = nil;
+    NSError *error = nil;
     if (code == URLREQUEST_SUCCEED) {
         userInfo = [[CYUserInfo alloc] init];
         userInfo.qqUserInfo = response.jsonResponse;
         self.userInfo = userInfo;
+    } else {
+        error = [NSError errorWithDomain:CYShareErrorDomain
+                                    code:CYShareErrorCodeCommon
+                                userInfo:@{ @"msg": NSLocalizedString(@"获取用户信息失败", nil), @"sourceError": response.errorMsg ? : @"" }];
     }
     if (self.userInfoCallback) {
-        self.userInfoCallback(code, msg, userInfo);
+        self.userInfoCallback(userInfo, error);
         self.userInfoCallback = nil;
     }
 }

@@ -113,28 +113,25 @@ static char CYShareSDK_CYUserInfo_sinaWeiboUserInfoKey;
                                             withCompletionHandler:^(WBHttpRequest *httpRequest, id result, NSError *error) {
                                                 dispatch_async(dispatch_get_main_queue(), ^{
 
-                                                    NSInteger code = 0;
-                                                    NSString *msg = nil;
                                                     CYUserInfo *userInfo = nil;
+                                                    NSError *cyerror = nil;
                                                     if (error) {
-                                                        code = error.code;
-                                                        msg = error.localizedDescription;
+                                                        cyerror = [NSError errorWithDomain:CYShareErrorDomain
+                                                                                      code:CYShareErrorCodeCommon
+                                                                                  userInfo:@{ @"msg": NSLocalizedString(@"获取用户信息失败", nil), @"sourceError": error }];
                                                     } else if (result
                                                                && [result isKindOfClass:[WeiboUser class]]) {
 
                                                         userInfo = [[CYUserInfo alloc] init];
                                                         userInfo.sinaWeiboUserInfo = (WeiboUser *)result;
                                                         self.userInfo = userInfo;
-                                                    } else {
-                                                        code = -1;
-                                                        msg = NSLocalizedString(@"Failed", nil);
                                                     }
 
                                                     if (callback) {
-                                                        callback(code, msg, userInfo);
+                                                        callback(userInfo, error);
                                                     }
                                                 });
-                                                [queue cancelAllOperations];
+//                                                [queue cancelAllOperations];
                                             }];
     if (request) {
         return YES;

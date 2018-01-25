@@ -26,14 +26,14 @@ typedef NS_ENUM(int, CYWechatScene) {
     CYWechatSceneFavorite = 2, // 收藏
 };
 
-typedef NS_ENUM(NSInteger, CYWechatErrorCode) {
-    CYWechatErrorCodeSuccess           = 0,    /**< 成功    */
-    CYWechatErrorCodeCommon     = -1,   /**< 普通错误类型    */
-    CYWechatErrorCodeUserCancel = -2,   /**< 用户点击取消并返回    */
-    CYWechatErrorCodeSentFail   = -3,   /**< 发送失败    */
-    CYWechatErrorCodeAuthDeny   = -4,   /**< 授权失败    */
-    CYWechatErrorCodeUnsupport  = -5,   /**< 微信不支持    */
-};
+//typedef NS_ENUM(NSInteger, CYWechatErrorCode) {
+//    CYWechatErrorCodeSuccess           = 0,    /**< 成功    */
+//    CYWechatErrorCodeCommon     = -1,   /**< 普通错误类型    */
+//    CYWechatErrorCodeUserCancel = -2,   /**< 用户点击取消并返回    */
+//    CYWechatErrorCodeSentFail   = -3,   /**< 发送失败    */
+//    CYWechatErrorCodeAuthDeny   = -4,   /**< 授权失败    */
+//    CYWechatErrorCodeUnsupport  = -5,   /**< 微信不支持    */
+//};
 
 #pragma mark - share
 // 此类采用单例模式，请直接使用sharedInstance，不要创建新实例
@@ -89,7 +89,7 @@ extern NSString *const CYWechatSceneKey;
 @end
 
 #pragma mark - pay
-typedef void (^CYWechatPayCallback)(NSInteger errorCode, NSString *msg, NSString *returnKey);
+typedef void (^CYWechatPayCallback)(NSString *returnKey, NSError *error);
 
 @interface CYWechat (Pay)
 

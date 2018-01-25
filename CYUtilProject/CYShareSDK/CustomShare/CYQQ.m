@@ -43,9 +43,7 @@ NSString *const CYQQAPICtrlFlagKey = @"CYUtil.CYQQAPICtrlFlagKey";
     self.loginInfo = [[CYLoginInfo alloc] init];
     self.loginInfo.qqOAuth = self.oauth;
     if (self.loginCallback) {
-        self.loginCallback(0,
-                           NSLocalizedString(@"Success", nil),
-                           self.loginInfo);
+        self.loginCallback(self.loginInfo, nil);
         self.loginCallback = nil;
     }
 #endif
@@ -55,9 +53,10 @@ NSString *const CYQQAPICtrlFlagKey = @"CYUtil.CYQQAPICtrlFlagKey";
 
 #if CY_QQ_LOGIN_ENABLED
     if (self.loginCallback) {
-        self.loginCallback(-1,
-                           NSLocalizedString(@"Cancelled", nil),
-                           nil);
+        NSError *error = [NSError errorWithDomain:CYShareErrorDomain
+                                             code:cancelled ? CYShareErrorCodeUserCancel : CYShareErrorCodeCommon
+                                         userInfo:@{ @"msg": cancelled ? NSLocalizedString(@"用户取消", nil) : NSLocalizedString(@"登录失败", nil) }];
+        self.loginCallback(nil, error);
         self.loginCallback = nil;
     }
     self.loginInfo = nil;
@@ -68,9 +67,10 @@ NSString *const CYQQAPICtrlFlagKey = @"CYUtil.CYQQAPICtrlFlagKey";
 
 #if CY_QQ_LOGIN_ENABLED
     if (self.loginCallback) {
-        self.loginCallback(-2,
-                           NSLocalizedString(@"network error", nil),
-                           nil);
+        NSError *error = [NSError errorWithDomain:CYShareErrorDomain
+                                             code:CYShareErrorCodeCommon
+                                         userInfo:@{ @"msg": NSLocalizedString(@"网络错误", nil) }];
+        self.loginCallback(nil, error);
         self.loginCallback = nil;
     }
     self.loginInfo = nil;
@@ -112,7 +112,10 @@ NSString *const CYQQAPICtrlFlagKey = @"CYUtil.CYQQAPICtrlFlagKey";
                                                          style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
 
                                                              if (callback) {
-                                                                 callback(-1, @"User cancel");
+                                                                 NSError *error = [NSError errorWithDomain:CYShareErrorDomain
+                                                                                                      code:CYShareErrorCodeUserCancel
+                                                                                                  userInfo:@{@"msg": NSLocalizedString(@"用户取消", nil)}];
+                                                                 callback(error);
                                                              }
                                                          }];
         [actionSheet addAction:cancel];
@@ -157,7 +160,10 @@ NSString *const CYQQAPICtrlFlagKey = @"CYUtil.CYQQAPICtrlFlagKey";
      callback:(CYShareCallback)callback {
     if (!model.isValid) {
         if (callback) {
-            callback(-1, @"The share model is invalid!!!");
+            NSError *error = [NSError errorWithDomain:CYShareErrorDomain
+                                                 code:CYShareErrorCodeInvalidParams
+                                             userInfo:@{@"msg": NSLocalizedString(@"参数错误", nil)}];
+            callback(error);
         }
         return ;
     }
@@ -198,7 +204,58 @@ NSString *const CYQQAPICtrlFlagKey = @"CYUtil.CYQQAPICtrlFlagKey";
     if (code != EQQAPISENDSUCESS
         && self.shareCallback) {
 
-        self.shareCallback(code, nil);
+        NSError *error = nil;
+        switch (code) {
+            case EQQAPISENDFAILD:
+                error = [NSError errorWithDomain:CYShareErrorDomain
+                                            code:CYShareErrorCodeSentFail
+                                        userInfo:@{ @"msg": NSLocalizedString(@"分享失败", nil), @"sourceError": [NSNumber numberWithInteger: code] } ];
+                break;
+                
+            case EQQAPIQQNOTINSTALLED:
+                error = [NSError errorWithDomain:CYShareErrorDomain
+                                            code:CYShareErrorCodeOpenAppFailed
+                                        userInfo:@{ @"msg": NSLocalizedString(@"无法打开QQ", nil), @"sourceError": [NSNumber numberWithInteger: code] } ];
+                break;
+                
+            case EQQAPIQQNOTSUPPORTAPI:
+            case EQQAPIQZONENOTSUPPORTTEXT:
+            case EQQAPIQZONENOTSUPPORTIMAGE:
+            case EQQAPIQQNOTSUPPORTAPI_WITH_ERRORSHOW:
+                error = [NSError errorWithDomain:CYShareErrorDomain
+                                            code:CYShareErrorCodeUnsupport
+                                        userInfo:@{ @"msg": NSLocalizedString(@"不支持此分享", nil), @"sourceError": [NSNumber numberWithInteger: code] } ];
+                break;
+                
+                
+            case EQQAPIMESSAGETYPEINVALID:
+            case EQQAPIMESSAGECONTENTNULL:
+            case EQQAPIMESSAGECONTENTINVALID:
+                error = [NSError errorWithDomain:CYShareErrorDomain
+                                            code:CYShareErrorCodeInvalidParams
+                                        userInfo:@{ @"msg": NSLocalizedString(@"不支持此类型分享", nil), @"sourceError": [NSNumber numberWithInteger: code] } ];
+                break;
+                
+            case EQQAPIAPPNOTREGISTED:
+                error = [NSError errorWithDomain:CYShareErrorDomain
+                                            code:CYShareErrorCodeCommon
+                                        userInfo:@{ @"msg": NSLocalizedString(@"未设置QQ APP ID", nil), @"sourceError": [NSNumber numberWithInteger: code] }];
+                break;
+                
+            case EQQAPIAPPSHAREASYNC:
+                error = [NSError errorWithDomain:CYShareErrorDomain
+                                            code:CYShareErrorCodeCommon
+                                        userInfo:@{ @"msg": NSLocalizedString(@"异步分享", nil), @"sourceError": [NSNumber numberWithInteger: code] }];
+                break;
+                
+                
+            default:
+                error = [NSError errorWithDomain:CYShareErrorDomain
+                                            code:CYShareErrorCodeCommon
+                                        userInfo:@{ @"msg": NSLocalizedString(@"分享失败", nil), @"sourceError": [NSNumber numberWithInteger: code] }];
+                break;
+        }
+        self.shareCallback(error);
         self.shareCallback = nil;
     }
 
@@ -221,7 +278,14 @@ NSString *const CYQQAPICtrlFlagKey = @"CYUtil.CYQQAPICtrlFlagKey";
         
         if (self.shareCallback) {
             
-            self.shareCallback([resp.result integerValue], resp.errorDescription);
+            NSInteger errorCode = [resp.result integerValue];
+            NSError *error = nil;
+            if (errorCode != 0) {
+                error = [NSError errorWithDomain:CYShareErrorDomain
+                                            code:CYShareErrorCodeCommon
+                                        userInfo:@{ @"msg": resp.errorDescription ? : NSLocalizedString(@"分享失败", nil) }];
+            }
+            self.shareCallback(error);
             self.shareCallback = nil;
         }
     }

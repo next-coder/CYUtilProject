@@ -24,7 +24,10 @@
 
     if (!model.isValid) {
         if (callback) {
-            callback(-1, @"The share model is invalid!!!");
+            NSError *error = [NSError errorWithDomain:CYShareErrorDomain
+                                                 code:CYShareErrorCodeInvalidParams
+                                             userInfo:@{ @"msg": NSLocalizedString(@"参数错误", nil) }];
+            callback(error);
         }
         return;
     }
@@ -59,7 +62,13 @@
                                                                                   applicationActivities:nil];
     [shareController setCompletionWithItemsHandler:^(UIActivityType  _Nullable activityType, BOOL completed, NSArray * _Nullable returnedItems, NSError * _Nullable activityError) {
         if (callback) {
-            callback(activityError.code, [activityError.userInfo description]);
+            NSError *error = nil;
+            if (activityError) {
+                error = [NSError errorWithDomain:CYShareErrorDomain
+                                            code:CYShareErrorCodeCommon
+                                        userInfo:@{ @"msg": NSLocalizedString(@"分享失败", nil), @"sourceError": activityError }];
+            }
+            callback(error);
         }
     }];
     [viewController presentViewController:shareController animated:YES completion:nil];

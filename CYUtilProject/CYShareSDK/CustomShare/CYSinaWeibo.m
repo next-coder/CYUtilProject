@@ -32,7 +32,10 @@
 - (void)share:(CYShareModel *)model callback:(CYShareCallback)callback {
     if (!model.isValid) {
         if (callback) {
-            callback(-1, @"The share model is invalid!!!");
+            NSError *error = [NSError errorWithDomain:CYShareErrorDomain
+                                                 code:CYShareErrorCodeInvalidParams
+                                             userInfo:@{ @"msg": NSLocalizedString(@"参数错误", nil) }];
+            callback(error);
         }
         return ;
     }
@@ -74,7 +77,10 @@
     self.shareCallback = callback;
     if (!result
         && self.shareCallback) {
-        self.shareCallback(-1, NSLocalizedString(@"Failed", nil));
+        NSError *error = [NSError errorWithDomain:CYShareErrorDomain
+                                             code:CYShareErrorCodeOpenAppFailed
+                                         userInfo:@{ @"msg": NSLocalizedString(@"调用微博分享失败", nil) }];
+        self.shareCallback(error);
         self.shareCallback = nil;
     }
 }
@@ -95,8 +101,7 @@
         
         // 分享完成
         if (self.shareCallback) {
-            
-            self.shareCallback(response.statusCode, nil);
+            self.shareCallback([self errorWithResponse:response]);
             self.shareCallback = nil;
         }
     } else if ([response isKindOfClass:[WBAuthorizeResponse class]]) {
@@ -110,13 +115,58 @@
             self.loginInfo = loginInfo;
         }
         if (self.loginCallback) {
-            self.loginCallback(response.statusCode,
-                               nil,
-                               loginInfo);
+            self.loginCallback(loginInfo, [self errorWithResponse:response]);
             self.loginCallback = nil;
         }
 #endif
     }
+}
+
+- (NSError *)errorWithResponse:(WBBaseResponse *)response {
+    if (response.statusCode == WeiboSDKResponseStatusCodeSuccess) {
+        // 成功状态下，直接返回nil
+        return nil;
+    }
+    
+    NSError *error = nil;
+    switch (response.statusCode) {
+        case WeiboSDKResponseStatusCodeUserCancel:
+            error = [NSError errorWithDomain:CYShareErrorDomain
+                                        code:CYShareErrorCodeUserCancel
+                                    userInfo:@{ @"msg": NSLocalizedString(@"用户取消", nil), @"sourceError": [NSNumber numberWithInteger:response.statusCode] }];
+            break;
+            
+        case WeiboSDKResponseStatusCodeSentFail:
+            error = [NSError errorWithDomain:CYShareErrorDomain
+                                        code:CYShareErrorCodeSentFail
+                                    userInfo:@{ @"msg": NSLocalizedString(@"发送失败", nil), @"sourceError": [NSNumber numberWithInteger:response.statusCode] }];
+            break;
+            
+        case WeiboSDKResponseStatusCodeAuthDeny:
+            error = [NSError errorWithDomain:CYShareErrorDomain
+                                        code:CYShareErrorCodeAuthDeny
+                                    userInfo:@{ @"msg": NSLocalizedString(@"授权失败", nil), @"sourceError": [NSNumber numberWithInteger:response.statusCode] }];
+            break;
+            
+        case WeiboSDKResponseStatusCodeShareInSDKFailed:
+            error = [NSError errorWithDomain:CYShareErrorDomain
+                                        code:CYShareErrorCodeCommon
+                                    userInfo:@{ @"msg": NSLocalizedString(@"分享失败", nil), @"sourceError": response.userInfo ? : @"" }];
+            break;
+            
+        case WeiboSDKResponseStatusCodeUnsupport:
+            error = [NSError errorWithDomain:CYShareErrorDomain
+                                        code:CYShareErrorCodeUnsupport
+                                    userInfo:@{ @"msg": NSLocalizedString(@"不支持的接口", nil), @"sourceError": [NSNumber numberWithInteger:response.statusCode] }];
+            break;
+            
+        default:
+            error = [NSError errorWithDomain:CYShareErrorDomain
+                                        code:CYShareErrorCodeCommon
+                                    userInfo:@{ @"msg": NSLocalizedString(@"其他错误", nil), @"sourceError": [NSNumber numberWithInteger:response.statusCode] }];
+            break;
+    }
+    return error;
 }
 
 #pragma mark - handle open url
