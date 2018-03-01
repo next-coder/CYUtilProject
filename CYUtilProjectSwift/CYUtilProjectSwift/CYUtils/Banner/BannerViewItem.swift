@@ -1,5 +1,5 @@
 //
-//  CycleBannerViewCell.swift
+//  BannerViewCell.swift
 //  CYUtilProjectSwift
 //
 //  Created by xn011644 on 22/05/2017.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class CycleBannerViewItem: UIView {
+public class BannerViewItem: UIView {
 
     @IBOutlet private(set) var contentView: UIView!
     @IBOutlet private(set) var imageView: UIImageView!

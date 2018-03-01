@@ -210,6 +210,9 @@ class ViewController: UITableViewController, WKNavigationDelegate, WKUIDelegate 
             } else if indexPath.row == 11 {
                 let singleImageGallery = SingleImageGalleryTestViewController()
                 navigationController?.pushViewController(singleImageGallery, animated: true)
+            } else if indexPath.row == 12 {
+                let imageBanner = ImageBannerTestViewController()
+                navigationController?.pushViewController(imageBanner, animated: true)
             }
         }
     }

@@ -13,7 +13,7 @@ public protocol TextProtocol {
     func testSomething()
 }
 
-class CycleBannerTestViewController: UIViewController, CycleBannerViewDelegate, TextProtocol {
+class CycleBannerTestViewController: UIViewController, BannerViewDelegate, TextProtocol {
 
 
     func testSomething() {
@@ -21,7 +21,7 @@ class CycleBannerTestViewController: UIViewController, CycleBannerViewDelegate, 
     }
 
 
-    var cycleBannerView: CycleBannerView!
+    var cycleBannerView: BannerView!
 
     override func loadView() {
         super.loadView()
@@ -30,7 +30,7 @@ class CycleBannerTestViewController: UIViewController, CycleBannerViewDelegate, 
 
         self.view.backgroundColor = UIColor.white
 
-        cycleBannerView = CycleBannerView(frame: self.view.bounds)
+        cycleBannerView = BannerView(frame: self.view.bounds)
         cycleBannerView.delegate = self
         cycleBannerView.itemSize = CGSize(width: 280, height: 180)
         cycleBannerView.itemHeaderWidth = 10
@@ -70,12 +70,12 @@ class CycleBannerTestViewController: UIViewController, CycleBannerViewDelegate, 
 
     }
 
-    func cycleBannerView(_ cycleBannerView: CycleBannerView, didSelectItemAt index: Int) {
+    func bannerView(_ cycleBannerView: BannerView, didSelectItemAt index: Int) {
 
         print("tap item at = %d", index)
     }
 
-    func cycleBannerViewDidLayoutItems(_ cycleBannerView: CycleBannerView) {
+    func bannerViewDidLayoutItems(_ cycleBannerView: BannerView) {
 
 //        let scrollView = cycleBannerView.scrollView!
 //        let contentOffset = scrollView.contentOffset
@@ -110,13 +110,13 @@ class CycleBannerTestViewController: UIViewController, CycleBannerViewDelegate, 
     @objc func button1Tapped() {
 
 
-        let item1 = CycleBannerViewItem(frame: self.view.bounds)
+        let item1 = BannerViewItem(frame: self.view.bounds)
         item1.contentView.backgroundColor = UIColor.green
-        let item2 = CycleBannerViewItem()
+        let item2 = BannerViewItem()
         item2.contentView.backgroundColor = UIColor.blue
-        let item3 = CycleBannerViewItem()
+        let item3 = BannerViewItem()
         item3.contentView.backgroundColor = UIColor.black
-        let item4 = CycleBannerViewItem()
+        let item4 = BannerViewItem()
         item4.contentView.backgroundColor = UIColor.white
         cycleBannerView.items = [item1, item2, item3, item4]
 //        let item5 = CycleBannerViewItem()
