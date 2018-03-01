@@ -18,6 +18,12 @@ public class CycleBannerViewItem: UIView {
 
         configureViews()
     }
+    
+    convenience init(image: UIImage) {
+        self.init(frame: .zero)
+        
+        imageView?.image = image
+    }
 
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -103,11 +109,6 @@ public class CycleBannerViewItem: UIView {
                                                    constant: 0)
             addConstraints([imageLeft,imageRight, imageTop, imageBottom])
         }
-    }
-
-    override public func layoutSubviews() {
-
-        super.layoutSubviews()
     }
 
 }

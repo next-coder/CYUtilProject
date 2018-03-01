@@ -52,6 +52,8 @@ open class WebViewController: UIViewController, WKNavigationDelegate, WKUIDelega
 
     deinit {
         webView?.removeObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress))
+        webView?.uiDelegate = nil
+        webView?.navigationDelegate = nil
     }
 
     public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -76,6 +78,7 @@ open class WebViewController: UIViewController, WKNavigationDelegate, WKUIDelega
 
         if webView == nil {
             webView = WKWebView(frame: view.bounds)
+            webView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             webView?.uiDelegate = self
             webView?.navigationDelegate = self
             webView?.allowsBackForwardNavigationGestures = true
@@ -109,7 +112,6 @@ open class WebViewController: UIViewController, WKNavigationDelegate, WKUIDelega
         gesture.edges = .left
         webView?.addGestureRecognizer(gesture)
         popGesutreRecognizer = gesture
-
         webView?.scrollView.panGestureRecognizer.require(toFail: popGesutreRecognizer!)
     }
 
@@ -148,6 +150,9 @@ open class WebViewController: UIViewController, WKNavigationDelegate, WKUIDelega
             }
             webView?.reload()
             isReload = false
+        }
+        if self.navigationItem.rightBarButtonItems == nil {
+            self.navigationItem.rightBarButtonItems = self.rightBarButtonItems
         }
         self.navigationController?.delegate = self
     }
@@ -206,11 +211,11 @@ open class WebViewController: UIViewController, WKNavigationDelegate, WKUIDelega
         }
     }
 
-    @objc private func closeWeb(_ sender: Any?) {
+    @objc open func closeWeb(_ sender: Any?) {
         navigationController?.popViewController(animated: true)
     }
 
-    @objc private func goBack(_ sender: Any?) {
+    @objc open func goBack(_ sender: Any?) {
         if webView?.canGoBack ?? false {
             webView?.goBack()
         } else {
@@ -325,6 +330,13 @@ extension WebViewController {
             _ = self.view
         }
         return webView?.loadHTMLString(string, baseURL: baseURL)
+    }
+    
+    open func reload() -> WKNavigation? {
+        if !(webView?.isLoading ?? false) {
+            return webView?.reload()
+        }
+        return nil
     }
 }
 

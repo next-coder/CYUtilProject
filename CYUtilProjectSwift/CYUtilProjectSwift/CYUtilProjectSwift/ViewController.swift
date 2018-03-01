@@ -54,8 +54,15 @@ class ViewController: UITableViewController, WKNavigationDelegate, WKUIDelegate 
 
         if #available(iOS 11, *) {
 
-            navigationController?.navigationBar.prefersLargeTitles = true
+            navigationController?.navigationBar.prefersLargeTitles = false
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "blue")?.resizableImage(withCapInsets: UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)), for: .default)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -73,15 +80,15 @@ class ViewController: UITableViewController, WKNavigationDelegate, WKUIDelegate 
                 let documentsList = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
                 let fileUrl = documentsList[0] + "/record.caf"
                 let result = CYAudioRecordUtils.record(URL: URL(fileURLWithPath: fileUrl)) { (url, error, success) in
-
+                    
                     if success {
-
+                        
                         print("success")
                     } else {
-
+                        
                         print(error ?? "录制出错")
                     }
-                }	
+                }
 
                 if result {
                     
@@ -174,7 +181,7 @@ class ViewController: UITableViewController, WKNavigationDelegate, WKUIDelegate 
 
                 let web = WebViewController(style: webStyle)
                 web.delegate = self
-                _ = web.load(URLRequest(url: URL(string: "http://www.qguanzi.com")!))
+                _ = web.load(URLRequest(url: URL(string: "https://www.qguanzi.com")!))
 
                 web.addNavigationRightItem(UIBarButtonItem(title: "更多", style: .plain, target: nil, action: nil)) { (item) in
                     print("点击更多啦啦啦啦啦啦啦啦啦啦啦")
@@ -191,6 +198,18 @@ class ViewController: UITableViewController, WKNavigationDelegate, WKUIDelegate 
             } else if indexPath.row == 7 {
                 let qrcode = QRCodeTestViewController()
                 navigationController?.pushViewController(qrcode, animated: true)
+            } else if indexPath.row == 8 {
+                let presentationTest = PresentationStyleTestViewController()
+                navigationController?.present(presentationTest, animated: true, completion: nil)
+            } else if indexPath.row == 9 {
+                let alert = CYAlertController()
+                navigationController?.present(alert, animated: true, completion: nil)
+            } else if indexPath.row == 10 {
+                let imageGallery = ImageGalleryTestViewController()
+                navigationController?.pushViewController(imageGallery, animated: true)
+            } else if indexPath.row == 11 {
+                let singleImageGallery = SingleImageGalleryTestViewController()
+                navigationController?.pushViewController(singleImageGallery, animated: true)
             }
         }
     }

@@ -25,6 +25,12 @@ class QRCodeTestViewController: UIViewController {
         imageView.image = qrcode
         self.view.addSubview(imageView)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "red")?.resizableImage(withCapInsets: UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)), for: .default)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
