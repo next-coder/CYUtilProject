@@ -838,7 +838,8 @@
 				A3A81D591F95EDAA00C26475 /* CYShareCtrlFlag.h */,
 				61091CC51CDAF563008B7EA3 /* Readme */,
 			);
-			path = CYShareSDK;
+			name = CYShareSDK;
+			path = CYUtilProject/ThirdParty/CYShareSDK;
 			sourceTree = SOURCE_ROOT;
 		};
 		61091CC61CDAF563008B7EA3 /* CYSMS */ = {
@@ -926,7 +927,7 @@
 		61851EBD1BCD0964005340C8 /* CYUtilProject */ = {
 			isa = PBXGroup;
 			children = (
-				A3274A081FBAD33200315E1E /* CYAlipay */,
+				A4EC1B26208590700020C199 /* ThirdParty */,
 				A369041A1E6D61DF005F7697 /* CYImage */,
 				A3BA5F241E6814C900B31B8C /* CYWebListener */,
 				A307B6431D080FD900DE9B9E /* CYSegmented */,
@@ -949,7 +950,6 @@
 				61091C9E1CDAF563008B7EA3 /* CYIAP */,
 				61091CA51CDAF563008B7EA3 /* CYPullRefresh */,
 				61091CB01CDAF563008B7EA3 /* CYSearch */,
-				61091CB31CDAF563008B7EA3 /* CYShareSDK */,
 				61091CC61CDAF563008B7EA3 /* CYSMS */,
 				61091CC91CDAF563008B7EA3 /* CYSQLite */,
 				61091CD11CDAF563008B7EA3 /* CYUIKitUtils */,
@@ -1109,7 +1109,8 @@
 				A3274A091FBAD34600315E1E /* CYAlipay.h */,
 				A3274A0A1FBAD34600315E1E /* CYAlipay.m */,
 			);
-			path = CYAlipay;
+			name = CYAlipay;
+			path = CYUtilProject/ThirdParty/CYAlipay;
 			sourceTree = SOURCE_ROOT;
 		};
 		A330B0AB1CF6F53000C8639D /* CYSecurity */ = {
@@ -1229,6 +1230,15 @@
 				A4AC42E4200740AC00882600 /* AlipaySDK.framework */,
 			);
 			path = Alipay;
+			sourceTree = "<group>";
+		};
+		A4EC1B26208590700020C199 /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				61091CB31CDAF563008B7EA3 /* CYShareSDK */,
+				A3274A081FBAD33200315E1E /* CYAlipay */,
+			);
+			path = ThirdParty;
 			sourceTree = "<group>";
 		};
 		E299DF45F885184B4A142853 /* Frameworks */ = {
